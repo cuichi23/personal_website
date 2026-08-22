@@ -12,6 +12,22 @@ signals between them arrive late. For years that was a blackboard problem. Then 
 [patented it](#patents), then we built it at 24 gigahertz across half a kilometre, and now I
 lead the development of hybrid analog-digital computers at anabrid.
 
+None of that was mine alone, and it would be poor form not to say so. I learned how to think
+about coupled oscillators from Frank Jülicher, and how to be careful with stochastic dynamics
+from Ulrich Behn. The move from blackboard to circuit board happened because the groups of
+Gerhard Fettweis and Frank Ellinger at TU Dresden took a physicist's model seriously enough to
+build it, and because David Jörg, Alexandros Pollakis, Wolfgang Rave, Dimitrios Prousalis,
+Christian Hoyer, Jens Wagner, Rabia Riaz and Nirmal Punetha did the difficult parts alongside
+me. Earlier, Luis Morelli, Andrew Oates and Saúl Ares taught me that the same mathematics runs
+a developing embryo. At anabrid it is Bernd Ulmann's conviction that analog computing deserves
+another look that made any of this a company at all, and the REDAC went from a drawing to a
+machine because a very good team built it.
+
+I have been unreasonably lucky in the people I have worked with — including many I have not
+named here, and every student and guest scientist who asked the question I had not thought of.
+Being the least experienced person in the room is the fastest way to learn anything, and I have
+had a lot of practice.
+
 As Chief Scientific Officer I am responsible for our scientific direction, for hardware
 development, and for the technical conversation with customers. The REDAC, the largest
 reconfigurable discrete analog computer in operation, was designed, built and commissioned by
