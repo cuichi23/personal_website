@@ -2,7 +2,6 @@
 title: Motivation
 slug: motivation
 order: 5
-summary: Why I do this, in the first person.
 ---
 
 I do not just ask *what if*. I ask *how do we get it done*.

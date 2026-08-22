@@ -2,7 +2,6 @@
 title: Skills
 slug: skills
 order: 60
-summary: What I actually work with, rather than a list of tools.
 ---
 
 - **Physics and mathematics**
