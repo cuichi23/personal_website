@@ -4,6 +4,9 @@ slug: activities-and-outreach
 order: 70
 ---
 
+2025 – today
+: **Running backs coach**, Dresden Monarchs, German Football League (GFL). Licensed since 2026.
+
 2014 – today
 : **Mentoring** of doctoral students at TU Dresden and of visiting scientists at MPI-PKS, and
   supervision of bachelor and master theses at anabrid. Several mentees have gone on to lead
