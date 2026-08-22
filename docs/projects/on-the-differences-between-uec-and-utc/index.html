@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>On the differences between universal emergent time (UEC) and universal coordinated time (UTC) — Lucas Wetzel</title>
+<meta name="description" content="Today's time standards feed a reference forward. What would a standard look like if the reference emerged from the network instead?">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects/on-the-differences-between-uec-and-utc/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="On the differences between universal emergent time (UEC) and universal coordinated time (UTC) — Lucas Wetzel">
+<meta property="og:description" content="Today's time standards feed a reference forward. What would a standard look like if the reference emerged from the network instead?">
+<meta property="og:url" content="https://lucaswetzel.de/projects/on-the-differences-between-uec-and-utc/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=a5df269d">
+<link rel="stylesheet" href="/assets/css/site.css?v=a5df269d">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/projects/" aria-current="page">Current projects</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="post">
+  <header class="post__header">
+    <p class="eyebrow"><a href="/projects/">Current projects</a></p>
+    <h1 class="post__title">On the differences between universal emergent time (UEC) and universal coordinated time (UTC)</h1>
+<p class="post__standfirst">Today's time standards feed a reference forward. What would a standard look like if the reference emerged from the network instead?</p>    <dl class="post__meta">
+      <div class="post__meta-pair">
+        <dt>Published</dt>
+        <dd>18 December 2018</dd>
+      </div>
+      <div class="post__meta-pair">
+        <dt>Topics</dt>
+        <dd class="taglist">
+<a class="topic-tag" href="/tags/synchronization/">synchronization</a><a class="topic-tag" href="/tags/time-reference/">time-reference</a><a class="topic-tag" href="/tags/time-distribution/">time-distribution</a><a class="topic-tag" href="/tags/uec/">UEC</a><a class="topic-tag" href="/tags/utc/">UTC</a><a class="topic-tag" href="/tags/tai/">TAI</a>        </dd>
+      </div>
+    </dl>
+  </header>
+
+  <div class="prose"><p>WORK IN PROGRESS</p>
+<p>This is supposed to be more a basis for discussion and thought than a source of <em>factual</em> information.</p>
+<h2 id="state-of-the-art-time-standards-based-on-reference-periodic-processes">State-of-the-art time-standards based on reference periodic processes</h2>
+<p>A time standard is a specification on how to measure time which historically were often bound to Earth’s rotational period. Time standards provide either a way to specify how fast time passes, and/or provides fixed points in time.</p>
+<p>The current <a href="https://en.wikipedia.org/wiki/Time_standard">time-standards</a> important for most of our everyday life are the coordinated universal time (UTC) and the international atomic time (TAI). For those who wonder about the order of letters in the abbreviations have their origin in french, i.e., <a href="https://en.wikipedia.org/wiki/International_Atomic_Time"><em>temps atomique international</em></a> and <em>temps <a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time">universel coordonné</a>.</em> While UTC is organized to stay close to mean solar time, it is related to the TAI time standard which is tied to the definition of the SI second.</p>
+<p>So far most of the existing time-standards are related to a reference, such as the periodicity of the Earths rotation or frequencies related to physical processes. Subsequently other clocks can be synchronized to the time defined by these standards in a hierarchical way. This of course relies on the transmission of signals for the correction of time within the network of spatially distributed clocks. At large distances and/or high frequencies this become a challenging part, even if the signal transmission times can in general be measured and compensated for. The quality of synchronization then depends on the accuracy with which the signalling times can be measured.</p>
+<p>In summary that means, that synchronization via hierarchical solutions relies on very frequency stable reference clocks that feed-forward their signal to individual distributed clocks in order to correct the time-deviations arising due to the inevitable (there are no identical clocks) drift.</p>
+<p>I would like to note there, that the TAI is not a hierarchically synchronized systems but instead a plesiosynchronous system. There is no coupling between these clocks. However, their difference towards their weighted average is used to correct the time-stamps that they provide to third parties. The plesiosynchronous approach is usually chosen for networks that consist of very frequency stable clocks/oscillators.</p>
+<h2 id="a-time-standard-based-on-a-spatially-distributed-clock-arising-over-a-network-of-mutually-delay-coupled-clocks">A time-standard based on a spatially distributed clock arising over a network of mutually delay-coupled clocks</h2></div>
+
+  <footer class="post__footer">
+    <nav class="pager" aria-label="More posts">
+      <a class="pager__link pager__link--prev" href="/projects/howto-run-independent-voltage-noise-sources-in-ltspice/">
+        <span class="pager__label">Older</span>
+        <span class="pager__title">Howto run independent voltage noise sources (IID and GWN) in LTSpice using Bv-sources</span>
+      </a>
+      <a class="pager__link pager__link--next" href="/projects/synchronization-of-rhythm-in-human-and-human-machine-interactions/">
+        <span class="pager__label">Newer</span>
+        <span class="pager__title">Synchronization of rhythm in human human, human machine and machine machine interactions</span>
+      </a>
+    </nav>
+  </footer>
+</article>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=a5df269d"></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Synchronization of rhythm in human human, human machine and machine machine interactions — Lucas Wetzel</title>
+<meta name="description" content="What a room full of people clapping and a network of clocks have in common, and where the analogy stops.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects/synchronization-of-rhythm-in-human-and-human-machine-interactions/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Synchronization of rhythm in human human, human machine and machine machine interactions — Lucas Wetzel">
+<meta property="og:description" content="What a room full of people clapping and a network of clocks have in common, and where the analogy stops.">
+<meta property="og:url" content="https://lucaswetzel.de/projects/synchronization-of-rhythm-in-human-and-human-machine-interactions/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=a5df269d">
+<link rel="stylesheet" href="/assets/css/site.css?v=a5df269d">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/projects/" aria-current="page">Current projects</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="post">
+  <header class="post__header">
+    <p class="eyebrow"><a href="/projects/">Current projects</a></p>
+    <h1 class="post__title">Synchronization of rhythm in human human, human machine and machine machine interactions</h1>
+<p class="post__standfirst">What a room full of people clapping and a network of clocks have in common, and where the analogy stops.</p>    <dl class="post__meta">
+      <div class="post__meta-pair">
+        <dt>Published</dt>
+        <dd>May 2022 <span class="post__meta-hint">(month approximate)</span></dd>
+      </div>
+      <div class="post__meta-pair">
+        <dt>Topics</dt>
+        <dd class="taglist">
+<a class="topic-tag" href="/tags/synchronization/">synchronization</a><a class="topic-tag" href="/tags/networks/">networks</a><a class="topic-tag" href="/tags/state-dependence/">state dependence</a>        </dd>
+      </div>
+    </dl>
+  </header>
+
+  <div class="prose"><p>Note, this is a work in progress, like a diary to formulate our thoughts and collect ideas, questions, hypothesis and results as we work towards gaining insight to the topic.</p>
+<p>[collaborators: Johannes Fritzsche, Dimitris Prousalis, Lucas Wetzel]</p>
+<p>We want to thank <a href="https://chrischafe.net/">Chris Chafe</a> and <a href="https://www.nolanlem.com/">Nolan Lem</a> for the inspiration to start this project, their shared interest and the discussions. Also note that the work discussed is based on the ideas presented in these publications:</p>
+<ol>
+<li><a href="https://journals.sagepub.com/doi/10.1068/p6465">Chafe et al., Effect of temporal separation on synchronization in rhythmic performance</a> (2010)</li>
+<li><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1007371">Roman et al., Delayed feedback embedded in perception – A dynamical systems approach</a> (2019)</li>
+<li><a href="https://www.nature.com/articles/s41467-020-17540-7">Shahal et al., Synchronization of complex human networks</a> (2020)</li>
+</ol>
+<p>The first two publications by Chafe and Roman study synchronization of rhythms in human interactions. Chafe et al. ask at which interaction time delay two performers achieve the best synchronization. Their results indicate that for natural time delays their synchronization works best, i.e., they are in phase and keep the frequency stable. This regime is associated to the traveling times of sound waves over distances at the scale of groups of humans.<br />
+ Roman et al. tested whether a dynamical system (Stuart Landau oscillators) can reproduce the patterns observed in human synchronization. That includes phenomena like the anticipation tendency.<br />
+ Shahal et al. study the synchronization between violin players while controlling the network topology, the coupling strength and the time delays (latencies) with which the players hear each other. They show that players tune their frequencies and can ignore inputs to be able to find a stable synchronized solution with others. The measurements are carried out while the time delay between the players is increased. They discuss how the observed dynamics compare to the results of a first order delayed Kuramoto model with an additional complex term that represents a bandwidth factor.</p>
+<h2 id="introduction">Introduction</h2>
+<p>In this project we plan to build an experimental setup inspired by the setup in Chafe et al. 2010. In our case we will use buttons instead of clapping and focus on transmission time delays (latencies) much larger than the <span class="math math--inline" data-tex="\tau_\textrm{max}=78\,">$\tau_\textrm{max}=78\,$</span>ms presented in Chafe et al. 2010. We aim at studying human human and human machine synchronization at delays that are of the order of the period of the phrase or rhythm, i.e., <span class="math math--inline" data-tex="\tau\approx 1\,">$\tau\approx 1\,$</span>s at <span class="math math--inline" data-tex="60">$60$</span> bpm. Moreover, we can also use the setup to study machine to machine synchronization. This can be used to implement experimental setups with digital oscillators that only change their frequency at discrete instances in time, more specifically when there is an edge event at their output when the signal changes from high to low or vice versa.</p>
+<p>The main scenarios that we will focus on first are:<br />
+ I) the human to human synchronization dynamics in the presence of time delays of the order of the period of the rhythms involved, along with the question whether these can be understood and predicted by a Kuramoto model that includes signal filtering/processing and time-delayed coupling and<br />
+ II) the machine to machine synchronization experiments to validate the predictions made from the analysis of an event-based dynamical model.</p>
+<h2 id="experimental-setup-measurements">Experimental setup &amp; measurements</h2>
+<p>The experimental setup is designed and build by <a href="http://25mmhg.net">Johannes Fritzsche</a> – <a href="https://kazoosh.com/mitglieder/johannes_fritzsche.html">hands-on guy</a> par excellence. He came up with the PCB design that houses two electronic drums, the microcontroller that manages delaying the trigger signals from the buttons (equivalent to the clapping buttons are tapped) by a defined time delay and sending the data to a monitoring device that stores the measurements, as well as the audio connectors and the interface to the other PCB for the exchange of the trigger signals.</p>
+<figure class="figure figure--missing"><div class="figure__placeholder"><span class="figure__label">figure not recovered</span><code>rhythm-experiment.jpg</code></div><figcaption>First sketch of the envisioned experimental setup by Johannes Fritzsche after the initial discussions.</figcaption></figure>
+<p>As can be seen in the sketch the sources of the sound are electronic drums that can be triggered by pressing a button. This trigger signal can then also be delayed artificially by a user defined value with resolution in the milliseconds regime. There are two drums on each participants side, one to play the sound triggered locally and one to play the sound of the other participant triggered with the chosen latency. The sound played by either of the drums is then mixed and played via a headphone. Depending on the type of experiment carried out the headphones are used by a human experimenter to hear is own rhythm mixed with that of the other entity, either machine or human. In the case that one or both participants of the experiment are implemented by the microcontroller, the coupling is in the simplest case realized by the exchange of the trigger signals.</p>
+<h3 id="human-human-interaction">Human human interaction</h3>
+<p>The rhythm to be synchronized is made by tapping a button that triggers a signal. This signal then triggers the local drum that is played to the experimenter. …to be continued…</p></div>
+
+  <footer class="post__footer">
+    <nav class="pager" aria-label="More posts">
+      <a class="pager__link pager__link--prev" href="/projects/on-the-differences-between-uec-and-utc/">
+        <span class="pager__label">Older</span>
+        <span class="pager__title">On the differences between universal emergent time (UEC) and universal coordinated time (UTC)</span>
+      </a>
+      <a class="pager__link pager__link--next" href="/projects/ising-machines/">
+        <span class="pager__label">Newer</span>
+        <span class="pager__title">Ising Machines</span>
+      </a>
+    </nav>
+  </footer>
+</article>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=a5df269d"></script>
+</body>
+</html>

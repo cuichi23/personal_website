@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }} — {{ site.title }}{% endblock %}
+{% block description %}{{ post | excerpt }}{% endblock %}
+{% block canonical %}{{ post.url }}{% endblock %}
+
+{% block main %}
+<article class="post">
+  <header class="post__header">
+    <p class="eyebrow"><a href="/projects/">Current projects</a></p>
+    <h1 class="post__title">{{ post.title }}</h1>
+    {% if post.summary %}<p class="post__standfirst">{{ post.summary }}</p>{% endif %}
+    <dl class="post__meta">
+      <div class="post__meta-pair">
+        <dt>Published</dt>
+        <dd>{{ post | nice_date }}{% if post.date_approx %} <span class="post__meta-hint">(month approximate)</span>{% endif %}</dd>
+      </div>
+      {% if post.tags %}
+      <div class="post__meta-pair">
+        <dt>Topics</dt>
+        <dd class="taglist">
+          {% for tag in post.tags %}<a class="topic-tag" href="/tags/{{ tag | tag_slug }}/">{{ tag }}</a>{% endfor %}
+        </dd>
+      </div>
+      {% endif %}
+    </dl>
+  </header>
+
+  <div class="prose">{{ post.body }}</div>
+
+  <footer class="post__footer">
+    <nav class="pager" aria-label="More posts">
+      {% set index = posts.index(post) %}
+      {% if index + 1 < posts | length %}
+      <a class="pager__link pager__link--prev" href="{{ posts[index + 1].url }}">
+        <span class="pager__label">Older</span>
+        <span class="pager__title">{{ posts[index + 1].title }}</span>
+      </a>
+      {% endif %}
+      {% if index > 0 %}
+      <a class="pager__link pager__link--next" href="{{ posts[index - 1].url }}">
+        <span class="pager__label">Newer</span>
+        <span class="pager__title">{{ posts[index - 1].title }}</span>
+      </a>
+      {% endif %}
+    </nav>
+  </footer>
+</article>
+{% endblock %}

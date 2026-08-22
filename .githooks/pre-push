@@ -1,0 +1,37 @@
+#!/bin/sh
+# Refuse to push if anything unpublished would go out with it.
+#
+# Enable once per clone:   git config core.hooksPath .githooks
+# Bypass (do not):         git push --no-verify
+
+set -e
+root=$(git rev-parse --show-toplevel)
+fail=0
+
+say() { printf '\033[31mpre-push: %s\033[0m\n' "$1" >&2; fail=1; }
+
+# 1. Draft sources must not be tracked.
+tracked=$(git ls-files 'content/drafts' 'static-drafts' || true)
+if [ -n "$tracked" ]; then
+  say "draft files are tracked by git:"
+  printf '  %s\n' $tracked >&2
+  say "run: git rm -r --cached content/drafts static-drafts"
+fi
+
+# 2. docs/ must not be a --drafts build.
+if [ -f "$root/docs/.contains-drafts" ]; then
+  say "docs/ was built with --drafts. Rebuild with: python3 build.py"
+fi
+
+# 3. No draft slug may appear anywhere in the built site.
+for f in "$root"/content/drafts/*.md; do
+  [ -e "$f" ] || continue
+  slug=$(sed -n 's/^slug:[[:space:]]*//p' "$f" | head -1)
+  [ -n "$slug" ] || continue
+  if grep -rqF -- "$slug" "$root/docs" 2>/dev/null; then
+    say "draft slug '$slug' appears in docs/ — rebuild with: python3 build.py"
+  fi
+done
+
+[ "$fail" -eq 0 ] || { echo "push aborted." >&2; exit 1; }
+exit 0

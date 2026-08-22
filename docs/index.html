@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lucas Wetzel — Self-organized synchronization</title>
+<meta name="description" content="Lucas Wetzel — theoretical physics. Self-organized synchronization in networks of delay-coupled oscillators, from segmentation clocks to phase-locked loops.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lucas Wetzel — Self-organized synchronization">
+<meta property="og:description" content="Lucas Wetzel — theoretical physics. Self-organized synchronization in networks of delay-coupled oscillators, from segmentation clocks to phase-locked loops.">
+<meta property="og:url" content="https://lucaswetzel.de/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=a5df269d">
+<link rel="stylesheet" href="/assets/css/site.css?v=a5df269d">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/" aria-current="page">Home</a>
+      <a href="/projects/">Current projects</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero">
+  <div class="hero__text">
+    <p class="eyebrow">Theoretical physics · Analog computing · Dresden</p>
+    <h1 class="hero__headline">Clocks that agree without a conductor</h1>
+    <p class="hero__standfirst">I work on self-organized synchronization: how a network of oscillators — cells in a developing embryo, phase-locked loops on a circuit board, 24 GHz oscillators half a kilometre apart — settles into a common rhythm when every signal between them arrives late. Delay is normally the thing you design around. It is also a parameter you can design with. These days I build computers out of it, as Chief Scientific Officer at anabrid.</p>
+    <p class="hero__actions">
+      <a class="button" href="/projects/">Current projects</a>
+      <a class="button button--quiet" href="#publications">Publications</a>
+    </p>
+  </div>
+  <figure class="hero__figure">
+    <div class="clocks">
+      <canvas class="clocks__canvas" data-coupled-clocks width="900" height="420"
+              role="img" aria-label="Twelve coupled clock signals drifting into a common rhythm"></canvas>
+      <div class="clocks__readout" aria-hidden="true">
+        <span class="clocks__label">No reference clock</span>
+        <span class="clocks__value"><span data-clocks-order>0.00</span><span class="clocks__unit">R</span></span>
+      </div>
+    </div>
+    <figcaption>Twelve mutually delay-coupled clocks, integrated in your browser from the same phase model used in the papers below. No reference clock, no master. The strokes turn amber once the order parameter passes 0.95.</figcaption>
+  </figure>
+</section>
+
+<div class="home">
+  <nav class="section-index" aria-label="Sections">
+    <p class="section-index__heading">On this page</p>
+    <ol class="section-index__list">
+      <li><a href="#scientific-motivation">Scientific motivation</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#talks-and-posters">Talks & posters</a></li>
+      <li><a href="#patents">Patents</a></li>
+      <li><a href="#education-and-work">Education & work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#activities-and-outreach">Activities & outreach</a></li>
+      <li><a href="#interests">Interests</a></li>
+    </ol>
+  </nav>
+
+  <div class="home__sections">
+    <section class="section" id="scientific-motivation">
+      <div class="section__head">
+        <h2 class="section__title">Scientific motivation</h2>
+<p class="section__note">Why delay, and why it changes everything.</p>      </div>
+      <div class="prose prose--flow"><p>In complex systems the synchronization and coordination of many individual parts plays a crucial role. Examples range from multi-core computer architectures, power grid networks, coupled laser arrays, and wireless communication all the way to large groups of interacting cells during embryogenesis or in the brain. Information transmission necessary for the coordination of such large groups of interacting parts is often not instantaneous. This can introduce communication delays within the system which cannot be neglected. In associated mathematical models such delays in the interaction terms lead to qualitatively new behavior. Phenomena like coexisting stable solutions and dynamic behavior that depends nonlinearly on different system parameters can be observed.</p>
+<p>Detailed analysis of such systems is required to built efficiently designed industrial parts such as power saving micro-electronics or precisely synchronized clocks, as well as to understand the evolution and function of biological systems. Interdisciplinary teamwork, enthusiasm and strong communication skills to bridge different approaches and fields are important to successfully tackle these complex problems.</p></div>
+    </section>
+    <section class="section" id="publications">
+      <div class="section__head">
+        <h2 class="section__title">Publications</h2>
+<p class="section__note">Peer-reviewed work on delay-coupled oscillators, phase-locked loops and analog computing.</p>      </div>
+      <div class="prose prose--flow"><h3 id="journal-articles">Journal articles</h3>
+<ul>
+<li>C. Hoyer, <strong>L. Wetzel</strong>, D. A. Prousalis, J. Wagner, F. Jülicher, F. Ellinger, <strong>“Entrainment of mutually synchronized spatially distributed 24 GHz oscillators”</strong>, <a href="https://ieeexplore.ieee.org/document/10105946">IEEE Transactions on Circuits and Systems I 70(7), 2665–2678 (2023)</a></li>
+<li>N. Punetha, <strong>L. Wetzel</strong>, <strong>“How clock heterogeneity affects synchronization and can enhance stability”</strong>, <a href="https://link.aps.org/doi/10.1103/PhysRevE.106.054216">Physical Review E 106, 054216 (2022)</a></li>
+<li><strong>L. Wetzel</strong>, D. A. Prousalis, R. F. Riaz, C. Hoyer, N. Joram, J. Fritzsche, F. Ellinger, F. Jülicher, <strong>“Network synchronization revisited: time delays in mutually coupled oscillators”</strong>, <a href="https://ieeexplore.ieee.org/document/9837916">IEEE Access 10, 80027–80045 (2022)</a></li>
+<li>C. Hoyer, <strong>L. Wetzel</strong>, D. A. Prousalis, J. Wagner, F. Jülicher, F. Ellinger, <strong>“Mutual synchronization of spatially distributed 24 GHz oscillators up to distances of 500 m”</strong>, IEEE Transactions on Circuits and Systems II 69(9), 3689–3693 (2022)</li>
+<li>D. A. Prousalis, <strong>L. Wetzel</strong>, <strong>“Synchronization in the presence of time delays and inertia: stability criteria”</strong>, <a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.105.014210">Physical Review E 105, 014210 (2022)</a></li>
+<li>D. Métivier, <strong>L. Wetzel</strong>, S. Gupta, <strong>“Onset of synchronization in networks of second-order Kuramoto oscillators with delayed coupling: exact results and application to phase-locked loops”</strong>, <a href="https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.2.023183">Physical Review Research 2, 023183 (2020)</a></li>
+<li><strong>L. Wetzel</strong>, D. J. Jörg, A. Pollakis, W. Rave, G. Fettweis, F. Jülicher, <strong>“Self-organized synchronization of digital phase-locked loops with delayed coupling in theory and experiment”</strong>, <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0171590">PLOS ONE 12(2), e0171590 (2017)</a></li>
+<li>A. Pollakis, <strong>L. Wetzel</strong>, D. J. Jörg, W. Rave, G. Fettweis, F. Jülicher, <strong>“Synchronization in networks of mutually delay-coupled phase-locked loops”</strong>, <a href="http://iopscience.iop.org/article/10.1088/1367-2630/16/11/113009">New Journal of Physics 16, 113009 (2014)</a></li>
+</ul>
+<h3 id="conference-papers">Conference papers</h3>
+<ul>
+<li>C. Hoyer, <strong>L. Wetzel</strong>, D. A. Prousalis, J. Wagner, F. Jülicher, F. Ellinger, <strong>“Stability analysis of mutually synchronized spatially distributed 24 GHz oscillators”</strong>, IEEE International Instrumentation and Measurement Technology Conference (I2MTC), 2022</li>
+<li>C. Hoyer, D. A. Prousalis, <strong>L. Wetzel</strong>, R. F. Riaz, J. Wagner, F. Jülicher, F. Ellinger, <strong>“Mutual synchronization with 24 GHz oscillators”</strong>, <a href="https://ieeexplore.ieee.org/document/9401555">IEEE International Symposium on Circuits and Systems (ISCAS), Daegu, 1–5 (2021)</a></li>
+<li>R. F. Riaz, D. A. Prousalis, C. Hoyer, J. Wagner, F. Ellinger, F. Jülicher, <strong>L. Wetzel</strong>, <strong>“Stability and transient dynamics of PLLs in theory and experiments”</strong>, <a href="https://ieeexplore.ieee.org/document/9218377">European Conference on Circuit Theory and Design (ECCTD), Sofia, 1–4 (2020)</a></li>
+<li>D. J. Jörg, A. Pollakis, <strong>L. Wetzel</strong>, M. Dropp, W. Rave, F. Jülicher, G. Fettweis, <strong>“Synchronization of mutually coupled digital PLLs in massive MIMO systems”</strong>, <a href="https://www.researchgate.net/publication/282946534_Synchronization_of_Mutually_Coupled_Digital_PLLs_in_Massive_MIMO_Systems">IEEE International Conference on Communications (ICC), 1716–1721 (2015)</a></li>
+<li><strong>L. Wetzel</strong>, A. Pollakis, D. J. Jörg, W. Rave, G. Fettweis, F. Jülicher, <strong>“Self-organized synchronisation in massive MIMO inspired by biological systems”</strong>, <a href="https://www.researchgate.net/publication/286927753_Self-organized_synchronisation_in_massive_MIMO_inspired_by_biological_systems">IEEE Workshop on Molecular, Biological and Multi-Scale Communications (MBMC), 2015</a></li>
+</ul>
+<h3 id="theses-and-preprints">Theses and preprints</h3>
+<ul>
+<li><strong>L. Wetzel</strong>, <strong>“Effect of distributed delays in systems of coupled phase oscillators”</strong>, PhD thesis, TU Dresden and MPI-PKS (2012) <a href="http://nbn-resolving.de/urn:nbn:de:bsz:14-qucosa-98456">[qucosa]</a></li>
+<li><strong>L. Wetzel</strong>, L. G. Morelli, A. C. Oates, F. Jülicher, S. Ares, <strong>“Synchronization of phase oscillators in the presence of distributed delays”</strong>, <a href="http://arxiv.org/abs/1206.2288">arXiv:1206.2288 (2012)</a></li>
+<li><strong>L. Wetzel</strong>, <strong>“Stability and statistical properties of stochastic delay differential equations”</strong>, diploma thesis, University of Leipzig (2008)</li>
+</ul>
+<p>Further work on hybrid analog-digital computing is in preparation or under review.</p></div>
+    </section>
+    <section class="section" id="talks-and-posters">
+      <div class="section__head">
+        <h2 class="section__title">Talks & posters</h2>
+<p class="section__note">Conferences, workshops, colloquia and public science, 2009 to today.</p>      </div>
+      <div class="prose prose--flow"><h3 id="selected-talks">Selected talks</h3>
+<ul>
+<li><strong>Analog Computing Days 2026</strong>, Frankfurt — workshop and talk</li>
+<li><strong>WCCM 2026</strong>, World Congress in Computational Mechanics, Munich — conference contribution</li>
+<li><strong>AFQC 2026</strong>, DLR Quantum Computing Initiative, Düsseldorf</li>
+<li><strong>Summer School</strong>, TU Dresden, 04/2026 — lecture course</li>
+<li><strong>HPCN Workshop</strong>, DLR Dresden, 2026</li>
+<li><strong><a href="https://falling-walls.com/">Falling Walls Science Summit</a></strong>, Berlin, 2025 — speaker</li>
+<li><strong>REDAC handover to the DLR</strong>, 2025, and the accompanying REDAC lecture series</li>
+<li><strong>DPG-Kolleg</strong>, Ulm, 05/2025</li>
+<li><strong>Digital Twin</strong>, DLR Dresden, 2025, and the <strong>DLR Institute of Aerodynamics and Flow Technology</strong>, 07/2025</li>
+<li><strong>Chair for Network Dynamics</strong>, TU Dresden, 2025</li>
+<li><strong>German Quantum Computing Initiative, All Hands Meeting</strong>, Hamburg, 11/2024
+  <em>“From ancient Greece to the moon and back for quantum computing”</em></li>
+<li><strong>International Workshop on Ising Machines</strong>, Messina, 04/2024
+  <em>“The role of inert oscillator response and signaling time delays when scaling up Ising machines based on electronic oscillators”</em></li>
+<li><strong>ENOC 2024</strong>, European Nonlinear Dynamics Conference, 02/2024 — coupled phase-locked loops</li>
+<li><strong>DLR Oberpfaffenhofen</strong>, 2024, and <strong>DLR-QCI Showcase Day</strong>, Ulm, 11/2023</li>
+<li><strong>QUANTUM 2023</strong> and the <strong>Mikrosystemtechnik-Kongress</strong>, Dresden, 2023</li>
+<li><strong><a href="https://www.pks.mpg.de/intema22/scientific-program">Workshop: Intelligent Machines? Self-Organized Nonlinear Dynamics of Machines across Scales</a></strong>, Dresden, 06/2022
+  <em>“Ising machines — analog computing using coupled oscillators”</em></li>
+<li><strong><a href="https://eftf-ifcs2022.sciencesconf.org/">Joint conference of the European Frequency and Time Forum and the IEEE International Frequency Control Symposium</a></strong>, Paris, 04/2022
+  <em>“Mutual network synchronization: how precise phase relations can be achieved in the presence of large cross-coupling time delays”</em></li>
+<li>Presentation at Naventik GmbH, Chemnitz, 04/2021
+  <em>“Entrainment and self-organized synchronization — spatially distributed clocks and their applications”</em></li>
+<li>IQ Preis Mitteldeutschland, 05/2021, virtual pitch
+  <em>“Navigation mit geschlossenen Augen — Richtungshören innerhalb existierender Mobilfunkarchitektur”</em></li>
+<li>Colloquium, <strong>Center for Advancing Electronics Dresden (cfaed)</strong>, 09/2019
+  <em>“Self-organized synchronization — from localized time references to spatially extended clocking”</em></li>
+<li><strong>Dynamics Days</strong>, Corfu, 06/2016
+  <em>“Phase dynamics of delay-coupled electronic clocks with filter induced memory effects”</em></li>
+<li><strong><a href="https://www.dresden-science-calendar.de/calendar/event/8215">Graduate Lecture</a></strong>, Faculty of Science, Department of Mathematics, TU Dresden, 01/2015
+  <em>“Synchronization: embryonic development to electronic networks”</em></li>
+<li><strong><a href="http://www.chaos.umd.edu/DDays2012/Dynamics_Days_2012.html">Dynamics Days</a></strong>, Baltimore, 01/2012
+  <em>“Effect of distributed delays on synchronization dynamics”</em></li>
+<li>Meeting of the German Physical Society, Dresden (<a href="http://www.dpg-verhandlungen.de/year/2011/conference/dresden/part/dy/session/14/contribution/4">DPG 03/2011</a>)
+  <em>“Effect of distributed delays on synchronization dynamics”</em></li>
+<li>Meeting of the German Physical Society, Regensburg (<a href="http://www.dpg-verhandlungen.de/year/2010/conference/regensburg/part/dy/session/10/contribution/2">DPG 03/2010</a>), and the PhD Circle Meeting, Amsterdam, 04/2010
+  <em>“Distributed vs fixed delay in a system of coupled phase oscillators”</em></li>
+</ul>
+<h3 id="posters">Posters</h3>
+<ul>
+<li><strong><a href="https://www.tu-chemnitz.de/physik/KSND/dcs2018/index.php">675. WE-Heraeus Seminar: Delayed Complex Systems</a></strong>, 2018
+  <em>“Design centering quantifies basin stability of synchronized states in mutually delay-coupled electronic clocks”</em></li>
+<li><strong><a href="http://www.mpipks-dresden.mpg.de/~dycosc15/poster_abstracts.html#contrib87">Workshop on Dynamics of Coupled Oscillators: 40 Years of the Kuramoto Model</a></strong>, MPI-PKS, 07/2015
+  <em>“Robust synchronization in electronic networks with delay coupled distributed clocks”</em></li>
+<li><strong><a href="http://www.ucl.ac.uk/silva/PhysCell">Physics of Living Matter</a></strong>, London, 09/2012
+  <em>“Reconstructing the segmentation clock oscillator”</em> (third author)</li>
+<li>Meeting of the German Physical Society, Berlin (<a href="http://www.dpg-verhandlungen.de/year/2012/conference/berlin/part/dy/session/22/contribution/34">DPG 03/2012</a>)
+  <em>“Effects of distributed delay in the coupling of phase oscillators for m-twist solutions”</em></li>
+<li><strong><a href="http://www.mpipks-dresden.mpg.de/~dcs09/">Delayed Complex Systems</a></strong>, MPI-PKS, 10/2009
+  <em>“Coupled phase oscillators with distributed delay”</em></li>
+<li>Annual Zebrafish Meeting, Rome, 07/2009
+  <em>“The effects of intercellular communication in biological clocks”</em></li>
+<li>Meeting of the German Physical Society, Dresden (<a href="http://www.dpg-verhandlungen.de/year/2009/conference/dresden/part/dy/session/27/contribution/16">DPG 03/2009</a>)
+  <em>“Distributed time delay in the Kuramoto model of coupled oscillators”</em></li>
+</ul></div>
+    </section>
+    <section class="section" id="patents">
+      <div class="section__head">
+        <h2 class="section__title">Patents</h2>
+<p class="section__note">Granted worldwide; the concept behind the electronic-clock work below.</p>      </div>
+      <div class="prose prose--flow"><ul>
+<li><strong>“Self-synchronizable network”</strong><br />
+  Frank Jülicher, Lucas Wetzel, David J. Jörg, Gerhard Fettweis, Wolfgang Rave, Alexandros Pollakis<br />
+  European Patent <a href="https://worldwide.espacenet.com/publicationDetails/description?CC=EP&amp;NR=2957982A1&amp;KC=A1&amp;FT=D&amp;ND=3&amp;date=20151223&amp;DB=EPODOC&amp;locale=en_EP">EP 2 957 982 A1</a><br />
+  WIPO (PCT) <a href="https://patents.google.com/patent/WO2015193512A1/en">WO2015193512A1</a><br />
+  United States <a href="https://patents.google.com/patent/US20170139438A1/en">US20170139438A1</a><br />
+  South Korea <a href="https://patents.google.com/patent/KR102029320B1/en">KR102029320B1</a><br />
+  China <a href="https://patents.google.com/patent/CN106462177B/en">CN106462177B</a><br />
+  Taiwan <a href="https://patents.google.com/patent/TWI721948B/en">TWI721948B</a></li>
+</ul>
+<p>Further applications on analog and hybrid computing are in prosecution at anabrid GmbH.</p></div>
+    </section>
+    <section class="section" id="education-and-work">
+      <div class="section__head">
+        <h2 class="section__title">Education & work</h2>
+<p class="section__note">One line of work — take a result from the theory of coupled oscillators, then build the hardware that proves it.</p>      </div>
+      <div class="prose prose--flow"><h3 id="professional-experience">Professional experience</h3>
+<dl>
+<dt>07/2024 – today</dt>
+<dd><strong>Chief Scientific Officer</strong>, anabrid GmbH<br />
+  Direct the scientific strategy of a deep-tech company building hybrid analog-digital
+  computers, reporting to and advising the CEO. Led the design, construction and commissioning
+  of the <strong>REDAC</strong>, the largest reconfigurable discrete analog computer in operation — now the
+  computational backbone of three research projects inside the <strong>DLR Quantum Computing
+  Initiative</strong>. Responsible for hardware development and for the technical side of customer
+  acquisition, with scope extending into software and integrated-circuit development. Driving
+  the move from discrete components towards integrated hardware, and accountable for the
+  scientific output of the company: papers, deliverables to public funding bodies, and
+  patent-relevant intellectual property.</dd>
+<dt>01/2023 – 06/2024</dt>
+<dd><strong>Project Leader and Senior Scientist</strong>, anabrid GmbH<br />
+  Built the research and development line on modern hybrid computer architectures, from
+  architecture concept through to a working prototype. Established the scientific method and
+  the benchmarking practice the company now uses to qualify analog computing results: every
+  case study pairs the analog run against a digital reference solver and reports accuracy and
+  energy, so a result is reproducible rather than anecdotal.</dd>
+<dt>07/2019 – 12/2022</dt>
+<dd><strong>Principal Investigator</strong>, BMBF VIP+ validation project <em>“PLL synchronization”</em>,
+  Max Planck Institute for the Physics of Complex Systems (MPI-PKS), Dresden<br />
+  Applied for and won <strong>1.5 million Euro</strong> from the German Federal Ministry of Education and
+  Research to carry results from basic research towards industrial application. Ran the
+  consortium with the Chair for Circuit Design and Network Theory at TU Dresden and Fraunhofer
+  IZM ASSID. <strong>Demonstrated stable mutual synchronization of spatially distributed 24 GHz
+  oscillators over distances up to 500 m</strong>, locking completely in phase despite cross-coupling
+  delays far longer than a single oscillation period; the model analysis then informed the
+  architecture design at 60 GHz. Carried out the market analysis, identified the unique selling
+  points, and led the communication with industry partners. More than fifteen publications came
+  out of the project.</dd>
+<dt>11/2017 – 12/2022</dt>
+<dd><strong>Group and Project Leader</strong>, MPI-PKS, Dresden<br />
+  Coordinated research with an international team of twelve scientists across physics,
+  electrical engineering and systems design. Supervised a doctoral student and visiting
+  scientists on separate research projects, and presented the work at international conferences.</dd>
+<dt>04/2015 – 03/2017</dt>
+<dd><strong>Project Leader</strong>, MPI-PKS, Dresden<br />
+  Coordinated an international team of ten scientists. Initiated the outreach to industry and to
+  Fraunhofer institutes that later carried the validation project. Founded and ran the
+  institute's biweekly <em>Nuclear Lounge</em> science event.</dd>
+<dt>11/2012 – 02/2015</dt>
+<dd><strong>Postdoctoral Researcher</strong>, MPI-PKS, Dresden<br />
+  Co-invented and patented a synchronization concept for distributed electronic systems. Opened
+  the collaboration with the Vodafone Chair for Mobile Communications Systems at TU Dresden,
+  within the Cluster of Excellence Center for Advancing Electronics Dresden (cfaed).</dd>
+<dt>2015, 2017</dt>
+<dd>Parental leave — three months in 2015 and nine months in 2017, the second period combined with
+  part-time patent and project management.</dd>
+</dl>
+<h3 id="education">Education</h3>
+<dl>
+<dt>2008 – 2012</dt>
+<dd><strong>Dr. rer. nat. in Physics</strong>, TU Dresden<br />
+  Carried out at MPI-PKS under Prof. Frank Jülicher. Thesis: <em><a href="http://nbn-resolving.de/urn:nbn:de:bsz:14-qucosa-98456">Effect of distributed delays in
+  systems of coupled phase oscillators</a></em>.</dd>
+<dt>2006 – 2008</dt>
+<dd><strong>Diploma in Physics</strong>, University of Leipzig<br />
+  Supervisor: Prof. Ulrich Behn. Thesis: <em>Stability and statistical properties of stochastic
+  delay differential equations</em>. Examinations in experimental physics (1.0), theoretical physics
+  (1.3), stochastic processes and nonlinear dynamics (1.3).</dd>
+<dt>2002 – 2006</dt>
+<dd><strong>Studies of Physics</strong>, University of Leipzig and ETH Zürich<br />
+  Examinations in micro- and nanosystems (1.3), management and organization (2.0).</dd>
+<dt>1998 – 1999</dt>
+<dd><strong>High school year, United States</strong><br />
+  Grade point average 1.0, Principal's List, state mathematics award.</dd>
+</dl>
+<h3 id="funding-intellectual-property-and-recognition">Funding, intellectual property and recognition</h3>
+<dl>
+<dt>2019</dt>
+<dd><strong>BMBF VIP+ validation grant</strong>, 1.5 million Euro, as applicant and principal investigator.
+  Partners: TU Dresden and Fraunhofer IZM ASSID.</dd>
+<dt>granted</dt>
+<dd><strong>European Patent EP 2 957 982</strong>, <em>“Self-synchronizable network”</em>, also granted in the United
+  States, China, Taiwan and Korea — see <a href="#patents">Patents</a>.</dd>
+<dt>ongoing</dt>
+<dd>Member of the German Physical Society (DPG). Reviewer for IEEE conferences and journals.</dd>
+</dl></div>
+    </section>
+    <section class="section" id="skills">
+      <div class="section__head">
+        <h2 class="section__title">Skills</h2>
+      </div>
+      <div class="prose prose--flow"><ul>
+<li><strong>Domain</strong><ul>
+<li>Nonlinear dynamics, delay differential equations, coupled oscillator networks, phase-locked loops</li>
+<li>Analog and hybrid computing, oscillator-based Ising machines, control theory</li>
+<li>Benchmarking methodology for analog against digital computation, error and stability analysis</li>
+</ul>
+</li>
+<li><strong>Technical</strong><ul>
+<li>Python, C++, MATLAB and Simulink, Mathematica, Qt, LaTeX, Linux</li>
+<li>LTspice and circuit-level simulation, Gnuplot, Inkscape, Gimp</li>
+<li>Project management certification</li>
+</ul>
+</li>
+<li><strong>Languages</strong><ul>
+<li>German: mother tongue</li>
+<li>English: full professional proficiency, Cert. “UNIcert III”</li>
+<li>French and Spanish: elementary proficiency</li>
+</ul>
+</li>
+</ul></div>
+    </section>
+    <section class="section" id="activities-and-outreach">
+      <div class="section__head">
+        <h2 class="section__title">Activities & outreach</h2>
+      </div>
+      <div class="prose prose--flow"><dl>
+<dt>2014 – today</dt>
+<dd><strong>Mentoring</strong> of doctoral students at TU Dresden and of visiting scientists at MPI-PKS, and
+  supervision of bachelor and master theses at anabrid. Several mentees have gone on to lead
+  their own projects.</dd>
+<dt>2010 – today</dt>
+<dd><strong>Science communication</strong> at the Long Night of the Sciences and in schools.</dd>
+<dt>01/2015 – 05/2015</dt>
+<dd><strong>Art &amp; Science</strong>, Flock of Happenings (Florian Dombois), Dresden</dd>
+<dt>06/2013 – 04/2015</dt>
+<dd><strong>Organizer</strong>, Nuclear Lounge after-science event, MPI-PKS</dd>
+<dt>12/2010 – 12/2014</dt>
+<dd><strong>Reader</strong>, Christmas Stories, Barockviertel Dresden</dd>
+<dt>05/2011 – 04/2012</dt>
+<dd><strong>Mentoring</strong> of high school students, project “Die Komplizen”</dd>
+<dt>10/2010 – 03/2011</dt>
+<dd><strong>Teaching assistant</strong> for the practical training in experimental physics, TU Dresden</dd>
+<dt>09/2009 – 10/2009</dt>
+<dd><strong>Assistant trainer</strong>, American Football, Team Saxony</dd>
+<dt>10/2008 – 03/2009</dt>
+<dd><strong>Teaching assistant</strong> for mathematical methods in physics, TU Dresden</dd>
+<dt>09/2007 – 10/2007</dt>
+<dd><strong>Student assistant</strong> for an introductory course on physics &amp; mathematics, University of Leipzig</dd>
+<dt>12/2004 – 03/2007</dt>
+<dd><strong>Private tutoring</strong> of students in physics</dd>
+<dt>06/2003 – 07/2003</dt>
+<dd><strong>Practical training</strong> at the Leibniz Institute of Surface Modification, epitaxial growth of GaAs semiconductors</dd>
+<dt>09/2001 – 06/2002</dt>
+<dd><strong>Community service</strong>, University Hospital Leipzig, oncology ward</dd>
+<dt>08/2001 – 09/2001</dt>
+<dd><strong>Practical training</strong> at Sächsische Bau- &amp; Restaurierungswerkstätten, management</dd>
+</dl></div>
+    </section>
+    <section class="section" id="interests">
+      <div class="section__head">
+        <h2 class="section__title">Interests</h2>
+      </div>
+      <div class="prose prose--flow"><ul>
+<li>Machine learning and artificial intelligence, electronic prototyping, science fiction literature, politics, piano, judo, skiing and snowboarding, hiking</li>
+<li>American football at semi-professional level from 2004 to 2015 — Leipzig Lions, Zurich Renegades, Dresden Monarchs. Team captain and vice-champion of the German Football League in 2013. Now coaches the running backs of the Dresden Monarchs, licensed since 2026.</li>
+</ul></div>
+    </section>
+
+    <section class="section" id="latest">
+      <div class="section__head">
+        <h2 class="section__title">Latest from the blog</h2>
+        <p class="section__note">Working notes, simulations and write-ups.</p>
+      </div>
+      <ol class="post-list post-list--compact">
+        <li class="post-list__item">
+          <p class="post-list__date">May 2022</p>
+          <div>
+            <h3 class="post-list__title"><a href="/projects/control-theory-of-mutual-synchronization-in-networks-of-delay-coupled-phase-locked-loops/">Control theory of mutual synchronization in networks of delay-coupled phase-locked loops</a></h3>
+            <p class="post-list__summary">Gain and phase margins assume an entraining reference. Mutual coupling changes the transfer function itself.</p>
+          </div>
+        </li>
+        <li class="post-list__item">
+          <p class="post-list__date">May 2022</p>
+          <div>
+            <h3 class="post-list__title"><a href="/projects/ising-machines/">Ising Machines</a></h3>
+            <p class="post-list__summary">Mapping combinatorial optimisation onto networks of coupled oscillators, and what sub-harmonic injection locking, inertia and delay do to the answer.</p>
+          </div>
+        </li>
+        <li class="post-list__item">
+          <p class="post-list__date">May 2022</p>
+          <div>
+            <h3 class="post-list__title"><a href="/projects/synchronization-of-rhythm-in-human-and-human-machine-interactions/">Synchronization of rhythm in human human, human machine and machine machine interactions</a></h3>
+            <p class="post-list__summary">What a room full of people clapping and a network of clocks have in common, and where the analogy stops.</p>
+          </div>
+        </li>
+        <li class="post-list__item">
+          <p class="post-list__date">18 December 2018</p>
+          <div>
+            <h3 class="post-list__title"><a href="/projects/on-the-differences-between-uec-and-utc/">On the differences between universal emergent time (UEC) and universal coordinated time (UTC)</a></h3>
+            <p class="post-list__summary">Today's time standards feed a reference forward. What would a standard look like if the reference emerged from the network instead?</p>
+          </div>
+        </li>
+      </ol>
+      <p class="section__more"><a href="/projects/">All 9 posts →</a></p>
+    </section>
+  </div>
+</div>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=a5df269d"></script>
+</body>
+</html>

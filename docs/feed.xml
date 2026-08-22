@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Lucas Wetzel</title>
+  <link>https://lucaswetzel.de/</link>
+  <atom:link href="https://lucaswetzel.de/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>Lucas Wetzel — theoretical physics. Self-organized synchronization in networks of delay-coupled oscillators, from segmentation clocks to phase-locked loops.</description>
+  <language>en</language>
+  <item>
+    <title>Control theory of mutual synchronization in networks of delay-coupled phase-locked loops</title>
+    <link>https://lucaswetzel.de/projects/control-theory-of-mutual-synchronization-in-networks-of-delay-coupled-phase-locked-loops/</link>
+    <guid isPermaLink="true">https://lucaswetzel.de/projects/control-theory-of-mutual-synchronization-in-networks-of-delay-coupled-phase-locked-loops/</guid>
+    <pubDate>Sun, 01 May 2022 12:00:00 +0000</pubDate>
+    <description>Gain and phase margins assume an entraining reference. Mutual coupling changes the transfer function itself.</description>
+  </item>
+  <item>
+    <title>Ising Machines</title>
+    <link>https://lucaswetzel.de/projects/ising-machines/</link>
+    <guid isPermaLink="true">https://lucaswetzel.de/projects/ising-machines/</guid>
+    <pubDate>Sun, 01 May 2022 12:00:00 +0000</pubDate>
+    <description>Mapping combinatorial optimisation onto networks of coupled oscillators, and what sub-harmonic injection locking, inertia and delay do to the answer.</description>
+  </item>
+  <item>
+    <title>Synchronization of rhythm in human human, human machine and machine machine interactions</title>
+    <link>https://lucaswetzel.de/projects/synchronization-of-rhythm-in-human-and-human-machine-interactions/</link>
+    <guid isPermaLink="true">https://lucaswetzel.de/projects/synchronization-of-rhythm-in-human-and-human-machine-interactions/</guid>
+    <pubDate>Sun, 01 May 2022 12:00:00 +0000</pubDate>
+    <description>What a room full of people clapping and a network of clocks have in common, and where the analogy stops.</description>
+  </item>
+  <item>
+    <title>On the differences between universal emergent time (UEC) and universal coordinated time (UTC)</title>
+    <link>https://lucaswetzel.de/projects/on-the-differences-between-uec-and-utc/</link>
+    <guid isPermaLink="true">https://lucaswetzel.de/projects/on-the-differences-between-uec-and-utc/</guid>
+    <pubDate>Tue, 18 Dec 2018 12:00:00 +0000</pubDate>
+    <description>Today's time standards feed a reference forward. What would a standard look like if the reference emerged from the network instead?</description>
+  </item>
+  <item>
+    <title>Howto run independent voltage noise sources (IID and GWN) in LTSpice using Bv-sources</title>
+    <link>https://lucaswetzel.de/projects/howto-run-independent-voltage-noise-sources-in-ltspice/</link>
+    <guid isPermaLink="true">https://lucaswetzel.de/projects/howto-run-independent-voltage-noise-sources-in-ltspice/</guid>
+    <pubDate>Fri, 14 Dec 2018 12:00:00 +0000</pubDate>
+    <description>LTSpice has no built-in noise source for transient runs. Bv-sources with white() get you independent, band-limited Gaussian noise.</description>
+  </item>
+  <item>
+    <title>Spice simulation of self-organized synchronization with LTC6900 oscillators</title>
+    <link>https://lucaswetzel.de/projects/spice-simulation-of-self-organized-synchronization-with-ltc6900-oscillators/</link>
+    <guid isPermaLink="true">https://lucaswetzel.de/projects/spice-simulation-of-self-organized-synchronization-with-ltc6900-oscillators/</guid>
+    <pubDate>Fri, 27 Jul 2018 12:00:00 +0000</pubDate>
+    <description>Two mutually delay-coupled DPLLs at 1 MHz in LTspice, and how the circuit parameters map onto the phase model.</description>
+  </item>
+  <item>
+    <title>Science Slam @Elbhangfest in Dresden, 2018/06/23</title>
+    <link>https://lucaswetzel.de/projects/science-slam-elbhangfest-in-dresden-2018-06-23/</link>
+    <guid isPermaLink="true">https://lucaswetzel.de/projects/science-slam-elbhangfest-in-dresden-2018-06-23/</guid>
+    <pubDate>Tue, 10 Jul 2018 12:00:00 +0000</pubDate>
+    <description>Ask an audience to clap for an encore and they synchronize. Ask them to do it a billion times a second and you need a different idea. (English and German)</description>
+  </item>
+  <item>
+    <title>Spice simulations of digital phase-locked loop systems</title>
+    <link>https://lucaswetzel.de/projects/spice-simulations-of-dpll-systems/</link>
+    <guid isPermaLink="true">https://lucaswetzel.de/projects/spice-simulations-of-dpll-systems/</guid>
+    <pubDate>Tue, 10 Jul 2018 12:00:00 +0000</pubDate>
+    <description>Testing DPLL architectures down to the transistor level before soldering anything.</description>
+  </item>
+  <item>
+    <title>Self-organized synchronization in electronic systems</title>
+    <link>https://lucaswetzel.de/projects/self-organized-synchronization-in-electronic-systems/</link>
+    <guid isPermaLink="true">https://lucaswetzel.de/projects/self-organized-synchronization-in-electronic-systems/</guid>
+    <pubDate>Fri, 30 Jun 2017 12:00:00 +0000</pubDate>
+    <description>The concept, the phase model, the prototype network, and what happens when clocks are heterogeneous.</description>
+  </item>
+</channel>
+</rss>

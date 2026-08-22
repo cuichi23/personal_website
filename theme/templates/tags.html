@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Topics — {{ site.title }}{% endblock %}
+{% block description %}Every topic covered in the posts, by number of posts.{% endblock %}
+{% block canonical %}/tags/{% endblock %}
+
+{% block main %}
+<header class="page-head">
+  <p class="eyebrow"><a href="/projects/">Current projects</a></p>
+  <h1 class="page-head__title">Topics</h1>
+</header>
+<ul class="tag-cloud">
+  {% for tag, tagged in tags.items() %}
+  <li><a class="topic-tag topic-tag--counted" href="/tags/{{ tag | tag_slug }}/">{{ tag }}<span class="topic-tag__count">{{ tagged | length }}</span></a></li>
+  {% endfor %}
+</ul>
+{% endblock %}

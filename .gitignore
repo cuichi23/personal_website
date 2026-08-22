@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
+
+# ---------------------------------------------------------------- unpublished
+# This repository is public. A draft pushed once stays in the history and in
+# GitHub's caches forever, so unpublished work is never committed at all.
+# Drafts live here locally and are excluded from every build unless you pass
+# --drafts, which you must never deploy. See .githooks/pre-push.
+/content/drafts/
+/static-drafts/
+
+# Marker written by `build.py --drafts`. Its presence means docs/ is unsafe.
+/docs/.contains-drafts

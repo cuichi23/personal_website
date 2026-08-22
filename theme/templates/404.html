@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Page not found — {{ site.title }}{% endblock %}
+{% block canonical %}/404.html{% endblock %}
+
+{% block main %}
+<header class="page-head">
+  <p class="eyebrow">404</p>
+  <h1 class="page-head__title">That page is not here</h1>
+  <p class="page-head__standfirst">
+    The site moved off WordPress, so old permalinks have changed. Posts now live under
+    <a href="/projects/">/projects/</a>; the CV sections are on the <a href="/">home page</a>.
+  </p>
+</header>
+<ol class="post-list">
+  {% for post in posts[:5] %}
+  <li class="post-list__item">
+    <p class="post-list__date">{{ post | nice_date }}</p>
+    <div><h2 class="post-list__title"><a href="{{ post.url }}">{{ post.title }}</a></h2></div>
+  </li>
+  {% endfor %}
+</ol>
+{% endblock %}

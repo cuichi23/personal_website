@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spice simulations of digital phase-locked loop systems — Lucas Wetzel</title>
+<meta name="description" content="Testing DPLL architectures down to the transistor level before soldering anything.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects/spice-simulations-of-dpll-systems/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Spice simulations of digital phase-locked loop systems — Lucas Wetzel">
+<meta property="og:description" content="Testing DPLL architectures down to the transistor level before soldering anything.">
+<meta property="og:url" content="https://lucaswetzel.de/projects/spice-simulations-of-dpll-systems/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=a5df269d">
+<link rel="stylesheet" href="/assets/css/site.css?v=a5df269d">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/projects/" aria-current="page">Current projects</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="post">
+  <header class="post__header">
+    <p class="eyebrow"><a href="/projects/">Current projects</a></p>
+    <h1 class="post__title">Spice simulations of digital phase-locked loop systems</h1>
+<p class="post__standfirst">Testing DPLL architectures down to the transistor level before soldering anything.</p>    <dl class="post__meta">
+      <div class="post__meta-pair">
+        <dt>Published</dt>
+        <dd>10 July 2018</dd>
+      </div>
+      <div class="post__meta-pair">
+        <dt>Topics</dt>
+        <dd class="taglist">
+<a class="topic-tag" href="/tags/synchronization/">synchronization</a><a class="topic-tag" href="/tags/phase-locked-loops/">phase-locked loops</a><a class="topic-tag" href="/tags/pll/">PLL</a><a class="topic-tag" href="/tags/ltspice/">LTSpice</a><a class="topic-tag" href="/tags/spice/">Spice</a><a class="topic-tag" href="/tags/electronic-clocks/">electronic clocks</a><a class="topic-tag" href="/tags/networks/">networks</a><a class="topic-tag" href="/tags/noise/">noise</a>        </dd>
+      </div>
+    </dl>
+  </header>
+
+  <div class="prose"><p>We use <a href="http://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html">LTSpice</a>, an open source analog circuit simulator to simulate systems of coupled DPLL on the level of the voltage and current time-series. Using this industry-standard approach to test the circuit architectures down to the transistor level before setting up the prototype systems for experimentation allows to identify potential problems such as parasitic resistances and capacitances. We also use it to gain a better intuition on the dynamics within the circuitry as components become heterogeneous and are subject to noise.</p>
+<p>Here we present our current ongoing work on a system of two mutually delay-coupled digital phase-locked loops (DPLLs), each consisting of a phase detector (XOR or flip-flop), a loop filter (first order low pass filter) and an voltage-controlled oscillator (VCO). The VCO is a ring oscillator which is set up from a closed chain of inverter elements, designed by <a href="http://cmosedu.com/jbaker/jbaker.htm">Jacob Baker</a> and available from <a href="http://www.youspice.com/spiceprojects/spice-simulation-projects/general-electronics-spice-simulation-projects/digital-basic-components-spice-simulation-projects/voltage-controlled-oscillator-vco-for-digital-applications/#tab-description">YOUSPICE</a>.</p>
+<figure class="figure"><img src="/media/spice-simulations-of-dpll-systems/two-coupled-dplls.png" alt="Fig.1: Two digital phase-locked loops with first order loop filter, delayed feedback and transmission lines for mutual coupling. The DPLLs are separated into two part, the VCO and delay-lines (left), and the phase-detector and loop filter components (right). No reference clock involved." loading="lazy"><figcaption>Fig.1: Two digital phase-locked loops with first order loop filter, delayed feedback and transmission lines for mutual coupling. The DPLLs are separated into two part, the VCO and delay-lines (left), and the phase-detector and loop filter components (right). No reference clock involved.</figcaption></figure>
+<p>Before going into the details of this circuit, we show the response curve of the VCO plotted against the input voltage at <strong><em>Vinvco.</em></strong> The VCO is supplied by a 2V power source and we changed the parasitic capacitor in the inverter subcircuits of the VCO to <span class="math math--inline" data-tex="C\_p=300">$C\_p=300$</span>fF.</p>
+<figure class="figure"><img src="/media/spice-simulations-of-dpll-systems/free-running-vco.png" alt="Fig. 2: VCO with rectangular output signals designed by R. Jacob Baker. The measurements are included as a table." loading="lazy"><figcaption>Fig. 2: VCO with rectangular output signals designed by R. Jacob Baker. The measurements are included as a table.</figcaption></figure>
+<figure class="figure"><img src="/media/spice-simulations-of-dpll-systems/vco-response-curve.png" alt="Fig. 3: Response curve of VCO (ring oscillator) for supply voltage 2V and parasitic capacitance C\_p." loading="lazy"><figcaption>Fig. 3: Response curve of VCO (ring oscillator) for supply voltage 2V and parasitic capacitance <span class="math math--inline" data-tex="C\_p">$C\_p$</span>.</figcaption></figure></div>
+
+  <footer class="post__footer">
+    <nav class="pager" aria-label="More posts">
+      <a class="pager__link pager__link--prev" href="/projects/self-organized-synchronization-in-electronic-systems/">
+        <span class="pager__label">Older</span>
+        <span class="pager__title">Self-organized synchronization in electronic systems</span>
+      </a>
+      <a class="pager__link pager__link--next" href="/projects/science-slam-elbhangfest-in-dresden-2018-06-23/">
+        <span class="pager__label">Newer</span>
+        <span class="pager__title">Science Slam @Elbhangfest in Dresden, 2018/06/23</span>
+      </a>
+    </nav>
+  </footer>
+</article>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=a5df269d"></script>
+</body>
+</html>

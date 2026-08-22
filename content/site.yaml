@@ -1,0 +1,39 @@
+# Site-wide settings and the copy that lives outside any single page.
+title: Lucas Wetzel
+tagline: Self-organized synchronization
+description: >-
+  Lucas Wetzel — theoretical physics. Self-organized synchronization in networks
+  of delay-coupled oscillators, from segmentation clocks to phase-locked loops.
+url: https://lucaswetzel.de
+custom_domain: lucaswetzel.de
+
+author: Lucas Wetzel
+role: Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH
+email: wetzel@anabrid.com
+
+hero:
+  eyebrow: Theoretical physics · Analog computing · Dresden
+  headline: Clocks that agree without a conductor
+  standfirst: >-
+    I work on self-organized synchronization: how a network of oscillators — cells
+    in a developing embryo, phase-locked loops on a circuit board, 24 GHz oscillators
+    half a kilometre apart — settles into a common rhythm when every signal between
+    them arrives late. Delay is normally the thing you design around. It is also a
+    parameter you can design with. These days I build computers out of it, as Chief
+    Scientific Officer at anabrid.
+  figure_caption: >-
+    Twelve mutually delay-coupled clocks, integrated in your browser from the same
+    phase model used in the papers below. No reference clock, no master. The strokes
+    turn amber once the order parameter passes 0.95.
+  figure_note: No reference clock
+
+elsewhere:
+  - label: chronoloom.com
+    note: VIP+ validation project
+    url: https://www.chronoloom.com
+  - label: pks.mpg.de/soses
+    note: Max Planck Institute for the Physics of Complex Systems
+    url: https://www.pks.mpg.de/soses
+  - label: github.com/cuichi23
+    note: simulation code for PLL networks
+    url: https://github.com/cuichi23/sim_pll_networks

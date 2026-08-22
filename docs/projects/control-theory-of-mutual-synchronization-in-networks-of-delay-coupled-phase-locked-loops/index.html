@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Control theory of mutual synchronization in networks of delay-coupled phase-locked loops — Lucas Wetzel</title>
+<meta name="description" content="Gain and phase margins assume an entraining reference. Mutual coupling changes the transfer function itself.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects/control-theory-of-mutual-synchronization-in-networks-of-delay-coupled-phase-locked-loops/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Control theory of mutual synchronization in networks of delay-coupled phase-locked loops — Lucas Wetzel">
+<meta property="og:description" content="Gain and phase margins assume an entraining reference. Mutual coupling changes the transfer function itself.">
+<meta property="og:url" content="https://lucaswetzel.de/projects/control-theory-of-mutual-synchronization-in-networks-of-delay-coupled-phase-locked-loops/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=a5df269d">
+<link rel="stylesheet" href="/assets/css/site.css?v=a5df269d">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/projects/" aria-current="page">Current projects</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="post">
+  <header class="post__header">
+    <p class="eyebrow"><a href="/projects/">Current projects</a></p>
+    <h1 class="post__title">Control theory of mutual synchronization in networks of delay-coupled phase-locked loops</h1>
+<p class="post__standfirst">Gain and phase margins assume an entraining reference. Mutual coupling changes the transfer function itself.</p>    <dl class="post__meta">
+      <div class="post__meta-pair">
+        <dt>Published</dt>
+        <dd>May 2022 <span class="post__meta-hint">(month approximate)</span></dd>
+      </div>
+      <div class="post__meta-pair">
+        <dt>Topics</dt>
+        <dd class="taglist">
+<a class="topic-tag" href="/tags/synchronization/">synchronization</a><a class="topic-tag" href="/tags/phase-locked-loops/">phase-locked loops</a><a class="topic-tag" href="/tags/pll/">PLL</a><a class="topic-tag" href="/tags/control-theory/">control theory</a><a class="topic-tag" href="/tags/transfer-function/">transfer function</a><a class="topic-tag" href="/tags/stability/">stability</a><a class="topic-tag" href="/tags/dynamical-systems-theory/">dynamical systems theory</a><a class="topic-tag" href="/tags/feedback-system/">feedback system</a>        </dd>
+      </div>
+    </dl>
+  </header>
+
+  <div class="prose"><p>This post is related to a manuscript that we have submitted for publication to IEEE Access and I will extend this summary here step by step.</p>
+<p><strong>Introduction</strong></p>
+<p>In classical phase-locked loop (PLL) theory concepts like the <a href="https://en.wikipedia.org/wiki/Bode_plot#Gain_margin_and_phase_margin">gain</a> and <a href="https://en.wikipedia.org/wiki/Phase_margin">phase margin</a> and application of the <a href="https://en.wikipedia.org/wiki/Nyquist_stability_criterion">Nyquist criterion</a> help to analyze the stability of a system. These are accessed from the PLLs <a href="https://en.wikipedia.org/wiki/Transfer_function">transfer function</a> in <a href="https://en.wikipedia.org/wiki/Laplace_transform">Laplace space</a> and analysis at the critical point for zero real part of the Laplace variable. Hence, the stability of the system is studied where it changes from stable to unstable, in <a href="https://en.wikipedia.org/wiki/Dynamical_systems_theory">dynamical systems theory</a> we call this the <a href="https://en.wikipedia.org/wiki/Marginal_stability">marginal stable</a> case. At this point, the above mentioned concepts rely on the variation of the complex part of the Laplace variable, the frequency. From this, <a href="https://en.wikipedia.org/wiki/Bode_plot#Gain_margin_and_phase_margin">Bode</a> and <a href="https://www.electrical4u.com/nyquist-plot/">Nyquist plots</a> are constructed and gain and phase margins defined.<br />
+ This is straightforward for the case of the entrainment of a PLL by a periodic reference signal. However, in the literature on classical PLL theory one aspect is often missing — the effect of the synchronized or entrained state itself. Here, I will discuss this topic and show how the transfer functions of PLLs and networks of PLLs change because of it.</p></div>
+
+  <footer class="post__footer">
+    <nav class="pager" aria-label="More posts">
+      <a class="pager__link pager__link--prev" href="/projects/ising-machines/">
+        <span class="pager__label">Older</span>
+        <span class="pager__title">Ising Machines</span>
+      </a>
+    </nav>
+  </footer>
+</article>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=a5df269d"></script>
+</body>
+</html>

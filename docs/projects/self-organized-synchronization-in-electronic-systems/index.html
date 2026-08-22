@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Self-organized synchronization in electronic systems — Lucas Wetzel</title>
+<meta name="description" content="The concept, the phase model, the prototype network, and what happens when clocks are heterogeneous.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects/self-organized-synchronization-in-electronic-systems/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Self-organized synchronization in electronic systems — Lucas Wetzel">
+<meta property="og:description" content="The concept, the phase model, the prototype network, and what happens when clocks are heterogeneous.">
+<meta property="og:url" content="https://lucaswetzel.de/projects/self-organized-synchronization-in-electronic-systems/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=a5df269d">
+<link rel="stylesheet" href="/assets/css/site.css?v=a5df269d">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/projects/" aria-current="page">Current projects</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="post">
+  <header class="post__header">
+    <p class="eyebrow"><a href="/projects/">Current projects</a></p>
+    <h1 class="post__title">Self-organized synchronization in electronic systems</h1>
+<p class="post__standfirst">The concept, the phase model, the prototype network, and what happens when clocks are heterogeneous.</p>    <dl class="post__meta">
+      <div class="post__meta-pair">
+        <dt>Published</dt>
+        <dd>30 June 2017</dd>
+      </div>
+      <div class="post__meta-pair">
+        <dt>Topics</dt>
+        <dd class="taglist">
+<a class="topic-tag" href="/tags/synchronization/">synchronization</a><a class="topic-tag" href="/tags/self-organized/">self-organized</a><a class="topic-tag" href="/tags/phase-locked-loops/">phase-locked loops</a><a class="topic-tag" href="/tags/pll/">PLL</a><a class="topic-tag" href="/tags/kuramoto-model/">Kuramoto model</a><a class="topic-tag" href="/tags/networks/">networks</a><a class="topic-tag" href="/tags/electronic-clocks/">electronic clocks</a><a class="topic-tag" href="/tags/integro-delay-differential-equation/">integro delay-differential equation</a>        </dd>
+      </div>
+    </dl>
+  </header>
+
+  <div class="prose"><h2 id="the-concept">The concept</h2>
+<p>In electronic systems, information processing shared between large numbers of units and in parallel has become more and more important. Prominent examples are antenna arrays in radar and mobile communications, servers and databases, networks-on-chip, indoor and global navigation solutions, swarms of drones and robots, and sensor arrays. In such systems, robust operation and processing requires coordination of the components involved. This can be achieved by a common time-reference that is provided by clocking devices. In practice it can be a challenging task to provide such a system-wide reference, given the heterogeneity of CMOS integrated circuitry, the dimensions in space or number of such systems and the frequencies of operation. The time-delays in electronic signal transmission become important when the wavelength of a signal is of the order of the spatial dimension of the system. That means, that signal transmission delays become relevant once they are of the order of the time-scales of operation of the system. For example, for electronic components that are clocked at frequencies in the GHz regime, distances of a few milli- to centimeters become important even for signal transmission at the speed of light.</p>
+<p>Our research focuses on self-organized synchronization of electronic clocks. While the state-of-the art approach to synchronization in electronic systems uses precise reference clocks, e.g., quartz oscillators or atomic clocks to entrain many low quality electronic clocks, so called phase-locked loops, we couple the cheap low quality clocks with each other in a setup that allow for synchronized states to form self-organized over such networks. This has the advantage, that communication delays do not need to be compensated for, e.g., by constructing complicated clocks trees or measuring signal transmission times. Furthermore, dynamically changing network topologies with large numbers of elements become feasible. This would allow to synchronize systems globally instead of following the globally asynchronous locally synchronous (GALS) solutions of most of todays electronic hardware.</p>
+<h2 id="the-model-identical-phase-locked-loops">The MODEL -- identical phase-locked loops</h2>
+<p>In this project we derived a mathematical model that is independent of the details of the circuitry of <a href="https://en.wikipedia.org/wiki/Phase-locked_loop">phase-locked loop</a> (PLL) clocks. These consist of three main components, the phase-detector (PD), the loop filter (LF) and the <a href="https://en.wikipedia.org/wiki/Voltage-controlled_oscillator">voltage-controlled oscillator</a> (VCO) and a signal path that feeds the output signal back to input. We start with generic periodic VCO output signals for which we assume constant amplitudes. These are exchanged between the PLLs. In each PLL, the PD detects the low and hight frequency components of the combined feedback and external input signals. Subsequently we assume, that the LF filters the high-frequency components ideally, which yields the control signal that affects the instantaneous frequency of the VCO. Under these assumptions we obtain a phase-model description of the dynamics of the instantaneous frequencies in PLL networks.</p>
+<figure class="figure figure--missing"><div class="figure__placeholder"><span class="figure__label">figure not recovered</span><code>pll-phase-model-schematic.png</code></div><figcaption>Schematic of a PLL and phase-model for a network of mutually delay-coupled PLLs.</figcaption></figure>
+<p>For a <a href="https://en.wikipedia.org/wiki/Dirac_delta_function">Dirac-delta</a> impulse response of the LF and no feedback and transmission delay, this reduces to the well known <a href="http://www.ton.scphys.kyoto-u.ac.jp/nonlinear-old2/kuramoto.html">Kuramoto</a> model of coupled phase-oscillators.</p>
+<h3 id="synchronized-solutions">Synchronized solutions</h3>
+<p>From this model we can calculate the frequencies and phase relations between all oscillators in a network. In the case of identical clock elements the frequencies of synchronized states depend on the intrinsic frequencies of the individual clocks, the coupling strength, the feedback and transmission delays and the coupling function. There are also states with constant non-zero phase differences between the clocks, which are called <span class="math math--inline" data-tex="m">$m$</span>-twist or splay states.</p>
+<h3 id="linear-stability">Linear stability</h3>
+<p>Whether these synchronized states are stable, marginally stable or unstable can be determined by performing a <a href="http://www.scholarpedia.org/article/Stability">linear stability analysis</a>. This requires the information about the network topology, i.e., which PLLs are coupled, the internal parameters of the clock elements and the transmission delays.</p>
+<h2 id="experimental-setup-and-results">Experimental setup and results</h2>
+<p>We validated our theoretical predictions that were obtained using the phase model by carrying out experiments in prototype PLL networks. These consisted of low cost self-soldered PLLs prototypes running at <span class="math math--inline" data-tex="1">$1$</span>kHz.</p>
+<figure class="figure"><img src="/media/self-organized-synchronization-in-electronic-systems/pll-prototype-stack.jpg" alt="" loading="lazy"></figure>
+<h3 id="using-a-microcontroller-to-artificially-delay-the-coupling-between-plls-at-1khz">Using a microcontroller to artificially delay the coupling between PLLs at 1kHz</h3>
+<p>In order to measure the effects of transmission delay with clock elements running at just <span class="math math--inline" data-tex="1">$1$</span>kHz, delay-times should be of the order of milliseconds and at least <span class="math math--inline" data-tex="10-100\\mu">$10-100\\mu$</span>s. Instead of using hundreds of kilometers of copper wiring, we use a micro-controller that buffers the states and histories of the PLLs and then sends these signals at specified delays to the respective coupled nodes in the clock network.</p>
+<figure class="figure"><img src="/media/self-organized-synchronization-in-electronic-systems/experimental-setup.png" alt="Sketch of experimental setup of mutually delay-coupled DPLLs." loading="lazy"><figcaption>Sketch of experimental setup of mutually delay-coupled DPLLs.</figcaption></figure>
+<p>The experimental results confirm qualitatively and quantitatively the theoretical model predictions and can be found in the links to the published work at the beginning of this blog entry. In those publications we present results for networks of mutually delay-coupled DPLL networks that range from two to nine clock elements in different coupling topologies, such as ring, chain and <span class="math math--inline" data-tex="2d">$2d$</span> square lattice with nearest neighbor interactions with open and closed boundary conditions.</p>
+<h3 id="matlab-simulink-ltspice-and-vhdl-based-simulations">Matlab Simulink, LTSpice and VHDL based simulations</h3>
+<p>In addition we performed numerical simulations of the dynamics of such PLL networks in python, Matlab/Simulink and LTSpice and VHDL. The Matlab/Simulink simulations test the assumption of the ideal filtering of the high frequency components from the phase detection. The python code allows to simulate large networks of delay-coupled PLL networks in many different settings, heterogeneous parameters and with noise. The LTSpice simulations on the level of the circuitry, i.e., voltages and currents in such systems, help us to plan the next versions of experimental setups and applications.</p>
+<h3 id="the-next-generation-experimental-setup-with-tunable-devices-and-running-at-1-10-mhz">The next generation experimental setup with tunable devices and running at 1-10 MHz</h3>
+<p>Currently we are working on the next generation of prototype PLL elements running in the MHz frequency regime. This setup will allow to tune many parameters of the individual clock components, such as the delay-times, the cut-off frequencies of the LFs, the coupling strengths and the feedback path inverter elements. It will provide the necessary means to quantify the effects of noise in such systems.</p>
+<h2 id="the-p-in-pvt-variations-networks-of-heterogeneous-phase-locked-loops">THE P in PVT variations -- Networks of Heterogeneous Phase-locked loops</h2>
+<p>The production process of <a href="https://en.wikipedia.org/wiki/CMOS">CMOS</a> integrated electronic circuitry yields highly heterogeneous elements. This leads to static, process induced heterogeneity. It can not be assumed that these heterogeneities can be characterized through measurements for mass market units. Hence, electronic architectures based such elements need to perform their tasks robustly in the presence of large differences in the parameters of the different nodes and network. Since self-organized dynamics in large complex systems depends on many parameters we study the effects of such static heterogeneities for CMOS based clocking networks.</p>
+<p>This work, that has mainly been carried out together with Nirmal Punetha, produced some exiting results that we will soon publish in a peer-reviewed scientific journal. A more detailed blog entry that highlights the most important and exiting results will follow soon.</p>
+<h2 id="beyond-linear-stability-the-basins-of-attraction-of-synchronized-states">Beyond linear Stability -- The basins of Attraction of synchronized states</h2>
+<p>Another important part of our efforts is the characterization of the basins of attractions of self-organized synchronized states. This goes beyond linear stability analysis which can only provide information about a systems reaction to small perturbations from its possible states.</p>
+<p>We approach this question using the <a href="https://www.nature.com/articles/s41598-017-03556-5"><span class="math math--inline" data-tex="L\_p">$L\_p$</span>-adaption</a> algorithm develop by the group of <a href="https://mosaic.mpi-cbg.de/?q=people/ivo_sbalzarini">Prof. Dr. Ivo Sbalzarini</a>. Instead of performing brute-force sampling of highly dimensional spaces of phase configurations for large systems of coupled elements, we make use of volume approximation to learn about the sizes of the basins of attraction for different synchronized states. This enables us to plan networks for technical applications, for which it is necessary to provide the conditions for which robust functionality can be guaranteed.</p>
+<p>This will also be presented in more detail in a separate blog post.</p>
+<h2 id="noisy-phase-locked-loops">Noisy Phase-locked Loops</h2>
+<h3 id="langevin-equations-for-delay-coupled-phase-locked-loops">Langevin-equations for delay-coupled phase-locked loops</h3>
+<h3 id="a-fokker-planck-equation-approach">A Fokker-Planck equation approach</h3></div>
+
+  <footer class="post__footer">
+    <nav class="pager" aria-label="More posts">
+      <a class="pager__link pager__link--next" href="/projects/spice-simulations-of-dpll-systems/">
+        <span class="pager__label">Newer</span>
+        <span class="pager__title">Spice simulations of digital phase-locked loop systems</span>
+      </a>
+    </nav>
+  </footer>
+</article>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=a5df269d"></script>
+</body>
+</html>

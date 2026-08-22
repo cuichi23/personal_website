@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spice simulation of self-organized synchronization with LTC6900 oscillators — Lucas Wetzel</title>
+<meta name="description" content="Two mutually delay-coupled DPLLs at 1 MHz in LTspice, and how the circuit parameters map onto the phase model.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects/spice-simulation-of-self-organized-synchronization-with-ltc6900-oscillators/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Spice simulation of self-organized synchronization with LTC6900 oscillators — Lucas Wetzel">
+<meta property="og:description" content="Two mutually delay-coupled DPLLs at 1 MHz in LTspice, and how the circuit parameters map onto the phase model.">
+<meta property="og:url" content="https://lucaswetzel.de/projects/spice-simulation-of-self-organized-synchronization-with-ltc6900-oscillators/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=a5df269d">
+<link rel="stylesheet" href="/assets/css/site.css?v=a5df269d">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/projects/" aria-current="page">Current projects</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="post">
+  <header class="post__header">
+    <p class="eyebrow"><a href="/projects/">Current projects</a></p>
+    <h1 class="post__title">Spice simulation of self-organized synchronization with LTC6900 oscillators</h1>
+<p class="post__standfirst">Two mutually delay-coupled DPLLs at 1 MHz in LTspice, and how the circuit parameters map onto the phase model.</p>    <dl class="post__meta">
+      <div class="post__meta-pair">
+        <dt>Published</dt>
+        <dd>27 July 2018</dd>
+      </div>
+      <div class="post__meta-pair">
+        <dt>Topics</dt>
+        <dd class="taglist">
+<a class="topic-tag" href="/tags/synchronization/">synchronization</a><a class="topic-tag" href="/tags/phase-locked-loops/">phase-locked loops</a><a class="topic-tag" href="/tags/pll/">PLL</a><a class="topic-tag" href="/tags/ltspice/">LTSpice</a><a class="topic-tag" href="/tags/spice/">Spice</a><a class="topic-tag" href="/tags/electronic-clocks/">electronic clocks</a>        </dd>
+      </div>
+    </dl>
+  </header>
+
+  <div class="prose"><p>We use <a href="http://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html">LTspice</a>, an open source analog circuit simulator to simulate systems of coupled DPLL on the level of the voltage and current time-series.<br />
+Using this industry-standard approach to test the circuit architectures down to the transistor level before setting up the prototype systems for experimentation allows to identify potential problems such as parasitic resistances and capacitances. We also use it to gain a better intuition on the dynamics within the circuitry as components become heterogeneous and are subject to noise.</p>
+<p>Here we present our current ongoing work on a system of mutually delay-coupled digital phase-locked loops (DPLLs), each consisting of a phase detector (here XOR), a loop filter (first order RC-filter low pass) and a voltage-controlled oscillator (VCO), specifically the <a href="http://www.analog.com/en/products/clock-and-timing/silicon-oscillators/ltc6900.html#product-overview">LTC6900</a> model from <a href="http://www.analog.com">Analog Devices</a>.</p>
+<p>We couple these DPLLs with each other and without a time reference and consider signal transmission, feedback and processing delays in the network and the nodes. The concept behind this setup is a publications in <a href="http://journals.plos.org/plosone/">PLOS ONE</a> and the <a href="http://iopscience.iop.org/">New Journal of Physics</a>, titled <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0171590"><em>Self-organized synchronization of digital phase-locked loops with delayed coupling in</em> <em>theory and experiment</em></a>and <a href="http://iopscience.iop.org/article/10.1088/1367-2630/16/11/113009"><em>Synchronization in networks of mutually delay-coupled phase-locked loops</em></a>. In these publications the frequencies and phase configurations of self-organized synchronized states and their stability are analyzed for networks of analog and digital phase-locked loops using a <a href="http://www.scholarpedia.org/article/Phase_model">phase model</a>. In such networks different types of synchronized states exist, for which the frequencies of all PLLs can adjust to a common global frequency in a non-linear dependence on the time-delays and the coupling strengths, while different phase configurations are possible. These states with the different phase configurations are called splay or m-twist synchronized states. Whether such states are stable strongly depends on the transmission-delay between the oscillators, the coupling strength and the internal process of the oscillator nodes, such as signal filtering and feedback delay-times.</p>
+<figure class="figure"><img src="/media/spice-simulation-of-self-organized-synchronization-with-ltc6900-oscillators/two-dpll-circuit.png" alt="LTspice block level circuit diagram of two delay-coupled DPLLs" loading="lazy"><figcaption>LTspice block level circuit diagram of two delay-coupled DPLLs</figcaption></figure>
+<p>We start with a system of <span class="math math--inline" data-tex="N=2">$N=2$</span> mutually delay-coupled DPLL clocks running at a mean intrinsic frequency of <span class="math math--inline" data-tex="f=1">$f=1$</span>MHz, see Fig. 1: LTspice block level circuit diagram of two delay-coupled DPLLs. Before that, we perform a separate SPICE simulation to measure the input response of the voltage-controlled oscillator, in this case a LTC6900, of our DPLLs. Hence we perform a parameter sweep transient simulations for each of which we change the input voltage to the LTC6900 VCO and measure the frequency of the output signal. We obtain the frequency from a Fourier analysis, using the FFT tool of the LTspice software. The result is shown in Fig. 2: VCO response curve. Note that we use a d-flip-flop at the output of the LTC6900 that divides the frequency by a factor two and ensures a <a href="https://en.wikipedia.org/wiki/Duty_cycle">duty cycle</a> of 50%.</p>
+<figure class="figure"><img src="/media/spice-simulation-of-self-organized-synchronization-with-ltc6900-oscillators/ltc6900-response-curve.png" alt="Fig. 2: Frequency response curve of LTC6900." loading="lazy"><figcaption>Fig. 2: Frequency response curve of LTC6900.</figcaption></figure>
+<p>The slope of the linear fit is the input sensitivity of the VCO with <span class="math math--inline" data-tex="K^{\rm VCO}=0.088291">$K^{\rm VCO}=0.088291$</span>MHz/V and the free running frequency <span class="math math--inline" data-tex="\omega_0=0.83217">$\omega_0=0.83217$</span>MHz. As can be seen from the circuit diagram, the output signals of the two (here redundant) XOR phase detectors are mixed together with a shift voltage <span class="math math--inline" data-tex="V_k^{\rm XOR}">$V_k^{\rm XOR}$</span>. The mixer is designed such that it takes into account all XOR outputs, that potentially originate from different coupling pairs, equally. <span class="math math--inline" data-tex="V_k^{\rm XOR}">$V_k^{\rm XOR}$</span> makes the center frequency of the full setup adjustable and sets the operation point. This part is followed by the loop filter, here a first order RC low pass, whose output is fed into a second mixer that combines the offset signal <span class="math math--inline" data-tex="x^{\rm off}_k">$x^{\rm off}_k$</span>. The offset signal can also shift the center frequency of the VCO, as will become clearer in the following. In the next step, we establish how the parameters of the SPICE circuit level simulations translate to the parameters of the phase model. With this we bridge the gap between these two abstraction layers. The phase model reads</p>
+<div class="math math--display" data-tex="\dot{\phi}_k(t)=\omega_k+\frac{K_k}{n_k}\sum\limits_{l=1}^N\,\text{d}_{kl}\int\limits_0^{\infty}\text{d}u\,p_k(u)\,h\left[\phi_l(t-u-\tau_{kl})-\phi_k(t-u-\tau_{kl}^f) \right]\tag{1}">$$\dot{\phi}_k(t)=\omega_k+\frac{K_k}{n_k}\sum\limits_{l=1}^N\,\text{d}_{kl}\int\limits_0^{\infty}\text{d}u\,p_k(u)\,h\left[\phi_l(t-u-\tau_{kl})-\phi_k(t-u-\tau_{kl}^f) \right]\tag{1}$$</div>
+<p>where <span class="math math--inline" data-tex="k">$k$</span> indexes the PLLs in the network, <span class="math math--inline" data-tex="\dot{\phi}_k">$\dot{\phi}_k$</span> denotes the instantaneous frequency, <span class="math math--inline" data-tex="\omega_k">$\omega_k$</span> the intrinsic frequency, <span class="math math--inline" data-tex="K_k">$K_k$</span> the coupling strength, <span class="math math--inline" data-tex="n_k">$n_k$</span> the number of input signals to PLL <span class="math math--inline" data-tex="k">$k$</span>, <span class="math math--inline" data-tex="p_k(u)">$p_k(u)$</span> the impulse response of the loop filter, <span class="math math--inline" data-tex="\tau_{kl}">$\tau_{kl}$</span> the transmission-delay of a transmission delay line between nodes <span class="math math--inline" data-tex="k">$k$</span> and <span class="math math--inline" data-tex="l">$l$</span>, <span class="math math--inline" data-tex="\tau_{kl}^f">$\tau_{kl}^f$</span> the feedback delay-time in the feedback path within PLL <span class="math math--inline" data-tex="k">$k$</span> to the input of PLL <span class="math math--inline" data-tex="l">$l$</span>, and the <span class="math math--inline" data-tex="d_{kl}">$d_{kl}$</span> are either one or zero, depending on whether there is a connection or not. The parameters of the phase model have the following connection to the parameters of the LTspice circuit simulation</p>
+<div class="math math--display" data-tex="\begin{aligned} \omega_k &amp;=\omega_0 + K_k^{\rm VCO}x_k^{\rm off}, \\ K_k &amp;= \frac{A_{\rm XOR}^{\rm high} K_k^{\rm VCO} S_k}{2}, \end{aligned}\tag{2}">$$\begin{aligned} \omega_k &amp;=\omega_0 + K_k^{\rm VCO}x_k^{\rm off}, \\ K_k &amp;= \frac{A_{\rm XOR}^{\rm high} K_k^{\rm VCO} S_k}{2}, \end{aligned}\tag{2}$$</div>
+<p>where <span class="math math--inline" data-tex="\omega_k">$\omega_k$</span> denotes the intrinsic frequency in the phase model and <span class="math math--inline" data-tex="K_k">$K_k$</span> the coupling strength, <span class="math math--inline" data-tex="A_{\rm XOR}^{\rm high}=V_{high}">$A_{\rm XOR}^{\rm high}=V_{high}$</span> of the XOR output, and <span class="math math--inline" data-tex="S_k">$S_k$</span> the scaling factor that scales the input sensitivity <span class="math math--inline" data-tex="K_k^{\rm VCO}">$K_k^{\rm VCO}$</span>. In the circuitry this scaling is implemented by a <a href="https://en.wikipedia.org/wiki/Virtual_ground">closed-loop operational amplifier (here inverting)</a> that measures voltage differences at its (high impedance) input and outputs the this voltage amplified with an amplification factor given by the relation of the resistors <span class="math math--inline" data-tex="R_{\rm{xor}}">$R_{\rm{xor}}$</span> and <span class="math math--inline" data-tex="R_{\rm{Mxor}}">$R_{\rm{Mxor}}$</span>.</p></div>
+
+  <footer class="post__footer">
+    <nav class="pager" aria-label="More posts">
+      <a class="pager__link pager__link--prev" href="/projects/science-slam-elbhangfest-in-dresden-2018-06-23/">
+        <span class="pager__label">Older</span>
+        <span class="pager__title">Science Slam @Elbhangfest in Dresden, 2018/06/23</span>
+      </a>
+      <a class="pager__link pager__link--next" href="/projects/howto-run-independent-voltage-noise-sources-in-ltspice/">
+        <span class="pager__label">Newer</span>
+        <span class="pager__title">Howto run independent voltage noise sources (IID and GWN) in LTSpice using Bv-sources</span>
+      </a>
+    </nav>
+  </footer>
+</article>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=a5df269d"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }} — {{ site.title }}{% endblock %}
+{% block description %}{{ page.summary or site.description }}{% endblock %}
+{% block canonical %}{{ page.url }}{% endblock %}
+
+{% block main %}
+<header class="page-head">
+  <h1 class="page-head__title">{{ page.title }}</h1>
+</header>
+<div class="prose prose--{{ page.slug }}">{{ page.body }}</div>
+{% endblock %}

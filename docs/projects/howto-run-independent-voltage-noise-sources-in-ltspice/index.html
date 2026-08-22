@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Howto run independent voltage noise sources (IID and GWN) in LTSpice using Bv-sources — Lucas Wetzel</title>
+<meta name="description" content="LTSpice has no built-in noise source for transient runs. Bv-sources with white() get you independent, band-limited Gaussian noise.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects/howto-run-independent-voltage-noise-sources-in-ltspice/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Howto run independent voltage noise sources (IID and GWN) in LTSpice using Bv-sources — Lucas Wetzel">
+<meta property="og:description" content="LTSpice has no built-in noise source for transient runs. Bv-sources with white() get you independent, band-limited Gaussian noise.">
+<meta property="og:url" content="https://lucaswetzel.de/projects/howto-run-independent-voltage-noise-sources-in-ltspice/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=a5df269d">
+<link rel="stylesheet" href="/assets/css/site.css?v=a5df269d">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/projects/" aria-current="page">Current projects</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="post">
+  <header class="post__header">
+    <p class="eyebrow"><a href="/projects/">Current projects</a></p>
+    <h1 class="post__title">Howto run independent voltage noise sources (IID and GWN) in LTSpice using Bv-sources</h1>
+<p class="post__standfirst">LTSpice has no built-in noise source for transient runs. Bv-sources with white() get you independent, band-limited Gaussian noise.</p>    <dl class="post__meta">
+      <div class="post__meta-pair">
+        <dt>Published</dt>
+        <dd>14 December 2018</dd>
+      </div>
+      <div class="post__meta-pair">
+        <dt>Topics</dt>
+        <dd class="taglist">
+<a class="topic-tag" href="/tags/ltspice/">LTSpice</a><a class="topic-tag" href="/tags/noise/">noise</a><a class="topic-tag" href="/tags/noisy-voltage-sources/">noisy voltage sources</a><a class="topic-tag" href="/tags/gwn/">GWN</a><a class="topic-tag" href="/tags/iid/">iid</a>        </dd>
+      </div>
+    </dl>
+  </header>
+
+  <div class="prose"><p>In order to have two independent noise sources with a different random seed the rand(), or random(), or white() <a href="https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html?gclid=EAIaIQobChMIyZHP38mm3wIVReJ3Ch1ggwL8EAAYASAAEgK3uPD_BwE">LTSpice</a>-functions have to be called with a different argument, e.g.:</p>
+<p>B1: <span class="math math--inline" data-tex="V=0.01*\text{white}( f_{\text{sample}}*\text{time} )">$V=0.01*\text{white}( f_{\text{sample}}*\text{time} )$</span></p>
+<p>B2: <span class="math math--inline" data-tex="V=0.01*\text{white}( f_{\text{sample}}*(\text{time}+&lt;\text{nonzero\_number}&gt; )">$V=0.01*\text{white}( f_{\text{sample}}*(\text{time}+&lt;\text{nonzero\_number}&gt; )$</span></p>
+<p>Note however, the pseudo random numbers output of the function white is NOT Gaussian white noise as the name might suggest, see also this post: <a href="https://www.linkedin.com/pulse/ltspice-rand-white-jean-francois-debroux/">https://www.linkedin.com/pulse/ltspice-rand-white-jean-francois-debroux/</a></p>
+<p>Generate Gaussian white noise (<a href="https://en.wikipedia.org/wiki/White_noise">GWN</a>) distributed pseudo random numbers <span class="math math--inline" data-tex="n_{gwn}">$n_{gwn}$</span> from independent identically distributed (<a href="https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables">IID</a>) random numbers using the <a href="https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform">Box-Muller transform</a>:</p>
+<p><span class="math math--inline" data-tex="n_{gwn}= \mu + (\sigma  \sqrt{(-2\,log( \text{rand}(f_{\text{sample}}\,\text{time}) ))\cos(2 \pi \, \text{rand}(f_{\text{sample}}\,\text{time}+\text{seed\_offset}) ) )}">$n_{gwn}= \mu + (\sigma  \sqrt{(-2\,log( \text{rand}(f_{\text{sample}}\,\text{time}) ))\cos(2 \pi \, \text{rand}(f_{\text{sample}}\,\text{time}+\text{seed\_offset}) ) )}$</span>,</p>
+<p>with mean <span class="math math--inline" data-tex="\mu">$\mu$</span> and standard deviation <span class="math math--inline" data-tex="\sigma">$\sigma$</span>. Note, that the two iid pseudo random numbers generated using the LTSpice rand()-function have to have different seed.</p>
+<p>As soon as I find the time I will check how well that works in LTSpice and provide plots and statistics. Any feedback is very welcome.</p></div>
+
+  <footer class="post__footer">
+    <nav class="pager" aria-label="More posts">
+      <a class="pager__link pager__link--prev" href="/projects/spice-simulation-of-self-organized-synchronization-with-ltc6900-oscillators/">
+        <span class="pager__label">Older</span>
+        <span class="pager__title">Spice simulation of self-organized synchronization with LTC6900 oscillators</span>
+      </a>
+      <a class="pager__link pager__link--next" href="/projects/on-the-differences-between-uec-and-utc/">
+        <span class="pager__label">Newer</span>
+        <span class="pager__title">On the differences between universal emergent time (UEC) and universal coordinated time (UTC)</span>
+      </a>
+    </nav>
+  </footer>
+</article>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=a5df269d"></script>
+</body>
+</html>
