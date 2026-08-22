@@ -14,9 +14,9 @@ lead the development of hybrid analog-digital computers at anabrid.
 
 I am grateful to all the people I have worked with and learned from: Frank Jülicher,
 Ulrich Behn, Gerhard Fettweis, Frank Ellinger, Wolfgang Rave, David Jörg, Alexandros Pollakis,
-Dimitrios Prousalis, Christian Hoyer, Jens Wagner, Rabia Riaz, Nirmal Punetha, Luis Morelli,
-Andrew Oates, Saúl Ares and Bernd Ulmann, along with many colleagues, students and guest
-scientists not named here. Very little of this was done alone.
+Dimitrios Prousalis, Christian Hoyer, Jens Wagner, Rabia Riaz, Nirmal Punetha, Shamik Gupta,
+Luis Morelli, Andrew Oates, Saúl Ares, Deborah Schmidt and Bernd Ulmann, along with many
+colleagues, students and guest scientists not named here. Very little of this was done alone.
 
 As Chief Scientific Officer I am responsible for our scientific direction, for hardware
 development, and for the technical conversation with customers. The REDAC, the largest
