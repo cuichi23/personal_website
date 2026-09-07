@@ -121,8 +121,19 @@ Both plaintext sources live in `content/gated/`, so the packer needs no argument
 
 ```bash
 python3 tools/pack_panel.py     # asks twice, echoes nothing
-python3 build.py
+python3 build.py                # NOT optional, see below
+python3 tools/check_panel.py    # does the new password open the built copy?
 ```
+
+**The build step is not optional and its absence is silent.** The packer writes
+`static/tools/`; only `build.py` copies that into `docs/`, and `docs/` is what GitHub Pages
+serves. Re-key without rebuilding and the site keeps serving the previous ciphertext, so the
+page reports your correct new password as wrong. It cannot tell the two cases apart: a stale
+payload and a wrong password both fail on the same authentication tag.
+
+Two things now catch that. `tools/check_panel.py` answers the question directly, on the
+built copy by default or on `--live` for what the domain is actually serving. And the
+pre-push hook compares `static/` against `docs/` and refuses the push when they differ.
 
 Do not pass `--password` on the command line unless a script needs it. An argument is
 written to your shell history and is visible in the process list while the packer runs,
@@ -242,9 +253,11 @@ per clone:
 git config core.hooksPath .githooks
 ```
 
-It blocks on three conditions: a draft file is tracked by git; `docs/` was built with
-`--drafts`; or a draft's slug appears anywhere in `docs/`. The third is the one that actually
-matters, because it tests the built output rather than trusting the process.
+It blocks on four conditions: a draft file is tracked by git; `docs/` was built with
+`--drafts`; a draft's slug appears anywhere in `docs/`; or a payload in `docs/` differs from
+the one in `static/`, which means a re-key never reached the built site. The last two are the
+ones that actually matter, because they test the built output rather than trusting the
+process.
 
 ### Maths
 

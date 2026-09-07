@@ -33,5 +33,20 @@ for f in "$root"/content/drafts/*.md; do
   fi
 done
 
+# 4. docs/ must carry the payload that static/ currently holds.
+#    The packer writes static/; only build.py copies it into docs/, and docs/ is
+#    what GitHub Pages serves. Re-key without rebuilding and the site keeps
+#    serving the previous ciphertext, so the new password is reported as wrong.
+for src in "$root"/static/tools/*/payload.json; do
+  [ -e "$src" ] || continue
+  built="$root/docs/${src#$root/static/}"
+  if [ ! -f "$built" ]; then
+    say "$(basename "$(dirname "$src")"): payload missing from docs/ — run: python3 build.py"
+  elif ! cmp -s "$src" "$built"; then
+    say "$(basename "$(dirname "$src")"): docs/ holds an older payload than static/."
+    say "the site would keep asking for the previous password. Run: python3 build.py"
+  fi
+done
+
 [ "$fail" -eq 0 ] || { echo "push aborted." >&2; exit 1; }
 exit 0
