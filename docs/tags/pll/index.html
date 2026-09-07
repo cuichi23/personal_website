@@ -16,14 +16,23 @@
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <script>
+  // GitHub Pages cannot send X-Frame-Options or a CSP frame-ancestors directive,
+  // so this is the only lever there is. Mark the document before the body is
+  // parsed; the stylesheet then keeps the content hidden until site.js has
+  // replaced it with a notice. Marking rather than navigating is deliberate:
+  // browsers increasingly refuse an automatic top navigation from a frame and
+  // leave a blank box behind, which tells the reader nothing.
+  if (window.self !== window.top) document.documentElement.dataset.framed = "";
+</script>
+<script>
   // Stamp the stored theme before first paint. No stamp means "follow the system".
   try {
     var t = localStorage.getItem("theme");
     if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
   } catch (e) {}
 </script>
-<link rel="stylesheet" href="/assets/css/fonts.css?v=13dddfb6">
-<link rel="stylesheet" href="/assets/css/site.css?v=13dddfb6">
+<link rel="stylesheet" href="/assets/css/fonts.css?v=c6812781">
+<link rel="stylesheet" href="/assets/css/site.css?v=c6812781">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -127,6 +136,6 @@
 <link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
 <script defer src="/assets/vendor/katex/katex.min.js"></script>
 <script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
-<script defer src="/assets/js/site.js?v=13dddfb6"></script>
+<script defer src="/assets/js/site.js?v=c6812781"></script>
 </body>
 </html>

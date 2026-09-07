@@ -296,6 +296,43 @@
     window.addEventListener("themechange", pushTheme);
   }
 
+  /* -------------------------------------------------------------- framing */
+
+  /* The inline script in <head> stamps data-framed before the body is parsed and
+     the stylesheet hides everything under it. Replace that hidden content with a
+     notice rather than let the page lend its authority to whatever is drawn
+     around it. The way out is a link the reader clicks: a user gesture is the
+     one top navigation from a frame that no browser refuses. */
+  function refuseToBeFramed() {
+    if (window.self === window.top) return false;
+
+    var notice = document.createElement("main");
+    notice.className = "framed";
+    notice.id = "main";
+
+    var lead = document.createElement("p");
+    lead.className = "framed__lead";
+    lead.textContent = "This page is being shown inside another site.";
+
+    var note = document.createElement("p");
+    note.className = "framed__note";
+    note.textContent = "Whatever surrounds it was not written by Lucas Wetzel, "
+      + "and any contact details shown around it are not his. Open the page "
+      + "directly to see what it actually says.";
+
+    var link = document.createElement("a");
+    link.className = "button";
+    link.href = window.self.location.href;
+    link.target = "_top";
+    link.rel = "noopener";
+    link.textContent = "Open lucaswetzel.de";
+
+    notice.append(lead, note, link);
+    document.body.replaceChildren(notice);
+    document.body.classList.add("is-framed-notice");
+    return true;
+  }
+
   /* ---------------------------------------------------------------- start */
 
   /* Exposed for content that arrives after load, such as the fragment the
@@ -303,6 +340,7 @@
   window.renderMathIn = renderMaths;
 
   function start() {
+    if (refuseToBeFramed()) return;
     setUpThemeToggle();
     renderMaths();
     setUpSectionIndex();

@@ -987,6 +987,38 @@ a:hover { color: var(--link-hover); }
 
 .embed__note a { display: inline-block; margin-right: 0.4em; }
 
+/* -------------------------------------------------- 12b. framed elsewhere  */
+
+/* Framed: hold the page back until site.js has swapped it for the notice, so a
+   page that embeds this one never gets to show its contents even briefly. With
+   JavaScript off the stamp is never set and nothing here applies, which is the
+   honest limit of what a host without response headers can do. */
+:root[data-framed] body { visibility: hidden; }
+:root[data-framed] body.is-framed-notice { visibility: visible; }
+
+/* Shown only when the page could not leave a frame it was put in. */
+.framed {
+  max-width: 34rem;
+  margin: var(--space-6) auto;
+  padding: var(--space-4) var(--gutter);
+  text-align: center;
+}
+
+.framed__lead {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-stretch: 103%;
+  line-height: 1.2;
+  margin: 0 0 var(--space-2);
+  text-wrap: balance;
+}
+
+.framed__note {
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0 0 var(--space-3);
+}
+
 /* ------------------------------------------------------------ 13. research  */
 
 /* The opening runs two columns on a wide screen: the lede beside the rest, so the
