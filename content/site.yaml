@@ -27,6 +27,34 @@ hero:
     turn amber once the order parameter passes 0.95.
   figure_note: No reference clock
 
+# The opening of /research/. First paragraph is the lede and is set larger.
+research:
+  standfirst:
+    - >-
+      What I do is take a result out of basic science and make it hold up inside an
+      engineered system. The physics is self-organized synchronization: how a network of
+      oscillators agrees on a common rhythm when every signal between them arrives late.
+      The oscillators can be cells in a developing embryo or phase-locked loops on a
+      circuit board. The mathematics does not care which, and that is the whole
+      opportunity.
+    - >-
+      Engineering is right to be wary of self-organization, because a self-organized state
+      cannot be commanded. It can be steered. No one tells the network which state to
+      occupy. It settles into one, and which one that is follows from the conditions it is
+      placed in: the coupling strength, the transmission delay, the filtering inside each
+      node, the spread of the components. Understand those well enough and you can set the
+      conditions so that the state you want is the one that is stable, and the ones you do
+      not want are the ones that decay. That is what control means here. You do not
+      override the system. You choose the environment it organizes itself in.
+    - >-
+      The papers below make that argument twice. First analytically, for which synchronized
+      states exist and which of them are stable under delay, inertia and component
+      heterogeneity. Then in hardware, at 24 gigahertz and across 500 metres of coupling
+      distance, where a prediction has to survive real components or it was not a
+      prediction. Delay is normally the thing you design around. It is also a parameter you
+      can design with, and a network that needs no reference clock has no single point of
+      failure to lose. Where that leads next is computing, which is what I work on now.
+
 elsewhere:
   - label: chronoloom.com
     note: VIP+ validation project

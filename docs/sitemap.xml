@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://lucaswetzel.de/</loc></url>
+  <url><loc>https://lucaswetzel.de/research/</loc></url>
   <url><loc>https://lucaswetzel.de/projects/</loc></url>
   <url><loc>https://lucaswetzel.de/tags/</loc></url>
   <url><loc>https://lucaswetzel.de/projects/control-theory-of-mutual-synchronization-in-networks-of-delay-coupled-phase-locked-loops/</loc></url>
@@ -12,6 +13,7 @@
   <url><loc>https://lucaswetzel.de/projects/science-slam-elbhangfest-in-dresden-2018-06-23/</loc></url>
   <url><loc>https://lucaswetzel.de/projects/spice-simulations-of-dpll-systems/</loc></url>
   <url><loc>https://lucaswetzel.de/projects/self-organized-synchronization-in-electronic-systems/</loc></url>
+  <url><loc>https://lucaswetzel.de/oscillatory-computing/</loc></url>
   <url><loc>https://lucaswetzel.de/contact/</loc></url>
   <url><loc>https://lucaswetzel.de/links/</loc></url>
   <url><loc>https://lucaswetzel.de/impressum/</loc></url>

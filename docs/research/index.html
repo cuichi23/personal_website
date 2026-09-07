@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research — Lucas Wetzel</title>
+<meta name="description" content="Every published paper, with a few sentences on what it shows and what the main result is, and a link to where it appeared.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/research/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Research — Lucas Wetzel">
+<meta property="og:description" content="Every published paper, with a few sentences on what it shows and what the main result is, and a link to where it appeared.">
+<meta property="og:url" content="https://lucaswetzel.de/research/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=13dddfb6">
+<link rel="stylesheet" href="/assets/css/site.css?v=13dddfb6">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/research/" aria-current="page">Research</a>
+      <a href="/projects/">Current projects</a>
+      <a href="/oscillatory-computing/">Oscillatory computing</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<header class="page-head page-head--research">
+  <p class="eyebrow">16 papers</p>
+  <h1 class="page-head__title">Research</h1>
+  <div class="page-head__lede">
+    <p class="page-head__standfirst">What I do is take a result out of basic science and make it hold up inside an engineered system. The physics is self-organized synchronization: how a network of oscillators agrees on a common rhythm when every signal between them arrives late. The oscillators can be cells in a developing embryo or phase-locked loops on a circuit board. The mathematics does not care which, and that is the whole opportunity.</p>
+    <div class="page-head__rest">
+      <p>Engineering is right to be wary of self-organization, because a self-organized state cannot be commanded. It can be steered. No one tells the network which state to occupy. It settles into one, and which one that is follows from the conditions it is placed in: the coupling strength, the transmission delay, the filtering inside each node, the spread of the components. Understand those well enough and you can set the conditions so that the state you want is the one that is stable, and the ones you do not want are the ones that decay. That is what control means here. You do not override the system. You choose the environment it organizes itself in.</p>
+      <p>The papers below make that argument twice. First analytically, for which synchronized states exist and which of them are stable under delay, inertia and component heterogeneity. Then in hardware, at 24 gigahertz and across 500 metres of coupling distance, where a prediction has to survive real components or it was not a prediction. Delay is normally the thing you design around. It is also a parameter you can design with, and a network that needs no reference clock has no single point of failure to lose. Where that leads next is computing, which is what I work on now.</p>
+    </div>
+  </div>
+</header>
+
+<div class="research">
+  <nav class="section-index research__index" aria-label="Sections">
+    <p class="section-index__heading">On this page</p>
+    <ol class="section-index__list">
+      <li><a href="#journal">Journal articles</a></li>
+      <li><a href="#conference">Conference papers</a></li>
+      <li><a href="#thesis">Theses and preprints</a></li>
+    </ol>
+  </nav>
+
+  <div class="research__body">
+    <section class="section" id="journal">
+      <div class="section__head">
+        <h2 class="section__title">Journal articles</h2>
+        <p class="section__note">8 entries</p>
+      </div>
+
+      <ol class="paper-list">
+        <li class="paper" id="entrainment-24ghz">
+          <p class="paper__year">2023</p>
+          <div class="paper__body">
+            <h3 class="paper__title">
+<a href="https://ieeexplore.ieee.org/document/10105946">Entrainment of mutually synchronized spatially distributed 24 GHz oscillators</a>            </h3>
+            <p class="paper__authors">C. Hoyer, L. Wetzel, D. A. Prousalis, J. Wagner, F. Jülicher, F. Ellinger</p>
+            <div class="prose prose--tight"><p>A mutually synchronized network has no reference clock and therefore no single point of
+failure. Real infrastructure still has to be steered onto an external time standard, so we
+asked what happens when a reference is injected into one node only. Three 24 GHz oscillators
+were coupled in a ring and in a chain, forced by an external oscillator, and the range of
+reference frequencies the network still follows was measured. The measured entrainment
+ranges agree with the nonlinear model, which means a flat-hierarchy network can be locked to
+an outside standard without giving up the robustness that made it attractive.</p></div>
+            <p class="paper__venue">
+              <a class="paper__link" href="https://ieeexplore.ieee.org/document/10105946">IEEE Transactions on Circuits and Systems I 70(7), 2665–2678 (2023)</a>
+              <a class="paper__anchor" href="#entrainment-24ghz" aria-label="Link to this entry">#</a>
+            </p>
+          </div>
+        </li>
+        <li class="paper" id="clock-heterogeneity">
+          <p class="paper__year">2022</p>
+          <div class="paper__body">
+            <h3 class="paper__title">
+<a href="https://link.aps.org/doi/10.1103/PhysRevE.106.054216">How clock heterogeneity affects synchronization and can enhance stability</a>            </h3>
+            <p class="paper__authors">N. Punetha, L. Wetzel</p>
+            <div class="prose prose--tight"><p>Making integrated circuits spreads their components. In a clock network that means detuned
+intrinsic frequencies and unequal coupling strengths, delays and filter cutoffs, and the
+assumption is usually that this can only hurt. Using a phase model, tested against
+experiments and circuit-level simulations of delay-coupled phase-locked loops, we find the
+opposite for networks with a flat hierarchy. Heterogeneity can be used: it buys better
+perturbation decay rates, it stabilizes synchronized states, and it tunes the phase
+differences between clocks past anything a homogeneous choice of parameters reaches. That
+turns a manufacturing tolerance into a design parameter, and the argument is not restricted
+to electronics.</p></div>
+            <p class="paper__venue">
+              <a class="paper__link" href="https://link.aps.org/doi/10.1103/PhysRevE.106.054216">Physical Review E 106, 054216 (2022)</a>
+              <span class="paper__sep" aria-hidden="true">·</span>
+              <a class="paper__link paper__preprint" href="https://arxiv.org/abs/1908.11085">arXiv:1908.11085</a>
+              <a class="paper__anchor" href="#clock-heterogeneity" aria-label="Link to this entry">#</a>
+            </p>
+          </div>
+        </li>
+        <li class="paper" id="mutual-synchronization-500m">
+          <p class="paper__year">2022</p>
+          <div class="paper__body">
+            <h3 class="paper__title">
+<a href="https://doi.org/10.1109/TCSII.2022.3176827">Mutual synchronization of spatially distributed 24 GHz oscillators up to distances of 500 m</a>            </h3>
+            <p class="paper__authors">C. Hoyer, L. Wetzel, D. A. Prousalis, J. Wagner, F. Jülicher, F. Ellinger</p>
+            <div class="prose prose--tight"><p>How far apart can two clocks sit and still synchronize themselves, with no reference between
+them? From the closed-loop transfer function of two mutually delay-coupled phase-locked
+loops and the Nyquist criterion we compute the critical delay at which the in-phase and
+anti-phase states lose stability, and the range of feed-forward loop gains that keeps them
+stable at a given delay. Measurements at 24 GHz confirm it, for cross-coupling delays from
+the nanosecond to the microsecond domain, which is far longer than the period of the
+oscillation itself. The longest of them corresponds to coupling over 500 metres.</p></div>
+            <p class="paper__venue">
+              <a class="paper__link" href="https://doi.org/10.1109/TCSII.2022.3176827">IEEE Transactions on Circuits and Systems II 69(9), 3689–3693 (2022)</a>
+              <a class="paper__anchor" href="#mutual-synchronization-500m" aria-label="Link to this entry">#</a>
+            </p>
+          </div>
+        </li>
+        <li class="paper" id="network-synchronization-revisited">
+          <p class="paper__year">2022</p>
+          <div class="paper__body">
+            <h3 class="paper__title">
+<a href="https://ieeexplore.ieee.org/document/9837916">Network synchronization revisited: time delays in mutually coupled oscillators</a>            </h3>
+            <p class="paper__authors">L. Wetzel, D. A. Prousalis, R. F. Riaz, C. Hoyer, N. Joram, J. Fritzsche, F. Ellinger, F. Jülicher</p>
+            <div class="prose prose--tight"><p>Established network synchronization models in electrical engineering study mutual coupling
+through a linearized coupling function. That is convenient, and it hides the phenomena that
+appear once the delay is large. Here we review that work and present a general model which
+keeps the nonlinearity and the finite cross-coupling delay, so that multistability and the
+delay-induced stabilization of synchronized states can be predicted rather than discovered.
+We derive for which system parameters a synchronized state is linearly stable. The key
+finding is that mutual synchronization yields stable in-phase and anti-phase states even at
+large delays, with an explicit condition under which stability is guaranteed. This is the
+reference paper of the line of work below, and the one to read first.</p></div>
+            <p class="paper__venue">
+              <a class="paper__link" href="https://ieeexplore.ieee.org/document/9837916">IEEE Access 10, 80027–80045 (2022)</a>
+              <a class="paper__anchor" href="#network-synchronization-revisited" aria-label="Link to this entry">#</a>
+            </p>
+          </div>
+        </li>
+        <li class="paper" id="inertia-stability-criteria">
+          <p class="paper__year">2022</p>
+          <div class="paper__body">
+            <h3 class="paper__title">
+<a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.105.014210">Synchronization in the presence of time delays and inertia: stability criteria</a>            </h3>
+            <p class="paper__authors">D. A. Prousalis, L. Wetzel</p>
+            <div class="prose prose--tight"><p>Oscillators with an inert response are the normal case, from biology to engineering, and
+they admit synchronized states whose frequency is not constant. Such states show up as side
+bands in the spectrum or as chaotic dynamics. Their stability had only been accessible
+numerically, because the delay makes the problem multistable. We derive criteria and
+conditions that decide linear stability analytically, directly from the system parameters,
+for arbitrary network topologies with identical oscillators and identical delays. It is the
+criterion the later work in this list leans on, and the reason a claim of stability there
+can be checked rather than simulated.</p></div>
+            <p class="paper__venue">
+              <a class="paper__link" href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.105.014210">Physical Review E 105, 014210 (2022)</a>
+              <span class="paper__sep" aria-hidden="true">·</span>
+              <a class="paper__link paper__preprint" href="https://arxiv.org/abs/2107.06136">arXiv:2107.06136</a>
+              <a class="paper__anchor" href="#inertia-stability-criteria" aria-label="Link to this entry">#</a>
+            </p>
+          </div>
+        </li>
+        <li class="paper" id="onset-second-order-kuramoto">
+          <p class="paper__year">2020</p>
+          <div class="paper__body">
+            <h3 class="paper__title">
+<a href="https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.2.023183">Onset of synchronization in networks of second-order Kuramoto oscillators with delayed coupling: exact results and application to phase-locked loops</a>            </h3>
+            <p class="paper__authors">D. Métivier, L. Wetzel, S. Gupta</p>
+            <div class="prose prose--tight"><p>The Kuramoto model with inertia describes a network of phase-locked loops as well as it
+describes mechanical rotors, and putting a delay into the interaction changes the transition
+it undergoes. In the limit of infinitely many oscillators we compute how the synchronized
+phase bifurcates from the incoherent one, through an unstable-manifold expansion of the
+kinetic equation for the single-oscillator distribution. The bifurcation can be
+supercritical or subcritical, and which one occurs is decided jointly by the delay and the
+inertia. Direct numerical integration at large but finite oscillator number confirms the
+result and shows the subtleties a finite network adds.</p></div>
+            <p class="paper__venue">
+              <a class="paper__link" href="https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.2.023183">Physical Review Research 2, 023183 (2020)</a>
+              <span class="paper__sep" aria-hidden="true">·</span>
+              <a class="paper__link paper__preprint" href="https://arxiv.org/abs/1906.02643">arXiv:1906.02643</a>
+              <a class="paper__anchor" href="#onset-second-order-kuramoto" aria-label="Link to this entry">#</a>
+            </p>
+          </div>
+        </li>
+        <li class="paper" id="self-organized-synchronization-dpll">
+          <p class="paper__year">2017</p>
+          <div class="paper__body">
+            <h3 class="paper__title">
+<a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0171590">Self-organized synchronization of digital phase-locked loops with delayed coupling in theory and experiment</a>            </h3>
+            <p class="paper__authors">L. Wetzel, D. J. Jörg, A. Pollakis, W. Rave, G. Fettweis, F. Jülicher</p>
+            <div class="prose prose--tight"><p>Self-organized synchronization is everywhere in nature and almost nowhere in engineering.
+Here we take it seriously as a clocking principle for distributed electronics, where a
+common time reference is what makes an antenna array or a multi-core processor work at all.
+We develop a nonlinear phase description of mutually coupled digital phase-locked loops that
+keeps both the filter impulse response and the transmission delay, and it yields analytic
+expressions for the collective frequency, the stability, and the time scale of
+synchronization. Filtering turns out to introduce stability transitions that do not exist
+without it. Experiments on networks of off-the-shelf DPLL chips confirm the predicted
+existence, frequency and stability quantitatively, which is the part that made the theory
+usable.</p></div>
+            <p class="paper__venue">
+              <a class="paper__link" href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0171590">PLOS ONE 12(2), e0171590 (2017)</a>
+              <a class="paper__anchor" href="#self-organized-synchronization-dpll" aria-label="Link to this entry">#</a>
+            </p>
+          </div>
+        </li>
+        <li class="paper" id="mutually-delay-coupled-plls">
+          <p class="paper__year">2014</p>
+          <div class="paper__body">
+            <h3 class="paper__title">
+<a href="http://iopscience.iop.org/article/10.1088/1367-2630/16/11/113009">Synchronization in networks of mutually delay-coupled phase-locked loops</a>            </h3>
+            <p class="paper__authors">A. Pollakis, L. Wetzel, D. J. Jörg, W. Rave, G. Fettweis, F. Jülicher</p>
+            <div class="prose prose--tight"><p>The first paper of this line, and the one that fixed the model. It sets up a phase
+description of coupled phase-locked loops that includes the filter kernels and the delayed
+transmission of the signal, and asks whether such a network can clock itself. The central
+result runs against intuition: the transmission delay is what makes stable synchronized
+states possible, and PLLs coupled instantaneously do not tend to synchronize at all.
+Filtering and delay together set the collective frequency and the time scale on which the
+network locks. Delay stops being the thing you design around here, and becomes the thing you
+design with.</p></div>
+            <p class="paper__venue">
+              <a class="paper__link" href="http://iopscience.iop.org/article/10.1088/1367-2630/16/11/113009">New Journal of Physics 16, 113009 (2014)</a>
+              <a class="paper__anchor" href="#mutually-delay-coupled-plls" aria-label="Link to this entry">#</a>
+            </p>
+          </div>
+        </li>
+      </ol>
+    </section>
+    <section class="section" id="conference">
+      <div class="section__head">
+        <h2 class="section__title">Conference papers</h2>
+        <p class="section__note">5 entries</p>
+      </div>
+
+      <ol class="paper-list">
+        <li class="paper" id="basin-of-stability-24ghz">
+          <p class="paper__year">2022</p>
+          <div class="paper__body">
+            <h3 class="paper__title">
+<a href="https://doi.org/10.1109/I2MTC48687.2022.9806544">Stability analysis of mutually synchronized spatially distributed 24 GHz oscillators</a>            </h3>
+            <p class="paper__authors">C. Hoyer, L. Wetzel, D. A. Prousalis, J. Wagner, F. Jülicher, F. Ellinger</p>
+            <div class="prose prose--tight"><p>At sufficiently large cross-coupling delay a pair of phase-locked loops has several
+synchronized states available to it, with different frequencies and phase relations. Which
+one it reaches depends on where it starts, and that is multistability. Here the basin of
+stability of the in-phase and anti-phase states is measured on two 24 GHz nodes, modified so
+that the transient during synchronization can be recorded, and compared against time-domain
+simulation. The transients are reproduced qualitatively and quantitatively. Multistability
+becomes something a designer can predict instead of something a network occasionally does.</p></div>
+            <p class="paper__venue">
+              <a class="paper__link" href="https://doi.org/10.1109/I2MTC48687.2022.9806544">IEEE International Instrumentation and Measurement Technology Conference (I2MTC), 2022</a>
+              <a class="paper__anchor" href="#basin-of-stability-24ghz" aria-label="Link to this entry">#</a>
+            </p>
+          </div>
+        </li>
+        <li class="paper" id="mutual-synchronization-24ghz">
+          <p class="paper__year">2021</p>
+          <div class="paper__body">
+            <h3 class="paper__title">
+<a href="https://ieeexplore.ieee.org/document/9401555">Mutual synchronization with 24 GHz oscillators</a>            </h3>
+            <p class="paper__authors">C. Hoyer, D. A. Prousalis, L. Wetzel, R. F. Riaz, J. Wagner, F. Jülicher, F. Ellinger</p>
+            <div class="prose prose--tight"><p>The step from a benchtop demonstration to microwave frequency. Two phase-locked loops with
+24 GHz voltage-controlled oscillators were coupled bidirectionally, using a PLL architecture
+built for mutual rather than hierarchical coupling. The existing phase-domain model was
+extended to include the oscillator's nonlinear response to the tuning signal, after which
+the frequencies and phase relations of the self-organized states are predicted precisely
+rather than approximately. Measurements at several delays and division factors agree, and
+for delays up to 14 ns self-organized synchronization is shown to be feasible at microwave
+frequencies.</p></div>
+            <p class="paper__venue">
+              <a class="paper__link" href="https://ieeexplore.ieee.org/document/9401555">IEEE International Symposium on Circuits and Systems (ISCAS), Daegu, 1–5 (2021)</a>
+              <a class="paper__anchor" href="#mutual-synchronization-24ghz" aria-label="Link to this entry">#</a>
+            </p>
+          </div>
+        </li>
+        <li class="paper" id="stability-transient-dynamics-plls">
+          <p class="paper__year">2020</p>
+          <div class="paper__body">
+            <h3 class="paper__title">
+<a href="https://ieeexplore.ieee.org/document/9218377">Stability and transient dynamics of PLLs in theory and experiments</a>            </h3>
+            <p class="paper__authors">R. F. Riaz, D. A. Prousalis, C. Hoyer, J. Wagner, F. Ellinger, F. Jülicher, L. Wetzel</p>
+            <div class="prose prose--tight"><p>Classical phase-locked loop theory assumes a single input and no delay. This paper
+generalizes it to include time delays and mutual coupling, for loops of arbitrary order and
+arbitrary number of inputs, and gives two methods for finding locked states and their
+transient dynamics. For entrainment the generalized and the classical theory overlap, which
+is the consistency check. Measurements on a classical PLL entrained by a clock confirm the
+predicted phase relations, the dependence of the loop gain on component characteristics and
+delay, and both the decay rate and the decay frequency of a perturbation.</p></div>
+            <p class="paper__venue">
+              <a class="paper__link" href="https://ieeexplore.ieee.org/document/9218377">European Conference on Circuit Theory and Design (ECCTD), Sofia, 1–4 (2020)</a>
+              <a class="paper__anchor" href="#stability-transient-dynamics-plls" aria-label="Link to this entry">#</a>
+            </p>
+          </div>
+        </li>
+        <li class="paper" id="massive-mimo-biological">
+          <p class="paper__year">2015</p>
+          <div class="paper__body">
+            <h3 class="paper__title">
+<a href="https://www.researchgate.net/publication/286927753_Self-organized_synchronisation_in_massive_MIMO_inspired_by_biological_systems">Self-organized synchronisation in massive MIMO inspired by biological systems</a>            </h3>
+            <p class="paper__authors">L. Wetzel, A. Pollakis, D. J. Jörg, W. Rave, G. Fettweis, F. Jülicher</p>
+            <div class="prose prose--tight"><p>The companion to the ICC paper of the same year, presented at a workshop on biological and
+multi-scale communication. It makes the analogy explicit that the rest of this work usually
+leaves implicit: the delay-coupled oscillator mechanism that keeps cells in a developing
+embryo in step is the same mechanism that can clock an antenna array, and the architecture
+it suggests is flat and reference-free.</p></div>
+            <p class="paper__venue">
+              <a class="paper__link" href="https://www.researchgate.net/publication/286927753_Self-organized_synchronisation_in_massive_MIMO_inspired_by_biological_systems">IEEE Workshop on Molecular, Biological and Multi-Scale Communications (MBMC), 2015</a>
+              <a class="paper__anchor" href="#massive-mimo-biological" aria-label="Link to this entry">#</a>
+            </p>
+          </div>
+        </li>
+        <li class="paper" id="massive-mimo-dplls">
+          <p class="paper__year">2015</p>
+          <div class="paper__body">
+            <h3 class="paper__title">
+<a href="https://www.researchgate.net/publication/282946534_Synchronization_of_Mutually_Coupled_Digital_PLLs_in_Massive_MIMO_Systems">Synchronization of mutually coupled digital PLLs in massive MIMO systems</a>            </h3>
+            <p class="paper__authors">D. J. Jörg, A. Pollakis, L. Wetzel, M. Dropp, W. Rave, F. Jülicher, G. Fettweis</p>
+            <div class="prose prose--tight"><p>Massive multiple-input multiple-output (MIMO) promises large gains over current wireless
+standards, and it needs the carrier signals of every antenna unit in a large array to share
+a phase reference. We show that mutually coupled digital phase-locked loops can deliver in-
+phase synchronous clocking across such an array in the presence of transmission delay. From
+the phase model with filtering and delay we work out how the collective frequency and the
+time scales of synchronization follow from the system specification, and we confirm it
+experimentally as a proof of principle.</p></div>
+            <p class="paper__venue">
+              <a class="paper__link" href="https://www.researchgate.net/publication/282946534_Synchronization_of_Mutually_Coupled_Digital_PLLs_in_Massive_MIMO_Systems">IEEE International Conference on Communications (ICC), 1716–1721 (2015)</a>
+              <a class="paper__anchor" href="#massive-mimo-dplls" aria-label="Link to this entry">#</a>
+            </p>
+          </div>
+        </li>
+      </ol>
+    </section>
+    <section class="section" id="thesis">
+      <div class="section__head">
+        <h2 class="section__title">Theses and preprints</h2>
+        <p class="section__note">3 entries</p>
+      </div>
+
+      <ol class="paper-list">
+        <li class="paper" id="distributed-delays">
+          <p class="paper__year">2012</p>
+          <div class="paper__body">
+            <h3 class="paper__title">
+<a href="http://arxiv.org/abs/1206.2288">Synchronization of phase oscillators in the presence of distributed delays</a>            </h3>
+            <p class="paper__authors">L. Wetzel, L. G. Morelli, A. C. Oates, F. Jülicher, S. Ares</p>
+            <div class="prose prose--tight"><p>A real coupling delay is not one number. Here we study identical coupled oscillators with a
+distribution of delay times and separate what the distribution controls from what it does
+not. For arbitrary network topology, the frequency and the stability of the fully
+synchronized state depend only on the <em>mean</em> of the delay distribution. The shape does not
+change the state, but it does change how the system reaches it: in the presence of coupling
+delays the synchronization rate can be maximal at a particular coupling strength. The
+question came from vertebrate segmentation rather than from electronics, which is why the
+result is stated for any topology.</p></div>
+            <p class="paper__venue">
+              <a class="paper__link" href="http://arxiv.org/abs/1206.2288">arXiv:1206.2288 (2012)</a>
+              <a class="paper__anchor" href="#distributed-delays" aria-label="Link to this entry">#</a>
+            </p>
+          </div>
+        </li>
+        <li class="paper" id="phd-thesis">
+          <p class="paper__year">2012</p>
+          <div class="paper__body">
+            <h3 class="paper__title">
+<a href="http://nbn-resolving.de/urn:nbn:de:bsz:14-qucosa-98456">Effect of distributed delays in systems of coupled phase oscillators</a>            </h3>
+            <p class="paper__authors">L. Wetzel</p>
+            <div class="prose prose--tight"><p>The thesis behind the preprint above, written at the Max Planck Institute for the Physics of
+Complex Systems and TU Dresden. It develops the phase-oscillator description of coupled
+systems in which the coupling delay is distributed rather than fixed, and works through what
+that distribution does to synchronized states. Everything else on this page grew out of it.</p></div>
+            <p class="paper__venue">
+              <a class="paper__link" href="http://nbn-resolving.de/urn:nbn:de:bsz:14-qucosa-98456">PhD thesis, TU Dresden and MPI for the Physics of Complex Systems (2012) · qucosa</a>
+              <a class="paper__anchor" href="#phd-thesis" aria-label="Link to this entry">#</a>
+            </p>
+          </div>
+        </li>
+        <li class="paper" id="diploma-thesis">
+          <p class="paper__year">2008</p>
+          <div class="paper__body">
+            <h3 class="paper__title">
+Stability and statistical properties of stochastic delay differential equations            </h3>
+            <p class="paper__authors">L. Wetzel</p>
+            <div class="prose prose--tight"><p>Where the delay came in. The thesis treats differential equations that carry a delay and a
+noise term at once, and asks what can be said about the stability of their solutions and
+about the statistics those solutions have. Both ingredients stayed: every clock in the work
+above is delayed, and every real one is noisy.</p></div>
+            <p class="paper__venue">
+              <span class="paper__link paper__link--dead">Diploma thesis, University of Leipzig (2008)</span>
+              <a class="paper__anchor" href="#diploma-thesis" aria-label="Link to this entry">#</a>
+            </p>
+          </div>
+        </li>
+      </ol>
+    </section>
+  </div>
+</div>
+
+<p class="page-foot">
+  Working notes and simulations that did not become papers are under
+  <a href="/projects/">Current projects</a>.
+</p>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/research/">Research</a></li>
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=13dddfb6"></script>
+</body>
+</html>

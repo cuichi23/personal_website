@@ -54,6 +54,11 @@ class Doc:
         self.tags = self.meta.get("tags", [])
         self.date = parse_date(self.meta.get("date"))
         self.date_approx = bool(self.meta.get("date_approx"))
+        self.kind = self.meta.get("kind", "")
+        self.venue = self.meta.get("venue", "")
+        self.venue_url = self.meta.get("venue_url", "")
+        self.arxiv = self.meta.get("arxiv", "")
+        self.authors = self.meta.get("authors", "")
         self.draft = bool(self.meta.get("draft"))
         self.body = render_markdown(body, source=path)
         self.text = strip_tags(self.body)
@@ -225,6 +230,13 @@ def load_all(include_drafts: bool = False) -> dict:
     for post in posts:
         post.meta["url"] = f"/projects/{post.slug}/"
 
+    # One entry per published paper. Newest first, and the year alone is enough
+    # of a date for a paper, so no day is required in the front matter.
+    research = [Doc(p) for p in glob_md(os.path.join(CONTENT, "research"))]
+    research.sort(key=lambda d: (d.date or dt.date.min), reverse=True)
+    for entry in research:
+        entry.meta["url"] = f"/research/#{entry.slug}"
+
     pages = [Doc(p) for p in glob_md(os.path.join(CONTENT, "pages"))]
     pages.sort(key=lambda d: d.meta.get("nav_order", 999))
     for page in pages:
@@ -236,7 +248,16 @@ def load_all(include_drafts: bool = False) -> dict:
             tags.setdefault(tag, []).append(post)
 
     return {"site": site, "sections": sections, "posts": posts, "pages": pages,
+            "research": research,
             "tags": dict(sorted(tags.items(), key=lambda kv: (-len(kv[1]), kv[0].lower())))}
+
+
+# The order the paper entries appear in, and the heading each group gets.
+RESEARCH_GROUPS = [
+    ("journal", "Journal articles"),
+    ("conference", "Conference papers"),
+    ("thesis", "Theses and preprints"),
+]
 
 
 def glob_md(directory: str) -> list[str]:
@@ -345,16 +366,19 @@ def build(include_drafts: bool = False) -> None:
     os.makedirs(OUTPUT)
 
     common = {"site": site, "posts": data["posts"], "pages": data["pages"],
-              "tags": data["tags"], "sections": data["sections"], "now": dt.date.today(),
-              "asset_v": asset_version("css/site.css", "css/fonts.css", "js/site.js")}
+              "tags": data["tags"], "sections": data["sections"],
+              "research": data["research"], "groups": RESEARCH_GROUPS,
+              "now": dt.date.today(),
+              "asset_v": asset_version("css/site.css", "css/fonts.css", "js/site.js", "js/gate.js")}
 
     emit(env, "home.html", "index.html", page_id="home", **common)
     emit(env, "projects.html", "projects/index.html", page_id="projects", **common)
+    emit(env, "research.html", "research/index.html", page_id="research", **common)
     for post in data["posts"]:
         emit(env, "post.html", f"projects/{post.slug}/index.html",
              page_id="projects", post=post, **common)
     for page in data["pages"]:
-        emit(env, "page.html", f"{page.slug}/index.html",
+        emit(env, page.meta.get("template", "page.html"), f"{page.slug}/index.html",
              page_id=page.slug, page=page, **common)
     emit(env, "tags.html", "tags/index.html", page_id="projects", **common)
     for tag, tagged in data["tags"].items():
@@ -368,7 +392,7 @@ def build(include_drafts: bool = False) -> None:
         # assets that belong to held-back posts, e.g. an interactive panel
         copy_tree(STATIC_DRAFTS, OUTPUT)
 
-    urls = ["/", "/projects/", "/tags/"]
+    urls = ["/", "/research/", "/projects/", "/tags/"]
     urls += [p.url for p in data["posts"]] + [p.url for p in data["pages"]]
     urls += [f"/tags/{tag_slug(t)}/" for t in data["tags"]]
     write(os.path.join(OUTPUT, "feed.xml"), build_feed(data))
@@ -383,8 +407,9 @@ def build(include_drafts: bool = False) -> None:
         write(os.path.join(OUTPUT, "CNAME"), site["custom_domain"] + "\n")
 
     pages_built = sum(len(files) for _, _, files in os.walk(OUTPUT))
-    print(f"built {len(data['posts'])} posts, {len(data['pages'])} pages, "
-          f"{len(data['tags'])} tags -> {rel(OUTPUT)}/ ({pages_built} files)")
+    print(f"built {len(data['posts'])} posts, {len(data['research'])} paper entries, "
+          f"{len(data['pages'])} pages, {len(data['tags'])} tags "
+          f"-> {rel(OUTPUT)}/ ({pages_built} files)")
     for message in warnings:
         print(f"  warning: {message}")
 

@@ -37,7 +37,9 @@
     </a>
     <nav class="nav" aria-label="Primary">
       <a href="/"{% if page_id == "home" %} aria-current="page"{% endif %}>Home</a>
+      <a href="/research/"{% if page_id == "research" %} aria-current="page"{% endif %}>Research</a>
       <a href="/projects/"{% if page_id == "projects" %} aria-current="page"{% endif %}>Current projects</a>
+      <a href="/oscillatory-computing/"{% if page_id == "oscillatory-computing" %} aria-current="page"{% endif %}>Oscillatory computing</a>
       <a href="/contact/"{% if page_id == "contact" %} aria-current="page"{% endif %}>Contact</a>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
         <span class="theme-toggle__mark" aria-hidden="true"></span>
@@ -68,6 +70,7 @@
     <div class="colophon__block">
       <p class="colophon__heading">This site</p>
       <ul class="colophon__list">
+        <li><a href="/research/">Research</a></li>
         <li><a href="/projects/">Current projects</a></li>
         <li><a href="/tags/">Topics</a></li>
         <li><a href="/feed.xml">RSS</a></li>

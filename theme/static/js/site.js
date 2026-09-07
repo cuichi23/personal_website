@@ -40,9 +40,9 @@
 
   /* -------------------------------------------------------------- maths */
 
-  function renderMaths() {
+  function renderMaths(root) {
     if (typeof katex === "undefined") return;
-    document.querySelectorAll(".math[data-tex]").forEach(function (node) {
+    (root || document).querySelectorAll(".math[data-tex]").forEach(function (node) {
       try {
         katex.render(node.dataset.tex, node, {
           displayMode: node.classList.contains("math--display"),
@@ -297,6 +297,10 @@
   }
 
   /* ---------------------------------------------------------------- start */
+
+  /* Exposed for content that arrives after load, such as the fragment the
+     password gate decrypts. One set of KaTeX options, not two. */
+  window.renderMathIn = renderMaths;
 
   function start() {
     setUpThemeToggle();

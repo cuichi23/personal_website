@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Research — {{ site.title }}{% endblock %}
+{% block description %}Every published paper, with a few sentences on what it shows and what the main result is, and a link to where it appeared.{% endblock %}
+{% block canonical %}/research/{% endblock %}
+
+{% block main %}
+<header class="page-head page-head--research">
+  <p class="eyebrow">{{ research | length }} papers</p>
+  <h1 class="page-head__title">Research</h1>
+  <div class="page-head__lede">
+    <p class="page-head__standfirst">{{ site.research.standfirst[0] }}</p>
+    <div class="page-head__rest">
+      {% for paragraph in site.research.standfirst[1:] %}
+      <p>{{ paragraph }}</p>
+      {% endfor %}
+    </div>
+  </div>
+</header>
+
+<div class="research">
+  <nav class="section-index research__index" aria-label="Sections">
+    <p class="section-index__heading">On this page</p>
+    <ol class="section-index__list">
+      {% for group, label in groups %}
+      {% if research | selectattr("kind", "equalto", group) | list %}
+      <li><a href="#{{ group }}">{{ label }}</a></li>
+      {% endif %}
+      {% endfor %}
+    </ol>
+  </nav>
+
+  <div class="research__body">
+    {% for group, label in groups %}
+    {% set entries = research | selectattr("kind", "equalto", group) | list %}
+    {% if entries %}
+    <section class="section" id="{{ group }}">
+      <div class="section__head">
+        <h2 class="section__title">{{ label }}</h2>
+        <p class="section__note">{{ entries | length }} entr{{ "y" if entries | length == 1 else "ies" }}</p>
+      </div>
+
+      <ol class="paper-list">
+        {% for entry in entries %}
+        <li class="paper" id="{{ entry.slug }}">
+          <p class="paper__year">{{ entry.date.year }}</p>
+          <div class="paper__body">
+            <h3 class="paper__title">
+              {% if entry.venue_url %}<a href="{{ entry.venue_url }}">{{ entry.title }}</a>{% else %}{{ entry.title }}{% endif %}
+            </h3>
+            <p class="paper__authors">{{ entry.authors }}</p>
+            <div class="prose prose--tight">{{ entry.body }}</div>
+            <p class="paper__venue">
+              {% if entry.venue_url %}
+              <a class="paper__link" href="{{ entry.venue_url }}">{{ entry.venue }}</a>
+              {% else %}
+              <span class="paper__link paper__link--dead">{{ entry.venue }}</span>
+              {% endif %}
+              {% if entry.arxiv %}
+              <span class="paper__sep" aria-hidden="true">·</span>
+              <a class="paper__link paper__preprint" href="https://arxiv.org/abs/{{ entry.arxiv }}">arXiv:{{ entry.arxiv }}</a>
+              {% endif %}
+              <a class="paper__anchor" href="#{{ entry.slug }}" aria-label="Link to this entry">#</a>
+            </p>
+          </div>
+        </li>
+        {% endfor %}
+      </ol>
+    </section>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<p class="page-foot">
+  Working notes and simulations that did not become papers are under
+  <a href="/projects/">Current projects</a>.
+</p>
+{% endblock %}

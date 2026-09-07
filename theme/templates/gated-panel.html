@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }} — {{ site.title }}{% endblock %}
+{% block description %}{{ page.summary or site.description }}{% endblock %}
+{% block canonical %}{{ page.url }}{% endblock %}
+
+{% block main %}
+<header class="page-head">
+  <p class="eyebrow">Work in progress · access by password</p>
+  <h1 class="page-head__title">{{ page.title }}</h1>
+  {% if page.summary %}<p class="page-head__standfirst">{{ page.summary }}</p>{% endif %}
+</header>
+
+<div class="prose prose--panel prose--flow">{{ page.body }}</div>
+
+<div class="prose prose--panel prose--flow" data-gate-intro hidden></div>
+
+<section class="gate" data-gate data-payload="/tools/oscillatory-computing/payload.json"
+         aria-labelledby="gate-heading">
+  <div class="gate__stage" data-gate-stage>
+    <img class="gate__poster" src="/tools/oscillatory-computing/poster.jpg" alt=""
+         width="1200" height="944" aria-hidden="true">
+    <div class="gate__glass" aria-hidden="true"></div>
+
+    <div class="gate__panel">
+      <p class="gate__eyebrow">Locked</p>
+      <h2 class="gate__heading" id="gate-heading">The panel behind the glass</h2>
+      <p class="gate__blurb">
+        A simulation that runs in your browser rather than on a server, and the
+        text that explains what it does. Both belong to a manuscript still in
+        review, so both are kept here until that is out.
+      </p>
+
+      <form class="gate__form" data-gate-form>
+        <label class="gate__label" for="gate-password">Password</label>
+        <div class="gate__row">
+          <input class="gate__input" id="gate-password" type="password"
+                 autocomplete="off" spellcheck="false" required
+                 placeholder="…" data-gate-input>
+          <button class="button gate__submit" type="submit" data-gate-submit>Unlock</button>
+        </div>
+        <p class="gate__message" role="status" aria-live="polite" data-gate-message></p>
+      </form>
+
+      <p class="gate__fineprint">
+        The panel is stored encrypted and is decrypted in your browser. Nothing
+        you type is sent anywhere. It stays open until you reload the page.
+      </p>
+    </div>
+  </div>
+
+  <p class="gate__caption" data-gate-caption>
+    Above: the panel out of focus. The image is blurred in the file itself, not
+    only by the stylesheet, and it carries no text, so turning the stylesheet off
+    shows you no more than this does.
+  </p>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script defer src="/assets/js/gate.js?v={{ asset_v }}"></script>
+{% endblock %}

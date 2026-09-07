@@ -10,6 +10,9 @@ __pycache__/
 # --drafts, which you must never deploy. See .githooks/pre-push.
 /content/drafts/
 /static-drafts/
+# Source text for anything that ships encrypted. Only the ciphertext in
+# static/tools/ may be committed, never the plaintext it was made from.
+/content/gated/
 
 # Marker written by `build.py --drafts`. Its presence means docs/ is unsafe.
 /docs/.contains-drafts
