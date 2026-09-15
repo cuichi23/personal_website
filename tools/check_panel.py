@@ -14,7 +14,6 @@ from __future__ import annotations
 
 import argparse
 import base64
-import getpass
 import hashlib
 import json
 import os
@@ -25,6 +24,8 @@ from cryptography.exceptions import InvalidTag
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import password_prompt  # noqa: E402  -- the same prompt the packer uses
 BUILT = os.path.join(ROOT, "docs", "tools", "oscillatory-computing", "payload.json")
 LIVE = "https://lucaswetzel.de/tools/oscillatory-computing/payload.json"
 
@@ -63,7 +64,7 @@ def main() -> None:
     print(f"  salt {payload['kdf']['salt']}  ({payload['kdf']['iterations']:,} iterations)")
 
     try:
-        opened = open_payload(payload, getpass.getpass("Password: "))
+        opened = open_payload(payload, password_prompt.ask_to_open())
     except InvalidTag:
         sys.exit("  this password does not open that payload.\n"
                  "  If you just re-keyed, run `python3 build.py` and try again:\n"

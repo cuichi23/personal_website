@@ -32,7 +32,6 @@ from __future__ import annotations
 
 import argparse
 import base64
-import getpass
 import hashlib
 import json
 import os
@@ -44,12 +43,12 @@ from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 import build  # noqa: E402  -- for the one Markdown pipeline, not a second one
+import password_prompt  # noqa: E402  -- one place that knows how to ask
 
 OUT_DIR = os.path.join(ROOT, "static", "tools", "oscillatory-computing")
 GATED = os.path.join(ROOT, "content", "gated")
 DEFAULT_APPLET = os.path.join(GATED, "panel.html")
 DEFAULT_INTRO = os.path.join(GATED, "oscillatory-computing.md")
-MIN_PASSWORD = 12
 
 # The site makes no third-party requests at page load, which is the reason it
 # needs no cookie banner. The applet was written against Google's font CDN, so
@@ -116,19 +115,6 @@ def encrypt(plaintext: str, password: str) -> dict:
     }
 
 
-def ask_for_password() -> str:
-    """Read the password from the terminal rather than from argv.
-
-    A password passed as an argument is written to the shell history file and is
-    visible in the process list while the script runs. Neither is acceptable for
-    the one secret protecting everything in the payload.
-    """
-    first = getpass.getpass("Password for the panel: ")
-    if first != getpass.getpass("Again: "):
-        sys.exit("the two entries differ; nothing was written")
-    return first
-
-
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--applet", default=DEFAULT_APPLET,
@@ -147,10 +133,7 @@ def main() -> None:
         if not os.path.isfile(path):
             sys.exit(f"no such {label}: {os.path.relpath(path, ROOT)}")
 
-    password = args.password or ask_for_password()
-    if len(password) < MIN_PASSWORD:
-        sys.exit(f"password too short: use at least {MIN_PASSWORD} characters. "
-                 "Several unrelated words beat one clever one.")
+    password = password_prompt.ask_to_set(args.password)
 
     source = open(args.applet, encoding="utf-8").read()
     print(f"read {os.path.relpath(args.applet)} ({len(source):,} bytes)")
