@@ -30,6 +30,8 @@ NO_TERMINAL = (
     "this output. Run this in a terminal window instead. Nothing was written.")
 
 MIN_LENGTH = 12
+# Beyond any passphrase anyone types. Past this it is pasted text.
+MAX_LENGTH = 128
 
 # What a terminal wraps pasted text in when bracketed paste is on.
 PASTE_MARKERS = ("\x1b[200~", "\x1b[201~")
@@ -52,7 +54,18 @@ def _read(prompt: str) -> str:
 
 
 def reject_if_unusable(password: str) -> None:
-    """Stop if the password carries characters no one typed on purpose."""
+    """Stop if what arrived cannot be what someone meant to type.
+
+    Three ways a paste goes wrong, in decreasing order of how obvious they are
+    afterwards. Only the first leaves a mark you could find by eye.
+    """
+    if len(password) > MAX_LENGTH:
+        sys.exit(
+            f"that is {len(password):,} characters, which is a pasted block and\n"
+            "not a password. Something other than the password reached the\n"
+            "prompt, usually a paste that swallowed the text around it.\n"
+            "Type it by hand. Nothing was written.")
+
     if any(marker in password for marker in PASTE_MARKERS):
         sys.exit(
             "that password arrived wrapped in your terminal's bracketed-paste\n"
@@ -93,6 +106,9 @@ def ask_to_set(preset: str | None = None) -> str:
 
     first = _read("Password for the panel: ")
     reject_if_unusable(first)
+    if first != first.strip():
+        sys.exit("that password starts or ends with whitespace, which you cannot\n"
+                 "see and will not reproduce by hand. Nothing was written.")
     if first != _read("Again: "):
         sys.exit("the two entries differ; nothing was written")
     reject_if_too_short(first)

@@ -160,6 +160,12 @@ the packer, the checker and the page all report your correct password as wrong. 
 password quietly altered on the way in is the same failure one step further along, with
 nothing left to diagnose it. Both `pack_panel.py` and `check_panel.py` ask through it.
 
+It rejects three shapes of paste accident, in decreasing order of how obvious they are
+afterwards: anything over 128 characters, which is a block of pasted text and not a password;
+the bracketed-paste markers above; and any control character, which covers a paste that
+carried a newline or a tab. Setting a password additionally refuses leading or trailing
+whitespace, since you will not reproduce it by hand.
+
 For the same reason, both **refuse to run without a terminal** rather than falling back to
 reading standard input with the echo left on, which is what `getpass` does by default. So run
 them in a terminal window: a wrapper that gives the script no tty, such as an editor's task
