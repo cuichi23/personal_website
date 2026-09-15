@@ -196,16 +196,25 @@
       .then(function (data) { return decrypt(data, password); })
       .then(function (opened) {
         say("");
-        reveal(opened);
+        try {
+          reveal(opened);
+        } catch (cause) {
+          throw failure("reveal", cause);
+        }
       })
       .catch(function (error) {
         gate.dataset.state = "";
         submit.disabled = false;
         input.select();
-        var network = String(error && error.message || "").indexOf("http") === 0;
-        say(network
-          ? "The panel could not be fetched. Try again in a moment."
-          : "That password does not open this panel.", "error");
+        var kind = error && error.kind;
+        if (kind !== "password") {
+          /* Anything that is not the authentication tag is our problem, not the
+             reader's. Leave it in the console so it can be diagnosed. */
+          if (window.console && console.error) console.error("gate:", error);
+        }
+        say(MESSAGES[kind] ||
+            ("The panel could not be opened: " +
+             ((error && error.message) || "unknown error")), "error");
       });
   });
 

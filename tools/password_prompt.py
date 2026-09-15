@@ -23,10 +23,32 @@ import getpass
 import sys
 import unicodedata
 
+NO_TERMINAL = (
+    "there is no terminal here to type a password into.\n"
+    "`getpass` falls back to reading standard input with the echo left ON,\n"
+    "which would put the password on screen and into whatever is capturing\n"
+    "this output. Run this in a terminal window instead. Nothing was written.")
+
 MIN_LENGTH = 12
 
 # What a terminal wraps pasted text in when bracketed paste is on.
 PASTE_MARKERS = ("\x1b[200~", "\x1b[201~")
+
+
+def _read(prompt: str) -> str:
+    """Read one password from a terminal, or refuse when there is not one.
+
+    Refusing beats echoing. `getpass` warns and falls back to plain input when
+    it cannot reach a terminal, which is a reasonable default for a throwaway
+    login and the wrong one for the single secret protecting a payload that is
+    published permanently.
+    """
+    if not sys.stdin.isatty():
+        sys.exit(NO_TERMINAL)
+    try:
+        return getpass.getpass(prompt)
+    except EOFError:
+        sys.exit(NO_TERMINAL)
 
 
 def reject_if_unusable(password: str) -> None:
@@ -69,9 +91,9 @@ def ask_to_set(preset: str | None = None) -> str:
         reject_if_too_short(preset)
         return preset
 
-    first = getpass.getpass("Password for the panel: ")
+    first = _read("Password for the panel: ")
     reject_if_unusable(first)
-    if first != getpass.getpass("Again: "):
+    if first != _read("Again: "):
         sys.exit("the two entries differ; nothing was written")
     reject_if_too_short(first)
     return first
@@ -79,6 +101,6 @@ def ask_to_set(preset: str | None = None) -> str:
 
 def ask_to_open(prompt: str = "Password: ") -> str:
     """Read an existing password. No length floor: it is whatever it already is."""
-    password = getpass.getpass(prompt)
+    password = _read(prompt)
     reject_if_unusable(password)
     return password

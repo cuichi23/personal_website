@@ -135,11 +135,35 @@ Two things now catch that. `tools/check_panel.py` answers the question directly,
 built copy by default or on `--live` for what the domain is actually serving. And the
 pre-push hook compares `static/` against `docs/` and refuses the push when they differ.
 
+The page itself reports what actually failed rather than blaming the password for all of it.
+`gate.js` tags each failure where it happens — the fetch, the payload JSON, key derivation,
+the authentication tag, the decrypted content, the render — and only the authentication tag
+is allowed to say "that password does not open this panel". Everything else names itself and
+is logged to the console. One ambiguity is irreducible and is left stated rather than papered
+over: a **stale payload fails on the authentication tag exactly as a wrong password does**,
+because a key derived against the wrong salt is a wrong key. That is what `check_panel.py`
+and the pre-push hook are for.
+
 Do not pass `--password` on the command line unless a script needs it. An argument is
 written to your shell history and is visible in the process list while the packer runs,
 which is not acceptable for the one secret protecting the whole payload. The prompt exists
 so that never has to happen. Twelve characters is the floor, and several unrelated words
 beat one clever one; see the cost note below for why.
+
+**The prompt refuses a password it cannot trust.** A terminal with bracketed paste switched
+on wraps pasted text in `ESC[200~` and `ESC[201~`, and `getpass` reads the line raw and keeps
+them, so the packer would key on a string twelve characters longer than the one on your
+screen. Asking twice does not catch it, because the same paste produces the same wrapped
+string both times. The mistake surfaces only later, when you type the password by hand and
+the packer, the checker and the page all report your correct password as wrong. So
+`tools/password_prompt.py` rejects control characters outright instead of stripping them: a
+password quietly altered on the way in is the same failure one step further along, with
+nothing left to diagnose it. Both `pack_panel.py` and `check_panel.py` ask through it.
+
+For the same reason, both **refuse to run without a terminal** rather than falling back to
+reading standard input with the echo left on, which is what `getpass` does by default. So run
+them in a terminal window: a wrapper that gives the script no tty, such as an editor's task
+runner or Claude Code's `!` prefix, will be turned away with a message saying so.
 
 `--applet` and `--intro` override the defaults if a source sits elsewhere. `--out` writes
 the payload somewhere other than `static/tools/`, which is useful for testing without

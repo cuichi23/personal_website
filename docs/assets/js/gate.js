@@ -29,6 +29,33 @@
 
   var payload = null;   // fetched once, on the first attempt
 
+  /* Everything below this form fails in the same place as far as the reader is
+     concerned, so the message has to come from the code that knows which thing
+     broke. Each failure is tagged where it happens; nothing is guessed later
+     from an error string.
+
+     One case stays genuinely ambiguous and is named honestly rather than
+     papered over: a stale payload fails on the authentication tag exactly as a
+     wrong password does, because a key derived against the wrong salt is a
+     wrong key. No amount of tagging separates those two. */
+  var MESSAGES = {
+    fetch: "The panel could not be fetched. Try again in a moment.",
+    payload: "The panel file on this site could not be read. That is a fault " +
+             "here, not with your password \u2014 please report it.",
+    crypto: "This browser could not derive the key. Try a current Firefox, " +
+            "Chrome or Safari over https.",
+    password: "That password does not open this panel.",
+    content: "The password was accepted, but the panel inside could not be " +
+             "read. Reload the page: your browser may be holding an older copy.",
+    reveal: "The panel opened but could not be displayed. Reload the page."
+  };
+
+  function failure(kind, cause) {
+    var error = new Error(kind + (cause && cause.message ? ": " + cause.message : ""));
+    error.kind = kind;
+    return error;
+  }
+
   function say(text, kind) {
     message.textContent = text;
     message.dataset.kind = kind || "";
@@ -47,9 +74,11 @@
        salt, so a stale copy would fail to decrypt and the reader would be told
        their correct password is wrong. */
     return fetch(gate.dataset.payload, { cache: "no-cache" })
+      .catch(function (cause) { throw failure("fetch", cause); })
       .then(function (response) {
-        if (!response.ok) throw new Error("http " + response.status);
-        return response.json();
+        if (!response.ok) throw failure("fetch", new Error("http " + response.status));
+        return response.json()
+          .catch(function (cause) { throw failure("payload", cause); });
       })
       .then(function (json) { payload = json; return json; });
   }
@@ -72,11 +101,29 @@
           ["decrypt"]
         );
       })
+      .catch(function (cause) { throw failure("crypto", cause); })
       .then(function (key) {
-        return crypto.subtle.decrypt(
-          { name: "AES-GCM", iv: bytes(data.iv) }, key, bytes(data.ct));
+        /* The only step a wrong password can fail at, and the only one allowed
+           to report one. `bytes()` runs here too, so a malformed iv or
+           ciphertext is caught as a bad payload rather than blamed on the
+           reader. */
+        var iv, ct;
+        try {
+          iv = bytes(data.iv);
+          ct = bytes(data.ct);
+        } catch (cause) {
+          throw failure("payload", cause);
+        }
+        return crypto.subtle.decrypt({ name: "AES-GCM", iv: iv }, key, ct)
+          .catch(function (cause) { throw failure("password", cause); });
       })
-      .then(function (plain) { return JSON.parse(new TextDecoder().decode(plain)); });
+      .then(function (plain) {
+        try {
+          return JSON.parse(new TextDecoder().decode(plain));
+        } catch (cause) {
+          throw failure("content", cause);
+        }
+      });
   }
 
   /* The panel writes its own stylesheet against `body` and bare element
@@ -149,16 +196,25 @@
       .then(function (data) { return decrypt(data, password); })
       .then(function (opened) {
         say("");
-        reveal(opened);
+        try {
+          reveal(opened);
+        } catch (cause) {
+          throw failure("reveal", cause);
+        }
       })
       .catch(function (error) {
         gate.dataset.state = "";
         submit.disabled = false;
         input.select();
-        var network = String(error && error.message || "").indexOf("http") === 0;
-        say(network
-          ? "The panel could not be fetched. Try again in a moment."
-          : "That password does not open this panel.", "error");
+        var kind = error && error.kind;
+        if (kind !== "password") {
+          /* Anything that is not the authentication tag is our problem, not the
+             reader's. Leave it in the console so it can be diagnosed. */
+          if (window.console && console.error) console.error("gate:", error);
+        }
+        say(MESSAGES[kind] ||
+            ("The panel could not be opened: " +
+             ((error && error.message) || "unknown error")), "error");
       });
   });
 
