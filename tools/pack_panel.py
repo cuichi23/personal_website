@@ -41,7 +41,9 @@ import sys
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)
+sys.path.insert(0, HERE)   # running as a script puts this here anyway; importing does not
 import build  # noqa: E402  -- for the one Markdown pipeline, not a second one
 import password_prompt  # noqa: E402  -- one place that knows how to ask
 
