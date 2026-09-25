@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects@anabrid — Lucas Wetzel</title>
+<meta name="description" content="Work running on the REDAC Technology Platform at anabrid. Each project is described here in the open; the measurements and the engineering behind them sit behind a password.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects-anabrid/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Projects@anabrid — Lucas Wetzel">
+<meta property="og:description" content="Work running on the REDAC Technology Platform at anabrid. Each project is described here in the open; the measurements and the engineering behind them sit behind a password.">
+<meta property="og:url" content="https://lucaswetzel.de/projects-anabrid/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // GitHub Pages cannot send X-Frame-Options or a CSP frame-ancestors directive,
+  // so this is the only lever there is. Mark the document before the body is
+  // parsed; the stylesheet then keeps the content hidden until site.js has
+  // replaced it with a notice. Marking rather than navigating is deliberate:
+  // browsers increasingly refuse an automatic top navigation from a frame and
+  // leave a blank box behind, which tells the reader nothing.
+  if (window.self !== window.top) document.documentElement.dataset.framed = "";
+</script>
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=81039edc">
+<link rel="stylesheet" href="/assets/css/site.css?v=81039edc">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/research/">Research</a>
+      <a href="/projects/">Current projects</a>
+      <a href="/projects-anabrid/" aria-current="page">Projects@anabrid</a>
+      <a href="/oscillatory-computing/">Oscillatory computing</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<header class="page-head">
+  <p class="eyebrow">REDAC Technology Platform · work in progress</p>
+  <h1 class="page-head__title">Projects@anabrid</h1>
+<p class="page-head__standfirst">Work running on the REDAC Technology Platform at anabrid. Each project is described here in the open; the measurements and the engineering behind them sit behind a password.</p></header>
+
+<div class="prose prose--panel prose--flow"><p>These are problems we are putting on a physical computer rather than stepping
+through one. The REDAC solves a differential equation by being a system that
+obeys it, so the question is never only whether the answer is right. It is also
+what the machine does to the physics on the way, and what has to be done to the
+machine to get the physics back.</p>
+<p>Every project below is work in progress. The public description says what is
+being investigated and why that is hard on this kind of machine. What is
+measured, what failed, and what we do about it is behind the password on each
+page, because most of it is unpublished and some of it belongs to partners.
+This section is separate from the <a href="/oscillatory-computing/">oscillatory computing</a>
+work, which is my own research and carries its own password.</p></div>
+
+<ol class="post-list">
+  <li class="post-list__item">
+    <p class="post-list__date">first results</p>
+    <div>
+      <h2 class="post-list__title">
+        <a href="/projects-anabrid/bms/">Battery management systems</a>
+      </h2>
+      <p class="post-list__summary">A lithium-ion particle exchanges lithium with the electrolyte through its surface alone, so the outside world enters the model as a single boundary term. What it takes to solve that on an analog computer is the question.</p>
+    </div>
+  </li>
+  <li class="post-list__item">
+    <p class="post-list__date">in preparation</p>
+    <div>
+      <h2 class="post-list__title">
+        <a href="/projects-anabrid/gate-based-qc/">Gate-based quantum computing on coupled oscillators</a>
+      </h2>
+      <p class="post-list__summary">Gate-based quantum circuits mapped onto networks of coupled harmonic oscillators, and which circuits survive the mapping.</p>
+    </div>
+  </li>
+  <li class="post-list__item">
+    <p class="post-list__date">in preparation</p>
+    <div>
+      <h2 class="post-list__title">
+        <a href="/projects-anabrid/ml-on-redac/">Machine learning on REDAC</a>
+      </h2>
+      <p class="post-list__summary">Handwritten digits and tetromino shapes classified by an analog substrate, where the physics is fixed and only the readout is fitted.</p>
+    </div>
+  </li>
+  <li class="post-list__item">
+    <p class="post-list__date">in preparation</p>
+    <div>
+      <h2 class="post-list__title">
+        <a href="/projects-anabrid/fluid-aero/">Fluid and aerodynamics</a>
+      </h2>
+      <p class="post-list__summary">An engine duct written as a partial differential equation and solved as a continuous system rather than stepped on a digital one.</p>
+    </div>
+  </li>
+  <li class="post-list__item">
+    <p class="post-list__date">in preparation</p>
+    <div>
+      <h2 class="post-list__title">
+        <a href="/projects-anabrid/wave-equation/">The wave equation on strings</a>
+      </h2>
+      <p class="post-list__summary">A string is the simplest thing that carries a wave, and a direct test of whether the machine keeps the physics it was handed.</p>
+    </div>
+  </li>
+</ol>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/research/">Research</a></li>
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=81039edc"></script>
+</body>
+</html>

@@ -117,7 +117,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-img, svg, canvas { max-width: 100%; height: auto; display: block; }
+img, svg, canvas, video { max-width: 100%; height: auto; display: block; }
 a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
 a:hover { color: var(--link-hover); }
 
@@ -1329,3 +1329,23 @@ a:hover { color: var(--link-hover); }
 }
 
 .gate[data-state="open"] .gate__stage { min-height: 0; background: var(--surface); }
+
+/* No poster to hide, so the stage only has to hold the lock itself. Used by a
+   gated page whose material is a document rather than a simulator, and by one
+   whose payload has not been packed yet. */
+.gate__stage--bare { min-height: 0; }
+.gate[data-state="open"] .gate__stage--bare { border: 0; }
+
+/* A figure inside the unlocked prose. The media arrives as a blob URL once the
+   password is accepted, so the element is empty until then. */
+.prose video {
+  width: 100%;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--sunk);
+}
+.gate__assetfail {
+  color: var(--muted);
+  font-size: var(--step--1);
+  margin-top: var(--space-1);
+}

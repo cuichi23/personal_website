@@ -2,7 +2,17 @@
 title: Oscillatory computing
 slug: oscillatory-computing
 nav_order: 20
-template: gated-panel.html
+template: gated.html
+gate_poster: /tools/oscillatory-computing/poster.jpg
+gate_heading: The panel behind the glass
+gate_blurb: >-
+  A simulation that runs in your browser rather than on a server, and the
+  text that explains what it does. Both belong to a manuscript still in
+  review, so both are kept here until that is out.
+gate_caption: >-
+  Above: the panel out of focus. The image is blurred in the file itself, not
+  only by the stylesheet, and it carries no text, so turning the stylesheet off
+  shows you no more than this does.
 summary: An interactive panel from work in preparation. Access by password.
 ---
 

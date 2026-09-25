@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Battery management systems — Lucas Wetzel</title>
+<meta name="description" content="Lithium diffusion inside a single electrode particle, solved on an analog computer. The equation is old and well understood. What a continuous machine does to it is not.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects-anabrid/bms/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Battery management systems — Lucas Wetzel">
+<meta property="og:description" content="Lithium diffusion inside a single electrode particle, solved on an analog computer. The equation is old and well understood. What a continuous machine does to it is not.">
+<meta property="og:url" content="https://lucaswetzel.de/projects-anabrid/bms/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // GitHub Pages cannot send X-Frame-Options or a CSP frame-ancestors directive,
+  // so this is the only lever there is. Mark the document before the body is
+  // parsed; the stylesheet then keeps the content hidden until site.js has
+  // replaced it with a notice. Marking rather than navigating is deliberate:
+  // browsers increasingly refuse an automatic top navigation from a frame and
+  // leave a blank box behind, which tells the reader nothing.
+  if (window.self !== window.top) document.documentElement.dataset.framed = "";
+</script>
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=81039edc">
+<link rel="stylesheet" href="/assets/css/site.css?v=81039edc">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/research/">Research</a>
+      <a href="/projects/">Current projects</a>
+      <a href="/projects-anabrid/" aria-current="page">Projects@anabrid</a>
+      <a href="/oscillatory-computing/">Oscillatory computing</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<header class="page-head">
+  <p class="eyebrow">Projects@anabrid · work in progress</p>
+  <h1 class="page-head__title">Battery management systems</h1>
+<p class="page-head__standfirst">Lithium diffusion inside a single electrode particle, solved on an analog computer. The equation is old and well understood. What a continuous machine does to it is not.</p></header>
+
+<div class="prose prose--panel prose--flow"><p>A battery management system has to answer a question it cannot measure: how much
+lithium is actually inside the electrode particles right now. Terminal voltage
+and current are what a cell exposes. The state of charge is what the controller
+needs, and between the two sits a diffusion problem.</p>
+<h2 id="the-equation">The equation</h2>
+<p>Take one electrode particle and treat it as a sphere. Lithium moves inside it by
+diffusion, so the concentration <span class="math math--inline" data-tex="c(\mathbf{r}, t)">$c(\mathbf{r}, t)$</span> obeys Fick's second law,</p>
+<div class="math math--display" data-tex="\frac{\partial c}{\partial t} = \nabla\cdot\left(D\,\nabla c\right).">$$\frac{\partial c}{\partial t} = \nabla\cdot\left(D\,\nabla c\right).$$</div>
+<p>Nothing about the particle distinguishes one direction from another, and neither
+does the way it is loaded: lithium arrives across the whole surface at once. So
+the concentration depends on the radius alone, and in spherical coordinates the
+equation collapses from three dimensions to one,</p>
+<div class="math math--display" data-tex="\frac{\partial c}{\partial t}
+= \frac{D}{r^{2}}\,\frac{\partial}{\partial r}
+  \left( r^{2}\,\frac{\partial c}{\partial r} \right).">$$\frac{\partial c}{\partial t}
+= \frac{D}{r^{2}}\,\frac{\partial}{\partial r}
+  \left( r^{2}\,\frac{\partial c}{\partial r} \right).$$</div>
+<p>The <span class="math math--inline" data-tex="r^{2}">$r^{2}$</span> factors are not decoration. They are the geometry: a shell at radius
+<span class="math math--inline" data-tex="r">$r$</span> has area <span class="math math--inline" data-tex="4\pi r^{2}">$4\pi r^{2}$</span>, so the same flux per unit area moves more lithium
+through an outer shell than an inner one. A solver that loses those factors
+conserves the wrong quantity.</p>
+<p>There is a substitution that makes this tractable. Writing <span class="math math--inline" data-tex="u(r,t) = r\,c(r,t)">$u(r,t) = r\,c(r,t)$</span>
+turns the spherical operator into the flat one,</p>
+<div class="math math--display" data-tex="\frac{\partial u}{\partial t} = D\,\frac{\partial^{2} u}{\partial r^{2}},">$$\frac{\partial u}{\partial t} = D\,\frac{\partial^{2} u}{\partial r^{2}},$$</div>
+<p>which is the ordinary one-dimensional diffusion equation. The geometry has not
+gone away. It has moved into the boundary conditions and into the meaning of
+<span class="math math--inline" data-tex="u">$u$</span>, which is worth remembering when reading a result back out.</p>
+<h2 id="what-the-outside-world-does">What the outside world does</h2>
+<p>The particle only ever touches the electrolyte at its surface, so everything the
+rest of the cell does enters through one term. At the centre, symmetry fixes the
+gradient at zero. At the surface, the gradient is set by the current the cell is
+being asked to deliver or absorb:</p>
+<div class="math math--display" data-tex="\left.\frac{\partial c}{\partial r}\right|_{r=0} = 0,
+\qquad
+\left.-D\,\frac{\partial c}{\partial r}\right|_{r=R} = \frac{j(t)}{F}.">$$\left.\frac{\partial c}{\partial r}\right|_{r=0} = 0,
+\qquad
+\left.-D\,\frac{\partial c}{\partial r}\right|_{r=R} = \frac{j(t)}{F}.$$</div>
+<p>Here <span class="math math--inline" data-tex="j(t)">$j(t)$</span> is the current density at the particle surface and <span class="math math--inline" data-tex="F">$F$</span> is Faraday's
+constant. This is the whole coupling between one particle and the pack around
+it, and it is why the single-particle picture is useful: a controller's entire
+influence on this equation is one scalar function of time.</p>
+<p>Scaling by the particle radius, with <span class="math math--inline" data-tex="x = r/R">$x = r/R$</span> and <span class="math math--inline" data-tex="\tau = D t / R^{2}">$\tau = D t / R^{2}$</span>, removes
+<span class="math math--inline" data-tex="D">$D$</span> and <span class="math math--inline" data-tex="R">$R$</span> from the interior and leaves a single dimensionless problem. Only the
+boundary term carries the operating conditions.</p>
+<h2 id="the-cases-that-matter">The cases that matter</h2>
+<p>Because the outside enters through <span class="math math--inline" data-tex="j(t)">$j(t)$</span> alone, the interesting scenarios are
+just choices of that one function.</p>
+<ul>
+<li><strong>No current.</strong> <span class="math math--inline" data-tex="j = 0">$j = 0$</span>. The particle relaxes towards a flat profile and stays
+  there. Nothing should happen, which makes it the sharpest test there is: any
+  drift is the solver's, not the physics'.</li>
+<li><strong>Constant current.</strong> <span class="math math--inline" data-tex="j">$j$</span> fixed, of either sign. Lithium is inserted or removed
+  steadily, a gradient builds between surface and centre, and after a transient
+  the profile advances at constant shape. Halving the rate halves the gradient.</li>
+<li><strong>Time-varying current.</strong> A ramp, or a pulse train. These are what a vehicle
+  actually does to a cell, and they are where the surface concentration departs
+  furthest from the average. That gap is the physical reason a cell can refuse a
+  fast charge while its average state of charge says there is room.</li>
+</ul>
+<p>That last case is treated directly in the local literature: solid-state
+diffusion inside the particle, rather than anything at the terminals, is what
+limits what a cell will accept under pulse operation.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
+<h2 id="why-put-this-on-an-analog-computer">Why put this on an analog computer</h2>
+<p>The REDAC does not step the equation forward. It is wired into a system that
+obeys it, and then it runs. Space still has to be discretised, so the particle
+becomes a set of shells, each one an integrator, coupled to its neighbours by
+the stencil the geometry dictates. Time does not have to be discretised at all.</p>
+<p>That removes an entire class of error, and it introduces another. A digital
+solver knows its coefficients exactly and pays for its time step. An analog
+solver has no time step to pay for and does not know its coefficients exactly,
+because each one is set by real hardware with finite resolution. The conserved
+quantity here is lithium, and whether the machine keeps it depends on whether
+coefficients that should cancel actually do.</p>
+<p>What happens when they do not, how far off it puts the answer, and what can be
+done about it in hardware rather than in arithmetic, is the work behind the
+password below.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><em>Solid-State Diffusion Limitations on Pulse Operation of a Lithium Ion
+Cell for Hybrid Electric Vehicles.</em> In the group literature collection under
+<code>ByPerson/FraunhoferBatterien</code>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div></div>
+
+<div class="prose prose--panel prose--flow" data-gate-intro hidden></div>
+
+<section class="gate" data-gate         data-payload="/tools/bms/payload.json"
+         aria-labelledby="gate-heading">
+  <div class="gate__stage gate__stage--bare"
+       data-gate-stage>
+    <div class="gate__glass" aria-hidden="true"></div>
+
+    <div class="gate__panel">
+      <p class="gate__eyebrow">Locked</p>
+      <h2 class="gate__heading" id="gate-heading">Measurements on the machine, and what had to be corrected</h2>
+      <p class="gate__blurb">Six boundary conditions measured on the machine against a digital reference integrated from the same source, what went wrong, and the correction that fixed it. Unpublished, so it is kept behind a password.</p>
+
+      <form class="gate__form" data-gate-form>
+        <label class="gate__label" for="gate-password">Password</label>
+        <div class="gate__row">
+          <input class="gate__input" id="gate-password" type="password"
+                 autocomplete="off" spellcheck="false" required
+                 placeholder="…" data-gate-input>
+          <button class="button gate__submit" type="submit" data-gate-submit>Unlock</button>
+        </div>
+        <p class="gate__message" role="status" aria-live="polite" data-gate-message></p>
+      </form>
+
+      <p class="gate__fineprint">
+        This material is stored encrypted and is decrypted in your browser. Nothing
+        you type is sent anywhere. It stays open until you reload the page.
+      </p>
+    </div>
+  </div>
+
+  <p class="gate__caption" data-gate-caption></p>
+</section>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/research/">Research</a></li>
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=81039edc"></script>
+<script defer src="/assets/js/gate.js?v=81039edc"></script></body>
+</html>

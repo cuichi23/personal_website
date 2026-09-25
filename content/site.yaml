@@ -65,3 +65,39 @@ elsewhere:
   - label: github.com/cuichi23
     note: simulation code for PLL networks
     url: https://github.com/cuichi23/sim_pll_networks
+
+# The anabrid section. Work running on the REDAC Technology Platform. This is
+# separate from the oscillatory-computing work, which is Lucas Wetzel's own
+# research, and the two are encrypted under different passwords.
+anabrid_projects:
+  - title: Battery management systems
+    slug: bms
+    status: first results
+    summary: >-
+      A lithium-ion particle exchanges lithium with the electrolyte through its
+      surface alone, so the outside world enters the model as a single boundary
+      term. What it takes to solve that on an analog computer is the question.
+  - title: Gate-based quantum computing on coupled oscillators
+    slug: gate-based-qc
+    status: in preparation
+    summary: >-
+      Gate-based quantum circuits mapped onto networks of coupled harmonic
+      oscillators, and which circuits survive the mapping.
+  - title: Machine learning on REDAC
+    slug: ml-on-redac
+    status: in preparation
+    summary: >-
+      Handwritten digits and tetromino shapes classified by an analog substrate,
+      where the physics is fixed and only the readout is fitted.
+  - title: Fluid and aerodynamics
+    slug: fluid-aero
+    status: in preparation
+    summary: >-
+      An engine duct written as a partial differential equation and solved as a
+      continuous system rather than stepped on a digital one.
+  - title: The wave equation on strings
+    slug: wave-equation
+    status: in preparation
+    summary: >-
+      A string is the simplest thing that carries a wave, and a direct test of
+      whether the machine keeps the physics it was handed.

@@ -158,6 +158,14 @@ IMG_ATTRS = re.compile(r'(\w[\w-]*)="([^"]*)"')
 
 def figure_markup(img_tag: str, source: str, kept: list[tuple[str, str]]) -> str:
     attrs = dict(IMG_ATTRS.findall(img_tag))
+    if "data-enc" in attrs:
+        # An encrypted figure on a gated page. Its bytes arrive as a blob URL
+        # after the password is accepted, so there is no file to check for and
+        # no src to rewrite. Wrap it, keep every attribute, and leave it alone.
+        caption = attrs.get("alt", "").strip()
+        caption_html = (f"<figcaption>{restore_math(caption, kept)}</figcaption>"
+                        if caption else "")
+        return f'<figure class="figure">{img_tag}{caption_html}</figure>'
     src = attrs.get("src", "")
     caption = attrs.get("alt", "").strip()
     caption_html = (f"<figcaption>{restore_math(caption, kept)}</figcaption>"
@@ -378,8 +386,13 @@ def build(include_drafts: bool = False) -> None:
         emit(env, "post.html", f"projects/{post.slug}/index.html",
              page_id="projects", post=post, **common)
     for page in data["pages"]:
+        # A gated page whose payload has not been packed yet renders as "in
+        # preparation" rather than as a lock nobody's password can open.
+        gate_slug = page.meta.get("gate_payload") or page.slug
+        gate_ready = os.path.isfile(
+            os.path.join(STATIC, "tools", gate_slug, "payload.json"))
         emit(env, page.meta.get("template", "page.html"), f"{page.slug}/index.html",
-             page_id=page.slug, page=page, **common)
+             page_id=page.slug, page=page, gate_ready=gate_ready, **common)
     emit(env, "tags.html", "tags/index.html", page_id="projects", **common)
     for tag, tagged in data["tags"].items():
         emit(env, "tag.html", f"tags/{tag_slug(tag)}/index.html",

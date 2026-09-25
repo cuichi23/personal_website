@@ -1,0 +1,30 @@
+{# The Projects@anabrid index. Reuses the post-list markup so the section looks
+   like the rest of the site without a second set of styles to maintain. #}
+{% extends "base.html" %}
+{% block title %}{{ page.title }} — {{ site.title }}{% endblock %}
+{% block description %}{{ page.summary or site.description }}{% endblock %}
+{% block canonical %}{{ page.url }}{% endblock %}
+
+{% block main %}
+<header class="page-head">
+  <p class="eyebrow">REDAC Technology Platform · work in progress</p>
+  <h1 class="page-head__title">{{ page.title }}</h1>
+  {% if page.summary %}<p class="page-head__standfirst">{{ page.summary }}</p>{% endif %}
+</header>
+
+<div class="prose prose--panel prose--flow">{{ page.body }}</div>
+
+<ol class="post-list">
+  {% for project in site.anabrid_projects %}
+  <li class="post-list__item">
+    <p class="post-list__date">{{ project.status }}</p>
+    <div>
+      <h2 class="post-list__title">
+        <a href="/projects-anabrid/{{ project.slug }}/">{{ project.title }}</a>
+      </h2>
+      <p class="post-list__summary">{{ project.summary }}</p>
+    </div>
+  </li>
+  {% endfor %}
+</ol>
+{% endblock %}

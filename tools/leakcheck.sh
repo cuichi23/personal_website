@@ -16,9 +16,19 @@ if [ ! -f "$TERMS_FILE" ]; then
 fi
 TERMS=$(paste -sd'|' "$TERMS_FILE")
 
-PUBLIC_PAGE=docs/oscillatory-computing/index.html
+# The public half of every gated page: the source that carries the gate template,
+# and the page it builds to. Naming them individually went stale the moment a
+# second gated page existed, so they are discovered instead.
+PUBLIC_SOURCES=$(grep -rl "template: gated.html" content/pages 2>/dev/null)
+PUBLIC_BUILT=""
+for src in $PUBLIC_SOURCES; do
+  slug=$(sed -n 's/^slug:[[:space:]]*//p' "$src" | head -1)
+  [ -n "$slug" ] && PUBLIC_BUILT="$PUBLIC_BUILT docs/$slug/index.html"
+done
+PUBLIC_ALL="$PUBLIC_SOURCES $PUBLIC_BUILT"
+
 echo "== what a reader reaches without the password =="
-for f in content/pages/oscillatory-computing.md "$PUBLIC_PAGE"; do
+for f in $PUBLIC_ALL; do
   n=$(grep -Eic "$TERMS" "$f" 2>/dev/null || true)
   if [ "${n:-0}" -eq 0 ]; then
     printf '  clean      %s\n' "$f"
@@ -34,7 +44,9 @@ found=0
 git ls-files --cached --others --exclude-standard | while read -r f; do
   case "$f" in
     *.jpg|*.png|*.woff2|*.pdf|*.gif|*payload.json) continue ;;
-    content/pages/oscillatory-computing.md|"$PUBLIC_PAGE") continue ;;
+  esac
+  case " $PUBLIC_ALL " in
+    *" $f "*) continue ;;
   esac
   n=$(grep -Eic "$TERMS" "$f" 2>/dev/null || true)
   if [ "${n:-0}" -gt 0 ]; then
@@ -47,5 +59,12 @@ done
 
 echo
 echo "== ciphertext =="
-printf '  plaintext matches in payload.json: %s\n' \
-  "$(grep -Eic "$TERMS" static/tools/oscillatory-computing/payload.json 2>/dev/null || echo 0)"
+shopt -s nullglob
+payloads=(static/tools/*/payload.json)
+if [ ${#payloads[@]} -eq 0 ]; then
+  echo "  no payloads packed yet"
+fi
+for p in "${payloads[@]}"; do
+  printf '  %-52s %s plaintext match(es)\n' "$p" \
+    "$(grep -Eic "$TERMS" "$p" 2>/dev/null || echo 0)"
+done

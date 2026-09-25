@@ -28,6 +28,7 @@
   var intro = document.querySelector("[data-gate-intro]");
 
   var payload = null;   // fetched once, on the first attempt
+  var realmKey = null;  // derived once; the page's media is encrypted under it too
 
   /* Everything below this form fails in the same place as far as the reader is
      concerned, so the message has to come from the code that knows which thing
@@ -40,6 +41,7 @@
      wrong key. No amount of tagging separates those two. */
   var MESSAGES = {
     fetch: "The panel could not be fetched. Try again in a moment.",
+    asset: "Part of this page could not be loaded. Reload the page.",
     payload: "The panel file on this site could not be read. That is a fault " +
              "here, not with your password \u2014 please report it.",
     crypto: "This browser could not derive the key. Try a current Firefox, " +
@@ -103,6 +105,7 @@
       })
       .catch(function (cause) { throw failure("crypto", cause); })
       .then(function (key) {
+        realmKey = key;
         /* The only step a wrong password can fail at, and the only one allowed
            to report one. `bytes()` runs here too, so a malformed iv or
            ciphertext is caught as a bad payload rather than blamed on the
@@ -126,6 +129,41 @@
       });
   }
 
+  /* Media too large to sit inside the payload ships as its own AES-GCM file and
+     is decrypted here with the same realm key. Each file carries its own 12-byte
+     nonce as a header, so it is self-describing. Nothing is fetched until the
+     password has been accepted. */
+  function attachMedia(root) {
+    if (!root || !realmKey) return;
+    Array.prototype.forEach.call(root.querySelectorAll("[data-enc]"), function (node) {
+      fetch(node.getAttribute("data-enc"), { cache: "no-cache" })
+        .then(function (response) {
+          if (!response.ok) throw new Error("http " + response.status);
+          return response.arrayBuffer();
+        })
+        .then(function (buffer) {
+          var all = new Uint8Array(buffer);
+          return crypto.subtle.decrypt(
+            { name: "AES-GCM", iv: all.slice(0, 12) }, realmKey, all.slice(12));
+        })
+        .then(function (plain) {
+          var type = node.getAttribute("data-type") || "video/mp4";
+          node.src = URL.createObjectURL(new Blob([plain], { type: type }));
+          node.removeAttribute("data-enc");
+          if (node.tagName === "VIDEO") {
+            node.load();
+            var playing = node.play();
+            if (playing && playing.catch) playing.catch(function () {});
+          }
+        })
+        .catch(function (cause) {
+          if (window.console && console.error) console.error("gate asset:", cause);
+          node.insertAdjacentHTML("afterend",
+            '<p class="gate__assetfail">' + MESSAGES.asset + "</p>");
+        });
+    });
+  }
+
   /* The panel writes its own stylesheet against `body` and bare element
      selectors, so it goes in an iframe rather than into this document. srcdoc
      keeps it same-origin, which is what the height-and-theme bridge needs. */
@@ -135,6 +173,19 @@
       intro.innerHTML = opened.intro;
       intro.hidden = false;
       if (window.renderMathIn) window.renderMathIn(intro);
+      attachMedia(intro);
+    }
+
+    if (!opened.panel) {
+      /* A document-style gated page: prose, figures and media, no simulator.
+         Drop the glass and the poster rather than leaving an empty stage. */
+      gate.dataset.state = "open";
+      stage.replaceChildren();
+      if (caption) {
+        caption.textContent =
+          "Unlocked. Reload the page to lock it again.";
+      }
+      return;
     }
 
     var frame = document.createElement("iframe");

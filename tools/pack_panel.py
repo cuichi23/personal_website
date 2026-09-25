@@ -1,162 +1,109 @@
 #!/usr/bin/env python3
-"""Encrypt the gated Oscillatory computing panel into the payload the site ships.
+"""Encrypt one realm of gated pages into the payloads the site ships.
 
-    python3 tools/pack_panel.py          # prompts for the password
-
-Both plaintext sources default to `content/gated/`, which `.gitignore` excludes:
-`panel.html` is the simulator and `oscillatory-computing.md` is the prose above
-it. Keep the master copies wherever the research lives and refresh those two
-files when either changes. Only the ciphertext under `static/tools/` is ever
-committed.
+    python3 tools/pack_panel.py --realm anabrid
+    python3 tools/pack_panel.py --realm oscillatory-computing
+    python3 tools/pack_panel.py --list
 
 This repository is public. Anything committed to it is readable by anyone who
 guesses a URL, and stays readable in the history, in forks and in caches after
 it is deleted. So everything that must not be read yet is encrypted here and
 decrypted in the reader's browser only after the password is entered.
 
-That is two things, not one. The applet is the obvious one. The prose that
-describes the model is the one that is easy to forget, because it looks like
-ordinary page content: an equation and three paragraphs on a public page give
-away as much as the simulator does. Both go into the same ciphertext.
+That is two things per page, not one. The applet, where there is one, is the
+obvious one. The prose that describes the work is the one that is easy to
+forget, because it looks like ordinary page content: an equation and three
+paragraphs on a public page give away as much as a simulator does. Both go into
+the same ciphertext, and media beside the page is encrypted under the same key.
 
-The intro is Markdown, rendered here through `build.render_markdown` so that it
-is typeset exactly as a page body would be, KaTeX spans included. Its source
-belongs in `content/gated/`, which `.gitignore` excludes.
+**A realm is a password.** `content/gated/` holds two of them and they are
+independent: Lucas Wetzel's own oscillatory-computing work, and the anabrid work
+on the REDAC Technology Platform. `--realm` is therefore required whenever more
+than one exists. Packing without naming one would re-key every realm at once,
+and a payload re-keyed by accident is indistinguishable from a wrong password.
+See `tools/gated.py` for the layout and `tools/test_gated.py` for the property.
 
-The output is `static/tools/oscillatory-computing/payload.json`, which `build.py`
-copies to the site root like any other static file. What ships is ciphertext
-plus the salt and nonce needed to derive the key again. The password itself is
-never written anywhere.
+Markdown is rendered through `build.render_markdown`, so a gated page is typeset
+exactly as a public page body would be, KaTeX spans included.
 """
 from __future__ import annotations
 
 import argparse
-import base64
-import hashlib
-import json
 import os
-import re
 import sys
-
-from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)
 sys.path.insert(0, HERE)   # running as a script puts this here anyway; importing does not
 import build  # noqa: E402  -- for the one Markdown pipeline, not a second one
+import gated  # noqa: E402  -- the realms, and what each one encrypts
 import password_prompt  # noqa: E402  -- one place that knows how to ask
 
-OUT_DIR = os.path.join(ROOT, "static", "tools", "oscillatory-computing")
-GATED = os.path.join(ROOT, "content", "gated")
-DEFAULT_APPLET = os.path.join(GATED, "panel.html")
-DEFAULT_INTRO = os.path.join(GATED, "oscillatory-computing.md")
 
-# The site makes no third-party requests at page load, which is the reason it
-# needs no cookie banner. The applet was written against Google's font CDN, so
-# those three tags are swapped for the identical faces this domain already
-# serves. See the README.
-GOOGLE_FONT_TAGS = re.compile(
-    r'<link[^>]*(?:fonts\.googleapis\.com|fonts\.gstatic\.com)[^>]*>\s*', re.I)
-SELF_HOSTED_FONTS = '<link rel="stylesheet" href="/assets/css/fonts.css">\n'
-
-# Reported to the parent page so the panel can size itself and hand down the
-# reader's colour theme. Same bridge the other embedded tools use.
-BRIDGE = """
-<script>
-/* Embedded in a page on this site: report our height, follow the parent's theme. */
-(function () {
-  if (window.parent === window) return;
-  function report() {
-    window.parent.postMessage(
-      { embedHeight: Math.ceil(document.documentElement.scrollHeight) }, "*");
-  }
-  window.addEventListener("message", function (event) {
-    var theme = event.data && event.data.theme;
-    if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
-    else delete document.documentElement.dataset.theme;
-    report();
-  });
-  window.addEventListener("load", report);
-  window.addEventListener("resize", report);
-  if (window.ResizeObserver) new ResizeObserver(report).observe(document.documentElement);
-  report();
-})();
-</script>
-"""
-
-ITERATIONS = 310_000  # OWASP's 2023 floor for PBKDF2-HMAC-SHA256
-
-
-def prepare(applet_html: str) -> str:
-    """Strip the third-party font requests and add the embed bridge."""
-    html, removed = GOOGLE_FONT_TAGS.subn("", applet_html)
-    if removed:
-        html = SELF_HOSTED_FONTS + html
-        print(f"  removed {removed} Google Fonts tag(s), pointed at /assets/css/fonts.css")
-    if "embedHeight" not in html:
-        html = html.replace("</body>", BRIDGE + "</body>") if "</body>" in html \
-            else html + BRIDGE
-        print("  added the embed bridge")
-    return html
-
-
-def encrypt(plaintext: str, password: str) -> dict:
-    salt = os.urandom(16)
-    nonce = os.urandom(12)
-    key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, ITERATIONS, 32)
-    ciphertext = AESGCM(key).encrypt(nonce, plaintext.encode(), None)
-    b64 = lambda raw: base64.b64encode(raw).decode()
-    return {
-        "v": 2,
-        "kdf": {"name": "PBKDF2", "hash": "SHA-256",
-                "iterations": ITERATIONS, "salt": b64(salt)},
-        "cipher": "AES-GCM",
-        "iv": b64(nonce),
-        "ct": b64(ciphertext),
-    }
+def choose_realm(requested: str | None) -> str:
+    """Name the realm to pack, or refuse rather than guess."""
+    available = gated.realms()
+    if not available:
+        sys.exit(f"no gated sources under {os.path.relpath(gated.GATED, ROOT)}")
+    if requested:
+        if requested not in available:
+            sys.exit(f"no such realm: {requested}\n"
+                     f"  available: {', '.join(available)}")
+        return requested
+    if len(available) == 1:
+        return available[0]
+    sys.exit("more than one realm exists, so --realm is required:\n"
+             + "".join(f"  --realm {name}\n" for name in available)
+             + "each realm has its own password, and packing the wrong one\n"
+               "would re-key pages you did not mean to touch.")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--applet", default=DEFAULT_APPLET,
-                        help="the self-contained applet HTML "
-                             "(default: content/gated/panel.html)")
-    parser.add_argument("--intro", default=DEFAULT_INTRO,
-                        help="Markdown shown above the panel once unlocked "
-                             "(default: content/gated/oscillatory-computing.md)")
+    parser.add_argument("--realm", help="which set of pages to encrypt, and under "
+                                        "which password. Required when several exist")
+    parser.add_argument("--list", action="store_true",
+                        help="show the realms and the pages each one holds, then exit")
     parser.add_argument("--password",
                         help="what a reader must type to unlock. Omit it and you "
                              "are prompted, which keeps it out of your shell history")
-    parser.add_argument("--out", default=OUT_DIR)
+    parser.add_argument("--out", default=gated.STATIC,
+                        help="where the payloads are written (default: static/)")
     args = parser.parse_args()
 
-    for label, path in (("applet", args.applet), ("intro", args.intro)):
-        if not os.path.isfile(path):
-            sys.exit(f"no such {label}: {os.path.relpath(path, ROOT)}")
+    if args.list:
+        for name in gated.realms():
+            pages = gated.discover(name)
+            print(f"{name}  ({len(pages)} page{'s' if len(pages) != 1 else ''})")
+            for page in pages:
+                extras = []
+                if page.panel:
+                    extras.append("applet")
+                if page.media:
+                    extras.append(f"{len(page.media)} media")
+                print(f"    {page.slug}" + (f"   [{', '.join(extras)}]" if extras else ""))
+        return
+
+    realm = choose_realm(args.realm)
+    pages = gated.discover(realm)
+    print(f"realm {realm}: {len(pages)} page(s) — "
+          + ", ".join(page.slug for page in pages))
 
     password = password_prompt.ask_to_set(args.password)
+    written = gated.pack_realm(realm, password, out_dir=args.out,
+                               render=build.render_markdown)
 
-    source = open(args.applet, encoding="utf-8").read()
-    print(f"read {os.path.relpath(args.applet)} ({len(source):,} bytes)")
-    intro_md = open(args.intro, encoding="utf-8").read()
-    print(f"read {os.path.relpath(args.intro, ROOT)} "
-          f"({len(intro_md.split()):,} words)")
-
-    document = json.dumps({
-        "intro": build.render_markdown(intro_md, source=args.intro),
-        "panel": prepare(source),
-    })
-    payload = encrypt(document, password)
-
-    os.makedirs(args.out, exist_ok=True)
-    target = os.path.join(args.out, "payload.json")
-    with open(target, "w", encoding="utf-8") as fh:
-        json.dump(payload, fh)
-    print(f"wrote {os.path.relpath(target, ROOT)} "
-          f"({os.path.getsize(target):,} bytes, AES-256-GCM)")
+    payloads = [p for p in written if p.endswith("payload.json")]
+    media = [p for p in written if p.endswith(".enc")]
+    for path in payloads:
+        print(f"  wrote {os.path.relpath(path, ROOT)} "
+              f"({os.path.getsize(path):,} bytes, AES-256-GCM)")
+    if media:
+        total = sum(os.path.getsize(p) for p in media)
+        print(f"  wrote {len(media)} encrypted media file(s), {total:,} bytes total")
     print("the password is not stored anywhere in this repository")
-    print("the intro prose is inside the ciphertext, not on the public page")
+    print(f"only realm '{realm}' was touched; every other realm keeps its own password")
 
 
 if __name__ == "__main__":
