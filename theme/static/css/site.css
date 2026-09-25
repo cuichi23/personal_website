@@ -1344,6 +1344,7 @@ a:hover { color: var(--link-hover); }
   border-radius: 3px;
   background: var(--sunk);
 }
+.prose audio { width: 100%; margin-top: var(--space-1); }
 .gate__assetfail {
   color: var(--muted);
   font-size: var(--step--1);

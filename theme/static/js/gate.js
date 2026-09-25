@@ -150,8 +150,10 @@
           var type = node.getAttribute("data-type") || "video/mp4";
           node.src = URL.createObjectURL(new Blob([plain], { type: type }));
           node.removeAttribute("data-enc");
-          if (node.tagName === "VIDEO") {
-            node.load();
+          if (node.tagName === "VIDEO" || node.tagName === "AUDIO") {
+            node.load();          /* so the controls pick up the new source */
+          }
+          if (node.tagName === "VIDEO" && node.autoplay) {
             var playing = node.play();
             if (playing && playing.catch) playing.catch(function () {});
           }

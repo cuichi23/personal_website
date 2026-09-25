@@ -60,7 +60,8 @@ LEGACY_REALM = "oscillatory-computing"
 LEGACY_INTRO = "oscillatory-computing.md"
 LEGACY_PANEL = "panel.html"
 
-MEDIA_SUFFIXES = (".mp4", ".webm", ".gif", ".png", ".jpg", ".jpeg", ".svg", ".webp")
+MEDIA_SUFFIXES = (".mp4", ".webm", ".gif", ".png", ".jpg", ".jpeg", ".svg", ".webp",
+                  ".wav", ".mp3", ".m4a", ".ogg")
 
 # The site makes no third-party requests at page load, which is the reason it
 # needs no cookie banner. The applet was written against Google's font CDN, so

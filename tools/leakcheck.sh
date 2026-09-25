@@ -43,7 +43,9 @@ echo "== every other file git would publish =="
 found=0
 git ls-files --cached --others --exclude-standard | while read -r f; do
   case "$f" in
-    *.jpg|*.png|*.woff2|*.pdf|*.gif|*payload.json) continue ;;
+    # .enc is AES-GCM ciphertext. grep -i on megabytes of random bytes reports
+    # a match sooner or later, and a match there could not be a leak anyway.
+    *.jpg|*.png|*.woff2|*.pdf|*.gif|*.mp4|*.wav|*payload.json|*.enc) continue ;;
   esac
   case " $PUBLIC_ALL " in
     *" $f "*) continue ;;
