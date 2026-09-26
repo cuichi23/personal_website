@@ -19,8 +19,8 @@ gate_blurb: >-
 Every other problem in this section is hard because nobody knows the answer.
 This one is useful for the opposite reason. A string clamped at both ends and
 released from rest has an exact solution, written down in the nineteenth
-century, and any machine claiming to solve it can be checked against the truth
-rather than against another solver.
+century. A machine claiming to solve it can therefore be checked against the
+truth, rather than against another solver.
 
 ## The equation
 
@@ -51,8 +51,8 @@ $$
 \ddot{u}_j = \frac{c^{2}}{h^{2}}\left( u_{j-1} - 2u_j + u_{j+1} \right),
 $$
 
-which on the machine is a pair of integrators per node, one carrying velocity
-and one carrying position, wired to the neighbours through a tridiagonal
+On the machine that is a pair of integrators per node, one carrying velocity and
+one carrying position. They are wired to their neighbours through a tridiagonal
 stencil. No multipliers: the wave equation is linear, so the whole string is
 integrators and coefficients.
 
@@ -77,7 +77,7 @@ And a string has one output no other problem here has. It can be played. The
 node traces are a pressure signal, so the machine's answer can be listened to
 next to the analytic one.
 
-We have run this: a plucked string on the hardware, against both the discrete
-and the continuous analytic solutions, with the dispersion relation, the
-spectrum and the error maps measured, and the result rendered as sound. What
+We have run this. A plucked string on the hardware, measured against both the
+discrete and the continuous analytic solutions, with the dispersion relation,
+the spectrum and the error maps taken, and the result rendered as sound. What
 came out is behind the password.

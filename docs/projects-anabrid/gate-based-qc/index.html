@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gate-based quantum computing on coupled oscillators — Lucas Wetzel</title>
-<meta name="description" content="Part of the work on the REDAC Technology Platform. This page is being written.">
+<meta name="description" content="The Schrödinger equation for a finite quantum register is a linear system of coupled oscillators. That is old physics. What it costs to run a real circuit that way on real hardware is not.">
 <meta name="author" content="Lucas Wetzel">
 <link rel="canonical" href="https://lucaswetzel.de/projects-anabrid/gate-based-qc/">
 <meta property="og:site_name" content="Lucas Wetzel">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Gate-based quantum computing on coupled oscillators — Lucas Wetzel">
-<meta property="og:description" content="Part of the work on the REDAC Technology Platform. This page is being written.">
+<meta property="og:description" content="The Schrödinger equation for a finite quantum register is a linear system of coupled oscillators. That is old physics. What it costs to run a real circuit that way on real hardware is not.">
 <meta property="og:url" content="https://lucaswetzel.de/projects-anabrid/gate-based-qc/">
 <link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
@@ -61,28 +61,107 @@
 <header class="page-head">
   <p class="eyebrow">Projects@anabrid · work in progress</p>
   <h1 class="page-head__title">Gate-based quantum computing on coupled oscillators</h1>
-<p class="page-head__standfirst">Part of the work on the REDAC Technology Platform. This page is being written.</p></header>
+<p class="page-head__standfirst">The Schrödinger equation for a finite quantum register is a linear system of coupled oscillators. That is old physics. What it costs to run a real circuit that way on real hardware is not.</p></header>
 
-<div class="prose prose--panel prose--flow"><p>A gate-based quantum circuit and a network of coupled harmonic oscillators are both linear systems with a well-defined spectrum. That is the opening the mapping uses. Which circuits survive it, and what the cost is in oscillators and in time, is what this project measures.</p>
-<p>This page is work in progress. The description above is what the project is
-about; the measurements are not written up yet.</p></div>
+<div class="prose prose--panel prose--flow"><p>The starting point is not ours and is not new. A quantum state on <span class="math math--inline" data-tex="N">$N$</span> levels is
+a vector of complex amplitudes obeying a linear equation. A classical array of
+coupled harmonic oscillators obeys a linear equation of the same shape.
+Briggs and Eisfeld worked the correspondence out in detail. First for excitonic
+energy transfer, where the quantum coherences of a coupled-monomer aggregate are
+reproduced exactly by a classical dipole array.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> Then for coherent states
+built from classical oscillator amplitudes.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> Then in general, for an
+arbitrary network of two-level systems, with coupled electrical circuits named
+as the hardware it would run on.<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> Skinner gives the mapping of the quantum
+states of an arbitrary <span class="math math--inline" data-tex="N">$N$</span>-level system onto the positions of classical coupled
+oscillators directly.<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup></p>
+<h2 id="the-correspondence">The correspondence</h2>
+<p>Write the register's amplitudes as <span class="math math--inline" data-tex="c_n">$c_n$</span>. The Schrödinger equation</p>
+<div class="math math--display" data-tex="i\hbar\,\dot{c}_n = \sum_m H_{nm} c_m">$$i\hbar\,\dot{c}_n = \sum_m H_{nm} c_m$$</div>
+<p>is linear and first order. Split each complex amplitude into a real pair,
+<span class="math math--inline" data-tex="c_n = q_n + i p_n">$c_n = q_n + i p_n$</span>, and it becomes a real linear system of twice the size, in
+which <span class="math math--inline" data-tex="q">$q$</span> and <span class="math math--inline" data-tex="p">$p$</span> drive one another. That is the equation of motion of coupled
+oscillators. Site energies become frequencies, <span class="math math--inline" data-tex="\omega_n = \varepsilon_n/\hbar">$\omega_n = \varepsilon_n/\hbar$</span>,
+and the off-diagonal couplings become reactive couplings between them.</p>
+<p>Nothing is approximated in that step. The approximation, where the scheme has
+one, comes from the regime the hardware must sit in. Couplings small against the
+carrier frequency, site frequencies close to one another, dephasing slower than
+either. Those are the conditions under which the rotating-wave
+picture holds, and they are the operating specification for any machine built
+this way.</p>
+<p>A gate is the same statement over a finite time. Every unitary is</p>
+<div class="math math--display" data-tex="U = \exp(-i\,\theta\,G)">$$U = \exp(-i\,\theta\,G)$$</div>
+<p>for some generator <span class="math math--inline" data-tex="G">$G$</span> and angle <span class="math math--inline" data-tex="\theta">$\theta$</span>, so applying the gate means
+integrating <span class="math math--inline" data-tex="\dot{c} = -iGc">$\dot{c} = -iGc$</span> for a time <span class="math math--inline" data-tex="\theta">$\theta$</span>. There is no gate model, no
+Trotter step, and no shot noise. There is also no error correction: what the
+machine does is the equation, including everything it does wrong.</p>
+<h2 id="the-cost-stated-plainly">The cost, stated plainly</h2>
+<p>The register has <span class="math math--inline" data-tex="2^N">$2^N$</span> amplitudes, and every one of them needs its own pair of
+integrators. Three qubits is eight amplitudes and sixteen integrators; ten
+qubits would be a thousand amplitudes and two thousand integrators. The
+resource scaling is exponential in the qubit count, and no argument here
+changes that.</p>
+<p>So this is not a route to a quantum computer. It is an exact classical
+emulation, on hardware that solves the emulating equation continuously rather
+than stepping it. That makes it a way to ask precise questions about gate
+sequences at small register sizes.</p>
+<h2 id="three-qubits-one-transform">Three qubits, one transform</h2>
+<p>A quantum Fourier transform on three qubits, run as a single continuous
+evolution through the whole gate sequence. The amplitudes, against time.</p>
+<figure class="figure"><img src="/media/projects-anabrid/qft-n3-time-series.svg" alt="Eight complex amplitudes through a three-qubit quantum Fourier transform, run as one continuous evolution." loading="lazy"><figcaption>Eight complex amplitudes through a three-qubit quantum Fourier transform, run as one continuous evolution.</figcaption></figure>
+<h2 id="what-is-behind-the-password">What is behind the password</h2>
+<p>How closely individual gates reproduce their unitaries, what accuracy costs in
+run time, how the error grows with the rotation angle and with circuit depth,
+and which standard algorithms still return the right answer at which qubit
+counts. One of those answers is a boundary rather than a success.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>J. S. Briggs and A. Eisfeld, <em>Equivalence of quantum and classical
+coherence in electronic energy transfer</em>, Phys. Rev. E <strong>83</strong>, 051911 (2011).&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>J. S. Briggs and A. Eisfeld, <em>Coherent quantum states from classical
+oscillator amplitudes</em> (2012).&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>J. S. Briggs and A. Eisfeld, <em>Quantum dynamics simulation with classical
+oscillators</em>, Phys. Rev. A <strong>88</strong>, 062104 (2013).&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>T. E. Skinner, <em>Exact mapping of the quantum states in arbitrary
+<span class="math math--inline" data-tex="N">$N$</span>-level systems to the positions of classical coupled oscillators</em> (2013).&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div></div>
 
 <div class="prose prose--panel prose--flow" data-gate-intro hidden></div>
 
-<section class="gate"         data-payload="/tools/gate-based-qc/payload.json"
+<section class="gate" data-gate         data-payload="/tools/gate-based-qc/payload.json"
          aria-labelledby="gate-heading">
   <div class="gate__stage gate__stage--bare"
        data-gate-stage>
     <div class="gate__glass" aria-hidden="true"></div>
 
     <div class="gate__panel">
-      <p class="gate__eyebrow">In preparation</p>
-      <h2 class="gate__heading" id="gate-heading">Measurements and engineering notes</h2>
-      <p class="gate__blurb">What was measured, what did not work, and what was done about it. Unpublished, and in places tied to partner work, so it is kept behind a password.</p>
+      <p class="gate__eyebrow">Locked</p>
+      <h2 class="gate__heading" id="gate-heading">Gate accuracy, algorithms, and where it stops</h2>
+      <p class="gate__blurb">Measured gate deviations, the time against accuracy trade, and which algorithms survive at which qubit counts. Unpublished, so it is kept behind a password.</p>
+
+      <form class="gate__form" data-gate-form>
+        <label class="gate__label" for="gate-password">Password</label>
+        <div class="gate__row">
+          <input class="gate__input" id="gate-password" type="password"
+                 autocomplete="off" spellcheck="false" required
+                 placeholder="…" data-gate-input>
+          <button class="button gate__submit" type="submit" data-gate-submit>Unlock</button>
+        </div>
+        <p class="gate__message" role="status" aria-live="polite" data-gate-message></p>
+      </form>
+
       <p class="gate__fineprint">
-        This section is being written. There is nothing to unlock yet. Once it is
-        ready, the material here will be stored encrypted and opened with a
-        password in your browser, as the rest of this site does it.
+        This material is stored encrypted and is decrypted in your browser. Nothing
+        you type is sent anywhere. It stays open until you reload the page.
       </p>
     </div>
   </div>
@@ -127,5 +206,5 @@ about; the measurements are not written up yet.</p></div>
 <script defer src="/assets/vendor/katex/katex.min.js"></script>
 <script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
 <script defer src="/assets/js/site.js?v=506c5cce"></script>
-</body>
+<script defer src="/assets/js/gate.js?v=506c5cce"></script></body>
 </html>

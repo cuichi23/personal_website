@@ -72,7 +72,7 @@ $$
 
 Here $j(t)$ is the current density at the particle surface and $F$ is Faraday's
 constant. This is the whole coupling between one particle and the pack around
-it, and it is why the single-particle picture is useful: a controller's entire
+it. It is also why the single-particle picture is useful: a controller's entire
 influence on this equation is one scalar function of time.
 
 Scaling by the particle radius, with $x = r/R$ and $\tau = D t / R^{2}$, removes
@@ -113,9 +113,9 @@ because each one is set by real hardware with finite resolution. The conserved
 quantity here is lithium, and whether the machine keeps it depends on whether
 coefficients that should cancel actually do.
 
-What happens when they do not, how far off it puts the answer, and what can be
-done about it in hardware rather than in arithmetic, is the work behind the
-password below.
+What happens when they do not, and how far off it puts the answer, is the work
+behind the password below. So is what can be done about it in hardware rather
+than in arithmetic.
 
 [^1]: *Solid-State Diffusion Limitations on Pulse Operation of a Lithium Ion
 Cell for Hybrid Electric Vehicles.* In the group literature collection under

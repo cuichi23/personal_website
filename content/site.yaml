@@ -79,25 +79,25 @@ anabrid_projects:
       term. What it takes to solve that on an analog computer is the question.
   - title: Gate-based quantum computing on coupled oscillators
     slug: gate-based-qc
-    status: in preparation
+    status: measured
     summary: >-
       Gate-based quantum circuits mapped onto networks of coupled harmonic
       oscillators, and which circuits survive the mapping.
   - title: Machine learning on REDAC
     slug: ml-on-redac
-    status: in preparation
+    status: measured
     summary: >-
       Handwritten digits and tetromino shapes classified by an analog substrate,
       where the physics is fixed and only the readout is fitted.
   - title: Fluid and aerodynamics
     slug: fluid-aero
-    status: in preparation
+    status: measured
     summary: >-
       An engine duct written as a partial differential equation and solved as a
       continuous system rather than stepped on a digital one.
   - title: The wave equation on strings
     slug: wave-equation
-    status: in preparation
+    status: measured
     summary: >-
       A string is the simplest thing that carries a wave, and a direct test of
       whether the machine keeps the physics it was handed.

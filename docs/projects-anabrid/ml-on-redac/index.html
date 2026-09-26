@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Machine learning on REDAC — Lucas Wetzel</title>
-<meta name="description" content="Part of the work on the REDAC Technology Platform. This page is being written.">
+<meta name="description" content="A trained network's hidden layer run as physics rather than as arithmetic. The activation function is not computed here. It is what an integrator does when you let it hit its limit.">
 <meta name="author" content="Lucas Wetzel">
 <link rel="canonical" href="https://lucaswetzel.de/projects-anabrid/ml-on-redac/">
 <meta property="og:site_name" content="Lucas Wetzel">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Machine learning on REDAC — Lucas Wetzel">
-<meta property="og:description" content="Part of the work on the REDAC Technology Platform. This page is being written.">
+<meta property="og:description" content="A trained network's hidden layer run as physics rather than as arithmetic. The activation function is not computed here. It is what an integrator does when you let it hit its limit.">
 <meta property="og:url" content="https://lucaswetzel.de/projects-anabrid/ml-on-redac/">
 <link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
@@ -61,28 +61,89 @@
 <header class="page-head">
   <p class="eyebrow">Projects@anabrid · work in progress</p>
   <h1 class="page-head__title">Machine learning on REDAC</h1>
-<p class="page-head__standfirst">Part of the work on the REDAC Technology Platform. This page is being written.</p></header>
+<p class="page-head__standfirst">A trained network's hidden layer run as physics rather than as arithmetic. The activation function is not computed here. It is what an integrator does when you let it hit its limit.</p></header>
 
-<div class="prose prose--panel prose--flow"><p>An analog substrate whose physics is fixed and whose readout is fitted, tested on handwritten digits and on tetromino shapes. The question is not whether it can classify. It is which part of the work the physics does, and whether that part is worth the conversion cost at the boundary.</p>
-<p>This page is work in progress. The description above is what the project is
-about; the measurements are not written up yet.</p></div>
+<div class="prose prose--panel prose--flow"><p>A feedforward network is three things in a row: a matrix multiplied by the
+input, a nonlinearity applied element by element, and a second matrix. Written
+out for one hidden layer,</p>
+<div class="math math--display" data-tex="y = W_2\,\sigma\!\left(W_1 x + b_1\right) + b_2 .">$$y = W_2\,\sigma\!\left(W_1 x + b_1\right) + b_2 .$$</div>
+<p>Two of those three are matrix-vector products, which digital hardware does
+extremely well and which analog hardware has no particular advantage in. The
+interesting one is <span class="math math--inline" data-tex="\sigma">$\sigma$</span>.</p>
+<h2 id="the-activation-is-not-computed-here">The activation is not computed here</h2>
+<p>On this machine an integrator with its output limiter switched on does something
+specific. Drive it with a constant and it ramps. Let it ramp long enough and it
+stops at the limiter level and stays there. Plot where it ended against what
+drove it and the curve is linear through the middle and flat at both ends.</p>
+<p>That is a clipped-linear activation, the function usually called HardTanh:</p>
+<div class="math math--display" data-tex="\sigma(z) = \operatorname{clip}(z, -1, +1).">$$\sigma(z) = \operatorname{clip}(z, -1, +1).$$</div>
+<p>Nothing evaluates it. There is no lookup table, no polynomial, no comparator.
+The shape is what the component does when it runs out of room. Every hidden unit
+does it at the same time, because they are separate pieces of hardware rather
+than successive iterations of a loop.</p>
+<p>This is the part worth taking seriously. Most proposals to put neural networks
+on analog hardware are about the matrix multiply, where the case is a crowded
+one. The activation is the part that is free here, and it is free because it is
+a physical limit rather than a computation.</p>
+<h2 id="which-parts-go-where">Which parts go where</h2>
+<p>The layout we run is digital, analog, digital. The input layer is a digital
+matrix-vector product that produces the pre-activations. Those become drive
+signals. The hidden layer is analog: one integrator per unit, all of them
+ramping and clipping at once. The result is read back and the output layer is
+another digital product.</p>
+<p>The split is not a compromise on the way to an all-analog network. It is where
+the boundary currently belongs. Conversion between the two domains costs time
+and energy, so a partition is only worth it if the analog part does something
+the digital part would find expensive. One nonlinearity per unit, in parallel,
+with no arithmetic, is such a thing. A dense matrix product is not.</p>
+<h2 id="what-a-comparison-has-to-state">What a comparison has to state</h2>
+<p>An accuracy number for an analog network means nothing on its own, because the
+question is never whether it classifies. It is whether it classifies <em>the same
+way</em> the network it was trained as does. So every run here is measured against a
+digital reference built from the same weights, sample by sample. What we report
+is agreement with that reference, not accuracy alone.</p>
+<p>The same applies twice over to energy. A figure without the comparison machine
+named, the batch size stated, and the measuring instrument identified is not a
+result. Our digital baselines run on CPU and GPU across a range of batch sizes.
+The power drawn is measured on identical windows by more than one instrument.
+That is the least that makes the comparison arguable.</p>
+<h2 id="what-we-have-run">What we have run</h2>
+<p>Two problems. Handwritten digits, as the case everybody can calibrate against.
+And a public set of tetromino shapes at random positions and rotations. That one
+is harder in a way that matters: it asks a small network to recognise a shape
+independently of where it sits.</p>
+<p>Both have been placed on the hardware and run against digital references with
+the same weights, repeatedly, to see whether the machine gives the same answer
+twice. The results, including the one that shows where this approach currently
+runs out of room, are behind the password.</p></div>
 
 <div class="prose prose--panel prose--flow" data-gate-intro hidden></div>
 
-<section class="gate"         data-payload="/tools/ml-on-redac/payload.json"
+<section class="gate" data-gate         data-payload="/tools/ml-on-redac/payload.json"
          aria-labelledby="gate-heading">
   <div class="gate__stage gate__stage--bare"
        data-gate-stage>
     <div class="gate__glass" aria-hidden="true"></div>
 
     <div class="gate__panel">
-      <p class="gate__eyebrow">In preparation</p>
-      <h2 class="gate__heading" id="gate-heading">Measurements and engineering notes</h2>
-      <p class="gate__blurb">What was measured, what did not work, and what was done about it. Unpublished, and in places tied to partner work, so it is kept behind a password.</p>
+      <p class="gate__eyebrow">Locked</p>
+      <h2 class="gate__heading" id="gate-heading">What the hardware actually returned</h2>
+      <p class="gate__blurb">Measured runs of two networks on the machine against digital references built from the same weights, repeatability across repeats, and where the approach runs out of range. Unpublished, so it is kept behind a password.</p>
+
+      <form class="gate__form" data-gate-form>
+        <label class="gate__label" for="gate-password">Password</label>
+        <div class="gate__row">
+          <input class="gate__input" id="gate-password" type="password"
+                 autocomplete="off" spellcheck="false" required
+                 placeholder="…" data-gate-input>
+          <button class="button gate__submit" type="submit" data-gate-submit>Unlock</button>
+        </div>
+        <p class="gate__message" role="status" aria-live="polite" data-gate-message></p>
+      </form>
+
       <p class="gate__fineprint">
-        This section is being written. There is nothing to unlock yet. Once it is
-        ready, the material here will be stored encrypted and opened with a
-        password in your browser, as the rest of this site does it.
+        This material is stored encrypted and is decrypted in your browser. Nothing
+        you type is sent anywhere. It stays open until you reload the page.
       </p>
     </div>
   </div>
@@ -127,5 +188,5 @@ about; the measurements are not written up yet.</p></div>
 <script defer src="/assets/vendor/katex/katex.min.js"></script>
 <script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
 <script defer src="/assets/js/site.js?v=506c5cce"></script>
-</body>
+<script defer src="/assets/js/gate.js?v=506c5cce"></script></body>
 </html>
