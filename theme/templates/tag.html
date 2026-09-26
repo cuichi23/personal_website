@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}{{ tag }} — {{ site.title }}{% endblock %}
+{% block title %}{{ tag }} · {{ site.title }}{% endblock %}
 {% block description %}Posts tagged {{ tag }}.{% endblock %}
 {% block canonical %}/tags/{{ tag | tag_slug }}/{% endblock %}
 

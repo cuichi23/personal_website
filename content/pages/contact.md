@@ -18,6 +18,6 @@ Germany
 
 ###### Elsewhere
 
-- [chronoloom.com](https://www.chronoloom.com) — VIP+ validation project
-- [pks.mpg.de/soses](https://www.pks.mpg.de/soses) — the research group at MPI-PKS
-- [github.com/cuichi23](https://github.com/cuichi23/sim_pll_networks) — simulation code for PLL networks
+- [chronoloom.com](https://www.chronoloom.com), the VIP+ validation project
+- [pks.mpg.de/soses](https://www.pks.mpg.de/soses), the research group at MPI-PKS
+- [github.com/cuichi23](https://github.com/cuichi23/sim_pll_networks), simulation code for PLL networks

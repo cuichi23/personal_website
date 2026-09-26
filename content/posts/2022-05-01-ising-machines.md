@@ -86,11 +86,11 @@ In the publication [*Oscillator-based Ising Machine*](https://arxiv.org/abs/1709
 
 (correct solution)
 
-![Fig. 1: Shows the frequency of all oscillators in the first row, the phase differences with respect to the phase of oscillator k=1 (dashed line) in the second row and the Kuramoto order parameter in the third row. Observe how the binarized phases of the oscillators separate successfully the nodes of the network into two groups according to the MAX-CUT of this network.](/media/ising-machines/order-parameter-success.svg)
+![Fig. 1: Shows the frequency of all oscillators in the first row, the phase differences with respect to the phase of oscillator k=1 (dashed line) in the second row and the Kuramoto order parameter in the third row. Observe how the binarized phases of the oscillators separate successfully the nodes of the network into two groups according to the MAX-CUT of this network.](/media/ising-machines/order-parameter-success.png)
 
 (incorrect solution)
 
-![Fig. 2: Shows the same plots as in Fig. 1 above. Observe how a few of the binarized phases of the oscillators do not separate to the correct subgroup and hence the MAX-CUT problem was not solved correctly. In this case we may have ramped up the coupling strength too quickly. This is an aspect that we will explore in more detail in the following.](/media/ising-machines/order-parameter-failed.svg)
+![Fig. 2: Shows the same plots as in Fig. 1 above. Observe how a few of the binarized phases of the oscillators do not separate to the correct subgroup and hence the MAX-CUT problem was not solved correctly. In this case we may have ramped up the coupling strength too quickly. This is an aspect that we will explore in more detail in the following.](/media/ising-machines/order-parameter-failed.png)
 
 We then realized the importance of the process of ramping up the coupling strength for finding the correct solution successfully. Also, adding dynamical frequency noise seemed to help convergence. Moreover, we simulated some realizations with time delay, signal filtering and ramping up the $2^\textrm{nd}$ harmonic injection coupling strength instead of the coupling strength of the first harmonic coupling terms. This had profound impact on whether the correct solution to the optimization problem was found. Therefore we decided to develop ideas on how to approach the impact of these parameters in a more structured way. Our preliminary results is what we will present in the following.
 

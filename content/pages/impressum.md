@@ -12,6 +12,8 @@ E-Mail: [wetzel@anabrid.com](mailto:wetzel@anabrid.com)
 
 Design & implementation of the previous version of this site: Deborah Schmidt ([frauzufall.de](https://frauzufall.de))
 
+The current version of this site was built with the help of AI tools.
+
 **Disclaimer**  
 Accountability for content  
 The contents of our pages have been created with the utmost care. However, we cannot guarantee the contents’ accuracy, completeness or topicality. According to statutory provisions, we are furthermore responsible for our own content on these web pages. In this context, please note that we are accordingly not obliged to monitor merely the transmitted or saved information of third parties, or investigate circumstances pointing to illegal activity. Our obligations to remove or block the use of information under generally applicable laws remain unaffected by this, as per Articles 4 to 8 of the Digital Services Act (Regulation (EU) 2022/2065), to which § 7 DDG refers.

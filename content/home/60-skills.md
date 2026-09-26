@@ -13,7 +13,7 @@ order: 60
     - Analog and hybrid analog-digital computing: architecture, programming, operation
     - Phase-locked loops from the phase model down to the circuit level
     - Oscillator-based computing and Ising machines; central pattern generators
-    - Numerical solution of PDEs — wave, Burgers, Navier–Stokes, diffusion with variable coefficients
+    - Numerical solution of PDEs: wave, Burgers, Navier–Stokes, diffusion with variable coefficients
     - Neural networks on analog substrates: mapping trained models, neural ODEs, reservoir computing
     - Gate-based quantum circuits and their classical simulation
     - Error and accuracy analysis of analog computation, energy accounting, benchmark methodology

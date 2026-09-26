@@ -13,7 +13,7 @@
    A page whose payload carries no applet gets its prose injected and the stage
    cleared; gate.js decides that at unlock time, from the payload itself. #}
 {% extends "base.html" %}
-{% block title %}{{ page.title }} — {{ site.title }}{% endblock %}
+{% block title %}{{ page.title }} · {{ site.title }}{% endblock %}
 {% block description %}{{ page.summary or site.description }}{% endblock %}
 {% block canonical %}{{ page.url }}{% endblock %}
 

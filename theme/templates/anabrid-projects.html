@@ -1,7 +1,7 @@
 {# The Projects@anabrid index. Reuses the post-list markup so the section looks
    like the rest of the site without a second set of styles to maintain. #}
 {% extends "base.html" %}
-{% block title %}{{ page.title }} — {{ site.title }}{% endblock %}
+{% block title %}{{ page.title }} · {{ site.title }}{% endblock %}
 {% block description %}{{ page.summary or site.description }}{% endblock %}
 {% block canonical %}{{ page.url }}{% endblock %}
 

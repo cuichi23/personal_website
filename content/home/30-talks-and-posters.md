@@ -7,12 +7,12 @@ summary: Conferences, workshops, colloquia and public science, 2009 to today.
 
 ### Selected talks
 
-- **Analog Computing Days 2026**, Frankfurt — workshop and talk
-- **WCCM 2026**, World Congress in Computational Mechanics, Munich — conference contribution
+- **Analog Computing Days 2026**, Frankfurt (workshop and talk)
+- **WCCM 2026**, World Congress in Computational Mechanics, Munich (conference contribution)
 - **AFQC 2026**, DLR Quantum Computing Initiative, Düsseldorf
-- **Summer School**, TU Dresden, 04/2026 — lecture course
+- **Summer School**, TU Dresden, 04/2026 (lecture course)
 - **HPCN Workshop**, DLR Dresden, 2026
-- **[Falling Walls Science Summit](https://falling-walls.com/)**, Berlin, 2025 — speaker
+- **[Falling Walls Science Summit](https://falling-walls.com/)**, Berlin, 2025 (speaker)
 - **REDAC handover to the DLR**, 2025, and the accompanying REDAC lecture series
 - **DPG-Kolleg**, Ulm, 05/2025
 - **Digital Twin**, DLR Dresden, 2025, and the **DLR Institute of Aerodynamics and Flow Technology**, 07/2025
@@ -21,7 +21,7 @@ summary: Conferences, workshops, colloquia and public science, 2009 to today.
   *“From ancient Greece to the moon and back for quantum computing”*
 - **International Workshop on Ising Machines**, Messina, 04/2024
   *“The role of inert oscillator response and signaling time delays when scaling up Ising machines based on electronic oscillators”*
-- **ENOC 2024**, European Nonlinear Dynamics Conference, 02/2024 — coupled phase-locked loops
+- **ENOC 2024**, European Nonlinear Dynamics Conference, 02/2024 (coupled phase-locked loops)
 - **DLR Oberpfaffenhofen**, 2024, and **DLR-QCI Showcase Day**, Ulm, 11/2023
 - **QUANTUM 2023** and the **Mikrosystemtechnik-Kongress**, Dresden, 2023
 - **[Workshop: Intelligent Machines? Self-Organized Nonlinear Dynamics of Machines across Scales](https://www.pks.mpg.de/intema22/scientific-program)**, Dresden, 06/2022

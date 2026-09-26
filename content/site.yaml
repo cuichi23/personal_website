@@ -2,7 +2,7 @@
 title: Lucas Wetzel
 tagline: Self-organized synchronization
 description: >-
-  Lucas Wetzel — theoretical physics. Self-organized synchronization in networks
+  Lucas Wetzel, theoretical physics. Self-organized synchronization in networks
   of delay-coupled oscillators, from segmentation clocks to phase-locked loops.
 url: https://lucaswetzel.de
 custom_domain: lucaswetzel.de
@@ -15,12 +15,14 @@ hero:
   eyebrow: Theoretical physics · Analog computing · Dresden
   headline: Clocks that agree without a conductor
   standfirst: >-
-    I work on self-organized synchronization: how a network of oscillators — cells
+    I work on self-organized synchronization: how a network of oscillators (cells
     in a developing embryo, phase-locked loops on a circuit board, 24 GHz oscillators
-    half a kilometre apart — settles into a common rhythm when every signal between
+    half a kilometre apart) settles into a common rhythm when every signal between
     them arrives late. Delay is normally the thing you design around. It is also a
     parameter you can design with. These days I build computers out of it, as Chief
-    Scientific Officer at anabrid.
+    Scientific Officer at anabrid. The largest one, the REDAC, was handed over to
+    the German Aerospace Center in 2025 and now carries research from quantum
+    computing to fluid dynamics.
   figure_caption: >-
     Twelve mutually delay-coupled clocks, integrated in your browser from the same
     phase model used in the papers below. No reference clock, no master. The strokes

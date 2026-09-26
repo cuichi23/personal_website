@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}{{ post.title }} — {{ site.title }}{% endblock %}
+{% block title %}{{ post.title }} · {{ site.title }}{% endblock %}
 {% block description %}{{ post | excerpt }}{% endblock %}
 {% block canonical %}{{ post.url }}{% endblock %}
 

@@ -2,7 +2,7 @@
 title: Education & work
 slug: education-and-work
 order: 50
-summary: One line of work — take a result from the theory of coupled oscillators, then build the hardware that proves it.
+summary: "One line of work: take a result from the theory of coupled oscillators, then build the hardware that proves it."
 ---
 
 ### Professional experience
@@ -10,10 +10,13 @@ summary: One line of work — take a result from the theory of coupled oscillato
 07/2024 – today
 : **Chief Scientific Officer**, anabrid GmbH  
   Direct the scientific strategy of a deep-tech company building hybrid analog-digital
-  computers, reporting to and advising the CEO. Led the design, construction and commissioning
-  of the **REDAC**, the largest reconfigurable discrete analog computer in operation — now the
-  computational backbone of three research projects inside the **DLR Quantum Computing
-  Initiative**. Responsible for hardware development and for the technical side of customer
+  computers, reporting to and advising the CEO. Led the multi-million-euro **REDAC**
+  project from architecture to handover
+  ([EU procurement record 2022/S 058-151841](https://ted.europa.eu/en/notice/151841-2022/xml)):
+  the largest reconfigurable discrete analog computer in operation, delivered to the DLR
+  in 2025. It is now the computational backbone of four pilot projects inside the
+  **DLR Quantum Computing Initiative**, and of research beyond DLR at TU Dresden,
+  Hochschule Karlsruhe and other institutes. Responsible for hardware development and for the technical side of customer
   acquisition, with scope extending into software and integrated-circuit development. Driving
   the move from discrete components towards integrated hardware, and accountable for the
   scientific output of the company: papers, deliverables to public funding bodies, and
@@ -59,7 +62,7 @@ summary: One line of work — take a result from the theory of coupled oscillato
   within the Cluster of Excellence Center for Advancing Electronics Dresden (cfaed).
 
 2015, 2017
-: Parental leave — three months in 2015 and nine months in 2017, the second period combined with
+: Parental leave: three months in 2015 and nine months in 2017, the second period combined with
   part-time patent and project management.
 
 ### Education
@@ -91,7 +94,7 @@ summary: One line of work — take a result from the theory of coupled oscillato
 
 granted
 : **European Patent EP 2 957 982**, *“Self-synchronizable network”*, also granted in the United
-  States, China, Taiwan and Korea — see [Patents](#patents).
+  States, China, Taiwan and Korea; see [Patents](#patents).
 
 ongoing
 : Member of the German Physical Society (DPG). Reviewer for IEEE conferences and journals.

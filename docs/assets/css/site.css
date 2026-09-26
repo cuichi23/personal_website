@@ -579,6 +579,17 @@ a:hover { color: var(--link-hover); }
   .prose dd { margin-top: var(--space-1); }
 }
 
+/* The at-a-glance section: the one block built for a thirty-second reader.
+   A quiet card, tighter rhythm than body prose, nothing else decorated. */
+#highlights .prose {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: var(--space-3) var(--space-4);
+}
+#highlights .prose ul { margin: 0; }
+#highlights .prose li { margin-block: 0.45em; }
+
 /* figures */
 .figure { margin: var(--space-2) 0; }
 

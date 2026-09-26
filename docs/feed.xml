@@ -4,7 +4,7 @@
   <title>Lucas Wetzel</title>
   <link>https://lucaswetzel.de/</link>
   <atom:link href="https://lucaswetzel.de/feed.xml" rel="self" type="application/rss+xml"/>
-  <description>Lucas Wetzel — theoretical physics. Self-organized synchronization in networks of delay-coupled oscillators, from segmentation clocks to phase-locked loops.</description>
+  <description>Lucas Wetzel, theoretical physics. Self-organized synchronization in networks of delay-coupled oscillators, from segmentation clocks to phase-locked loops.</description>
   <language>en</language>
   <item>
     <title>Control theory of mutual synchronization in networks of delay-coupled phase-locked loops</title>

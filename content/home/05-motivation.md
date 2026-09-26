@@ -7,7 +7,7 @@ order: 5
 I do not just ask *what if*. I ask *how do we get it done*.
 
 My sweet spot is the bridge between basic science and real-world application. My field is
-nonlinear dynamics — specifically what happens when many oscillators are coupled and the
+nonlinear dynamics, specifically what happens when many oscillators are coupled and the
 signals between them arrive late. For years that was a blackboard problem. Then we
 [patented it](#patents), then we built it at 24 gigahertz across half a kilometre, and now I
 lead the development of hybrid analog-digital computers at anabrid.
@@ -23,8 +23,9 @@ Very little of this was done alone.
 As Chief Scientific Officer I am responsible for our scientific direction, for hardware
 development, and for the technical conversation with customers. The REDAC, the largest
 reconfigurable discrete analog computer in operation, was designed, built and commissioned by
-the team I lead. It now carries three research projects in the
-[DLR Quantum Computing Initiative](https://qci.dlr.de/).
+the team I lead, and handed over to the DLR in 2025. It now carries four pilot projects in the
+[DLR Quantum Computing Initiative](https://qci.dlr.de/), and research beyond DLR at TU Dresden,
+Hochschule Karlsruhe and other institutes.
 
 Before industry I spent fifteen years at the Max Planck Institute for the Physics of Complex
 Systems. I directed the VIP+ validation project on phase-locked loop synchronization together
