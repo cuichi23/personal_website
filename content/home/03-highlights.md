@@ -5,6 +5,8 @@ order: 3
 summary: Six lines for the reader in a hurry.
 ---
 
+- **[Motivation](#motivation):** "Curiosity asks *what if*. Innovation begins
+  when I ask *how do we get it done*."
 - **Chief Scientific Officer, anabrid GmbH.** Scientific strategy, hardware
   development, and the technical side of customer acquisition.
 - **Led the multi-million-euro REDAC project from architecture to handover**

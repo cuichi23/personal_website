@@ -4,7 +4,7 @@ slug: motivation
 order: 5
 ---
 
-I do not just ask *what if*. I ask *how do we get it done*.
+Curiosity asks *what if*. Innovation begins when I ask *how do we get it done*.
 
 My sweet spot is the bridge between basic science and real-world application. My field is
 nonlinear dynamics, specifically what happens when many oscillators are coupled and the
