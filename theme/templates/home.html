@@ -6,7 +6,9 @@
   <div class="hero__text">
     <p class="eyebrow">{{ site.hero.eyebrow }}</p>
     <h1 class="hero__headline">{{ site.hero.headline }}</h1>
-    <p class="hero__standfirst">{{ site.hero.standfirst }}</p>
+    {% for paragraph in site.hero.standfirst %}
+    <p class="hero__standfirst">{{ paragraph }}</p>
+    {% endfor %}
     <p class="hero__actions">
       <a class="button" href="/projects/">Current projects</a>
       <a class="button button--quiet" href="#publications">Publications</a>
