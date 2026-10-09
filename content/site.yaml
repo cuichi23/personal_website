@@ -108,3 +108,10 @@ anabrid_projects:
     summary: >-
       A string is the simplest thing that carries a wave, and a direct test of
       whether the machine keeps the physics it was handed.
+  - title: The oscillator AI chip
+    slug: oscillator-chip
+    status: digital twin measured
+    summary: >-
+      An always-on analog pre-processor built from damped harmonic oscillator
+      pairs, modelled element by element before silicon. A live bench of the
+      architecture runs in the browser behind the password.

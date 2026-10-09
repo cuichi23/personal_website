@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The oscillator AI chip · Lucas Wetzel</title>
+<meta name="description" content="An always-on analog pre-processor built from damped harmonic oscillator pairs, modelled element by element before any silicon is committed.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects-anabrid/oscillator-chip/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The oscillator AI chip · Lucas Wetzel">
+<meta property="og:description" content="An always-on analog pre-processor built from damped harmonic oscillator pairs, modelled element by element before any silicon is committed.">
+<meta property="og:url" content="https://lucaswetzel.de/projects-anabrid/oscillator-chip/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // GitHub Pages cannot send X-Frame-Options or a CSP frame-ancestors directive,
+  // so this is the only lever there is. Mark the document before the body is
+  // parsed; the stylesheet then keeps the content hidden until site.js has
+  // replaced it with a notice. Marking rather than navigating is deliberate:
+  // browsers increasingly refuse an automatic top navigation from a frame and
+  // leave a blank box behind, which tells the reader nothing.
+  if (window.self !== window.top) document.documentElement.dataset.framed = "";
+</script>
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=79a842a6">
+<link rel="stylesheet" href="/assets/css/site.css?v=79a842a6">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/research/">Research</a>
+      <a href="/projects/">Current projects</a>
+      <a href="/projects-anabrid/" aria-current="page">Projects@anabrid</a>
+      <a href="/oscillatory-computing/">Oscillatory computing</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<header class="page-head">
+  <p class="eyebrow">Projects@anabrid · digital twin measured</p>
+  <h1 class="page-head__title">The oscillator AI chip</h1>
+<p class="page-head__standfirst">An always-on analog pre-processor built from damped harmonic oscillator pairs, modelled element by element before any silicon is committed.</p></header>
+
+<div class="prose prose--panel prose--flow"><p>Most sensor data is thrown away unread. A microphone, a strain gauge or a
+vibration pickup produces a continuous signal around the clock, and the
+machinery that decides whether anything in it matters — an analog-to-digital
+converter, a processor, a Fourier transform — burns most of a device's power
+budget doing arithmetic on silence. The oscillator chip attacks that from the
+physics side: let the signal run through a small bank of damped harmonic
+oscillators, each one two analog integrators in a loop, and read the bank out
+through integrators that average on exactly the time scale a decision needs.
+Filtering, temporal accumulation and a bounded decision then happen by virtue
+of the circuit obeying its own differential equation, with no clock and no
+conversion until something is worth waking up for.</p>
+<p>The hard questions are not whether such a network can classify — it can, and
+the published work on harmonic oscillator recurrent networks shows it — but
+what survives contact with the machine. An analog coefficient lives on a
+twelve-bit converter inside a fixed range. An integrator output is clamped by
+a diode limiter that stops short of the nominal rail, at a level that was
+measured, not assumed.
+A node's resonance frequency is set jointly by two programmable coefficients
+and two discrete time-scale factors. Whether a network trained in floating
+point still works once every number is forced onto that grid is a question
+that deserves measurement, not argument, and it is the question the digital
+twin behind this page was built to answer.</p>
+<p>Behind the glass: a live, element-faithful model of the architecture you can
+play with in the browser, and the twin's measured results on what training
+inside the machine's range costs.</p></div>
+
+<div class="prose prose--panel prose--flow" data-gate-intro hidden></div>
+
+<section class="gate" data-gate         data-payload="/tools/oscillator-chip/payload.json"
+         aria-labelledby="gate-heading">
+  <div class="gate__stage gate__stage--bare"
+       data-gate-stage>
+    <div class="gate__glass" aria-hidden="true"></div>
+
+    <div class="gate__panel">
+      <p class="gate__eyebrow">Locked</p>
+      <h2 class="gate__heading" id="gate-heading">A live bench of the architecture, and what the twin measured</h2>
+      <p class="gate__blurb">An interactive model of the chip in your browser — the oscillator bank, the recurrent crossbars, the leaky read-out integrators, the two three-harmonic inputs — with every converter constraint enforced, plus the measured answers on trainability and deployability. Unpublished, so it is kept behind a password.</p>
+
+      <form class="gate__form" data-gate-form>
+        <label class="gate__label" for="gate-password">Password</label>
+        <div class="gate__row">
+          <input class="gate__input" id="gate-password" type="password"
+                 autocomplete="off" spellcheck="false" required
+                 placeholder="…" data-gate-input>
+          <button class="button gate__submit" type="submit" data-gate-submit>Unlock</button>
+        </div>
+        <p class="gate__message" role="status" aria-live="polite" data-gate-message></p>
+      </form>
+
+      <p class="gate__fineprint">
+        This material is stored encrypted and is decrypted in your browser. Nothing
+        you type is sent anywhere. It stays open until you reload the page.
+      </p>
+    </div>
+  </div>
+
+  <p class="gate__caption" data-gate-caption></p>
+</section>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/research/">Research</a></li>
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=79a842a6"></script>
+<script defer src="/assets/js/gate.js?v=79a842a6"></script></body>
+</html>
