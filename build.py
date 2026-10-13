@@ -101,7 +101,10 @@ def rel(path: str) -> str:
 # python-markdown uses \x02…\x03 for its own placeholders and strips control
 # characters out of attribute values, so the sentinel has to be plain text.
 MATH_TOKEN = "qqmathqq{}qq"
-MATH_INLINE = re.compile(r"(?<![\\$])\$(?!\s)((?:[^$\\\n]|\\.)+?)(?<!\s)\$(?!\d)")
+# Inline math may wrap across one hard-wrapped source line, but never a blank
+# line: a paragraph boundary still ends the search so stray dollar signs in
+# different paragraphs cannot pair up.
+MATH_INLINE = re.compile(r"(?<![\\$])\$(?!\s)((?:[^$\\\n]|\\.|\n(?!\n))+?)(?<!\s)\$(?!\d)")
 MATH_DISPLAY = re.compile(r"\$\$(.+?)\$\$", re.S)
 FENCE = re.compile(r"```.*?```", re.S)
 
