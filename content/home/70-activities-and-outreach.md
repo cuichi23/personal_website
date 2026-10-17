@@ -6,6 +6,7 @@ order: 70
 
 2025 – today
 : **Running backs coach**, Dresden Monarchs, German Football League (GFL). Licensed since 2026.
+  German Champion 2026.
 
 2014 – today
 : **Mentoring** of doctoral students at TU Dresden and of visiting scientists at MPI-PKS, and
