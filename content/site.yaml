@@ -115,3 +115,11 @@ anabrid_projects:
       An always-on analog pre-processor built from damped harmonic oscillator
       pairs, modelled element by element before silicon. A live bench of the
       architecture runs in the browser behind the password.
+  - title: Solving PDEs with oscillator networks
+    slug: oscillatory-pde
+    status: digital twin measured
+    summary: >-
+      A network of damped oscillators, trained on the residual of the viscous
+      Burgers equation and not on data, and what it takes to run it on the REDAC.
+      A live bench of the trained network and of the circuit's cost runs in the
+      browser behind the password.

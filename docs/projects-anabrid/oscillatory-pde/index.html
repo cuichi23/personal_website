@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solving PDEs with oscillator networks · Lucas Wetzel</title>
+<meta name="description" content="A network of damped oscillators, trained on the residual of a partial differential equation and not on data, and what it takes to run it on the REDAC analog computer. The test problem is the viscous Burgers equation.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects-anabrid/oscillatory-pde/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Solving PDEs with oscillator networks · Lucas Wetzel">
+<meta property="og:description" content="A network of damped oscillators, trained on the residual of a partial differential equation and not on data, and what it takes to run it on the REDAC analog computer. The test problem is the viscous Burgers equation.">
+<meta property="og:url" content="https://lucaswetzel.de/projects-anabrid/oscillatory-pde/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // GitHub Pages cannot send X-Frame-Options or a CSP frame-ancestors directive,
+  // so this is the only lever there is. Mark the document before the body is
+  // parsed; the stylesheet then keeps the content hidden until site.js has
+  // replaced it with a notice. Marking rather than navigating is deliberate:
+  // browsers increasingly refuse an automatic top navigation from a frame and
+  // leave a blank box behind, which tells the reader nothing.
+  if (window.self !== window.top) document.documentElement.dataset.framed = "";
+</script>
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=79a842a6">
+<link rel="stylesheet" href="/assets/css/site.css?v=79a842a6">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/research/">Research</a>
+      <a href="/projects/">Current projects</a>
+      <a href="/projects-anabrid/" aria-current="page">Projects@anabrid</a>
+      <a href="/oscillatory-computing/">Oscillatory computing</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<header class="page-head">
+  <p class="eyebrow">Projects@anabrid · joint work with the Deutsche Telekom Chair at TU Dresden, LMU and TUM</p>
+  <h1 class="page-head__title">Solving PDEs with oscillator networks</h1>
+<p class="page-head__standfirst">A network of damped oscillators, trained on the residual of a partial differential equation and not on data, and what it takes to run it on the REDAC analog computer. The test problem is the viscous Burgers equation.</p></header>
+
+<div class="prose prose--panel prose--flow"><p>A partial differential equation (PDE) is usually solved by stepping it in time
+on a grid. This project asks a different question. Can a small network of
+physical oscillators learn the solution, so that the solution is a signal the
+network produces while it is driven along a path?</p>
+<h2 id="the-network">The network</h2>
+<p>The network is a harmonic oscillator recurrent network (HORN). It is a
+bank of damped harmonic oscillators. Each has its own resonance frequency and
+its own damping, which is the heterogeneity. The oscillators are coupled to each
+other through a nonlinear feedback, and a linear read-out turns their states
+into one number. Driven by a signal, the bank acts as a set of resonant filters
+with a fading memory. The read-out combines what the filters remember.</p>
+<h2 id="training-on-the-equation-not-on-data">Training on the equation, not on data</h2>
+<p>Nothing is fitted to measured solutions. We write down the PDE and ask the
+network to satisfy it at a set of collocation points, plus its initial and
+boundary conditions. The loss is the residual of the equation. This is the idea
+behind physics-informed training, with an oscillator network as the function
+class instead of a feed-forward one. The exact solution is used only afterwards,
+to score the result.</p>
+<h2 id="the-test-problem">The test problem</h2>
+<p>The test problem is the viscous Burgers equation. A velocity profile steepens
+under its own transport, and viscosity smooths the steepest part into a front of
+finite width. The equation is nonlinear, it has a known exact solution, and the
+front is hard for any coarse grid. That makes it a fair test of a solver.</p>
+<h2 id="one-path-through-the-grid">One path through the grid</h2>
+<p>An oscillator network is driven by a signal in time. A field has two coordinates.
+The two are joined by a path. The collocation grid is visited along a serpentine,
+left to right on one time row, right to left on the next. At every grid point the
+network is driven with the coordinates of that point, and its read-out gives the
+field value there. The field is the signal along the path, laid back onto the
+grid.</p>
+<h2 id="what-an-analog-computer-has-to-offer">What an analog computer has to offer</h2>
+<p>The oscillator bank is a physical object here. Two integrators in a loop make one
+damped oscillator, and the REDAC has many integrators. The path is continuous and
+has no step-size limit. The memory of the network is the memory of the circuit, so
+it can be measured rather than only simulated. And part of the nonlinearity the
+network needs comes with the hardware.</p>
+<h2 id="what-it-does-not-offer">What it does not offer</h2>
+<p>It is not a shortcut. Training stays on a digital computer. The weights have to
+survive the converters, the coefficient range and the spread between components.
+Today we have a digital twin of the circuit and measurements of its parts, and we
+have not found a gain in speed or energy over a laptop for this problem on the
+present machine. We say so because the question is open, not because it is
+settled in favor of the hardware. The claims on this page are bound to the Burgers
+problem and to the REDAC installation we work with.</p>
+<p>Behind the glass: a live bench of the trained network and of the analog circuit's
+cost, and the numbers the digital twin measured, including where the method falls
+short.</p>
+<p>Joint work in the gAIn collaboration (6G-life): Juan Esteban, Cyrill Burth, Juan
+Cabrera, Lucas Wetzel, et al.</p></div>
+
+<div class="prose prose--panel prose--flow" data-gate-intro hidden></div>
+
+<section class="gate" data-gate         data-payload="/tools/oscillatory-pde/payload.json"
+         aria-labelledby="gate-heading">
+  <div class="gate__stage gate__stage--bare"
+       data-gate-stage>
+    <div class="gate__glass" aria-hidden="true"></div>
+
+    <div class="gate__panel">
+      <p class="gate__eyebrow">Locked</p>
+      <h2 class="gate__heading" id="gate-heading">A live bench of the trained network, and what the digital twin measured</h2>
+      <p class="gate__blurb">A bench in your browser: one oscillator node, the filter bank behind the network, the trained network replayed along its path, and a cost card for the analog circuit. Next to it, the accuracy numbers and the honest comparison with a digital run. Unpublished, so it is kept behind a password.</p>
+
+      <form class="gate__form" data-gate-form>
+        <label class="gate__label" for="gate-password">Password</label>
+        <div class="gate__row">
+          <input class="gate__input" id="gate-password" type="password"
+                 autocomplete="off" spellcheck="false" required
+                 placeholder="…" data-gate-input>
+          <button class="button gate__submit" type="submit" data-gate-submit>Unlock</button>
+        </div>
+        <p class="gate__message" role="status" aria-live="polite" data-gate-message></p>
+      </form>
+
+      <p class="gate__fineprint">
+        This material is stored encrypted and is decrypted in your browser. Nothing
+        you type is sent anywhere. It stays open until you reload the page.
+      </p>
+    </div>
+  </div>
+
+  <p class="gate__caption" data-gate-caption></p>
+</section>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/research/">Research</a></li>
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=79a842a6"></script>
+<script defer src="/assets/js/gate.js?v=79a842a6"></script></body>
+</html>
