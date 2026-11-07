@@ -5,8 +5,9 @@ date: 2026-10-23
 summary: >-
   From the sport-wide Grundlehrgang to the Trainer-C license in American
   football: how the German coaching-license system works, every exam topic
-  sorted and summarized, an introductory coaching knowledge base for running
-  an offense and a defense, and two interactive quizzes to test yourself.
+  sorted and summarized, my notes from the course sessions, an introductory
+  coaching knowledge base for running an offense and a defense, and three
+  interactive quizzes to test yourself.
 tags:
   - "American Football"
   - "coaching"
@@ -38,15 +39,18 @@ Grundlehrgang, 30 teaching units) at the Landessportbund Sachsen, and this
 autumn I am taking the sport-specific course for the Trainer-C license in
 American football with the American Football Verband Sachsen (AFVS). This page
 is my study companion: the license system in one place, every exam topic
-sorted, a compact coaching knowledge base, and two interactive quizzes built
-from the official framework guidelines.
+sorted, my own notes from the course sessions, a compact coaching knowledge
+base, and three interactive quizzes built from the official framework
+guidelines.
 
 **On this page:**
 [the license ladder](#license-ladder) ·
 [admission and exam](#admission-exam) ·
 [the 120 units](#units) ·
 [topic guide](#topics) ·
+[course notes](#course-notes) ·
 [coaching knowledge base](#knowledge-base) ·
+[recall drill](#recall-drill) ·
 [mock exam quiz](#mock-exam) ·
 [formation quiz](#formation-quiz-section) ·
 [sources](#sources)
@@ -233,6 +237,209 @@ likes to ask for its floors, so learn the picture:
 - Performance testing and sport-specific conditioning: endurance, strength
   endurance, mobility and coordination work for football.
 
+## Course notes from the sessions {: #course-notes }
+
+What follows are my own handwritten notes from the first sessions,
+transcribed and sorted by topic. They sit next to the topic guide above for a
+reason: the guide is what the framework says the course covers, these notes
+are what was actually said in the room. German terms are kept as they were
+given, because the written exam asks for them in German. Where my notes and
+the official course material disagree, the last subsection says so instead of
+quietly smoothing it over.
+
+### The coach: role, expectations, stakeholders
+
+- What you may expect of yourself as a coach is **context-dependent** and
+  follows from the background of the athletes. Children and youth are not
+  "pros", and one session plan does not serve both.
+- The job in four verbs: **motivate, educate, form a team, give structure**.
+  Motivation here means positive motivation.
+- A good coach engages with the individual player, is able to **transmit**
+  knowledge, and adapts that knowledge to the reality of the players and of
+  the team.
+- The groups a coach answers to at the same time: athletes, parents, the
+  club, the referees, the fans, the management, the sponsors, and yourself.
+
+### Competence fields and leadership styles
+
+My notes list four competence fields: psychosocial competence (dialog,
+communication), subject competence (technique, tactics, knowledge of
+organized sport, competition experience, sport-specific knowledge), being a
+leadership personality, and training-science competence (methods, nutrition).
+The three leadership styles after Lewin are **autoritär, demokratisch,
+laissez faire** — a descriptive typology, not a ranking.
+
+The four fields of **Handlungskompetenz** in the binding AFVD framework carry
+different labels, and those are the ones the exam uses: **Sozialkompetenz**
+(personal and socio-communicative competence), **Fachkompetenz**,
+**Methoden- und Vermittlungskompetenz**, and **strategische Kompetenz**.
+
+### Why people do sport: the motives
+
+Leistungsmotiv (achievement), Spielmotiv (play), Bewegungsmotiv (movement),
+Anschlussmotiv (affiliation), Gesundheitsmotiv (health), ästhetisches Motiv
+(aesthetics). Worth knowing for retention: the health motive wins people for
+sport but binds them poorly, so a program should speak to several motives.
+
+### The planning cycle
+
+**Situationsanalyse** (phase, goals, needs) → **Planungsphase** →
+**Durchführung** → **Auswertung**. The evaluation is not an appendix; it
+becomes the situation analysis of the next cycle.
+
+### Framework conditions in the club
+
+- What is actually available: a gym, a football field, equipment, and about
+  **20 minutes of individuals** per session.
+- Roster reality: hired players (imports) against homegrown players, where a
+  homegrown player at a difficult position takes years. Competition inside
+  the team has to be managed, not ignored.
+- The session goal that follows: **combine technique with game-type
+  situations**, challenge the players, and give them more than one task at a
+  time.
+
+### Training principles and the stimulus-threshold rule
+
+Three progressions, each adjustable on its own: from **easy to hard**
+(physical load), from **known to unknown** (new stimuli), from **simple to
+complex** (complexity). On top of them sits the principle of **progressive
+load in the right load sequence**.
+
+The **Reizstufenregel** in four steps:
+
+1. **unterschwellig** — below threshold, no effect
+2. **schwach überschwellig** — maintains the current level
+3. **stark überschwellig** — develops performance
+4. **zu starker Reiz** — damaging, overtraining
+
+The threshold is relative to the athlete's current state rather than an
+absolute number, which is exactly why the rule ends in the **Prinzip der
+individualisierten Belastung**.
+
+### Youth versus adult training
+
+*"Jugendtraining ist kein reduziertes Erwachsenentraining."* Youth training
+is not adult training with the volume turned down. The consequence is a
+priority rule: **Ausbildung vor Ergebnis**, development before the result.
+
+### Structure of a training session
+
+| Part | Club session (course material) | My notes, football practice |
+|---|---|---|
+| Opening | Erwärmung 10–30 min | Pre-practice, 15 min |
+| Main part | Hauptteil 30–60 min | 60–90 min: Every Day Drills, individuals, group, team |
+| Close | Schlussteil 5–20 min | Cool-down 5–15 min, review |
+
+Warm-up and cool-down are always designed from the main part backwards. One
+organizational note from the margin: **communicate missed sessions**
+(Fehltage) — attendance is a coaching problem, not an administrative one.
+
+### Warm-up and stretching by age group
+
+- **U12**: playful, simple rather than complex. Tag games, ultimate frisbee,
+  mirror drills, small competitions, catching, Steh-Geh; plus ankle work,
+  stretching, Hopserlauf and lunges.
+- **U19 and seniors**: from simple to complex, **dynamic stretching**,
+  footwork, sprints.
+- **Stretching is a wolf in sheep's clothing**: it calms the body down. That
+  is right for the close of the session (lie flat, spread arms and legs,
+  light static stretching, easy running out) and wrong for the warm-up,
+  because static stretching can reduce explosive strength. The course booklet
+  is explicit here: in the warm-up, dynamic or dynamic-passive only.
+- Twice circled in my notes, for both age groups: **the coach demonstrates**
+  ("Trainer als Vortänzer").
+
+### Long-term athlete development
+
+| Stage | Name | Content |
+|---|---|---|
+| **AGA** | Allgemeine Grundausbildung | sport-unspecific: running forwards and backwards, rolls, catching, throwing, stop & start, running on the toes |
+| **GLT** | Grundlagentraining | general sport-specific abilities, playful speed work, coordination; about 3–5 years |
+| **ABT** | Aufbautraining | raising the level, special performance prerequisites, load tolerance, technical-tactical ability, speed and explosive strength; from puberty, about 3 years; decides suitability for specialization |
+| **AST** | Anschlusstraining | close in content to elite training, massive load increase, specific training |
+| **HLT** | Hochleistungstraining | individual training planning, continuous training control; over many years |
+
+The AFVD framework maps the license stages onto exactly these stages: Trainer
+C works in the Grundlagentraining, Trainer B from Aufbau- to Anschlusstraining,
+Trainer A in Anschluss- and Hochleistungstraining.
+
+### Periodization
+
+The training year is divided into **Vorbereitungsperiode → Wettkampfperiode →
+Übergangsperiode**. The transition period is active recovery with a planned
+loss of form. A football season with one peak is a single periodization.
+
+### Injury prevention
+
+Four steps: **determine the extent → analyze the reasons → take
+countermeasures → measure the effect**. Without the fourth step nobody knows
+whether the measure worked. In youth elite sport (Nachwuchsleistungssport,
+NWLS) the **Plus Prevention Program (PPP)** of the IAT Leipzig is a ready test
+battery for this: basic movement patterns tested on a plus-shaped floor
+marking, combined into an individual risk profile, recommended at least three
+times a year.
+
+### The seven coordinative abilities: DORFKRUG
+
+Eight letters, seven abilities — the **F is a filler** ("Fähigkeiten").
+Writing down eight abilities invents one.
+
+| Letter | Ability | What it does |
+|---|---|---|
+| **D** | Differenzierungsfähigkeit | fine, dosed tuning of movements; the "feel for the ball" |
+| **O** | Orientierungsfähigkeit | position and movement in space, relative to the field or the ball |
+| **R** | Reaktionsfähigkeit | fast, purposeful action on a signal |
+| **F** | — | filler letter, no ability of its own |
+| **K** | Kopplungsfähigkeit | coordinating part-body movements into one whole movement |
+| **R** | Rhythmisierungsfähigkeit | grasping a given rhythm and reproducing it |
+| **U** | Umstellungsfähigkeit | adapting an ongoing action to a changed situation |
+| **G** | Gleichgewichtsfähigkeit | holding and restoring balance |
+
+Flexibility (Beweglichkeit) is **not** one of them: it is a mixed form with
+both conditional and coordinative traits and belongs to the five motor
+abilities. The drill from the session: low hurdles one metre apart laterally,
+hop over on one leg, short ground contact, jump sideways, land and hold on
+one leg — hold, explode, hold. The transfer drill was pass protection into
+check-down while reading the coach, under the heading **adjust**.
+
+### Evaluating a session
+
+- **Why**, **when**, **how**. The *when* splits into **unmittelbar** (right
+  after, impression still fresh) and **distanziert** (with distance, judgement
+  cooler). Both have their place.
+- Who evaluates: yourself, the team, fellow coaches, external observers.
+- The **Stimmungsbarometer**: a line from schlecht through mittel to gut on
+  which the players place themselves. It makes the mood visible instead of
+  asking for it.
+
+### Where my notes and the official material differ
+
+Three items in the notes do not survive a check against the course material
+and the published sources. They are listed here rather than corrected
+silently, because the exam follows the official wording.
+
+| In my notes | What holds for the exam |
+|---|---|
+| Four competence fields: psychosocial, subject, leadership personality, training science | **Handlungskompetenz = Sozialkompetenz + Fachkompetenz + Methoden- und Vermittlungskompetenz + strategische Kompetenz** (AFVD Rahmenrichtlinien 2023, section 3.2). My list misses the last two and adds one that is not a competence field. |
+| Session parts 10–20 / 60–90 / 5–15 min | The Grundlehrgang booklet gives **10–30 / 30–60 / 5–20 min** for a club session. My figures describe a two-hour football practice, which is legitimate practice but not the exam answer. |
+| "EEDs" | **EDD — Every Day Drill**. |
+| "VisualEyes app" noted next to prevention | VisualEyes is a **video-coaching and analysis app** (slow motion, frame-by-frame, drawing tools, voiceover), useful for film review. It is not a vision- or reaction-training tool, and there is no evidence it improves reaction time. |
+| ABT from age 13/14, HLT from 18–20, with fixed durations | The **order** of the five stages is standard and matches the AFVD framework. The **ages and durations are sport-specific**: published figures range widely, and no binding figure per stage exists across sports. Quote them as "sportartabhängig". |
+
+Everything else in the notes checks out against the course material and the
+literature: DORFKRUG and the seven abilities, the four-step Reizstufenregel,
+the three periods of the training year, the planning cycle, the three
+leadership styles, the motive list, the no-static-stretching rule for the
+warm-up, the PPP as the IAT test battery, and the sentence about youth
+training.
+
+### Open items
+
+- **Frau im Leistungssport** — a heading in my notes with arrows and no
+  content yet. Presumably the next session.
+- **PPP** and the **VisualEyes app** were written down as "check it out".
+  Both are now checked: see above.
+
 ## Coaching knowledge base: running an offense, running a defense {: #knowledge-base }
 
 The C course teaches you how to coach; this section is the football grammar
@@ -318,15 +525,17 @@ Unterrichtseinheiten) beim Landessportbund Sachsen abgeschlossen, in diesem
 Herbst folgt die sportartspezifische Ausbildung zur Trainer-C-Lizenz American
 Football beim American Football Verband Sachsen (AFVS). Diese Seite ist mein
 Lernbegleiter: das Lizenzsystem an einem Ort, alle Prüfungsthemen sortiert,
-eine kompakte Coaching-Wissensbasis und zwei interaktive Quizze auf Basis der
-offiziellen Rahmenrichtlinien.
+meine eigenen Notizen aus den Lehrgängen, eine kompakte Coaching-Wissensbasis
+und drei interaktive Quizze auf Basis der offiziellen Rahmenrichtlinien.
 
 **Auf dieser Seite:**
 [die Lizenzleiter](#lizenzleiter) ·
 [Zulassung und Prüfung](#zulassung-pruefung) ·
 [die 120 Einheiten](#lerneinheiten) ·
 [Themenführer](#themen) ·
+[Kursnotizen](#kursnotizen) ·
 [Coaching-Wissensbasis](#wissensbasis) ·
+[Begriffsdrill](#begriffsdrill) ·
 [Probeklausur](#probeklausur) ·
 [Formationsquiz](#formationsquiz) ·
 [Quellen](#quellen)
@@ -521,6 +730,210 @@ Grundlehrgang-Prüfung fragt gern nach seinen Etagen, also das Bild lernen:
 - Leistungskontrolle und sportartspezifische Kondition: Ausdauer,
   Kraftausdauer, Beweglichkeits- und Koordinationstraining für Football.
 
+## Kursnotizen aus den Lehrgängen {: #kursnotizen }
+
+Es folgen meine handschriftlichen Notizen aus den ersten Lehrgangseinheiten,
+transkribiert und nach Themen sortiert. Sie stehen aus einem Grund direkt
+neben dem Themenführer: der Führer sagt, was die Rahmenrichtlinien als Inhalt
+vorsehen, die Notizen sagen, was im Raum tatsächlich gesagt wurde. Wo Notizen
+und offizielles Kursmaterial auseinandergehen, steht das im letzten
+Unterabschnitt, statt stillschweigend geglättet zu werden.
+
+### Der Trainer: Rolle, Erwartungen, Anspruchsgruppen
+
+- Was man von sich selbst als Coach erwarten darf, ist
+  **kontextabhängig** und ergibt sich aus dem Hintergrund der Sportler.
+  Jugendliche und Kinder sind keine „Profis“, und ein Trainingsplan taugt
+  nicht für beide.
+- Die Aufgabe in vier Verben: **motivieren, ausbilden, ein Team formen,
+  Struktur geben**. Motivieren heißt hier positiv motivieren.
+- Ein guter Trainer geht auf den einzelnen Spieler ein, kann Wissen
+  **vermitteln** und passt dieses Wissen an die Realitäten der Spieler und
+  des Teams an.
+- Die Gruppen, denen ein Trainer gleichzeitig gerecht werden muss: Sportler,
+  Eltern, Verein, Schiedsrichter, Fans, Geschäftsführung, Sponsoren – und man
+  selbst.
+
+### Kompetenzfelder und Führungsstile
+
+Meine Notizen nennen vier Kompetenzfelder: psychosoziale Kompetenz (Dialog,
+Kommunikation), Sachkompetenz (Technik, Taktik, Kenntnisse des organisierten
+Sports, Wettkampferfahrung, sportartspezifisches Wissen),
+Führungspersönlichkeit und trainingswissenschaftliche Kompetenz (Methoden,
+Ernährung). Die drei Führungsstile nach Lewin: **autoritär, demokratisch,
+laissez faire** – eine beschreibende Typologie, keine Rangfolge.
+
+Die vier Felder der **Handlungskompetenz** heißen in den verbindlichen
+AFVD-Rahmenrichtlinien anders, und diese Begriffe verwendet die Klausur:
+**Sozialkompetenz** (persönliche und sozialkommunikative Kompetenz),
+**Fachkompetenz**, **Methoden- und Vermittlungskompetenz** und
+**strategische Kompetenz**.
+
+### Warum Menschen Sport treiben: die Motive
+
+Leistungsmotiv, Spielmotiv, Bewegungsmotiv, Anschlussmotiv,
+Gesundheitsmotiv, ästhetisches Motiv. Merkenswert für die Bindung: das
+Gesundheitsmotiv gewinnt Menschen für den Sport, hält sie aber schlecht –
+ein Angebot sollte mehrere Motive ansprechen.
+
+### Der Planungszyklus
+
+**Situationsanalyse** (Phase, Ziele, Bedarf) → **Planungsphase** →
+**Durchführung** → **Auswertung**. Die Auswertung ist kein Anhang, sie wird
+zur Situationsanalyse des nächsten Zyklus.
+
+### Rahmenbedingungen im Verein
+
+- Was tatsächlich zur Verfügung steht: Gym, Footballfeld, Gerät und etwa
+  **20 Minuten Individuals** pro Einheit.
+- Kaderrealität: Hired Players (Imports) gegen Homegrown-Spieler, wobei ein
+  Homegrown auf einer schwierigen Position Jahre braucht. Die Konkurrenz im
+  Team muss gesteuert werden, nicht ignoriert.
+- Das Trainingsziel, das daraus folgt: **Technik mit spielnahen Situationen
+  verbinden**, die Spieler fordern und ihnen mehr als eine Aufgabe
+  gleichzeitig geben.
+
+### Trainingsprinzipien und Reizstufenregel
+
+Drei Progressionen, jede einzeln steuerbar: von **leicht zu schwer**
+(physische Belastung), von **bekannt zu unbekannt** (neue Reize), von
+**einfach zu komplex** (Komplexität). Darüber steht das **Prinzip der
+ansteigenden Belastung in der richtigen Belastungsfolge**.
+
+Die **Reizstufenregel** in vier Stufen:
+
+1. **unterschwellig** – wirkungslos
+2. **schwach überschwellig** – erhaltend
+3. **stark überschwellig** – entwickelnd
+4. **zu starker Reiz** – schädigend, Übertraining
+
+Die Schwelle ist relativ zum aktuellen Funktionszustand und kein
+Absolutwert – genau deshalb endet die Regel im **Prinzip der
+individualisierten Belastung**.
+
+### Jugend- gegen Erwachsenentraining
+
+*„Jugendtraining ist kein reduziertes Erwachsenentraining.“* Daraus folgt
+eine Prioritätsregel: **Ausbildung vor Ergebnis**.
+
+### Aufbau einer Trainingseinheit
+
+| Teil | Übungsstunde (Kursmaterial) | Meine Notizen, Footballeinheit |
+|---|---|---|
+| Beginn | Erwärmung 10–30 min | Pre-Practice, 15 min |
+| Hauptteil | 30–60 min | 60–90 min: Every Day Drills, Individuals, Group, Team |
+| Abschluss | Schlussteil 5–20 min | Cool-down 5–15 min, Auswertung |
+
+Erwärmung und Schlussteil werden immer vom Hauptteil her gestaltet. Eine
+organisatorische Randnotiz: **Fehltage kommunizieren** – Anwesenheit ist ein
+Trainerthema, kein Verwaltungsthema.
+
+### Warm-up und Dehnen nach Altersgruppe
+
+- **U12**: spielerisch, einfach statt komplex. Fangspiele, Ultimate Frisbee,
+  Spiegelübungen, kleine Wettbewerbe, Fangen, Steh-Geh; dazu Fußgelenksarbeit,
+  Dehnen, Hopserlauf und Lunges.
+- **U19 und Senioren**: von einfach zu komplex, **dynamisches Dehnen**,
+  Footwork, Sprints.
+- **Dehnen ist ein Wolf im Schafspelz**: es bringt den Körper zur Ruhe. Das
+  ist im Schlussteil richtig (flach liegen, Arme und Beine ausbreiten,
+  statisches leichtes Dehnen, Auslaufen) und in der Erwärmung falsch, weil
+  statisches Dehnen die Schnellkraft senken kann. Das Kursmaterial ist hier
+  eindeutig: in der Erwärmung nur dynamisch oder dynamisch-passiv.
+- In den Notizen zweimal eingekreist, für beide Altersgruppen: **der Trainer
+  macht vor** („Trainer als Vortänzer“).
+
+### Langfristiger Leistungsaufbau
+
+| Etappe | Name | Inhalt |
+|---|---|---|
+| **AGA** | Allgemeine Grundausbildung | sportartunspezifisch: vor- und rückwärts laufen, Rolle, Fangen, Werfen, Stop & Start, Laufen auf den Zehenspitzen |
+| **GLT** | Grundlagentraining | allgemeine sportartspezifische Fähigkeiten, spielerisches Schnelligkeitstraining, Koordination; etwa 3–5 Jahre |
+| **ABT** | Aufbautraining | Steigerung des Niveaus, spezielle Leistungsvoraussetzungen, Belastbarkeit, technisch-taktische Handlungsfähigkeit, Schnelligkeit und Schnellkraft; ab der Pubertät, etwa 3 Jahre; Feststellung der Eignung für die Spezialisierung |
+| **AST** | Anschlusstraining | inhaltlich nahe am Hochleistungstraining, massive Belastungssteigerung, spezifisches Training |
+| **HLT** | Hochleistungstraining | individuelle Trainingsplanung, kontinuierliche Trainingssteuerung; über viele Jahre |
+
+Die AFVD-Rahmenrichtlinien ordnen den Lizenzstufen genau diese Etappen zu:
+Trainer C arbeitet im Grundlagentraining, Trainer B vom Aufbau- bis zum
+Anschlusstraining, Trainer A im Anschluss- und Hochleistungstraining.
+
+### Periodisierung
+
+Das Trainingsjahr gliedert sich in **Vorbereitungsperiode →
+Wettkampfperiode → Übergangsperiode**. Die Übergangsperiode ist aktive
+Erholung mit bewusst in Kauf genommenem Formverlust. Eine Footballsaison mit
+einem Höhepunkt wird einfach periodisiert.
+
+### Prävention
+
+Vier Schritte: **Ausmaß feststellen → Gründe analysieren → Gegenmaßnahmen
+ergreifen → Wirkung messen**. Ohne den vierten Schritt weiß niemand, ob die
+Maßnahme wirkt. Im Nachwuchsleistungssport (NWLS) liefert das **Plus
+Prevention Program (PPP)** des IAT Leipzig genau dafür eine Testbatterie:
+Grundbewegungsmuster auf einer kreuzförmigen Bodenmarkierung, zusammengeführt
+zu einem individuellen Risikoprofil, empfohlen mindestens dreimal pro Jahr.
+
+### Die sieben koordinativen Fähigkeiten: DORFKRUG
+
+Acht Buchstaben, sieben Fähigkeiten – das **F ist ein Füllbuchstabe**
+(„Fähigkeiten“). Wer acht Fähigkeiten aufschreibt, erfindet eine.
+
+| Buchstabe | Fähigkeit | Was sie leistet |
+|---|---|---|
+| **D** | Differenzierungsfähigkeit | feine, dosierte Abstimmung von Bewegungen; das „Ballgefühl“ |
+| **O** | Orientierungsfähigkeit | Lage und Bewegung im Raum, bezogen auf Spielfeld oder Ball |
+| **R** | Reaktionsfähigkeit | schnelles, zweckmäßiges Handeln auf ein Signal |
+| **F** | — | Füllbuchstabe, keine eigene Fähigkeit |
+| **K** | Kopplungsfähigkeit | Teilkörperbewegungen zu einer Gesamtbewegung koordinieren |
+| **R** | Rhythmisierungsfähigkeit | einen vorgegebenen Rhythmus erfassen und reproduzieren |
+| **U** | Umstellungsfähigkeit | eine laufende Handlung an eine geänderte Situation anpassen |
+| **G** | Gleichgewichtsfähigkeit | Gleichgewicht halten und wiederherstellen |
+
+Beweglichkeit gehört **nicht** dazu: sie ist eine Mischform mit
+konditionellen und koordinativen Merkmalen und zählt zu den fünf motorischen
+Grundfähigkeiten. Die Übung aus der Einheit: niedrige Hürden im Abstand von
+einem Meter seitlich, einbeinig überspringen, kurzer Bodenkontakt, seitlich
+springen, einbeinig landen und halten – hold, explode, hold. Die
+Transferübung war Pass Protection in den Check Down mit Blick zum Coach,
+unter der Überschrift **adjust**.
+
+### Training auswerten
+
+- **Wieso**, **wann**, **wie**. Das *wann* teilt sich in **unmittelbar**
+  (direkt danach, der Eindruck ist frisch) und **distanziert** (mit Abstand,
+  das Urteil ist nüchterner). Beides hat seinen Platz.
+- Wer auswertet: man selbst, die Mannschaft, Trainerkollegen, Externe.
+- Das **Stimmungsbarometer**: eine Linie von schlecht über mittel zu gut, auf
+  der sich die Spieler selbst einordnen. Das macht die Stimmung sichtbar,
+  statt sie abzufragen.
+
+### Wo Notizen und offizielles Material auseinandergehen
+
+Einige Punkte der Notizen halten der Prüfung gegen Kursmaterial und
+veröffentlichte Quellen nicht stand. Sie stehen hier, statt stillschweigend
+korrigiert zu werden, weil in der Klausur die offizielle Formulierung gilt.
+
+| In meinen Notizen | Was für die Klausur gilt |
+|---|---|
+| Vier Kompetenzfelder: psychosozial, Sachkompetenz, Führungspersönlichkeit, trainingswissenschaftlich | **Handlungskompetenz = Sozialkompetenz + Fachkompetenz + Methoden- und Vermittlungskompetenz + strategische Kompetenz** (AFVD-Rahmenrichtlinien 2023, Abschnitt 3.2). Meiner Liste fehlen die letzten zwei, und sie enthält eines, das kein Kompetenzfeld ist. |
+| Stundenteile 10–20 / 60–90 / 5–15 min | Das Grundlehrgangsmaterial nennt **10–30 / 30–60 / 5–20 min** für eine Übungsstunde. Meine Zahlen beschreiben eine zweistündige Footballeinheit – legitime Praxis, aber nicht die Prüfungsantwort. |
+| „EEDs“ | **EDD – Every Day Drill**. |
+| „VisualEyes App“, notiert neben der Prävention | VisualEyes ist eine **Video-Coaching- und Analyse-App** (Slow Motion, Einzelbild, Zeichenwerkzeuge, Voiceover), nützlich für Filmarbeit. Sie ist kein Seh- oder Reaktionstrainer, und für eine Verbesserung der Reaktionszeit gibt es keinen Beleg. |
+| ABT ab 13./14. Lebensjahr, HLT ab 18–20, mit festen Dauern | Die **Reihenfolge** der fünf Etappen ist Standard und deckt sich mit dem AFVD-Rahmen. Die **Alters- und Dauerangaben sind sportartabhängig**: die veröffentlichten Werte streuen stark, eine für alle Sportarten verbindliche Zahl je Etappe existiert nicht. Also als „sportartabhängig“ wiedergeben. |
+
+Alles Übrige aus den Notizen hält der Prüfung stand: DORFKRUG und die sieben
+Fähigkeiten, die vierstufige Reizstufenregel, die drei Perioden des
+Trainingsjahres, der Planungszyklus, die drei Führungsstile, die Motivliste,
+die Regel gegen statisches Dehnen in der Erwärmung, das PPP als Testbatterie
+des IAT und der Satz über das Jugendtraining.
+
+### Offene Punkte
+
+- **Frau im Leistungssport** – eine Überschrift mit Pfeilen und noch ohne
+  Inhalt. Vermutlich die nächste Einheit.
+- **PPP** und die **VisualEyes App** standen als „check it out“ in den
+  Notizen. Beides ist jetzt geprüft, siehe oben.
+
 ## Coaching-Wissensbasis: Offense führen, Defense führen {: #wissensbasis }
 
 Der C-Kurs lehrt das Coachen; dieser Abschnitt ist die Football-Grammatik,
@@ -601,6 +1014,36 @@ scripten und auf Film auswerten. Ein Playbook, das die Spieler nicht
 ausführen können, ist ein Wunschzettel.
 
 </div>
+
+<div class="lang-block" markdown="1">
+
+## Recall drill: the lists that must be verbatim {: #recall-drill }
+
+Some of the course material is not understood, it is recited. The written
+exam asks for the seven coordinative abilities and the stages of long-term
+athlete development as lists, by their German names. This drill asks for them
+letter by letter and stage by stage, plus the orders that have to sit:
+the Reizstufenregel, the three progressions, the periods of the training
+year, the planning cycle, the parts of a session, and the group phases. The
+pass mark here is 90 %, not 75 %.
+
+</div>
+
+<div class="lang-block" lang="de" markdown="1">
+
+## Begriffsdrill: was wortwörtlich sitzen muss {: #begriffsdrill }
+
+Ein Teil des Stoffes wird nicht verstanden, sondern aufgesagt. Die Klausur
+fragt die sieben koordinativen Fähigkeiten und die Etappen des langfristigen
+Leistungsaufbaus als Listen ab. Dieser Drill fragt sie Buchstabe für
+Buchstabe und Etappe für Etappe – dazu die Reihenfolgen, die sitzen müssen:
+Reizstufenregel, die drei Progressionen, die Perioden des Trainingsjahres,
+der Planungszyklus, der Aufbau der Trainingseinheit und die Gruppenphasen.
+Die Bestehensgrenze liegt hier bei 90 %, nicht bei 75 %.
+
+</div>
+
+<div id="recall-quiz"><noscript>Das Quiz benötigt JavaScript. / The quiz requires JavaScript.</noscript></div>
 
 <div class="lang-block" markdown="1">
 

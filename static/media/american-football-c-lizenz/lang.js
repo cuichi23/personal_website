@@ -14,9 +14,9 @@
   var DE_TITLE = "American Football: Trainer-C-Lizenz";
   var DE_STANDFIRST = "Vom sportartübergreifenden Grundlehrgang zur "
     + "Trainer-C-Lizenz im American Football: wie das deutsche Lizenzsystem "
-    + "funktioniert, alle Prüfungsthemen sortiert und zusammengefasst, eine "
-    + "einführende Coaching-Wissensbasis für Offense und Defense und zwei "
-    + "interaktive Quizze zum Selbsttest.";
+    + "funktioniert, alle Prüfungsthemen sortiert und zusammengefasst, meine "
+    + "Notizen aus den Lehrgängen, eine einführende Coaching-Wissensbasis für "
+    + "Offense und Defense und drei interaktive Quizze zum Selbsttest.";
 
   function currentLang() {
     return document.documentElement.dataset.lang === "de" ? "de" : "en";
