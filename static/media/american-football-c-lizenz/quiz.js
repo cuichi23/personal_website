@@ -4,11 +4,16 @@
  *   #clizenz-quiz    -- mock written exam for the Trainer-C license (text questions)
  *   #recall-quiz     -- verbatim recall drill for the term lists that must be
  *                       reproduced word for word (DORFKRUG, Leistungsaufbau)
- *   #formation-quiz  -- identify offensive/defensive formations from SVG sketches
+ *   #formation-quiz  -- identify offensive formations, defensive fronts and
+ *                       coverage shells from SVG sketches
  *
  * Sources for the license questions: AFVD Rahmenrichtlinien 2023, AFVS
  * Rahmenrichtlinie Trainer-C, LSB Sachsen Grundlehrgang material ("Grundlagen
- * und Methoden des sportlichen Trainings"). Formation sketches follow standard
+ * und Methoden des sportlichen Trainings"), and the course decks of the
+ * sport-specific weekend of 24/25 October 2026 (S. Trittenbach), which cite
+ * Weineck 2010/2017, Kurz 2000, Lewin/Lippitt/White 1939, Meinel/Schnabel
+ * 1987, Martin et al. 1993, Bolling et al. 2018 and Kuzmits/Adams 2008.
+ * Formation sketches follow standard
  * American coaching conventions (offense = circles, defense = crosses, offense
  * drawn below the line of scrimmage). */
 (function () {
@@ -402,7 +407,7 @@
           "Erwärmung 45 min, Hauptteil 45 min, Schlussteil 45 min",
           "Erwärmung 30–60 min, Hauptteil 10–30 min, Schlussteil 20–40 min"],
       k: 0,
-      e: "Die Zeiten hängen von Gesamttrainingszeit, Zielen, Sportart und sogar Außentemperatur ab; Erwärmung und Schlussteil werden immer vom Hauptteil her gestaltet. Eine zweistündige Footballeinheit dehnt den Hauptteil entsprechend aus." },
+      e: "Die Zeiten hängen von Gesamttrainingszeit, Zielen, Sportart und sogar Außentemperatur ab; Erwärmung und Schlussteil werden immer vom Hauptteil her gestaltet. Die C-Lizenz-Folie nennt nach Weineck 2010 andere Zahlen – 10–20 / 60–90 / 5–15 min – für eine zweistündige Footballeinheit." },
     { c: "Methodik & Didaktik",
       q: "Was unterscheidet die unmittelbare von der distanzierten Trainingsauswertung?",
       a: ["Die unmittelbare erfolgt direkt im Anschluss, die distanzierte mit zeitlichem Abstand",
@@ -423,12 +428,12 @@
     // --- American Football --------------------------------------------------
     { c: "American Football",
       q: "Wofür steht die Abkürzung EDD im Trainingsaufbau einer Footballeinheit?",
-      a: ["Every Day Drill – die Übungen, die jeden Trainingstag laufen",
+      a: ["Everyday Drills – die Übungen, die jeden Trainingstag laufen",
           "Extended Defensive Drill – ein Zusatzblock nur für die Defense",
           "Early Down Decision – die Spielansage am ersten Down",
           "Endzone Drive Drill – eine Red-Zone-Übungsform"],
       k: 0,
-      e: "EDDs sind der feste Technikkern einer Einheit und laufen typischerweise im Individual-Block. Üblicher Ablauf: Pre-Practice, Individuals (mit EDDs), Group, Team." },
+      e: "Die Lehrgangsfolie schreibt „Everyday Drills (EDDs)“: tägliche Grundlagen je Position, bis sie ohne Nachdenken sitzen. Im 120-Minuten-Modell sind sie ein eigener Block von 15 Minuten direkt nach dem Warm-Up." },
     { c: "American Football",
       q: "Welche Reihenfolge hat die klassische Blockgliederung einer Footballeinheit?",
       a: ["Pre-Practice → Individuals → Group → Team",
@@ -477,6 +482,366 @@
           "Sie sind freiwillige Zusatzlektüre ohne jede Prüfungsrelevanz"],
       k: 0,
       e: "Die vereins- und verbandsbezogenen Inhalte der Rahmenrichtlinien nennen Antidopingrichtlinien und Ehrenkodex ausdrücklich; Verstöße gegen den Ehrenkodex können zum Lizenzentzug führen." },
+
+    // --- Trittenbach, Teil 1: Der Coach & das Coaching ----------------------
+    { c: "Pädagogik & Gruppe",
+      q: "Welche vier Hauptaufgaben eines Coachs nennt der Lehrgang?",
+      a: ["Führen, Motivieren, Planen, Auswerten",
+          "Trainieren, Aufstellen, Coachen, Verwalten",
+          "Fordern, Fördern, Führen, Feiern",
+          "Analysieren, Taktieren, Delegieren, Kontrollieren"],
+      k: 0,
+      e: "Diese vier strukturieren den ganzen ersten Lehrgangstag: Führen (Leadership-Stile), Motivieren (Motive und Einflüsse), Planen (Analyse, Planung, Durchführung) und Auswerten (Reflexion aus vier Perspektiven)." },
+    { c: "Pädagogik & Gruppe",
+      q: "Welche vier Anforderungen an einen erfolgreichen Coach nennt die Lehrgangsfolie nach Weineck (2010)?",
+      a: ["Psychosoziale Kompetenz, Sachkompetenz, Führungspersönlichkeit, trainingswissenschaftliche Kompetenz",
+          "Sozialkompetenz, Fachkompetenz, Methodenkompetenz, strategische Kompetenz",
+          "Fachwissen, Spielerfahrung, Rhetorik, Organisationstalent",
+          "Empathie, Disziplin, Taktik, Kondition"],
+      k: 0,
+      e: "Vorsicht, zwei Modelle: Weineck beschreibt die Anforderungen an den Coach, die AFVD-Rahmenrichtlinien definieren die Handlungskompetenz (Sozial-, Fach-, Methoden- und Vermittlungs- sowie strategische Kompetenz). Beide sind prüfbar, aber sie sind nicht dasselbe." },
+    { c: "Pädagogik & Gruppe",
+      q: "Was gehört NICHT zur Sachkompetenz im Sinne der Lehrgangsfolie?",
+      a: ["Souveränes Auftreten in kritischen Situationen",
+          "Sportartspezifisches Wissen",
+          "Langjährige Trainings- und Wettkampferfahrung",
+          "Kenntnisse im organisierten Sport"],
+      k: 0,
+      e: "Souveränität in kritischen Situationen steht unter Führungspersönlichkeit, zusammen mit Vorbild, Charisma, Motivationskünstler und der optimalen Mischung aus Distanz und Nähe." },
+    { c: "Pädagogik & Gruppe",
+      q: "Welches Risiko nennt der Lehrgang für den autoritären Führungsstil?",
+      a: ["Motivationsmangel, reduziertes Mitdenken und negative Effekte auf das Teamgefühl",
+          "Verzögerte Entscheidungsgeschwindigkeit",
+          "Kompetenzstreitigkeiten und Durcheinander",
+          "Überforderung durch zu viel Mitbestimmung"],
+      k: 0,
+      e: "Stärken sind klare Kompetenzverteilung und Kontrolle. Die Risiken liegen bei Motivation, fehlenden Freiheiten, reduziertem Mitdenken und dem Teamgefühl." },
+    { c: "Pädagogik & Gruppe",
+      q: "Welchen Nachteil hat der demokratische Führungsstil laut Lehrgang?",
+      a: ["Die Entscheidungsgeschwindigkeit sinkt",
+          "Alpha-Charaktere übernehmen die Gruppe",
+          "Es entsteht ein Motivationsmangel",
+          "Kritik wird grundsätzlich abwertend"],
+      k: 0,
+      e: "Dafür bringt er hohe Motivation, Trainerentlastung und Identifikation mit den Ergebnissen. Sachorientierte Kritik gehört ausdrücklich dazu, abwertende nicht." },
+    { c: "Pädagogik & Gruppe",
+      q: "Welche Risiken nennt der Lehrgang für Laissez-faire-Leadership?",
+      a: ["Mangelnde Disziplin, Kompetenzstreitigkeiten, Durcheinander, Alpha-Charaktere bestimmen",
+          "Fehlende persönliche Freiheiten und reduziertes Mitdenken",
+          "Zu lange Entscheidungswege durch Abstimmung",
+          "Übermäßige Kontrolle durch den Coach"],
+      k: 0,
+      e: "Die Stärken sind Freiheiten, Individualität und eigenständige Arbeitsweise. Prinzipien: viele Freiheiten und Selbstbestimmung bei Regeln, Tätigkeit und Organisation." },
+    { c: "Pädagogik & Gruppe",
+      q: "Welche drei Ebenen beeinflussen laut Lehrgang die Motivation der Spieler?",
+      a: ["Trainerverhalten und Führungsstil, direktes Trainingsumfeld, Umfeld außerhalb des Trainings",
+          "Erfolg, Gehalt und Spielzeit",
+          "Talent, Trainingsfleiß und Vereinsgröße",
+          "Alter, Geschlecht und Leistungsniveau"],
+      k: 0,
+      e: "Nur die erste Ebene bestimmt der Coach selbst. Dazu die Warnung: das psychosoziale Verhalten von Kindern ist instabil." },
+    { c: "Pädagogik & Gruppe",
+      q: "Welches Motiv beschreibt nach Kurz (2000) „Situationen mit ungewissem Ausgang, Wunsch nach Spannung, Risiko und Abenteuer“?",
+      a: ["Das Spielmotiv",
+          "Das Leistungsmotiv",
+          "Das Bewegungsmotiv",
+          "Das Anschlussmotiv"],
+      k: 0,
+      e: "Sechs Motive nach Kurz: Leistung, Spiel, Bewegung, Anschluss, Gesundheit und ästhetischer Reiz. Das Leistungsmotiv lebt vom Reiz der Messbarkeit, das Bewegungsmotiv von der Lust an der Bewegung selbst." },
+    { c: "Methodik & Didaktik",
+      q: "Welchen Nachteil hat der Frontalbetrieb (alle üben gleichzeitig)?",
+      a: ["Kaum individuelle Dosierung und Anleitung; die Übung muss bekannt und beherrscht sein",
+          "Lange Wartezeiten an den Stationen",
+          "Umfangreiche Vorbereitung durch den Trainer",
+          "Der Trainer kann nur eine Gruppe kontrollieren"],
+      k: 0,
+      e: "Die Vorteile sind gute Gesamtübersicht und einfache Organisation. Die lange Wartezeit ist das Problem des Gruppenbetriebs, die umfangreiche Vorbereitung das des Zirkeltrainings." },
+    { c: "Methodik & Didaktik",
+      q: "Was ist laut Lehrgang der zentrale Nachteil des Stationsbetriebs?",
+      a: ["Eingeschränkte Korrekturmöglichkeit und Kontrolle",
+          "Kaum individuelle Belastungsgestaltung",
+          "Alle müssen dieselbe Übung beherrschen",
+          "Es entstehen lange Wartezeiten"],
+      k: 0,
+      e: "Dafür gibt es kaum Wartezeit und die Spieler üben selbstständig. Beim Kreis- oder Zirkeltraining kommt zur eingeschränkten Korrektur noch die umfangreiche Vorbereitung hinzu." },
+    { c: "Methodik & Didaktik",
+      q: "Welche Aufstellungsform nennt der Lehrgang für Besprechungen?",
+      a: ["Halbkreis",
+          "Doppellinie",
+          "Freie Aufstellung",
+          "Dreiergruppe"],
+      k: 0,
+      e: "Halbkreis für Besprechungen, Doppellinie für Athletiktraining und Laufschule, freie Aufstellung für Mobility und Stretching, Dreiergruppe für Tackling- und Blocking-Übungen sowie Center/QB/WR." },
+    { c: "Methodik & Didaktik",
+      q: "Für welchen Zweck nennt der Lehrgang die Aufstellung in der Doppellinie?",
+      a: ["Athletiktraining und Laufschule",
+          "Besprechungen",
+          "Fangübungen mit Partner",
+          "Mobility und Stretching"],
+      k: 0,
+      e: "Linie und Doppelreihe dienen dem Warm-Up, die Reihe Staffelspielen und Fangübungen, der Partner den Fangübungen." },
+    { c: "Methodik & Didaktik",
+      q: "Welche Dauern nennt die C-Lizenz-Folie (nach Weineck 2010) für Warm-Up, Hauptteil und Cool-Down?",
+      a: ["10–20 min, 60–90 min, 5–15 min",
+          "10–30 min, 30–60 min, 5–20 min",
+          "15 min, 90 min, 15 min",
+          "20–30 min, 45–60 min, 10–20 min"],
+      k: 0,
+      e: "Achtung, zwei Quellen: die C-Lizenz-Folie nennt 10–20 / 60–90 / 5–15 min nach Weineck 2010, das Grundlehrgangsmaterial 10–30 / 30–60 / 5–20 min für eine allgemeine Übungsstunde. Beide sind korrekt zitiert, aber sie gehören zu unterschiedlichen Lehrgängen." },
+    { c: "Methodik & Didaktik",
+      q: "Welche Systeme bereitet ein Warm-Up laut Lehrgang vor?",
+      a: ["Herz-Kreislauf-System, Stütz- und Bewegungssystem, Nervensystem und Sinnesorgane",
+          "Ausschließlich das Herz-Kreislauf-System",
+          "Muskulatur und Sehnen, sonst nichts",
+          "Nur das Nervensystem, über Reaktionsübungen"],
+      k: 0,
+      e: "Dazu zwei Prinzipien: stetige Belastungssteigerung, und Aufwärmen ist typabhängig – also Spielraum für individuelle Anpassungen geben. Empfohlen wird ein Anfangs-Ritual vor oder nach dem Warm-Up." },
+    { c: "Methodik & Didaktik",
+      q: "Welche Aussage über den Cool-Down trifft der Lehrgang ausdrücklich?",
+      a: ["Ein intensives Abschlussspiel ist kein Cool-Down",
+          "Der Cool-Down darf entfallen, wenn der Hauptteil kurz war",
+          "Statisches Dehnen ist im Cool-Down verboten",
+          "Der Cool-Down ersetzt die Abschlussbesprechung"],
+      k: 0,
+      e: "Geeignet sind Auslaufen, Mobility, Entspannung, Schwimmen oder Fahrradergometer, altersgerecht gewählt. Die Abschlussbesprechung ist short and simple: Key-Lessons, Next Steps, finish positive." },
+    { c: "Methodik & Didaktik",
+      q: "Aus welchen vier Perspektiven wird ein Training laut Lehrgang reflektiert?",
+      a: ["Selbstreflexion, Mannschaft, Trainerkolleg*innen, Vorstand bzw. Vorgesetzte",
+          "Spieler, Eltern, Schiedsrichter, Sponsoren",
+          "Trainer, Co-Trainer, Physiotherapeut, Arzt",
+          "Selbstreflexion, Gegner, Zuschauer, Presse"],
+      k: 0,
+      e: "Die Reflexion durch Trainerkolleg*innen läuft unter „Coach the Coach“. Zeitlich teilt sich die Auswertung in unmittelbare und distanzierte Nachbereitung." },
+    { c: "Methodik & Didaktik",
+      q: "Welche Reihenfolge gilt für Koordinations- und Konditionstraining?",
+      a: ["Koordinationstraining vor Konditionstraining",
+          "Konditionstraining vor Koordinationstraining",
+          "Beides gleichzeitig, um Zeit zu sparen",
+          "Koordination nur im ermüdeten Zustand, damit es übertragbar wird"],
+      k: 0,
+      e: "Koordination braucht ein frisches Nervensystem. Weitere Randbedingungen: hohe Variabilität, ständige Abwechslung, hoher Spaßfaktor, rechtzeitige Schulung, nie im ermüdeten Zustand, und pubertäre Wachstumsschübe berücksichtigen." },
+    { c: "Methodik & Didaktik",
+      q: "Was ist KEINE der sechs Methoden des Koordinationstrainings?",
+      a: ["Steigerung der Trainingsintensität bis zur Ausbelastung",
+          "Variationen der Bewegungsausführung",
+          "Üben unter Zeitdruck",
+          "Kombinieren von Bewegungsfertigkeiten"],
+      k: 0,
+      e: "Die sechs sind: Variationen der Bewegungsausführung, Veränderungen der äußeren Bedingungen, Üben unter Zeitdruck, Variation der Informationsaufnahme, Üben nach Vorbelastung und Kombinieren von Bewegungsfertigkeiten." },
+
+    // --- Trittenbach, Teil 2: Grundlagen der Trainingslehre -----------------
+    { c: "Trainingslehre",
+      q: "In welcher Reihenfolge verlangt das Prinzip der richtigen Belastungsfolge die Inhalte einer Einheit?",
+      a: ["Koordination und Schnelligkeit → Schnellkraft → Schnelligkeits- und Kraftausdauer → Ausdauer",
+          "Ausdauer → Kraftausdauer → Schnellkraft → Koordination",
+          "Schnellkraft → Koordination → Ausdauer → Schnelligkeit",
+          "Kraftausdauer → Ausdauer → Schnelligkeit → Koordination"],
+      k: 0,
+      e: "Schnelles und koordinatives Arbeiten gehört nach vorn, solange das Nervensystem frisch ist. Ausdauer kommt zuletzt, weil die Ermüdung alles darüber ruiniert." },
+    { c: "Trainingslehre",
+      q: "Welche Hebel nennt das Prinzip der ansteigenden Belastung?",
+      a: ["Umfang, Intensität, Pausengestaltung und höhere Bewegungsanforderungen",
+          "Nur Umfang und Intensität",
+          "Wettkampfdichte, Reisebelastung und Regeneration",
+          "Ernährung, Schlaf und Supplementierung"],
+      k: 0,
+      e: "Daneben stehen das Prinzip des trainingswirksamen Reizes (vier Reizstufen) und das Prinzip der individualisierten Belastung: für den einen fordernd, für den anderen überfordernd." },
+    { c: "Trainingslehre",
+      q: "Wie heißen die drei Phasen der Einfach-Periodisierung?",
+      a: ["Vorbereitungsphase, Wettkampfphase, Übergangsphase",
+          "Aufbauphase, Stabilisierungsphase, Abbauphase",
+          "Off-Season, Pre-Season, In-Season",
+          "Mesozyklus, Mikrozyklus, Makrozyklus"],
+      k: 0,
+      e: "Off-, Pre- und In-Season sind die Saisonphasen der Situationsanalyse, nicht die Perioden der Periodisierung. Mesozyklen und Mikrozyklen sind Unterteilungen innerhalb der Phasen." },
+    { c: "Trainingslehre",
+      q: "Was folgt laut Lehrgang aus zwei Zyklen pro Jahr?",
+      a: ["Jeder Zyklus bekommt seine eigene Vorbereitungsphase",
+          "Die Übergangsphase entfällt vollständig",
+          "Die Wettkampfphase wird auf das ganze Jahr gestreckt",
+          "Periodisierung ist dann nicht mehr möglich"],
+      k: 0,
+      e: "Genau das macht die Hallensaison im Flagfootball kompliziert: eine saubere Antwort bräuchte einen Doppel-Zyklus." },
+    { c: "Trainingslehre",
+      q: "Was sagt der Lehrgang zur Periodisierung in der Jugend bis C-Jugend?",
+      a: ["Eine 1:1-Umsetzung vom Erwachsenenbereich ist nicht sinnvoll; eine Einteilung in Themenschwerpunkte genügt",
+          "Sie muss genauso komplex sein wie bei den Senioren",
+          "Periodisierung ist im Jugendbereich grundsätzlich verboten",
+          "Es braucht mindestens drei Zyklen pro Jahr"],
+      k: 0,
+      e: "Komplexe Periodisierung ist in diesem Alter noch nicht notwendig; die Hallensaison verkompliziert das Prinzip zusätzlich." },
+    { c: "Trainingslehre",
+      q: "Welche Belastungskonfiguration gehört zum neuronalen bzw. Maximalkrafttraining?",
+      a: ["90–100 % Intensität, 1–3 Wiederholungen, Serienpause ≥ 6 min",
+          "50–60 % Intensität, 20–40 Wiederholungen, Serienpause 0,5–1 min",
+          "60–85 % Intensität, 8–20 Wiederholungen, Serienpause 2–3 min",
+          "30–40 % Intensität, 6–8 Wiederholungen, Serienpause 3–5 min"],
+      k: 0,
+      e: "Die anderen drei beschreiben Kraftausdauer, Muskelaufbau und Schnellkraft. Neuronale Kraft wird explosiv ausgeführt, über 6 bis 8 Wochen, zwei Einheiten pro Woche." },
+    { c: "Trainingslehre",
+      q: "Mit welcher Intensität wird Schnellkraft laut Lehrgangstabelle trainiert?",
+      a: ["30–40 %, konzentrisch explosiv, 6–8 Wiederholungen",
+          "90–100 %, explosiv, 1–3 Wiederholungen",
+          "60–85 %, langsam bis zügig, 8–20 Wiederholungen",
+          "100 %, explosiv, übungsabhängig"],
+      k: 0,
+      e: "Die niedrige Last ist Absicht: Schnellkraft braucht Geschwindigkeit, nicht Masse. Die 100 % bei übungsabhängigen Wiederholungen beschreiben die Reaktivkraft." },
+    { c: "Trainingslehre",
+      q: "Welche Konfiguration nennt der Lehrgang für reaktive Tiefsprünge?",
+      a: ["100 % Intensität, 10 Wiederholungen pro Serie, 3 Serien, 2 Einheiten pro Woche, 4 Wochen",
+          "80 % Intensität, 30 Wiederholungen, 5 Serien, 3 Einheiten pro Woche",
+          "100 % Intensität, 30 Wiederholungen, 3 Serien, 4 Einheiten pro Woche",
+          "60 % Intensität, 20 Wiederholungen, 2 Serien, 1 Einheit pro Woche"],
+      k: 0,
+      e: "Alle drei reaktiven Formen laufen bei 100 % und explosiv, über drei Serien, zweimal pro Woche, vier Wochen – aber mit fallendem Umfang: Hüpfen 30, Springen 20, Tiefsprünge 10." },
+    { c: "Trainingslehre",
+      q: "Welcher Herzfrequenzbereich gehört zur Grundlagenausdauer 1 (GA1)?",
+      a: ["65–80 % HFmax, extensive und variable Methode",
+          "unter 70 % HFmax, Dauermethode",
+          "80–90 % HFmax, intensive und extensive Methode",
+          "über 90 % HFmax, Wiederholungsmethode"],
+      k: 0,
+      e: "Unter 70 % ist Kompensation und Regeneration, 80–90 % GA2, über 90 % die spielspezifische Ausdauer." },
+    { c: "Trainingslehre",
+      q: "Welche Ausdauer-Trainingsmethode ist durch vollständige Erholung gekennzeichnet?",
+      a: ["Die Wiederholungsmethode",
+          "Die Intervallmethode",
+          "Die Dauermethode",
+          "Die Wettkampf- und Kontrollmethode"],
+      k: 0,
+      e: "Die Intervallmethode arbeitet bewusst mit unvollständiger Erholung („lohnende Pause“), die Dauermethode ohne Pause, die Wettkampf- und Kontrollmethode über Spielsimulation, Testspiel, Scrimmage und Spieltage." },
+    { c: "Trainingslehre",
+      q: "Welche Schnelligkeitsform beschreibt eine Bewegungskombination mit Tempo- und Richtungswechsel?",
+      a: ["Agility bzw. Handlungsschnelligkeit",
+          "Zyklische Schnelligkeit",
+          "Azyklische Schnelligkeit",
+          "Reaktionsschnelligkeit"],
+      k: 0,
+      e: "Zyklisch heißt regelmäßige Bewegungsabfolge mit Wechsel von An- und Entspannung, azyklisch eine einmalige Bewegung wie Wurf oder Kick, Reaktionsschnelligkeit die Antwort auf ein Signal. Agility ist die footballrelevante Form." },
+    { c: "Trainingslehre",
+      q: "Was bezeichnet die Bewegungsreserve?",
+      a: ["Die Differenz zwischen passiver und aktiver Beweglichkeit",
+          "Die Summe aus Kraft- und Ausdauerreserven",
+          "Den Anteil der Muskulatur, der im Wettkampf nicht aktiviert wird",
+          "Die Zeit bis zum Erreichen der maximalen Gelenkamplitude"],
+      k: 0,
+      e: "Trainierbar über das Stärken des Agonisten oder vermehrtes Dehnen des Antagonisten. Formen der Beweglichkeit: aktiv und passiv, statisch und dynamisch." },
+    { c: "Trainingslehre",
+      q: "Wie definiert der Lehrgang den langfristigen Leistungsaufbau?",
+      a: ["Zielorientierter Entwicklungsprozess vom Beginn des leistungssportlichen Trainings bis zu Höchstleistungen im Höchstleistungsalter",
+          "Die Summe aller Trainingseinheiten einer Saison",
+          "Der Aufbau einer Mannschaft über mehrere Spielzeiten",
+          "Die Verlängerung der Karriere über das 30. Lebensjahr hinaus"],
+      k: 0,
+      e: "AGA, GLT und ABT bilden zusammen das Nachwuchstraining, AST und HLT die Leistungsetappen. Im Football verkompliziert der Quereinstieg das Modell." },
+
+    // --- Sportbiologie: Prävention und Frau im Leistungssport ---------------
+    { c: "Sportbiologie",
+      q: "Wie lauten die vier Präventionssequenzen nach Bolling et al. (2018)?",
+      a: ["Ausmaß feststellen → Risikofaktoren und Mechanismen ermitteln → Interventionsmaßnahmen einführen → Wirksamkeit bewerten",
+          "Testen → Behandeln → Belasten → Nachtesten",
+          "Aufwärmen → Dehnen → Kräftigen → Regenerieren",
+          "Diagnose → Therapie → Reha → Return to Play"],
+      k: 0,
+      e: "Ohne den vierten Schritt weiß niemand, ob die Maßnahme gewirkt hat. Genau dafür liefert das PPP im Nachwuchsleistungssport eine Testbatterie." },
+    { c: "Sportbiologie",
+      q: "Welche Einschränkung nennt der Lehrgang ausdrücklich für das Plus Prevention Program?",
+      a: ["Das Screening sagt keine Verletzungen vorher",
+          "Es darf nur von Ärzten durchgeführt werden",
+          "Es ist erst ab dem 18. Lebensjahr einsetzbar",
+          "Es ersetzt die funktionelle Diagnostik vollständig"],
+      k: 0,
+      e: "Dazu zwei weitere Grenzen: das PPP ersetzt keine orthopädische oder physiotherapeutische Behandlung, und erfasste Schmerzen müssen von medizinischem Personal abgeklärt werden." },
+    { c: "Sportbiologie",
+      q: "Was braucht das Plus Prevention Program als Basismaterial?",
+      a: ["Ein „+“ als Bodenmarkierung größer als 100 cm und einen Laptop mit Ein- und Ausgabesoftware",
+          "Eine Kraftmessplatte und ein Y-Balance-Toolkit",
+          "Eine Laufbahn mit Lichtschranken",
+          "Ein Ultraschallgerät und eine Isokinetik-Maschine"],
+      k: 0,
+      e: "Checkliste, Smartphone mit Aufnahmefunktion plus VisualEyes-App, Kraftmessplatte und Y-Balance-Toolkit sind optional. Der Test umfasst neun Übungen, das Ergebnis kommt als Radar-Diagramm mit Körperabbildung und Übungsempfehlungen." },
+    { c: "Sportbiologie",
+      q: "Welchen Umfang und welche Organisationsform empfiehlt der Lehrgang für Präventionstraining im normalen Training?",
+      a: ["Unter 20 Minuten, als Gruppentraining",
+          "Mindestens 45 Minuten, als Einzeltraining",
+          "Eine komplette Einheit pro Woche, nur mit Physiotherapeut",
+          "Nur in der Übergangsperiode, dann aber täglich"],
+      k: 0,
+      e: "Weitere Punkte: Sensibilisierung, wenig Equipment, leicht realisierbar, Variabilität über Progression und Regression, Sportartspezifik, Zielgruppe nach Alter, Geschlecht und Niveau, und mehrere Leistungsfaktoren ansprechen." },
+    { c: "Sportbiologie",
+      q: "Welche drei Komponenten beschreibt die Female Athlete Triad aus den 1990er Jahren?",
+      a: ["Niedrige Energieverfügbarkeit, Amenorrhö und verringerte Knochendichte",
+          "Eisenmangel, Übertraining und Schlafstörung",
+          "Essstörung, Depression und Verletzungsanfälligkeit",
+          "Zyklusstörung, Muskelabbau und Immunschwäche"],
+      k: 0,
+      e: "2014 wurde dafür der Begriff Relative Energy Deficiency in Sport (REDs) eingeführt. Er umfasst zusätzlich Stoffwechselstörungen sowie immunologische, kognitive und muskuloskelettale Beeinträchtigungen." },
+    { c: "Sportbiologie",
+      q: "Was gilt für REDs (relatives Energie-Defizit-Syndrom)?",
+      a: ["Es betrifft ebenso Sportler, nicht nur Sportlerinnen",
+          "Es tritt ausschließlich bei Frauen auf",
+          "Es ist mit der Female Athlete Triad identisch",
+          "Es beschreibt einen Energieüberschuss im Aufbautraining"],
+      k: 0,
+      e: "REDs erweitert die Triade von 2014 an um Stoffwechsel-, Immun-, kognitive und muskuloskelettale Folgen – und ist ausdrücklich auch für männliche Athleten relevant." },
+
+    // --- American Football: Trainingsaufbau und Diagnostik ------------------
+    { c: "American Football",
+      q: "In welcher Reihenfolge laufen die sechs Blöcke einer 120-minütigen Footballeinheit?",
+      a: ["Pre-Practice & Warm-Up → EDDs → Indy → Gruppenphase → Teamphase → Conditioning & Cool-Down",
+          "Warm-Up → Indy → EDDs → Teamphase → Gruppenphase → Cool-Down",
+          "EDDs → Warm-Up → Gruppenphase → Indy → Conditioning → Teamphase",
+          "Warm-Up → Teamphase → Gruppenphase → Indy → EDDs → Cool-Down"],
+      k: 0,
+      e: "Mit 15, 15, 25, 20, 30 und 15 Minuten. Die Individualphase ist die intensivste Coaching-Phase, die Teamphase der längste Block." },
+    { c: "American Football",
+      q: "Wie lange dauern Individual- und Teamphase im Lehrgangsmodell?",
+      a: ["Indy 25 Minuten, Teamphase 30 Minuten",
+          "Indy 15 Minuten, Teamphase 20 Minuten",
+          "Indy 30 Minuten, Teamphase 25 Minuten",
+          "Indy 20 Minuten, Teamphase 40 Minuten"],
+      k: 0,
+      e: "EDDs und Indy legen zusammen 40 Minuten Grundlagen, die Gruppenphase wendet sie in 20 Minuten an, die Teamphase setzt sie in 30 Minuten im 11-on-11 um." },
+    { c: "American Football",
+      q: "Welche Regel verbindet Indy-, Gruppen- und Teamphase?",
+      a: ["Was in EDDs und Indy trainiert wird, muss in Gruppen- und Teamphase wieder vorkommen – coach what you practiced",
+          "Jede Phase trainiert bewusst andere Techniken, damit die Spieler vielseitig bleiben",
+          "Die Teamphase ersetzt die Technikarbeit der Individualphase",
+          "Die Gruppenphase dient ausschließlich dem Conditioning"],
+      k: 0,
+      e: "Umgekehrt formuliert: nichts trainieren, was später nicht vorkommt. Ein Motivationsfaktor hilft, etwa ein Score für einen Vier-Yard-Gain der Offense oder Minus-Yards für die Defense." },
+    { c: "American Football",
+      q: "Zu welchem Ergebnis kamen Kuzmits und Adams (2008) zum NFL Combine?",
+      a: ["Kein durchgängiger Zusammenhang mit dem Erfolg – Ausnahme: Sprinttests bei Running Backs",
+          "Alle Combine-Tests sagen die NFL-Leistung zuverlässig vorher",
+          "Nur der Bench-Press-Test hat Vorhersagekraft, und zwar für Linemen",
+          "Der Wonderlic-Test war der beste Prädiktor für Quarterbacks"],
+      k: 0,
+      e: "Untersucht wurden Drafts 1999 bis 2004 für QB, RB und WR gegen Draft-Position, Gehalt, gespielte Spiele und positionsspezifische Werte. Die Autoren raten, Combine-Werte weniger stark zu gewichten." },
+    { c: "American Football",
+      q: "Welcher Test wird im Football mit „5-10-5“ bezeichnet?",
+      a: ["Der Pro Agility Shuttle",
+          "Der 3-Cone-Drill",
+          "Der T-Test",
+          "Der Broad Jump"],
+      k: 0,
+      e: "Agility wird über Pro Agility (5-10-5), 3-Cone und T-Test gemessen, Sprint über 10, 20 und 40 Yards, Sprungkraft über Vertical und Broad Jump." },
+    { c: "American Football",
+      q: "Welche Besonderheit nennt der Lehrgang für den langfristigen Leistungsaufbau im Football?",
+      a: ["Der Quereinstieg: viele Spieler beginnen erst nach den frühen Etappen",
+          "Football kennt keine Nachwuchsetappen",
+          "Die Etappen laufen im Football doppelt so schnell ab",
+          "Der Leistungsaufbau beginnt im Football erst mit dem HLT"],
+      k: 0,
+      e: "Wer mit 16 anfängt, hat AGA und GLT nicht durchlaufen. Wer so plant, als wäre es anders, überspringt das Fundament." },
+    { c: "American Football",
+      q: "Was fragt die Defense-Überprüfung in der Playbook-Tabelle für jede Coverage ab?",
+      a: ["Name im Playbook, Man oder Zone, Anzahl der Deep-Spieler und die Aufgabenverteilung",
+          "Nur den Namen der Coverage im Playbook",
+          "Die Anzahl der Blitzer und den Pass-Rush-Plan",
+          "Die Formation der Offense, gegen die sie gespielt wird"],
+      k: 0,
+      e: "Dazu kommen zwei Zeichenaufgaben: die eigene Grundformation mit allen Positionen gegen eine abgedruckte Offense, und Cover 1, 2 und 3 mit markierten Deep-Spielern sowie Zonen- oder Man-Zuordnungen." },
   ];
 
   // ====================================================== Verbatim recall drill
@@ -514,12 +879,12 @@
       e: "Die Orientierungsfähigkeit bestimmt und verändert Lage und Bewegung des Körpers im Raum – bezogen auf ein Aktionsfeld (Spielfeld) oder ein bewegtes Objekt (Ball). Sie hat eine räumliche und eine zeitliche Seite." },
     { c: "DORFKRUG",
       q: "DORFKRUG: welche Fähigkeit steht für das erste R?",
-      a: ["Reaktionsfähigkeit",
-          "Rhythmisierungsfähigkeit",
+      a: ["Rhythmisierungsfähigkeit",
+          "Reaktionsfähigkeit",
           "Regenerationsfähigkeit",
           "Richtungsfähigkeit"],
       k: 0,
-      e: "Das erste R ist die Reaktionsfähigkeit, das zweite die Rhythmisierungsfähigkeit. Die Reaktionsfähigkeit ist zugleich eine Teilkomponente der konditionellen Eigenschaft Schnelligkeit." },
+      e: "Auf der Lehrgangsfolie liest sich D-O-R-F in der linken Spalte und K-R-U-G in der rechten: das erste R ist also die Rhythmisierungsfähigkeit, das zweite die Reaktionsfähigkeit." },
     { c: "DORFKRUG",
       q: "DORFKRUG: wofür steht das F?",
       a: ["Für nichts Eigenes – es ist der Füllbuchstabe („Fähigkeiten“)",
@@ -538,12 +903,12 @@
       e: "Die Kopplungsfähigkeit setzt Bewegungen von Extremitäten, Rumpf und Kopf in Beziehung und stimmt sie auf eine Gesamtkörperbewegung oder ein Handlungsziel ab." },
     { c: "DORFKRUG",
       q: "DORFKRUG: welche Fähigkeit steht für das zweite R?",
-      a: ["Rhythmisierungsfähigkeit",
-          "Reaktionsfähigkeit",
+      a: ["Reaktionsfähigkeit",
+          "Rhythmisierungsfähigkeit",
           "Rotationsfähigkeit",
           "Reizverarbeitungsfähigkeit"],
       k: 0,
-      e: "Die Rhythmisierungsfähigkeit erfasst einen von außen vorgegebenen Rhythmus und reproduziert ihn motorisch – einschließlich des „verinnerlichten“ Rhythmus einer eigenen Bewegung." },
+      e: "Das zweite R, aus der rechten Spalte K-R-U-G, ist die Reaktionsfähigkeit: schnelle Einleitung und Ausführung zweckmäßiger kurzzeitiger motorischer Aktionen auf ein Signal. Sie ist zugleich eine Teilkomponente der Schnelligkeit." },
     { c: "DORFKRUG",
       q: "DORFKRUG: welche Fähigkeit steht für das U?",
       a: ["Umstellungsfähigkeit",
@@ -764,6 +1129,137 @@
           "Norming – Storming – Forming – Performing – Adjourning"],
       k: 0,
       e: "Orientierung, Machtkampf, Vertrautheit, Differenzierung, Ablösung. Phasen können stagnieren oder zurückfallen – jeder Personalwechsel wirft die Gruppe ins Storming zurück." },
+
+    { c: "Reihenfolgen",
+      q: "Welche Reihenfolge verlangt das Prinzip der richtigen Belastungsfolge?",
+      a: ["Koordination und Schnelligkeit – Schnellkraft – Schnelligkeits- und Kraftausdauer – Ausdauer",
+          "Ausdauer – Schnelligkeitsausdauer – Schnellkraft – Koordination",
+          "Schnellkraft – Schnelligkeit – Koordination – Kraftausdauer",
+          "Koordination – Ausdauer – Schnellkraft – Schnelligkeit"],
+      k: 0,
+      e: "Vier Stufen, von nervös-anspruchsvoll zu ermüdend. Ausdauer zuletzt, weil ihre Ermüdung alles darüber unbrauchbar macht." },
+    { c: "Reihenfolgen",
+      q: "In welcher Reihenfolge laufen die sechs Blöcke der 120-Minuten-Footballeinheit?",
+      a: ["Pre-Practice & Warm-Up – EDDs – Indy – Gruppenphase – Teamphase – Conditioning & Cool-Down",
+          "Warm-Up – Indy – EDDs – Gruppenphase – Conditioning – Teamphase",
+          "Warm-Up – EDDs – Gruppenphase – Indy – Teamphase – Cool-Down",
+          "EDDs – Warm-Up – Indy – Teamphase – Gruppenphase – Cool-Down"],
+      k: 0,
+      e: "15 – 15 – 25 – 20 – 30 – 15 Minuten. EDDs und Indy legen 40 Minuten Grundlagen, Gruppen- und Teamphase wenden sie in 50 Minuten an." },
+    { c: "Reihenfolgen",
+      q: "Welche Reihenfolge haben die vier Präventionssequenzen nach Bolling et al. (2018)?",
+      a: ["Ausmaß feststellen – Risikofaktoren und Mechanismen ermitteln – Intervention einführen – Wirksamkeit bewerten",
+          "Risikofaktoren ermitteln – Ausmaß feststellen – Wirksamkeit bewerten – Intervention einführen",
+          "Intervention einführen – Ausmaß feststellen – Risikofaktoren ermitteln – Wirksamkeit bewerten",
+          "Ausmaß feststellen – Intervention einführen – Wirksamkeit bewerten – Risikofaktoren ermitteln"],
+      k: 0,
+      e: "Die Bewertung der Wirksamkeit steht ganz am Ende und ist der Schritt, der am häufigsten fehlt." },
+    { c: "Reihenfolgen",
+      q: "Wie lauten die vier Ausdauer-Trainingsbereiche aufsteigend nach % HFmax?",
+      a: ["Kompensation/Regeneration – GA1 – GA2 – spielspezifische Ausdauer",
+          "GA1 – GA2 – Kompensation/Regeneration – spielspezifische Ausdauer",
+          "GA2 – GA1 – spielspezifische Ausdauer – Kompensation/Regeneration",
+          "Kompensation/Regeneration – GA2 – GA1 – spielspezifische Ausdauer"],
+      k: 0,
+      e: "Unter 70 %, dann 65–80 %, dann 80–90 %, dann über 90 %. Die Bereiche überlappen bewusst." },
+
+    // --- Listen und Modelle, die als Liste abgefragt werden -----------------
+    { c: "Listen & Modelle",
+      q: "Welche vier Hauptaufgaben hat ein Coach nach dem Lehrgang?",
+      a: ["Führen, Motivieren, Planen, Auswerten",
+          "Führen, Trainieren, Aufstellen, Auswerten",
+          "Planen, Durchführen, Kontrollieren, Dokumentieren",
+          "Motivieren, Fordern, Fördern, Führen"],
+      k: 0,
+      e: "Die vier Kapitel des ersten Lehrgangstags. Unter Auswerten steht die Reflexion aus vier Perspektiven." },
+    { c: "Listen & Modelle",
+      q: "Welche vier Anforderungen an einen erfolgreichen Coach nennt Weineck (2010)?",
+      a: ["Psychosoziale Kompetenz, Sachkompetenz, Führungspersönlichkeit, trainingswissenschaftliche Kompetenz",
+          "Sozialkompetenz, Fachkompetenz, Methoden- und Vermittlungskompetenz, strategische Kompetenz",
+          "Psychosoziale Kompetenz, Fachkompetenz, Methodenkompetenz, Führungspersönlichkeit",
+          "Sachkompetenz, Sozialkompetenz, Führungsstärke, Ernährungswissen"],
+      k: 0,
+      e: "Die zweite Antwort ist die Handlungskompetenz der AFVD-Rahmenrichtlinien. Beide Listen sind prüfbar, aber sie beschreiben Verschiedenes: Weineck die Anforderungen an den Coach, die Rahmenrichtlinien das Ausbildungsziel." },
+    { c: "Listen & Modelle",
+      q: "Welche vier Kompetenzen schließt die Handlungskompetenz der AFVD-Rahmenrichtlinien ein?",
+      a: ["Sozialkompetenz, Fachkompetenz, Methoden- und Vermittlungskompetenz, strategische Kompetenz",
+          "Psychosoziale Kompetenz, Sachkompetenz, Führungspersönlichkeit, trainingswissenschaftliche Kompetenz",
+          "Fachkompetenz, Sozialkompetenz, Medienkompetenz, Organisationskompetenz",
+          "Methodenkompetenz, Vermittlungskompetenz, Sozialkompetenz, Selbstkompetenz"],
+      k: 0,
+      e: "Abschnitt 3.2 der Rahmenrichtlinien: Handlungskompetenz ist das Leitziel aller Ausbildungsgänge und verknüpft Wissen, Können und Verhalten. Methoden- und Vermittlungskompetenz ist EIN Feld, nicht zwei." },
+    { c: "Listen & Modelle",
+      q: "Welches Motiv gehört NICHT zu den sechs Motiven des Sporttreibens nach Kurz (2000)?",
+      a: ["Das Wettkampfmotiv",
+          "Das Anschlussmotiv",
+          "Das Bewegungsmotiv",
+          "Der ästhetische Reiz"],
+      k: 0,
+      e: "Die sechs sind Leistungs-, Spiel-, Bewegungs-, Anschluss- und Gesundheitsmotiv sowie der ästhetische Reiz. Ein eigenes „Wettkampfmotiv“ gibt es in dieser Liste nicht – das steckt im Leistungsmotiv." },
+    { c: "Listen & Modelle",
+      q: "Aus welchen vier Perspektiven wird ein Training reflektiert?",
+      a: ["Selbstreflexion, Mannschaft, Trainerkolleg*innen, Vorstand bzw. Vorgesetzte",
+          "Selbstreflexion, Mannschaft, Eltern, Schiedsrichter",
+          "Coach, Co-Coach, Kapitän, Zuschauer",
+          "Selbstreflexion, Gegner, Verband, Presse"],
+      k: 0,
+      e: "Die Reflexion durch Trainerkolleg*innen heißt im Lehrgang „Coach the Coach“. Zeitlich teilt sich die Auswertung in unmittelbare und distanzierte Nachbereitung." },
+    { c: "Listen & Modelle",
+      q: "Welche vier Organisationsformen nennt der Lehrgang?",
+      a: ["Frontalbetrieb, Gruppenbetrieb, Stationsbetrieb, Kreis- bzw. Zirkeltraining",
+          "Frontalbetrieb, Partnerübung, Stationsbetrieb, Wettkampfform",
+          "Einzeltraining, Gruppentraining, Mannschaftstraining, Zirkeltraining",
+          "Frontalbetrieb, Gruppenbetrieb, Individualphase, Teamphase"],
+      k: 0,
+      e: "Individual- und Teamphase sind Blöcke der Footballeinheit, keine Organisationsformen. Jede der vier Formen hat im Lehrgang ein eigenes Paar aus Vor- und Nachteilen." },
+    { c: "Listen & Modelle",
+      q: "Welche vier Anforderungen stellt der Lehrgang an eine Testbatterie im Nachwuchsleistungssport?",
+      a: ["Wenig Material, geringer Zeitaufwand, einfache Durchführung und Beurteilung, automatisierte Auswertung mit Übungsempfehlungen",
+          "Labornahe Bedingungen, medizinische Aufsicht, Normwerte, jährliche Wiederholung",
+          "Hohe Reliabilität, hohe Validität, hohe Objektivität, hohe Vergleichbarkeit",
+          "Geringe Kosten, kurze Anfahrt, digitale Erfassung, Eltern-Einverständnis"],
+      k: 0,
+      e: "Genau auf diese vier ist das Plus Prevention Program des IAT Leipzig gebaut: „+“ auf dem Boden, Laptop, neun Tests, Radar-Diagramm mit Übungsempfehlungen." },
+    { c: "Listen & Modelle",
+      q: "Welche vier Formen der Schnelligkeit unterscheidet der Lehrgang?",
+      a: ["Reaktionsschnelligkeit, zyklische, azyklische Schnelligkeit, Agility bzw. Handlungsschnelligkeit",
+          "Antrittsschnelligkeit, Maximalgeschwindigkeit, Schnelligkeitsausdauer, Agility",
+          "Reaktionsschnelligkeit, Schnellkraft, Reaktivkraft, Agility",
+          "Zyklische, azyklische, lineare und laterale Schnelligkeit"],
+      k: 0,
+      e: "Schnellkraft und Reaktivkraft sind Kraftformen, nicht Schnelligkeitsformen. Agility ist die footballrelevante Form: Bewegungskombination mit Tempo- und Richtungswechsel." },
+    { c: "Listen & Modelle",
+      q: "Welche drei Saisonphasen nennt die Situationsanalyse für den Football?",
+      a: ["Off-Season, Pre-Season, In-Season",
+          "Vorbereitungs-, Wettkampf- und Übergangsphase",
+          "Aufbau, Wettkampf, Regeneration",
+          "Hallensaison, Feldsaison, Pause"],
+      k: 0,
+      e: "Nicht verwechseln: Vorbereitungs-, Wettkampf- und Übergangsphase sind die Perioden der Periodisierung. Off-, Pre- und In-Season sind die Saisonphasen, nach denen die Situationsanalyse fragt." },
+    { c: "Listen & Modelle",
+      q: "Welche vier Fragen stellt die Situationsanalyse?",
+      a: ["Welche Mannschaft, welcher Ausbildungsstand, welche Rahmenbedingungen, welche Saisonphase und Ziele",
+          "Wer, wie viele, wie lange, wie oft",
+          "Welches Spielsystem, welcher Gegner, welche Verletzten, welches Wetter",
+          "Welches Budget, welches Material, welcher Platz, welcher Trainerstab"],
+      k: 0,
+      e: "Die Mannschaftsfrage umfasst Altersstruktur, Alters-Spread, Mixed-Team, Motive und Breiten- gegen Leistungssport; der Ausbildungsstand homogen oder heterogen und das Leistungsniveau." },
+    { c: "Listen & Modelle",
+      q: "Welche Methode gehört NICHT zu den sechs Methoden des Koordinationstrainings?",
+      a: ["Erhöhung des Trainingsumfangs",
+          "Üben unter Zeitdruck",
+          "Variation der Informationsaufnahme",
+          "Üben nach Vorbelastung"],
+      k: 0,
+      e: "Die sechs sind: Variationen der Bewegungsausführung, Veränderungen der äußeren Bedingungen, Üben unter Zeitdruck, Variation der Informationsaufnahme, Üben nach Vorbelastung, Kombinieren von Bewegungsfertigkeiten." },
+    { c: "Listen & Modelle",
+      q: "Welche fünf Trainingsziele unterscheidet der Lehrgang im Krafttraining?",
+      a: ["Kraftausdauer, Muskelaufbau/Hypertrophie, neuronale bzw. Maximalkraft, Schnellkraft, Reaktivkraft",
+          "Grundlagenkraft, Aufbaukraft, Maximalkraft, Schnellkraft, Explosivkraft",
+          "Kraftausdauer, Maximalkraft, Schnellkraft, Stabilisation, Mobilität",
+          "Hypertrophie, Maximalkraft, Schnellkraft, Sprungkraft, Rumpfkraft"],
+      k: 0,
+      e: "Jedes Ziel hat eine eigene Belastungskonfiguration: 50–60 % für Kraftausdauer, 60–85 % für Hypertrophie, 90–100 % für neuronale Kraft, 30–40 % für Schnellkraft, 100 % für Reaktivkraft." },
   ];
 
   // ========================================================== Formation sketches
@@ -884,6 +1380,84 @@
     ],
   };
 
+
+  // Coverage shells. Same board, but each entry also carries the markings the
+  // Defense-Ueberpruefung asks for: deep defenders get a ring, zone
+  // boundaries in the deep area are dashed verticals, man assignments are
+  // dashed connectors from the defender to the receiver he is locked on.
+  var DEEP_LINE_Y = 62;
+
+  var COVERAGE_FORMATIONS = {
+    "Cover 0": {
+      players: [
+        [118, 100], [166, 100], [214, 100], [266, 100],   // four down linemen
+        [148, 76], [180, 76], [204, 76],                  // three linebackers
+        [36, 96], [92, 88], [252, 86], [304, 96],         // man defenders
+      ],
+      deep: [],
+      dividers: [],
+      man: [[36, 96, 36, 122], [92, 88, 92, 134],
+            [252, 86, 252, 122], [304, 96, 310, 134]],
+    },
+    "Cover 1": {
+      players: [
+        [118, 100], [166, 100], [214, 100], [266, 100],
+        [148, 76], [204, 76],                             // two linebackers
+        [36, 96], [92, 88], [252, 86], [304, 96],         // man defenders
+        [180, 28],                                        // free safety, deep middle
+      ],
+      deep: [[180, 28]],
+      dividers: [],
+      man: [[36, 96, 36, 122], [92, 88, 92, 134],
+            [252, 86, 252, 122], [304, 96, 310, 134]],
+    },
+    "Cover 2": {
+      players: [
+        [118, 100], [166, 100], [214, 100], [266, 100],
+        [136, 76], [180, 76], [224, 76],                  // three linebackers
+        [36, 96], [304, 96],                              // corners in the flat
+        [120, 32], [240, 32],                             // two deep halves
+      ],
+      deep: [[120, 32], [240, 32]],
+      dividers: [180],
+      man: [],
+    },
+    "Cover 3": {
+      players: [
+        [118, 100], [166, 100], [214, 100], [266, 100],
+        [140, 76], [212, 76],                             // two linebackers
+        [92, 86], [252, 84],                              // curl-flat players
+        [44, 34], [316, 34], [180, 28],                   // three deep thirds
+      ],
+      deep: [[44, 34], [316, 34], [180, 28]],
+      dividers: [110, 250],
+      man: [],
+    },
+    "Cover 4": {
+      players: [
+        [118, 100], [166, 100], [214, 100], [266, 100],
+        [140, 78], [180, 78], [220, 78],                  // three linebackers
+        [40, 34], [128, 30], [232, 30], [320, 34],        // four deep quarters
+      ],
+      deep: [[40, 34], [128, 30], [232, 30], [320, 34]],
+      dividers: [84, 180, 276],
+      man: [],
+    },
+  };
+
+  var SKETCH_SETS = {
+    Offense: OFFENSE_FORMATIONS,
+    Defense: DEFENSE_FORMATIONS,
+    Coverage: COVERAGE_FORMATIONS,
+  };
+
+  var SKETCH_PROMPT = {
+    Offense: "Welche Offense-Formation zeigt die Skizze?",
+    Defense: "Welche Defensiv-Front zeigt die Skizze? (Offense grau angedeutet)",
+    Coverage: "Welche Coverage zeigt die Skizze? (Deep-Spieler eingekreist, "
+      + "Zonengrenzen gestrichelt, Man-Zuordnungen als Verbindung)",
+  };
+
   var FORMATION_QUESTIONS = [
     { c: "Offense", f: "I-Formation",
       e: "Quarterback unter dem Center, Fullback und Halfback in einer Linie dahinter (21 personnel: 2 Backs, 1 Tight End). Klassische Downhill-Run-Formation." },
@@ -909,6 +1483,16 @@
       e: "Drei Linemen, drei Linebacker, fünf Defensive Backs mit zwei Overhang-Spielern – ein flexibler Stack-Look, beliebt gegen Spread-Offenses." },
     { c: "Defense", f: "Goal Line (6-2)",
       e: "Sechs Down-Linemen dicht an dicht, zwei Linebacker, nur drei Defensive Backs – maximale Masse an der Line, typisch in Goal-Line-Situationen." },
+    { c: "Coverage", f: "Cover 0",
+      e: "Kein Deep-Spieler: alle Receiver werden in Man gedeckt, es gibt keine Hilfe in der Tiefe. Maximaler Druck, maximales Risiko – ein tiefer Ball gegen einen geschlagenen Verteidiger ist ein Touchdown." },
+    { c: "Coverage", f: "Cover 1",
+      e: "Ein Deep-Spieler: Man Free. Der Free Safety deckt die Mitte in der Tiefe ab, darunter läuft Man Coverage. Antwort in der Überprüfung: Man mit einem Deep-Spieler." },
+    { c: "Coverage", f: "Cover 2",
+      e: "Zwei Deep-Spieler, die das Feld in zwei Hälften teilen; die Corners spielen die Flats. Zone mit zwei Deep-Spielern und fünf Unterzonen – die Naht zwischen den Hälften ist die Schwachstelle." },
+    { c: "Coverage", f: "Cover 3",
+      e: "Drei Deep-Spieler: beide Corners und der Free Safety teilen das Feld in Drittel, der Strong Safety rollt herunter. Zone mit drei Deep- und vier Unterzonen-Spielern." },
+    { c: "Coverage", f: "Cover 4",
+      e: "Vier Deep-Spieler (Quarters): Corners und Safeties teilen das Feld in Viertel. Stark gegen tiefe Pässe, aber nur drei Spieler gegen den Lauf in der Box." },
   ];
 
   var SVG_NS = "http://www.w3.org/2000/svg";
@@ -936,6 +1520,31 @@
     });
   }
 
+
+  // Deep ring, zone boundaries and man connectors for a coverage sketch.
+  function drawCoverageMarks(svg, coverage) {
+    if (coverage.deep.length > 0) {
+      svg.appendChild(svgEl("line", {
+        x1: 8, y1: DEEP_LINE_Y, x2: 352, y2: DEEP_LINE_Y, "class": "clqf__zone",
+      }));
+    }
+    coverage.dividers.forEach(function (x) {
+      svg.appendChild(svgEl("line",
+        { x1: x, y1: 10, x2: x, y2: DEEP_LINE_Y, "class": "clqf__zone" }));
+    });
+    coverage.man.forEach(function (m) {
+      svg.appendChild(svgEl("line",
+        { x1: m[0], y1: m[1], x2: m[2], y2: m[3], "class": "clqf__man" }));
+    });
+  }
+
+  function drawDeepRings(svg, deep) {
+    deep.forEach(function (p) {
+      svg.appendChild(svgEl("circle",
+        { cx: p[0], cy: p[1], r: 11, "class": "clqf__deep" }));
+    });
+  }
+
   function buildSketch(item) {
     var svg = svgEl("svg", {
       viewBox: "0 0 360 220", "class": "clqf",
@@ -943,11 +1552,18 @@
     });
     svg.appendChild(svgEl("line",
       { x1: 8, y1: LOS_Y, x2: 352, y2: LOS_Y, "class": "clqf__los" }));
-    if (item.c === "Defense") {
-      drawPlayers(svg, REFERENCE_OFFENSE, "clqf__ghost");
-      drawPlayers(svg, DEFENSE_FORMATIONS[item.f], "clqf__def");
-    } else {
+    if (item.c === "Offense") {
       drawPlayers(svg, OFFENSE_FORMATIONS[item.f], "clqf__off");
+      return svg;
+    }
+    drawPlayers(svg, REFERENCE_OFFENSE, "clqf__ghost");
+    if (item.c === "Coverage") {
+      var coverage = COVERAGE_FORMATIONS[item.f];
+      drawCoverageMarks(svg, coverage);
+      drawPlayers(svg, coverage.players, "clqf__def");
+      drawDeepRings(svg, coverage.deep);
+    } else {
+      drawPlayers(svg, DEFENSE_FORMATIONS[item.f], "clqf__def");
     }
     return svg;
   }
@@ -956,14 +1572,12 @@
   // names drawn from the same side of the ball.
   function formationQuestions() {
     return FORMATION_QUESTIONS.map(function (item) {
-      var pool = Object.keys(item.c === "Defense" ? DEFENSE_FORMATIONS : OFFENSE_FORMATIONS)
+      var pool = Object.keys(SKETCH_SETS[item.c])
         .filter(function (name) { return name !== item.f; });
       var wrong = shuffled(pool).slice(0, 3);
       return {
         c: item.c,
-        q: item.c === "Defense"
-          ? "Welche Defensiv-Front zeigt die Skizze? (Offense grau angedeutet)"
-          : "Welche Offense-Formation zeigt die Skizze?",
+        q: SKETCH_PROMPT[item.c],
         a: [item.f].concat(wrong),
         k: 0,
         e: item.e,
@@ -1005,6 +1619,9 @@
     ".clqf__off{fill:var(--accent,#b4620e);stroke:none}",
     ".clqf__def line{stroke:var(--link,#3e3170);stroke-width:2.6;stroke-linecap:round}",
     ".clqf__ghost{fill:none;stroke:var(--muted,#888);stroke-width:1.3;opacity:0.45}",
+    ".clqf__deep{fill:none;stroke:var(--link,#3e3170);stroke-width:1.4;opacity:0.8}",
+    ".clqf__zone{stroke:var(--link,#3e3170);stroke-width:1.1;stroke-dasharray:4 4;opacity:0.55}",
+    ".clqf__man{stroke:var(--link,#3e3170);stroke-width:1.2;stroke-dasharray:2 3;opacity:0.7}",
     "rect.clqf__ghost,circle.clqf__ghost{fill:none}",
   ].join("\n");
 
@@ -1188,7 +1805,8 @@
       new Quiz(recallMount, RECALL_QUESTIONS,
         "Begriffslisten, die wortwörtlich sitzen müssen ("
         + RECALL_QUESTIONS.length + " Fragen). DORFKRUG wird Buchstabe für "
-        + "Buchstabe abgefragt, der Leistungsaufbau Etappe für Etappe. "
+        + "Buchstabe abgefragt, der Leistungsaufbau Etappe für Etappe, dazu "
+        + "die Reihenfolgen und die Listen aus den Lehrgangsfolien. "
         + "Bestehensgrenze hier: 90 %.",
         { passThreshold: 0.9 });
     }
@@ -1196,8 +1814,10 @@
       new Quiz(formationMount, formationQuestions(),
         "Erkenne die Formation anhand der Skizze: Kreise = Offense (Quadrat = Center), "
         + "Kreuze = Defense, gestrichelte Linie = Line of Scrimmage. Die graue "
-        + "Offense in den Defense-Skizzen ist nur eine räumliche Referenz. "
-        + "Wähle Offense, Defense oder beides.");
+        + "Offense in den Defense- und Coverage-Skizzen ist nur eine räumliche "
+        + "Referenz. In den Coverage-Skizzen sind Deep-Spieler eingekreist, "
+        + "Zonengrenzen gestrichelt und Man-Zuordnungen als Verbindung zum "
+        + "Receiver gezeichnet. Wähle Offense, Defense, Coverage oder alles.");
     }
   }
 
