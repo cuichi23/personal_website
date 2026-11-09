@@ -78,29 +78,45 @@ bearings to known base stations place the receiver, or, run in reverse, place a 
 emitter.</p>
 <p>Behind the glass: the full write-up with the equations, the honest limits, and two
 interactive benches, one for the spoof detector and one for the direction finder, labelled
-in base-station and local-receiver terms throughout.</p></div>
+in base-station and local-receiver terms throughout.</p>
+<p>This work is a collaboration between the Max Planck Institute for the Physics of Complex
+Systems (MPI-PKS) in Dresden and the Chair of Circuit Design and Network Theory at TU
+Dresden, with Rabia Riaz, Christian Hoyer and Dimitris Prousalis.</p></div>
 
 <div class="prose prose--panel prose--flow" data-gate-intro hidden></div>
 
-<section class="gate"         data-payload="/tools/gnss-localization/payload.json"
+<section class="gate" data-gate         data-payload="/tools/gnss-localization/payload.json"
          aria-labelledby="gate-heading">
-  <div class="gate__stage gate__stage--bare"
+  <div class="gate__stage"
        data-gate-stage>
+    <img class="gate__poster" src="/tools/gnss-localization/poster.jpg" alt=""
+         width="1200" height="944" aria-hidden="true">
     <div class="gate__glass" aria-hidden="true"></div>
 
     <div class="gate__panel">
-      <p class="gate__eyebrow">In preparation</p>
+      <p class="gate__eyebrow">Locked</p>
       <h2 class="gate__heading" id="gate-heading">Two live benches: spoof detection and direction finding</h2>
       <p class="gate__blurb">A network of coupled clocks that holds true time without GNSS and catches a spoofing carry-off as a divergence from its own consensus, and a pair of coupled loops that hears the direction of a base station well enough to place a receiver or a hostile emitter. Both run in your browser, with base-station and local-receiver labels throughout. Unpublished, so behind a password.</p>
+
+      <form class="gate__form" data-gate-form>
+        <label class="gate__label" for="gate-password">Password</label>
+        <div class="gate__row">
+          <input class="gate__input" id="gate-password" type="password"
+                 autocomplete="off" spellcheck="false" required
+                 placeholder="…" data-gate-input>
+          <button class="button gate__submit" type="submit" data-gate-submit>Unlock</button>
+        </div>
+        <p class="gate__message" role="status" aria-live="polite" data-gate-message></p>
+      </form>
+
       <p class="gate__fineprint">
-        This section is being written. There is nothing to unlock yet. Once it is
-        ready, the material here will be stored encrypted and opened with a
-        password in your browser, as the rest of this site does it.
+        This material is stored encrypted and is decrypted in your browser. Nothing
+        you type is sent anywhere. It stays open until you reload the page.
       </p>
     </div>
   </div>
 
-  <p class="gate__caption" data-gate-caption>Two tabs behind the glass: spoof detection, and emitter or self localization. Everything runs client-side; nothing is sent anywhere.</p>
+  <p class="gate__caption" data-gate-caption>Above: the two benches out of focus, blurred in the file itself so no label is legible. Behind the glass: spoof detection and emitter or self localization, both client-side, with nothing sent anywhere.</p>
 </section>
 </main>
 
@@ -140,5 +156,5 @@ in base-station and local-receiver terms throughout.</p></div>
 <script defer src="/assets/vendor/katex/katex.min.js"></script>
 <script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
 <script defer src="/assets/js/site.js?v=79a842a6"></script>
-</body>
+<script defer src="/assets/js/gate.js?v=79a842a6"></script></body>
 </html>

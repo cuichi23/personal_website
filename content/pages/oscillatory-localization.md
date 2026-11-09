@@ -4,6 +4,7 @@ slug: oscillatory-computing/localization
 nav_order: 99
 template: gated.html
 gate_payload: gnss-localization
+gate_poster: /tools/gnss-localization/poster.jpg
 eyebrow: Oscillatory computing · interactive demonstrators
 gate_heading: "Two live benches: spoof detection and direction finding"
 gate_blurb: >-
@@ -13,8 +14,9 @@ gate_blurb: >-
   a receiver or a hostile emitter. Both run in your browser, with base-station
   and local-receiver labels throughout. Unpublished, so behind a password.
 gate_caption: >-
-  Two tabs behind the glass: spoof detection, and emitter or self localization.
-  Everything runs client-side; nothing is sent anywhere.
+  Above: the two benches out of focus, blurred in the file itself so no label is
+  legible. Behind the glass: spoof detection and emitter or self localization,
+  both client-side, with nothing sent anywhere.
 summary: >-
   Coupled oscillators for GNSS-independent timing, spoof detection and passive
   direction finding. Two interactive benches, by password.
@@ -38,3 +40,7 @@ emitter.
 Behind the glass: the full write-up with the equations, the honest limits, and two
 interactive benches, one for the spoof detector and one for the direction finder, labelled
 in base-station and local-receiver terms throughout.
+
+This work is a collaboration between the Max Planck Institute for the Physics of Complex
+Systems (MPI-PKS) in Dresden and the Chair of Circuit Design and Network Theory at TU
+Dresden, with Rabia Riaz, Christian Hoyer and Dimitris Prousalis.
