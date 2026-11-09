@@ -123,3 +123,23 @@ anabrid_projects:
       Burgers equation and not on data, and what it takes to run it on the REDAC.
       A live bench of the trained network and of the circuit's cost runs in the
       browser behind the password.
+
+# The Oscillatory computing section. Lucas Wetzel's own research on
+# unconventional computing with coupled oscillators. Separate from the anabrid
+# work and encrypted under its own password.
+oscillatory_projects:
+  - title: PLL-based oscillatory networks
+    slug: pll-networks
+    status: in review
+    summary: >-
+      A square lattice of delay-coupled phase oscillators with a second,
+      order-parameter channel, run live in the browser. The model and what it
+      computes sit behind the password until the manuscript is out.
+  - title: GNSS-independent localization and timing
+    slug: localization
+    status: demonstrators
+    summary: >-
+      Mutually coupled clocks that hold true time without GNSS, detect a
+      spoofing carry-off as a divergence from their own consensus, and hear the
+      direction of a signal well enough to place a receiver or a hostile emitter.
+      Two interactive benches behind the password.

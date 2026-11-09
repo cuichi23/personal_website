@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Oscillatory computing · Lucas Wetzel</title>
-<meta name="description" content="An interactive panel from work in preparation. Access by password.">
+<meta name="description" content="My own research on computing with networks of coupled oscillators. Each project is described in the open; the models, the live benches and the measurements sit behind a password.">
 <meta name="author" content="Lucas Wetzel">
 <link rel="canonical" href="https://lucaswetzel.de/oscillatory-computing/">
 <meta property="og:site_name" content="Lucas Wetzel">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Oscillatory computing · Lucas Wetzel">
-<meta property="og:description" content="An interactive panel from work in preparation. Access by password.">
+<meta property="og:description" content="My own research on computing with networks of coupled oscillators. Each project is described in the open; the models, the live benches and the measurements sit behind a password.">
 <meta property="og:url" content="https://lucaswetzel.de/oscillatory-computing/">
 <link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
@@ -59,54 +59,40 @@
 
 <main id="main">
 <header class="page-head">
-  <p class="eyebrow">Work in progress · access by password</p>
+  <p class="eyebrow">My own research · unconventional computing with coupled oscillators</p>
   <h1 class="page-head__title">Oscillatory computing</h1>
-<p class="page-head__standfirst">An interactive panel from work in preparation. Access by password.</p></header>
+<p class="page-head__standfirst">My own research on computing with networks of coupled oscillators. Each project is described in the open; the models, the live benches and the measurements sit behind a password.</p></header>
 
 <div class="prose prose--panel prose--flow"><p>A network of coupled oscillators does not only keep time. It settles, and which state it
 settles into is fixed by the conditions it was placed in rather than by an instruction.
 Read the right way, a state a network settles into is an answer to something. That is the
-direction this page is about, and the reason the
-<a href="/research/">synchronization work</a> and the analog computing sit in the same career.</p>
-<p>The panel behind the glass belongs to a manuscript that is still in review. Its model, its
-parameters and what it computes are behind the password with it, and stay there until the
-manuscript is out. If you want to look at it before then, ask me.</p></div>
+direction these projects are about, and the reason the <a href="/research/">synchronization work</a>
+and the analog computing sit in the same career.</p>
+<p>The projects below share one password, separate from the anabrid work. Each page says in
+the open what the work is and why it is hard. The model, the interactive bench and the
+numbers are behind the password, because most of this is unpublished. If you want to look
+before it is out, ask me.</p></div>
 
-<div class="prose prose--panel prose--flow" data-gate-intro hidden></div>
-
-<section class="gate" data-gate         data-payload="/tools/oscillatory-computing/payload.json"
-         aria-labelledby="gate-heading">
-  <div class="gate__stage"
-       data-gate-stage>
-    <img class="gate__poster" src="/tools/oscillatory-computing/poster.jpg" alt=""
-         width="1200" height="944" aria-hidden="true">
-    <div class="gate__glass" aria-hidden="true"></div>
-
-    <div class="gate__panel">
-      <p class="gate__eyebrow">Locked</p>
-      <h2 class="gate__heading" id="gate-heading">The panel behind the glass</h2>
-      <p class="gate__blurb">A simulation that runs in your browser rather than on a server, and the text that explains what it does. Both belong to a manuscript still in review, so both are kept here until that is out.</p>
-
-      <form class="gate__form" data-gate-form>
-        <label class="gate__label" for="gate-password">Password</label>
-        <div class="gate__row">
-          <input class="gate__input" id="gate-password" type="password"
-                 autocomplete="off" spellcheck="false" required
-                 placeholder="…" data-gate-input>
-          <button class="button gate__submit" type="submit" data-gate-submit>Unlock</button>
-        </div>
-        <p class="gate__message" role="status" aria-live="polite" data-gate-message></p>
-      </form>
-
-      <p class="gate__fineprint">
-        This material is stored encrypted and is decrypted in your browser. Nothing
-        you type is sent anywhere. It stays open until you reload the page.
-      </p>
+<ol class="post-list">
+  <li class="post-list__item">
+    <p class="post-list__date">in review</p>
+    <div>
+      <h2 class="post-list__title">
+        <a href="/oscillatory-computing/pll-networks/">PLL-based oscillatory networks</a>
+      </h2>
+      <p class="post-list__summary">A square lattice of delay-coupled phase oscillators with a second, order-parameter channel, run live in the browser. The model and what it computes sit behind the password until the manuscript is out.</p>
     </div>
-  </div>
-
-  <p class="gate__caption" data-gate-caption>Above: the panel out of focus. The image is blurred in the file itself, not only by the stylesheet, and it carries no text, so turning the stylesheet off shows you no more than this does.</p>
-</section>
+  </li>
+  <li class="post-list__item">
+    <p class="post-list__date">demonstrators</p>
+    <div>
+      <h2 class="post-list__title">
+        <a href="/oscillatory-computing/localization/">GNSS-independent localization and timing</a>
+      </h2>
+      <p class="post-list__summary">Mutually coupled clocks that hold true time without GNSS, detect a spoofing carry-off as a divergence from their own consensus, and hear the direction of a signal well enough to place a receiver or a hostile emitter. Two interactive benches behind the password.</p>
+    </div>
+  </li>
+</ol>
 </main>
 
 <footer class="colophon">
@@ -145,5 +131,5 @@ manuscript is out. If you want to look at it before then, ask me.</p></div>
 <script defer src="/assets/vendor/katex/katex.min.js"></script>
 <script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
 <script defer src="/assets/js/site.js?v=79a842a6"></script>
-<script defer src="/assets/js/gate.js?v=79a842a6"></script></body>
+</body>
 </html>

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GNSS-independent localization and timing · Lucas Wetzel</title>
+<meta name="description" content="Coupled oscillators for GNSS-independent timing, spoof detection and passive direction finding. Two interactive benches, by password.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/oscillatory-computing/localization/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GNSS-independent localization and timing · Lucas Wetzel">
+<meta property="og:description" content="Coupled oscillators for GNSS-independent timing, spoof detection and passive direction finding. Two interactive benches, by password.">
+<meta property="og:url" content="https://lucaswetzel.de/oscillatory-computing/localization/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // GitHub Pages cannot send X-Frame-Options or a CSP frame-ancestors directive,
+  // so this is the only lever there is. Mark the document before the body is
+  // parsed; the stylesheet then keeps the content hidden until site.js has
+  // replaced it with a notice. Marking rather than navigating is deliberate:
+  // browsers increasingly refuse an automatic top navigation from a frame and
+  // leave a blank box behind, which tells the reader nothing.
+  if (window.self !== window.top) document.documentElement.dataset.framed = "";
+</script>
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=79a842a6">
+<link rel="stylesheet" href="/assets/css/site.css?v=79a842a6">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/research/">Research</a>
+      <a href="/projects/">Current projects</a>
+      <a href="/projects-anabrid/">Projects@anabrid</a>
+      <a href="/oscillatory-computing/" aria-current="page">Oscillatory computing</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<header class="page-head">
+  <p class="eyebrow">Oscillatory computing · interactive demonstrators</p>
+  <h1 class="page-head__title">GNSS-independent localization and timing</h1>
+<p class="page-head__standfirst">Coupled oscillators for GNSS-independent timing, spoof detection and passive direction finding. Two interactive benches, by password.</p></header>
+
+<div class="prose prose--panel prose--flow"><p>Positioning, navigation and timing hang on one thread, and the thread is GNSS. Cut it and
+a surprising amount stops working; fake it and the failure hides, because the receiver
+keeps producing a position and a time that are wrong and look fine. This project asks what
+a network of coupled oscillators can do about that, using the same self-organized
+synchronization that runs through the <a href="/research/">rest of the research</a>.</p>
+<p>Two capabilities come out of one kind of hardware. A network of <strong>base stations (BS)</strong>,
+each a phase-locked loop, settles into a shared reference clock with no master and without
+knowing the delays between them. Because that reference never reads GNSS, a <strong>local
+receiver (LR)</strong> can catch a spoofing carry-off simply by watching its GNSS clock drift
+away from the network consensus. The same coupled loops, a baseline apart, hear the
+direction of an incoming wavefront from the tiny difference in its arrival time, so a few
+bearings to known base stations place the receiver, or, run in reverse, place a hostile
+emitter.</p>
+<p>Behind the glass: the full write-up with the equations, the honest limits, and two
+interactive benches, one for the spoof detector and one for the direction finder, labelled
+in base-station and local-receiver terms throughout.</p></div>
+
+<div class="prose prose--panel prose--flow" data-gate-intro hidden></div>
+
+<section class="gate"         data-payload="/tools/gnss-localization/payload.json"
+         aria-labelledby="gate-heading">
+  <div class="gate__stage gate__stage--bare"
+       data-gate-stage>
+    <div class="gate__glass" aria-hidden="true"></div>
+
+    <div class="gate__panel">
+      <p class="gate__eyebrow">In preparation</p>
+      <h2 class="gate__heading" id="gate-heading">Two live benches: spoof detection and direction finding</h2>
+      <p class="gate__blurb">A network of coupled clocks that holds true time without GNSS and catches a spoofing carry-off as a divergence from its own consensus, and a pair of coupled loops that hears the direction of a base station well enough to place a receiver or a hostile emitter. Both run in your browser, with base-station and local-receiver labels throughout. Unpublished, so behind a password.</p>
+      <p class="gate__fineprint">
+        This section is being written. There is nothing to unlock yet. Once it is
+        ready, the material here will be stored encrypted and opened with a
+        password in your browser, as the rest of this site does it.
+      </p>
+    </div>
+  </div>
+
+  <p class="gate__caption" data-gate-caption>Two tabs behind the glass: spoof detection, and emitter or self localization. Everything runs client-side; nothing is sent anywhere.</p>
+</section>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/research/">Research</a></li>
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=79a842a6"></script>
+</body>
+</html>
