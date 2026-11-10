@@ -35,7 +35,9 @@ receiver (LR)** can catch a spoofing carry-off simply by watching its GNSS clock
 away from the network consensus. The same coupled loops, a baseline apart, hear the
 direction of an incoming wavefront from the tiny difference in its arrival time, so a few
 bearings to known base stations place the receiver, or, run in reverse, place a hostile
-emitter.
+emitter. Because a reflected (multipath) copy of a signal points at no known anchor, a
+consensus over many fast measurements throws it out, which the second bench lets you turn
+up and watch.
 
 Behind the glass: the full write-up with the equations, the honest limits, and two
 interactive benches, one for the spoof detector and one for the direction finder, labelled
