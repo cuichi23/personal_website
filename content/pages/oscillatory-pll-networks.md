@@ -18,12 +18,11 @@ gate_caption: >-
 summary: An interactive lattice panel from work in preparation. Access by password.
 ---
 
-A square lattice of phase oscillators, each coupled to its four nearest neighbours through
-a loop filter and a transmission delay, with a second channel that carries the local order
-parameter instead of a neighbour's phase. The question is what happens between the delayed
-channel, which can push neighbours apart once its phase shift passes a quarter cycle, and
-the instantaneous one, which pulls every site the same way at once.
+An interactive panel of phase oscillators on a square lattice, each a phase-locked loop
+coupled to its nearest neighbours through a real loop filter and a transmission delay. It
+runs the model live in your browser, so you can drive the network between its collective
+states and watch it settle.
 
-The panel behind the glass belongs to a manuscript that is still in review. Its model, its
-parameters and what it computes are behind the password with it, and stay there until the
-manuscript is out. If you want to look at it before then, ask me.
+The panel, its model, its parameters and what it computes belong to a manuscript that is
+still in review, and stay behind the password until that is out. If you want to look at it
+before then, ask me.
