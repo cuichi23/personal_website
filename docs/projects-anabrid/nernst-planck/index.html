@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ion transport on an analog computer · Lucas Wetzel</title>
+<meta name="description" content="Two ion species diffuse and drift in an electric field that they create themselves. The field is fixed by a constraint, not by a differential equation in time. This project solves that system on the REDAC analog computer and measures it against solvers on a central processing unit and a graphics processing unit.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects-anabrid/nernst-planck/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ion transport on an analog computer · Lucas Wetzel">
+<meta property="og:description" content="Two ion species diffuse and drift in an electric field that they create themselves. The field is fixed by a constraint, not by a differential equation in time. This project solves that system on the REDAC analog computer and measures it against solvers on a central processing unit and a graphics processing unit.">
+<meta property="og:url" content="https://lucaswetzel.de/projects-anabrid/nernst-planck/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // GitHub Pages cannot send X-Frame-Options or a CSP frame-ancestors directive,
+  // so this is the only lever there is. Mark the document before the body is
+  // parsed; the stylesheet then keeps the content hidden until site.js has
+  // replaced it with a notice. Marking rather than navigating is deliberate:
+  // browsers increasingly refuse an automatic top navigation from a frame and
+  // leave a blank box behind, which tells the reader nothing.
+  if (window.self !== window.top) document.documentElement.dataset.framed = "";
+</script>
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=79a842a6">
+<link rel="stylesheet" href="/assets/css/site.css?v=79a842a6">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/research/">Research</a>
+      <a href="/projects/">Current projects</a>
+      <a href="/projects-anabrid/" aria-current="page">Projects@anabrid</a>
+      <a href="/oscillatory-computing/">Oscillatory computing</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<header class="page-head">
+  <p class="eyebrow">Projects@anabrid · ion transport with a charge-conservation constraint</p>
+  <h1 class="page-head__title">Ion transport on an analog computer</h1>
+<p class="page-head__standfirst">Two ion species diffuse and drift in an electric field that they create themselves. The field is fixed by a constraint, not by a differential equation in time. This project solves that system on the REDAC analog computer and measures it against solvers on a central processing unit and a graphics processing unit.</p></header>
+
+<div class="prose prose--panel prose--flow"><p>Dissolve a salt in water and let the concentration differ from place to place.
+The positive and the negative ion both diffuse. They do not diffuse at the same
+speed, so one runs ahead of the other and an electric field builds up that holds
+them together. The Nernst-Planck system describes this. It couples the transport
+of each species to a potential, and the potential is not stepped in time. It is
+whatever makes charge conservation hold at every instant.</p>
+<h2 id="why-this-is-hard-on-any-computer">Why this is hard on any computer</h2>
+<p>A system with a rule that must hold at every instant, next to equations that
+evolve in time, is a differential-algebraic system. A digital solver treats the
+rule as a linear system to be solved at every step. An analog computer has no
+step and no linear solver. It has integrators, multipliers and wires. So the
+question is how to write the rule into a circuit, and what the circuit costs
+once its coefficients have to fit the converters of a real machine.</p>
+<h2 id="what-we-do">What we do</h2>
+<p>We build the circuit in more than one way, from the one that removes the
+constraint by hand to the one that enforces it with a fast relaxation. We run
+each against a digital reference of the same problem, so that every discrepancy
+has one owner: the discretization, the relaxation, or the hardware. The same
+problem is also run on a central processing unit (CPU) and on a graphics
+processing unit (GPU), to put the analog result next to what a digital
+solver spends.</p>
+<h2 id="what-it-does-not-offer">What it does not offer</h2>
+<p>It is not a claim of speed. Whether a circuit of this kind can beat a digital
+solver on this problem is the open question, and the work is built to answer it
+either way. The statements here are bound to one spatial dimension, to a salt
+with two ion species, and to the REDAC installation we work with.</p>
+<p>Behind the glass: a bench in the browser where the reader moves the diffusivity
+ratio, the grid size and the stiffness of the constraint, the reasoning behind
+the circuit, and the numbers, including where the method falls short. The work
+is unpublished, hence the password.</p></div>
+
+<div class="prose prose--panel prose--flow" data-gate-intro hidden></div>
+
+<section class="gate" data-gate         data-payload="/tools/nernst-planck/payload.json"
+         aria-labelledby="gate-heading">
+  <div class="gate__stage gate__stage--bare"
+       data-gate-stage>
+    <div class="gate__glass" aria-hidden="true"></div>
+
+    <div class="gate__panel">
+      <p class="gate__eyebrow">Locked</p>
+      <h2 class="gate__heading" id="gate-heading">A live bench of the circuit, and what the measurements say</h2>
+      <p class="gate__blurb">A bench in your browser: move the diffusivity ratio, the grid size and the stiffness of the constraint, and watch what each circuit does to the solution. Next to it, the reasoning behind the circuit and the honest comparison with digital solvers. Unpublished, so it is kept behind a password.</p>
+
+      <form class="gate__form" data-gate-form>
+        <label class="gate__label" for="gate-password">Password</label>
+        <div class="gate__row">
+          <input class="gate__input" id="gate-password" type="password"
+                 autocomplete="off" spellcheck="false" required
+                 placeholder="…" data-gate-input>
+          <button class="button gate__submit" type="submit" data-gate-submit>Unlock</button>
+        </div>
+        <p class="gate__message" role="status" aria-live="polite" data-gate-message></p>
+      </form>
+
+      <p class="gate__fineprint">
+        This material is stored encrypted and is decrypted in your browser. Nothing
+        you type is sent anywhere. It stays open until you reload the page.
+      </p>
+    </div>
+  </div>
+
+  <p class="gate__caption" data-gate-caption></p>
+</section>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/research/">Research</a></li>
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=79a842a6"></script>
+<script defer src="/assets/js/gate.js?v=79a842a6"></script></body>
+</html>
