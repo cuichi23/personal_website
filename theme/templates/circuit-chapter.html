@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }} · Analog circuits · {{ site.title }}{% endblock %}
+{% block description %}{{ page.summary or site.description }}{% endblock %}
+{% block canonical %}{{ page.url }}{% endblock %}
+
+{% block main %}
+<article class="post">
+  <header class="post__header">
+    <p class="eyebrow">
+      <a href="/projects/analog-circuits/">Analog circuits</a>{% if page.meta.get('chapter') %} ·
+      Chapter {{ page.meta.get('chapter') }}{% endif %}
+    </p>
+    <h1 class="post__title">{{ page.title }}</h1>
+    {% if page.summary %}<p class="post__standfirst">{{ page.summary }}</p>{% endif %}
+    {% if page.meta.get('status') %}
+    <p class="post__meta-hint">{{ page.meta.get('status') }}</p>
+    {% endif %}
+  </header>
+
+  <div class="prose">{{ page.body }}</div>
+
+  <footer class="post__footer">
+    <nav class="pager" aria-label="Chapters">
+      {% if page.meta.get('prev_url') %}
+      <a class="pager__link pager__link--prev" href="{{ page.meta.get('prev_url') }}">
+        <span class="pager__label">Previous chapter</span>
+        <span class="pager__title">{{ page.meta.get('prev_title') }}</span>
+      </a>
+      {% endif %}
+      {% if page.meta.get('next_url') %}
+      <a class="pager__link pager__link--next" href="{{ page.meta.get('next_url') }}">
+        <span class="pager__label">Next chapter</span>
+        <span class="pager__title">{{ page.meta.get('next_title') }}</span>
+      </a>
+      {% endif %}
+    </nav>
+    <p class="page-foot"><a href="/projects/analog-circuits/">All chapters</a></p>
+  </footer>
+</article>
+<script defer src="/media/analog-circuits/applets.js"></script>
+{% endblock %}

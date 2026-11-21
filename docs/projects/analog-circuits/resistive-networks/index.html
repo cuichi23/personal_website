@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resistive networks and loading · Analog circuits · Lucas Wetzel</title>
+<meta name="description" content="Kirchhoff's two laws, series and parallel, and the voltage divider that hides inside every other circuit. Then the thing textbooks mention and beginners forget: a divider stops dividing the moment something is connected to it. Output resistance, the rule of ten, and why matching a load for maximum power throws half the power away.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects/analog-circuits/resistive-networks/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Resistive networks and loading · Analog circuits · Lucas Wetzel">
+<meta property="og:description" content="Kirchhoff's two laws, series and parallel, and the voltage divider that hides inside every other circuit. Then the thing textbooks mention and beginners forget: a divider stops dividing the moment something is connected to it. Output resistance, the rule of ten, and why matching a load for maximum power throws half the power away.">
+<meta property="og:url" content="https://lucaswetzel.de/projects/analog-circuits/resistive-networks/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // GitHub Pages cannot send X-Frame-Options or a CSP frame-ancestors directive,
+  // so this is the only lever there is. Mark the document before the body is
+  // parsed; the stylesheet then keeps the content hidden until site.js has
+  // replaced it with a notice. Marking rather than navigating is deliberate:
+  // browsers increasingly refuse an automatic top navigation from a frame and
+  // leave a blank box behind, which tells the reader nothing.
+  if (window.self !== window.top) document.documentElement.dataset.framed = "";
+</script>
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=c467844b">
+<link rel="stylesheet" href="/assets/css/site.css?v=c467844b">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/research/">Research</a>
+      <a href="/projects/" aria-current="page">Current projects</a>
+      <a href="/projects-anabrid/">Projects@anabrid</a>
+      <a href="/oscillatory-computing/">Oscillatory computing</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="post">
+  <header class="post__header">
+    <p class="eyebrow">
+      <a href="/projects/analog-circuits/">Analog circuits</a> ·
+      Chapter 2    </p>
+    <h1 class="post__title">Resistive networks and loading</h1>
+<p class="post__standfirst">Kirchhoff's two laws, series and parallel, and the voltage divider that hides inside every other circuit. Then the thing textbooks mention and beginners forget: a divider stops dividing the moment something is connected to it. Output resistance, the rule of ten, and why matching a load for maximum power throws half the power away.</p>    <p class="post__meta-hint">Chapter 2 of 8 · 21 November 2026</p>
+  </header>
+
+  <div class="prose"><h2 id="kirchhoff">Two laws and nothing else</h2>
+<p>Everything in this chapter follows from two statements, both of them
+conservation laws wearing circuit clothes.</p>
+<p><strong>Kirchhoff's current law (KCL).</strong> The currents into any node sum to zero:</p>
+<div class="math math--display" data-tex="\sum_k i_k = 0 .">$$\sum_k i_k = 0 .$$</div>
+<p>Charge does not pile up at a junction. If three wires meet and two carry
+current in, the third carries their sum out.</p>
+<p><strong>Kirchhoff's voltage law (KVL).</strong> The voltages around any closed loop sum to
+zero:</p>
+<div class="math math--display" data-tex="\sum_k v_k = 0 .">$$\sum_k v_k = 0 .$$</div>
+<p>Go round a loop and come back to where you started, and you are at the same
+potential you left. This is only true because the electric field is
+conservative in the quasi-static regime, which is the assumption that quietly
+underlies all of circuit theory. Chapter 4 will say where it stops holding.</p>
+<p>From those two, plus Ohm's law, the two combination rules follow in a line
+each. In series the current is shared and the voltages add:</p>
+<div class="math math--display" data-tex="R_\text{series} = R_1 + R_2 + \dots">$$R_\text{series} = R_1 + R_2 + \dots$$</div>
+<p>In parallel the voltage is shared and the currents add:</p>
+<div class="math math--display" data-tex="\frac{1}{R_\text{parallel}} = \frac{1}{R_1} + \frac{1}{R_2} + \dots
+\qquad\text{so for two resistors}\qquad
+R_1 \parallel R_2 = \frac{R_1 R_2}{R_1 + R_2} .">$$\frac{1}{R_\text{parallel}} = \frac{1}{R_1} + \frac{1}{R_2} + \dots
+\qquad\text{so for two resistors}\qquad
+R_1 \parallel R_2 = \frac{R_1 R_2}{R_1 + R_2} .$$</div>
+<p>Two facts about the parallel rule are worth storing because they let you check
+a result without arithmetic. <strong>A parallel combination is always smaller than
+the smallest of its parts</strong>, and if one resistor is at least ten times the
+other, the combination is within 10 % of the smaller one. Most of the
+estimating in this chapter is that second sentence.</p>
+<h2 id="divider">The voltage divider</h2>
+<p>Two resistors in series across a source, output taken from the middle. It is
+the most common sub-circuit there is, and the formula is one application of
+each law:</p>
+<div class="math math--display" data-tex="V_\text{out} = V_\text{in}\,\frac{R_2}{R_1 + R_2} .">$$V_\text{out} = V_\text{in}\,\frac{R_2}{R_1 + R_2} .$$</div>
+<p>Here <span class="math math--inline" data-tex="R_1">$R_1$</span> is the upper resistor, between the input and the output node, and
+<span class="math math--inline" data-tex="R_2">$R_2$</span> the lower one, between the output node and ground.</p>
+<p>Notice what the formula does <strong>not</strong> contain: any absolute resistance. Only the
+ratio matters. A 1 kΩ/1 kΩ divider and a 1 MΩ/1 MΩ divider both halve the
+input. They are not interchangeable, and the reason is the whole rest of this
+chapter.</p>
+<h3 id="output-resistance">What the divider looks like from outside</h3>
+<p>Chapter 1 ended with the claim that any two-terminal linear network collapses
+to one source and one resistance. Apply it here.</p>
+<p>The open-circuit voltage is the divider formula above. For the resistance, the
+recipe is: <strong>set every independent source to zero and look back into the
+terminals.</strong> Setting a voltage source to zero means replacing it with a short,
+because that is the resistance of an ideal voltage source. Do that, and <span class="math math--inline" data-tex="R_1">$R_1$</span>
+and <span class="math math--inline" data-tex="R_2">$R_2$</span> both run from the output node to ground. They are in parallel:</p>
+<div class="math math--display" data-tex="V_\mathrm{th} = V_\text{in}\,\frac{R_2}{R_1 + R_2},
+\qquad
+R_\mathrm{th} = R_1 \parallel R_2 = \frac{R_1R_2}{R_1 + R_2} .">$$V_\mathrm{th} = V_\text{in}\,\frac{R_2}{R_1 + R_2},
+\qquad
+R_\mathrm{th} = R_1 \parallel R_2 = \frac{R_1R_2}{R_1 + R_2} .$$</div>
+<p>So the divider <em>is</em> a real voltage source in the sense of chapter 1, and its
+internal resistance is the parallel combination. The 1 kΩ divider has
+<span class="math math--inline" data-tex="R_\mathrm{th} = 500\ \Omega">$R_\mathrm{th} = 500\ \Omega$</span>; the 1 MΩ divider has <span class="math math--inline" data-tex="R_\mathrm{th} =
+500\ \mathrm{k}\Omega">$R_\mathrm{th} =
+500\ \mathrm{k}\Omega$</span>. Identical ratios, internal resistances a thousand
+apart. That is the difference between them, and it only shows up when
+something is connected.</p>
+<h2 id="loading">Loading</h2>
+<p>Connect a load <span class="math math--inline" data-tex="R_\mathrm{L}">$R_\mathrm{L}$</span> from the output node to ground. It sits in
+parallel with <span class="math math--inline" data-tex="R_2">$R_2$</span>, and the divider now divides with that combination instead:</p>
+<div class="math math--display" data-tex="V_\text{out} = V_\text{in}\,
+\frac{R_2 \parallel R_\mathrm{L}}{R_1 + (R_2 \parallel R_\mathrm{L})} .">$$V_\text{out} = V_\text{in}\,
+\frac{R_2 \parallel R_\mathrm{L}}{R_1 + (R_2 \parallel R_\mathrm{L})} .$$</div>
+<p>Since a parallel combination is always smaller than either part, the lower leg
+has shrunk, and <strong>the output is always lower than the unloaded formula
+promised.</strong> Never higher. The error has a sign, and knowing the sign is half of
+estimating it.</p>
+<p>In terms of the Thévenin picture the same statement is one divider:</p>
+<div class="math math--display" data-tex="V_\text{out} = V_\mathrm{th}\,
+\frac{R_\mathrm{L}}{R_\mathrm{th} + R_\mathrm{L}} ,">$$V_\text{out} = V_\mathrm{th}\,
+\frac{R_\mathrm{L}}{R_\mathrm{th} + R_\mathrm{L}} ,$$</div>
+<p>which says the whole thing depends on one ratio, <span class="math math--inline" data-tex="R_\mathrm{L}/R_\mathrm{th}">$R_\mathrm{L}/R_\mathrm{th}$</span>.
+That is the number to think in.</p>
+<h3 id="bench-divider">The bench</h3>
+<p>Set the two resistors, then bring the load down from the open circuit and watch
+the curve leave the dashed line.</p>
+<div class="ac-bench" data-applet="loaded-divider">
+<p class="ac-fallback">This bench needs JavaScript. The two expressions above
+are what it evaluates.</p>
+</div>
+
+<h3 id="rule-of-ten">The rule of ten</h3>
+<p>Put numbers on the ratio and the working rule falls out:</p>
+<table>
+<thead>
+<tr>
+<th><span class="math math--inline" data-tex="R_\mathrm{L}/R_\mathrm{th}">$R_\mathrm{L}/R_\mathrm{th}$</span></th>
+<th>output as a fraction of <span class="math math--inline" data-tex="V_\mathrm{th}">$V_\mathrm{th}$</span></th>
+<th>error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0.500</td>
+<td>−50 %</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0.750</td>
+<td>−25 %</td>
+</tr>
+<tr>
+<td>10</td>
+<td>0.909</td>
+<td>−9.1 %</td>
+</tr>
+<tr>
+<td>100</td>
+<td>0.990</td>
+<td>−0.99 %</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>0.999</td>
+<td>−0.1 %</td>
+</tr>
+</tbody>
+</table>
+<p>The shape is <span class="math math--inline" data-tex="R_\mathrm{L}/(R_\mathrm{th}+R_\mathrm{L})">$R_\mathrm{L}/(R_\mathrm{th}+R_\mathrm{L})$</span>, so the error is
+roughly <span class="math math--inline" data-tex="-R_\mathrm{th}/R_\mathrm{L}">$-R_\mathrm{th}/R_\mathrm{L}$</span> once the ratio is comfortably above one.
+A factor of ten costs about 10 %; a factor of a hundred costs about 1 %.</p>
+<p><strong>The rule of ten</strong> — make the input resistance of a stage at least ten times
+the output resistance of the one before it — is therefore a 10 % rule, not an
+accuracy guarantee. It is the right default when you are deciding whether a
+circuit is sane. It is the wrong default when you need a measurement, and then
+you want a hundred, or a buffer.</p>
+<p>This is also the honest answer to "why not just use megohm dividers
+everywhere, they waste less current". Because <span class="math math--inline" data-tex="R_\mathrm{th}">$R_\mathrm{th}$</span> scales with them,
+and at 500 kΩ almost everything you might connect is a load.</p>
+<h3 id="consequences">Two worked consequences</h3>
+<p><strong>A multimeter is a load.</strong> A 10 MΩ input measuring the 1 MΩ/1 MΩ divider sees
+<span class="math math--inline" data-tex="R_\mathrm{th} = 500\ \mathrm{k}\Omega">$R_\mathrm{th} = 500\ \mathrm{k}\Omega$</span>, a ratio of 20, and reads about 4.8 %
+low. The reading is not wrong; the circuit genuinely changed when you attached
+the meter. On the 1 kΩ/1 kΩ divider the same meter reads correctly to one part
+in twenty thousand.</p>
+<p><strong>An oscilloscope probe is worse than it looks.</strong> A ×1 probe presents about
+1 MΩ and, more importantly, 50–100 pF. The resistance is a chapter-2 problem;
+the capacitance is a chapter-3 problem and usually the one that bites.</p>
+<h2 id="matching">Matching, and what matching costs</h2>
+<p>One question remains from chapter 1: which load extracts the most power from a
+given source? Write the power in the load of a Thévenin source,</p>
+<div class="math math--display" data-tex="P_\mathrm{L} = I^2 R_\mathrm{L}
+= \frac{V_\mathrm{th}^2 R_\mathrm{L}}{(R_\mathrm{th} + R_\mathrm{L})^2} ,">$$P_\mathrm{L} = I^2 R_\mathrm{L}
+= \frac{V_\mathrm{th}^2 R_\mathrm{L}}{(R_\mathrm{th} + R_\mathrm{L})^2} ,$$</div>
+<p>differentiate with respect to <span class="math math--inline" data-tex="R_\mathrm{L}">$R_\mathrm{L}$</span> and set the result to zero. The
+maximum sits at</p>
+<div class="math math--display" data-tex="R_\mathrm{L} = R_\mathrm{th},
+\qquad
+P_\mathrm{max} = \frac{V_\mathrm{th}^2}{4R_\mathrm{th}} .">$$R_\mathrm{L} = R_\mathrm{th},
+\qquad
+P_\mathrm{max} = \frac{V_\mathrm{th}^2}{4R_\mathrm{th}} .$$</div>
+<p>This is the <strong>maximum power transfer</strong> condition, and it is the most
+over-applied result in elementary circuit theory. Look at what it costs. At the
+matched point the two resistances are equal and carry the same current, so they
+dissipate the same power: <strong>half of everything the source produces is burnt
+inside the source.</strong> The efficiency is exactly 50 %.</p>
+<div class="math math--display" data-tex="\eta = \frac{P_\mathrm{L}}{P_\text{total}}
+= \frac{R_\mathrm{L}}{R_\mathrm{th} + R_\mathrm{L}} .">$$\eta = \frac{P_\mathrm{L}}{P_\text{total}}
+= \frac{R_\mathrm{L}}{R_\mathrm{th} + R_\mathrm{L}} .$$</div>
+<p>Efficiency rises monotonically with <span class="math math--inline" data-tex="R_\mathrm{L}">$R_\mathrm{L}$</span>, while power peaks and then
+falls. The two want opposite things, and which one you want depends on what is
+scarce.</p>
+<ul>
+<li><strong>Match</strong> when the source is fixed and small and you need every microwatt of
+  it: an antenna, a sensor, a piezo element. Also, in radio, to avoid
+  reflections, which is a different argument for the same number.</li>
+<li><strong>Do not match</strong> when the power is cheap and you care about the signal or the
+  heat: anything mains-powered, any amplifier chain, any logic. There you want
+  <span class="math math--inline" data-tex="R_\mathrm{L} \gg R_\mathrm{th}">$R_\mathrm{L} \gg R_\mathrm{th}$</span> and the rule of ten.</li>
+</ul>
+<p>A power station does not match its load to the grid impedance. If it did, half
+the generated energy would heat the generator.</p>
+<div class="ac-bench" data-applet="thevenin-power">
+<p class="ac-fallback">This bench needs JavaScript. The power and efficiency
+expressions above are what it plots.</p>
+</div>
+
+<h2 id="next">Where this is going</h2>
+<p>Every fix for a loading problem is the same fix: put something between the two
+stages whose input resistance is high and whose output resistance is low. That
+something is a buffer, it is built from an operational amplifier, and it is
+chapter 6. The reason it can be built at all is that an amplifier is an active
+device: it does not pass the signal through, it reproduces it from a separate
+supply. Chapter 8 is where that comes from.</p>
+<p>Before either of those, the components stop being resistors. Chapter 3 replaces
+<span class="math math--inline" data-tex="R">$R$</span> with something that depends on frequency, and almost everything on this
+page survives the substitution with <span class="math math--inline" data-tex="R">$R$</span> rewritten as <span class="math math--inline" data-tex="Z">$Z$</span>.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>A 12 V supply feeds a 4.7 kΩ / 2.2 kΩ divider. What is the unloaded output,
+   and what is <span class="math math--inline" data-tex="R_\mathrm{th}">$R_\mathrm{th}$</span>? What does a 10 kΩ load do to the output?
+   <em>(Answers: 3.83 V, 1.50 kΩ, and the output falls to about 3.33 V, 13 % low.)</em></li>
+<li>You need 2.50 V from a 5.00 V rail, accurate to 1 %, into a load that may be
+   as low as 50 kΩ. Choose <span class="math math--inline" data-tex="R_1">$R_1$</span> and <span class="math math--inline" data-tex="R_2">$R_2$</span>. State the constraint you used.</li>
+<li>Show that for a fixed <span class="math math--inline" data-tex="R_\mathrm{L}">$R_\mathrm{L}$</span> and a free <span class="math math--inline" data-tex="R_\mathrm{th}">$R_\mathrm{th}$</span>, the power in
+   the load is maximized by <span class="math math--inline" data-tex="R_\mathrm{th} \to 0">$R_\mathrm{th} \to 0$</span>, not by matching. Explain in
+   one sentence why this is not a contradiction with the result above.</li>
+<li>A sensor is a Thévenin source of 10 mV with <span class="math math--inline" data-tex="R_\mathrm{th} = 100\ \mathrm{k}
+   \Omega">$R_\mathrm{th} = 100\ \mathrm{k}
+   \Omega$</span>. You have two amplifiers available, one with an input resistance of
+   1 MΩ and one with 100 MΩ. How much signal does each lose, and does the
+   difference matter if the specification is 1 %?</li>
+</ol>
+<p class="page-foot"><em>Previous:</em> <a href="/projects/analog-circuits/sources/">Sources and internal resistance</a>.</p></div>
+
+  <footer class="post__footer">
+    <nav class="pager" aria-label="Chapters">
+      <a class="pager__link pager__link--prev" href="/projects/analog-circuits/sources/">
+        <span class="pager__label">Previous chapter</span>
+        <span class="pager__title">Sources and internal resistance</span>
+      </a>
+    </nav>
+    <p class="page-foot"><a href="/projects/analog-circuits/">All chapters</a></p>
+  </footer>
+</article>
+<script defer src="/media/analog-circuits/applets.js"></script>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/research/">Research</a></li>
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=c467844b"></script>
+</body>
+</html>

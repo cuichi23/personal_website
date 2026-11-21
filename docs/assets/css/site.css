@@ -481,7 +481,18 @@ a:hover { color: var(--link-hover); }
 .prose > .figure,
 .prose > .math--display,
 .prose > pre,
-.prose > .table-scroll { grid-column: wide; }
+.prose > .table-scroll,
+.prose > [data-applet] { grid-column: wide; }
+
+/* An applet that never got its script: say so rather than show an empty box. */
+.ac-fallback {
+  font-size: var(--step--1);
+  color: var(--muted);
+  border: 1px dashed var(--rule-strong);
+  border-radius: 10px;
+  padding: var(--space-3);
+  margin: var(--space-4) 0;
+}
 
 /* Inside the home page the sections are already narrow; keep the text column
    flush left instead of centring it in a wider grid. */
@@ -494,6 +505,28 @@ a:hover { color: var(--link-hover); }
 .prose--flow > .figure,
 .prose--flow > .math--display,
 .prose--flow > dl { grid-column: text-start / wide-end; }
+
+/* On a narrow screen the two 4rem side tracks are pure indent. The grid fills
+   them before it fills the text column, so below this width they take 64px off
+   the measure and push the text off-centre. Collapse them; nothing changes
+   above the breakpoint, where there is room for both the gutter and the text. */
+@media (max-width: 52rem) {
+  .prose {
+    grid-template-columns:
+      [full-start] minmax(0, 1fr)
+      [wide-start] 0
+      [text-start] minmax(0, var(--measure))
+      [text-end] 0
+      [wide-end] minmax(0, 1fr)
+      [full-end];
+  }
+  .prose--flow {
+    grid-template-columns:
+      [full-start text-start] minmax(0, var(--measure))
+      [text-end wide-start] 0
+      [wide-end full-end] minmax(0, 1fr);
+  }
+}
 
 .prose h2,
 .prose h3,

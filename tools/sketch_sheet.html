@@ -1,0 +1,38 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>C-Lizenz sketch proof sheet</title>
+<!-- Draws every formation, front, coverage and blocking sketch on one page so
+     the diagrams can be checked without clicking through the quiz.
+     Open it over the preview server, e.g.
+       http://localhost:8778/../tools/sketch_sheet.html
+     or copy it next to quiz.js and open that copy. -->
+<style>
+  :root { --accent:#b4620e; --link:#3e3170; --muted:#888; --accent-wash:#f7ead9; --ink:#222; }
+  body { font: 15px/1.5 system-ui, sans-serif; margin: 2rem; background:#fff; color:var(--ink); }
+  h1 { font-size: 1.2rem; }
+  .sheet { display: grid; grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); gap: 1.5rem; }
+  figure { margin: 0; }
+  figcaption { font-weight: 600; margin-bottom: 0.3rem; }
+  figcaption small { font-weight: 400; color: #666; display:block; }
+</style>
+<h1>Sketch proof sheet</h1>
+<div class="sheet" id="sheet"></div>
+<script>window.__CLZ_TEST__ = true;</script>
+<script src="../static/media/american-football-c-lizenz/quiz.js"></script>
+<script>
+(function () {
+  var api = window.__CLZ_TEST__;
+  var style = document.createElement("style");
+  style.textContent = api.css;
+  document.head.appendChild(style);
+  var sheet = document.getElementById("sheet");
+  api.sketches.forEach(function (item) {
+    var figure = document.createElement("figure");
+    var caption = document.createElement("figcaption");
+    caption.textContent = item.c + " — " + item.f;
+    sheet.appendChild(figure);
+    figure.appendChild(caption);
+    figure.appendChild(api.buildSketch(item));
+  });
+})();
+</script>

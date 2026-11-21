@@ -47,7 +47,7 @@
     <nav class="nav" aria-label="Primary">
       <a href="/"{% if page_id == "home" %} aria-current="page"{% endif %}>Home</a>
       <a href="/research/"{% if page_id == "research" %} aria-current="page"{% endif %}>Research</a>
-      <a href="/projects/"{% if page_id == "projects" %} aria-current="page"{% endif %}>Current projects</a>
+      <a href="/projects/"{% if page_id == "projects" or page_id.startswith("projects/") %} aria-current="page"{% endif %}>Current projects</a>
       <a href="/projects-anabrid/"{% if page_id.startswith("projects-anabrid") %} aria-current="page"{% endif %}>Projects@anabrid</a>
       <a href="/oscillatory-computing/"{% if page_id.startswith("oscillatory-computing") %} aria-current="page"{% endif %}>Oscillatory computing</a>
       <a href="/contact/"{% if page_id == "contact" %} aria-current="page"{% endif %}>Contact</a>

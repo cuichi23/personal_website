@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analog circuits in theory and application · Lucas Wetzel</title>
+<meta name="description" content="A course in analog circuit design for people who already have the mathematics and the physics: sources and internal resistance, resistive networks, RC and RLC, diodes, operational amplifiers, the motifs built from them, and transistors. Every chapter carries interactive benches rather than worked numbers. Under construction.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects/analog-circuits/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Analog circuits in theory and application · Lucas Wetzel">
+<meta property="og:description" content="A course in analog circuit design for people who already have the mathematics and the physics: sources and internal resistance, resistive networks, RC and RLC, diodes, operational amplifiers, the motifs built from them, and transistors. Every chapter carries interactive benches rather than worked numbers. Under construction.">
+<meta property="og:url" content="https://lucaswetzel.de/projects/analog-circuits/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // GitHub Pages cannot send X-Frame-Options or a CSP frame-ancestors directive,
+  // so this is the only lever there is. Mark the document before the body is
+  // parsed; the stylesheet then keeps the content hidden until site.js has
+  // replaced it with a notice. Marking rather than navigating is deliberate:
+  // browsers increasingly refuse an automatic top navigation from a frame and
+  // leave a blank box behind, which tells the reader nothing.
+  if (window.self !== window.top) document.documentElement.dataset.framed = "";
+</script>
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=c467844b">
+<link rel="stylesheet" href="/assets/css/site.css?v=c467844b">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/research/">Research</a>
+      <a href="/projects/" aria-current="page">Current projects</a>
+      <a href="/projects-anabrid/">Projects@anabrid</a>
+      <a href="/oscillatory-computing/">Oscillatory computing</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="post">
+  <header class="post__header">
+    <p class="eyebrow"><a href="/projects/">Current projects</a></p>
+    <h1 class="post__title">Analog circuits in theory and application</h1>
+<p class="post__standfirst">A course in analog circuit design for people who already have the mathematics and the physics: sources and internal resistance, resistive networks, RC and RLC, diodes, operational amplifiers, the motifs built from them, and transistors. Every chapter carries interactive benches rather than worked numbers. Under construction.</p>    <dl class="post__meta">
+      <div class="post__meta-pair">
+        <dt>Published</dt>
+        <dd>21 November 2026</dd>
+      </div>
+      <div class="post__meta-pair">
+        <dt>Topics</dt>
+        <dd class="taglist">
+<a class="topic-tag" href="/tags/analog-circuits/">analog circuits</a><a class="topic-tag" href="/tags/electronics/">electronics</a><a class="topic-tag" href="/tags/teaching/">teaching</a><a class="topic-tag" href="/tags/circuit-design/">circuit design</a>        </dd>
+      </div>
+    </dl>
+  </header>
+
+  <div class="prose"><p class="ac-construction"><strong>Under construction.</strong> Two chapters are
+written and usable. The rest are listed below with what they will cover, and go
+online as they are finished. Nothing here is behind a password; if a chapter is
+missing it is because it is not written yet.</p>
+
+<style>
+.ac-construction { border-left: 3px solid var(--accent); background: var(--accent-wash); border-radius: 0 10px 10px 0; padding: 0.8rem 1rem; font-size: var(--step--1); }
+.ac-toc { list-style: none; padding: 0; margin: 1.5rem 0; display: grid; gap: 0.6rem; }
+.ac-toc li { border: 1px solid var(--rule); border-radius: 10px; padding: 0.8rem 1rem; display: grid; grid-template-columns: 2.2rem 1fr auto; gap: 0.8rem; align-items: baseline; }
+.ac-toc__no { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); }
+.ac-toc__title { font-family: var(--font-display); font-weight: 600; }
+.ac-toc__title a { text-decoration: none; border-bottom: 1px solid var(--rule-strong); }
+.ac-toc__body { font-size: var(--step--1); color: var(--ink-soft); margin: 0.3rem 0 0; grid-column: 2 / -1; }
+.ac-toc__state { font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+.ac-toc__state--ready { color: var(--accent); }
+@media (max-width: 36rem) { .ac-toc li { grid-template-columns: 2.2rem 1fr; } .ac-toc__state { grid-column: 2; } }
+</style>
+
+<h2 id="why">Why this exists</h2>
+<p>I design circuits that compute. At <a href="https://anabrid.com">anabrid</a> that means
+analog computers, and in my own research it means networks of coupled
+oscillators built out of phase-locked loops. In both cases the physics is only
+half the work. The other half is the part a physicist is usually never taught
+properly: how a real circuit behaves when it is loaded, when its source is not
+ideal, when a signal has to get from one block to the next without being eaten
+on the way.</p>
+<p>That half is not hard. It is a small set of ideas applied over and over.
+This is my attempt to write it down the way I would want to have read it:
+derive the expression, then make the expression move, then say what it means
+when a component value goes to zero or to infinity, which is where every
+idealization in circuit theory dies.</p>
+<p><strong>Who it is for.</strong> Someone with first-year calculus and first-year physics:
+comfortable with a differential equation, with complex numbers, and with the
+idea of an impedance even if the word is new. No prior electronics is assumed.
+If you can read <span class="math math--inline" data-tex="v(t) = V_0\,\mathrm{e}^{\mathrm{i}\omega t}">$v(t) = V_0\,\mathrm{e}^{\mathrm{i}\omega t}$</span> without flinching,
+the chapters will work.</p>
+<p><strong>What it is not.</strong> Not a replacement for a lab bench, and not a SPICE manual.
+Every bench on these pages evaluates one closed-form expression that the text
+derives. That is deliberate: a simulator hides which term dominates, and the
+point of a first course is to learn which term dominates.</p>
+<h2 id="how">How to use a chapter</h2>
+<p>Each chapter has the same three layers.</p>
+<ol>
+<li><strong>The model.</strong> The governing relation, with every symbol named on the line
+   after it.</li>
+<li><strong>The bench.</strong> An interactive panel for that relation. The sliders run over
+   decades, because component values do, and most of them reach a true zero
+   and a true infinity at the ends. Go to the ends. The interesting failures
+   live there.</li>
+<li><strong>The limits.</strong> What the expression says when something is shorted, opened,
+   matched or mismatched, and which of those a real component survives.</li>
+</ol>
+<p>The benches need JavaScript, and nothing else: no account, no network traffic,
+no data leaving the page. Where a bench is unavailable, the surrounding text
+still carries the result as a formula.</p>
+<h2 id="chapters">The chapters</h2>
+<ol class="ac-toc">
+<li><span class="ac-toc__no">1</span>
+  <span class="ac-toc__title"><a href="/projects/analog-circuits/sources/">Sources and internal resistance</a></span>
+  <span class="ac-toc__state ac-toc__state--ready">ready</span>
+  <p class="ac-toc__body">The two idealizations and why they are duals of each other: a voltage source prescribes the voltage and lets the current follow, a current source does the opposite. Internal resistance as the single parameter that turns an idealization into a component. Which sources may be wired in series and which in parallel, and what the combination behaves as. Thévenin and Norton as two views of the same box.</p></li>
+
+<li><span class="ac-toc__no">2</span>
+  <span class="ac-toc__title"><a href="/projects/analog-circuits/resistive-networks/">Resistive networks and loading</a></span>
+  <span class="ac-toc__state ac-toc__state--ready">ready</span>
+  <p class="ac-toc__body">Kirchhoff's two laws, series and parallel, and the voltage divider: the circuit that appears inside every other circuit. Why the divider you build never has the ratio you designed, what output resistance means, where the rule of ten comes from, and why matching a load for maximum power throws half the power away.</p></li>
+
+<li><span class="ac-toc__no">3</span>
+  <span class="ac-toc__title">Capacitors and the RC circuit</span>
+  <span class="ac-toc__state">planned</span>
+  <p class="ac-toc__body">Charge, the <span class="math math--inline" data-tex="i = C\,\mathrm{d}v/\mathrm{d}t">$i = C\,\mathrm{d}v/\mathrm{d}t$</span> relation, and the first differential equation of the course. Step response and the time constant; sinusoidal steady state and the complex impedance; the low-pass and the high-pass as the same two components read from two nodes. Bode magnitude and phase, the −3 dB point, and why a 20 dB/decade slope is a statement about a single pole.</p></li>
+
+<li><span class="ac-toc__no">4</span>
+  <span class="ac-toc__title">Inductors, RLC and resonance</span>
+  <span class="ac-toc__state">planned</span>
+  <p class="ac-toc__body">The dual of the capacitor, the second-order equation, and the three damping regimes. Resonance, the quality factor, bandwidth, and the connection between a pole pair in the complex plane and a ringing step response. This is the chapter the oscillator work later builds on.</p></li>
+
+<li><span class="ac-toc__no">5</span>
+  <span class="ac-toc__title">Diodes and the first nonlinearity</span>
+  <span class="ac-toc__state">planned</span>
+  <p class="ac-toc__body">The exponential characteristic, the thermal voltage, and what a load line does when the device is not a straight line. Rectifiers, clamps, limiters, and the small-signal resistance: the move of linearizing around an operating point, which is the move the whole rest of the course depends on.</p></li>
+
+<li><span class="ac-toc__no">6</span>
+  <span class="ac-toc__title">Operational amplifiers</span>
+  <span class="ac-toc__state">planned</span>
+  <p class="ac-toc__body">The ideal op-amp as two rules and what they are worth. Inverting and non-inverting stages, the buffer and why a divider that could not drive anything suddenly can, summing and difference amplifiers, integrator and differentiator. Then the honest version: finite gain, finite bandwidth, the gain-bandwidth product, slew rate, input offset, and the stability question that decides whether a circuit works or sings.</p></li>
+
+<li><span class="ac-toc__no">7</span>
+  <span class="ac-toc__title">Motifs: the blocks circuits are actually made of</span>
+  <span class="ac-toc__state">planned</span>
+  <p class="ac-toc__body">Comparator and Schmitt trigger, active filters, the instrumentation amplifier, current sources made from what chapter 6 provides, precision rectifiers, and the relaxation oscillator. The emphasis is on recognizing a motif inside a schematic you have never seen before.</p></li>
+
+<li><span class="ac-toc__no">8</span>
+  <span class="ac-toc__title">Transistors</span>
+  <span class="ac-toc__state">planned</span>
+  <p class="ac-toc__body">The bipolar transistor and the MOSFET as controlled sources, biasing and the operating point, the small-signal model, and the three single-stage amplifiers. Then the transistor as a switch, the differential pair, the current mirror, and enough of a look inside an op-amp that chapter 6 stops being a black box.</p></li>
+</ol>
+
+<h2 id="conventions">Conventions</h2>
+<p>Fixed once, used everywhere.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Current direction</strong></td>
+<td>Conventional current, from the positive terminal through the external circuit.</td>
+</tr>
+<tr>
+<td><strong>Passive sign convention</strong></td>
+<td>For a resistor, current enters at the terminal marked positive. A positive power then means the component absorbs.</td>
+</tr>
+<tr>
+<td><strong>Lower case, upper case</strong></td>
+<td><span class="math math--inline" data-tex="v">$v$</span>, <span class="math math--inline" data-tex="i">$i$</span> are instantaneous values; <span class="math math--inline" data-tex="V">$V$</span>, <span class="math math--inline" data-tex="I">$I$</span> are constant or RMS values; <span class="math math--inline" data-tex="\hat V">$\hat V$</span> is an amplitude; <span class="math math--inline" data-tex="\underline{V}">$\underline{V}$</span> is a complex phasor.</td>
+</tr>
+<tr>
+<td><strong>Node voltages</strong></td>
+<td>Always with respect to a named reference node, drawn as ground. There is no absolute voltage anywhere in this course.</td>
+</tr>
+<tr>
+<td><strong>Component values</strong></td>
+<td>Engineering notation with SI prefixes: 4.7 kΩ, 100 nF, 1 µA.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="reading">Sources and further reading</h2>
+<p>The physics here is standard and nothing in it is mine. Where I follow a
+particular treatment I say so in the chapter. The books I keep going back to:
+Horowitz and Hill, <em>The Art of Electronics</em> (3rd edition) for the engineering
+judgement; Tietze and Schenk, <em>Halbleiter-Schaltungstechnik</em> for the German
+reference treatment; Sedra and Smith, <em>Microelectronic Circuits</em> for the device
+chapters; and for the analog-computing side, Ulmann, <em>Analog Computing</em>.</p>
+<p>Corrections are welcome. If a derivation here is wrong, I would rather hear it
+than keep it.</p></div>
+
+  <footer class="post__footer">
+    <nav class="pager" aria-label="More posts">
+      <a class="pager__link pager__link--prev" href="/projects/american-football-c-lizenz/">
+        <span class="pager__label">Older</span>
+        <span class="pager__title">American Football: C-Lizenz</span>
+      </a>
+    </nav>
+  </footer>
+</article>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/research/">Research</a></li>
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=c467844b"></script>
+</body>
+</html>

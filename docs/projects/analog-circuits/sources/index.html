@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sources and internal resistance · Analog circuits · Lucas Wetzel</title>
+<meta name="description" content="A voltage source prescribes the voltage and lets the current follow. A current source does exactly the opposite. Everything else in this chapter is a consequence: what internal resistance is, which source survives a short and which survives an open circuit, which sources may be wired together, and why Thévenin and Norton are two names for one box.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects/analog-circuits/sources/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sources and internal resistance · Analog circuits · Lucas Wetzel">
+<meta property="og:description" content="A voltage source prescribes the voltage and lets the current follow. A current source does exactly the opposite. Everything else in this chapter is a consequence: what internal resistance is, which source survives a short and which survives an open circuit, which sources may be wired together, and why Thévenin and Norton are two names for one box.">
+<meta property="og:url" content="https://lucaswetzel.de/projects/analog-circuits/sources/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // GitHub Pages cannot send X-Frame-Options or a CSP frame-ancestors directive,
+  // so this is the only lever there is. Mark the document before the body is
+  // parsed; the stylesheet then keeps the content hidden until site.js has
+  // replaced it with a notice. Marking rather than navigating is deliberate:
+  // browsers increasingly refuse an automatic top navigation from a frame and
+  // leave a blank box behind, which tells the reader nothing.
+  if (window.self !== window.top) document.documentElement.dataset.framed = "";
+</script>
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=c467844b">
+<link rel="stylesheet" href="/assets/css/site.css?v=c467844b">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/research/">Research</a>
+      <a href="/projects/" aria-current="page">Current projects</a>
+      <a href="/projects-anabrid/">Projects@anabrid</a>
+      <a href="/oscillatory-computing/">Oscillatory computing</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="post">
+  <header class="post__header">
+    <p class="eyebrow">
+      <a href="/projects/analog-circuits/">Analog circuits</a> ·
+      Chapter 1    </p>
+    <h1 class="post__title">Sources and internal resistance</h1>
+<p class="post__standfirst">A voltage source prescribes the voltage and lets the current follow. A current source does exactly the opposite. Everything else in this chapter is a consequence: what internal resistance is, which source survives a short and which survives an open circuit, which sources may be wired together, and why Thévenin and Norton are two names for one box.</p>    <p class="post__meta-hint">Chapter 1 of 8 · 21 November 2026</p>
+  </header>
+
+  <div class="prose"><h2 id="two-ways">Two ways to insist</h2>
+<p>A source is a component that forces something. There are exactly two things it
+can force, and that gives exactly two idealizations.</p>
+<p>A <strong>voltage source</strong> fixes the voltage across its terminals. Whatever you
+connect, it holds <span class="math math--inline" data-tex="V">$V$</span> and accepts whatever current that implies.</p>
+<p>A <strong>current source</strong> fixes the current through its branch. Whatever you
+connect, it pushes <span class="math math--inline" data-tex="I">$I$</span> and accepts whatever voltage that implies.</p>
+<p>That is the whole definition, and it is worth stating in the form that makes
+the symmetry visible:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>prescribes</th>
+<th>adapts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Voltage source</strong> (Spannungsquelle)</td>
+<td>the voltage</td>
+<td>the current</td>
+</tr>
+<tr>
+<td><strong>Current source</strong> (Stromquelle)</td>
+<td>the current</td>
+<td>the voltage</td>
+</tr>
+</tbody>
+</table>
+<p>The adapting quantity is not free. It is set by Ohm's law in the load,</p>
+<div class="math math--display" data-tex="R = \frac{V}{I} \qquad\Longleftrightarrow\qquad V = R\,I ,">$$R = \frac{V}{I} \qquad\Longleftrightarrow\qquad V = R\,I ,$$</div>
+<p>where <span class="math math--inline" data-tex="R">$R$</span> is the load resistance, <span class="math math--inline" data-tex="V">$V$</span> the voltage across it and <span class="math math--inline" data-tex="I">$I$</span> the current
+through it. The source names one of the two; the load names the ratio; the
+third number follows. There is nothing else going on.</p>
+<h3 id="same-point">The same operating point, reached from either side</h3>
+<p>Take a 1 MΩ load and ask for 1 mA through it.</p>
+<p>With a <strong>current source</strong>, you command the 1 mA. The load then develops</p>
+<div class="math math--display" data-tex="V = R\,I = 10^{6}\,\Omega \times 10^{-3}\,\mathrm{A} = 1000\ \mathrm{V} .">$$V = R\,I = 10^{6}\,\Omega \times 10^{-3}\,\mathrm{A} = 1000\ \mathrm{V} .$$</div>
+<p>With a <strong>voltage source</strong>, you command 1000 V. The load then draws</p>
+<div class="math math--display" data-tex="I = \frac{V}{R} = \frac{1000\ \mathrm{V}}{10^{6}\,\Omega} = 1\ \mathrm{mA} .">$$I = \frac{V}{R} = \frac{1000\ \mathrm{V}}{10^{6}\,\Omega} = 1\ \mathrm{mA} .$$</div>
+<p>Same resistor, same current, same voltage, same power. The two sources are
+indistinguishable from outside. What differs is which number you set and which
+one the circuit hands back to you, and therefore which one surprises you when
+the load changes. Change the load to 1 kΩ: the current source still delivers
+1 mA and the voltage collapses to 1 V; the voltage source still delivers
+1000 V and the current rises to 1 A. Same change, opposite consequence.</p>
+<p>A thousand volts out of a milliamp source also makes a second point, which is
+worth absorbing early: <strong>an ideal current source will produce whatever voltage
+the load demands of it.</strong> Nothing real does this. The fix is the next section.</p>
+<h2 id="internal-resistance">Internal resistance</h2>
+<p>A real source behaves like an ideal one with a resistor attached. Which side
+the resistor goes on follows from what the source is trying to do.</p>
+<ul>
+<li>A real <strong>voltage source</strong> has <span class="math math--inline" data-tex="R_\mathrm{i}">$R_\mathrm{i}$</span> <strong>in series</strong>. The load and
+  <span class="math math--inline" data-tex="R_\mathrm{i}">$R_\mathrm{i}$</span> divide the source voltage, so the terminal voltage sags as the
+  current rises.</li>
+<li>A real <strong>current source</strong> has <span class="math math--inline" data-tex="R_\mathrm{i}">$R_\mathrm{i}$</span> <strong>in parallel</strong>. The internal
+  resistance steals a share of the current, and that share grows as the
+  terminal voltage rises.</li>
+</ul>
+<p>Solving each is one line. For the voltage source,</p>
+<div class="math math--display" data-tex="\begin{aligned}
+I &amp;= \frac{V_\mathrm{s}}{R_\mathrm{i} + R_\mathrm{L}} , &amp;
+V_\mathrm{L} &amp;= V_\mathrm{s}\,\frac{R_\mathrm{L}}{R_\mathrm{i} + R_\mathrm{L}} ,
+\end{aligned}">$$\begin{aligned}
+I &amp;= \frac{V_\mathrm{s}}{R_\mathrm{i} + R_\mathrm{L}} , &amp;
+V_\mathrm{L} &amp;= V_\mathrm{s}\,\frac{R_\mathrm{L}}{R_\mathrm{i} + R_\mathrm{L}} ,
+\end{aligned}$$</div>
+<p>and for the current source,</p>
+<div class="math math--display" data-tex="\begin{aligned}
+V_\mathrm{L} &amp;= I_\mathrm{s}\,\frac{R_\mathrm{i}R_\mathrm{L}}{R_\mathrm{i} + R_\mathrm{L}} , &amp;
+I_\mathrm{L} &amp;= I_\mathrm{s}\,\frac{R_\mathrm{i}}{R_\mathrm{i} + R_\mathrm{L}} ,
+\end{aligned}">$$\begin{aligned}
+V_\mathrm{L} &amp;= I_\mathrm{s}\,\frac{R_\mathrm{i}R_\mathrm{L}}{R_\mathrm{i} + R_\mathrm{L}} , &amp;
+I_\mathrm{L} &amp;= I_\mathrm{s}\,\frac{R_\mathrm{i}}{R_\mathrm{i} + R_\mathrm{L}} ,
+\end{aligned}$$</div>
+<p>with <span class="math math--inline" data-tex="V_\mathrm{s}">$V_\mathrm{s}$</span> the source voltage, <span class="math math--inline" data-tex="I_\mathrm{s}">$I_\mathrm{s}$</span> the source current,
+<span class="math math--inline" data-tex="R_\mathrm{i}">$R_\mathrm{i}$</span> the internal resistance and <span class="math math--inline" data-tex="R_\mathrm{L}">$R_\mathrm{L}$</span> the load.</p>
+<p>Read the two sets side by side and the duality is mechanical: swap voltage for
+current, series for parallel, and <span class="math math--inline" data-tex="R_\mathrm{i} \to 0">$R_\mathrm{i} \to 0$</span> for
+<span class="math math--inline" data-tex="R_\mathrm{i} \to \infty">$R_\mathrm{i} \to \infty$</span>, and each line becomes the other.</p>
+<p><strong>The ideal limits are therefore opposite.</strong> A voltage source is good when
+<span class="math math--inline" data-tex="R_\mathrm{i}">$R_\mathrm{i}$</span> is <em>small</em>, because then the divider ratio stays near one. A
+current source is good when <span class="math math--inline" data-tex="R_\mathrm{i}">$R_\mathrm{i}$</span> is <em>large</em>, because then it keeps
+almost none of the current for itself.</p>
+<div class="math math--display" data-tex="\begin{aligned}
+\text{ideal voltage source:}\quad &amp; R_\mathrm{i} \to 0 ,\\
+\text{ideal current source:}\quad &amp; R_\mathrm{i} \to \infty .
+\end{aligned}">$$\begin{aligned}
+\text{ideal voltage source:}\quad &amp; R_\mathrm{i} \to 0 ,\\
+\text{ideal current source:}\quad &amp; R_\mathrm{i} \to \infty .
+\end{aligned}$$</div>
+<h3 id="bench-source">The bench</h3>
+<p>Both expressions, one panel. Switch the source type and the picture flips; the
+plot is the pair <span class="math math--inline" data-tex="(V, I)">$(V, I)$</span> the terminals can take, and the straight dashed line
+is the load. Where the two cross is what the circuit does.</p>
+<p>Three things are worth doing before reading on. Set a real voltage source and
+drag the load down to the short. Set a real current source and drag it up to
+the open. Then switch each to <strong>ideal</strong> and do the same again.</p>
+<div class="ac-bench" data-applet="source-load">
+<p class="ac-fallback">This bench needs JavaScript. Without it, the four
+expressions above are the whole content of the panel.</p>
+</div>
+
+<p>The characteristic line tells the story at a glance. Its two intercepts are the
+two extreme loads:</p>
+<ul>
+<li>the <strong>open-circuit voltage</strong> <span class="math math--inline" data-tex="V_\mathrm{oc}">$V_\mathrm{oc}$</span>, where the line meets the
+  voltage axis (<span class="math math--inline" data-tex="I = 0">$I = 0$</span>),</li>
+<li>the <strong>short-circuit current</strong> <span class="math math--inline" data-tex="I_\mathrm{sc}">$I_\mathrm{sc}$</span>, where it meets the current
+  axis (<span class="math math--inline" data-tex="V = 0">$V = 0$</span>).</li>
+</ul>
+<p>The slope between them is <span class="math math--inline" data-tex="-1/R_\mathrm{i}">$-1/R_\mathrm{i}$</span>. An ideal voltage source is a
+vertical line: any current, always the same voltage. An ideal current source is
+a horizontal line: any voltage, always the same current. Every real source is a
+slanted line between those two extremes, and <span class="math math--inline" data-tex="R_\mathrm{i}">$R_\mathrm{i}$</span> is the slant.</p>
+<h2 id="limits">What each ideal source cannot survive</h2>
+<p>The two idealizations fail at opposite ends, and each is perfectly comfortable
+exactly where the other one dies.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>short circuit (<span class="math math--inline" data-tex="R_\mathrm{L} = 0">$R_\mathrm{L} = 0$</span>)</th>
+<th>open circuit (<span class="math math--inline" data-tex="R_\mathrm{L} \to \infty">$R_\mathrm{L} \to \infty$</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ideal voltage source</strong></td>
+<td><span class="math math--inline" data-tex="I \to \infty">$I \to \infty$</span>. The model breaks.</td>
+<td>Fine. <span class="math math--inline" data-tex="V = V_\mathrm{s}">$V = V_\mathrm{s}$</span>, no current, no power.</td>
+</tr>
+<tr>
+<td><strong>Ideal current source</strong></td>
+<td>Fine. <span class="math math--inline" data-tex="I = I_\mathrm{s}">$I = I_\mathrm{s}$</span>, no voltage, no power.</td>
+<td><span class="math math--inline" data-tex="V \to \infty">$V \to \infty$</span>. The model breaks.</td>
+</tr>
+</tbody>
+</table>
+<p>This is the single most useful thing in the chapter, so here it is in words.
+<strong>A voltage source is happy driving nothing and destroyed by a short. A current
+source is happy driving a short and destroyed by nothing.</strong> An open circuit is
+the dangerous load for a current source in exactly the way a short is dangerous
+for a voltage source, which is why you never open the secondary of a current
+transformer and never short a charged battery.</p>
+<p>Real parts do not go to infinity. They do something else:</p>
+<ul>
+<li>A real voltage source runs into its <span class="math math--inline" data-tex="R_\mathrm{i}">$R_\mathrm{i}$</span>, and the short-circuit
+  current settles at <span class="math math--inline" data-tex="V_\mathrm{s}/R_\mathrm{i}">$V_\mathrm{s}/R_\mathrm{i}$</span>. For a lithium cell with
+  <span class="math math--inline" data-tex="R_\mathrm{i}">$R_\mathrm{i}$</span> of a few tens of milliohms that is still hundreds of amperes,
+  which is why the failure is a fire and not a formula.</li>
+<li>A real current source runs out of supply voltage. The largest terminal
+  voltage it can produce is its <strong>compliance</strong>, and past that it stops
+  regulating the current at all. A current source datasheet always states a
+  compliance range; it is the first number to check.</li>
+</ul>
+<h2 id="combining">Which sources may be wired together</h2>
+<p>Two sources, one connection. There are six cases and they are all decided by
+the same question: <strong>does the connection force the two sources to disagree
+about a quantity one of them insists on?</strong></p>
+<p>Series means one shared current. Parallel means one shared voltage.</p>
+<div class="ac-bench" data-applet="source-combinations">
+<p class="ac-fallback">This bench needs JavaScript. The six cases are listed
+in the table below.</p>
+</div>
+
+<p>Collected as a table, with the reason in the last column:</p>
+<table>
+<thead>
+<tr>
+<th>Connection</th>
+<th>Verdict</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>V + V in series</strong></td>
+<td>allowed, voltages add</td>
+<td>Series constrains the current, which neither source claims. Both get to set their voltage, and the terminal voltage is the sum.</td>
+</tr>
+<tr>
+<td><strong>V + V in parallel</strong></td>
+<td>only if equal</td>
+<td>Parallel constrains the voltage, which both claim. Two different claims have no solution.</td>
+</tr>
+<tr>
+<td><strong>I + I in series</strong></td>
+<td>only if equal</td>
+<td>Series constrains the current, which both claim. Same contradiction, dual form.</td>
+</tr>
+<tr>
+<td><strong>I + I in parallel</strong></td>
+<td>allowed, currents add</td>
+<td>Parallel constrains the voltage, which neither source claims. Kirchhoff's current law gives <span class="math math--inline" data-tex="I_1 + I_2">$I_1 + I_2$</span>.</td>
+</tr>
+<tr>
+<td><strong>V + I in series</strong></td>
+<td>allowed, acts as a <strong>current source</strong></td>
+<td>A series voltage source cannot alter a current. It shifts the terminal voltage and nothing else.</td>
+</tr>
+<tr>
+<td><strong>V + I in parallel</strong></td>
+<td>allowed, acts as a <strong>voltage source</strong></td>
+<td>A parallel current source cannot alter a voltage. It shifts the terminal current and nothing else.</td>
+</tr>
+</tbody>
+</table>
+<p>The last two lines deserve their own sentence, because they are the ones people
+get wrong. <strong>In series the current source wins. In parallel the voltage source
+wins.</strong> In both cases the winner is the source whose prescribed quantity is the
+one the connection shares, and the other source is demoted to an offset.</p>
+<p>The two "only if equal" cases are not pedantry about ideal components. They
+are the reason you do not simply bolt two batteries in parallel and hope: the
+one with the higher open-circuit voltage drives a circulating current</p>
+<div class="math math--display" data-tex="I_\text{circ} = \frac{V_1 - V_2}{R_{\mathrm{i},1} + R_{\mathrm{i},2}}">$$I_\text{circ} = \frac{V_1 - V_2}{R_{\mathrm{i},1} + R_{\mathrm{i},2}}$$</div>
+<p>into the other, limited by nothing but the two internal resistances. With
+matched cells it is small. With a full cell and a flat one it is not.</p>
+<h2 id="thevenin-norton">Thévenin and Norton</h2>
+<p>Look again at the characteristic line. It is a straight line, it is fixed by
+two numbers, and a real voltage source and a real current source produce
+exactly the same line whenever</p>
+<div class="math math--display" data-tex="\begin{aligned}
+V_\mathrm{oc} &amp;= I_\mathrm{s} R_\mathrm{i} , &amp;
+I_\mathrm{sc} &amp;= \frac{V_\mathrm{s}}{R_\mathrm{i}} , &amp;
+R_\mathrm{th} &amp;= R_\mathrm{i} .
+\end{aligned}">$$\begin{aligned}
+V_\mathrm{oc} &amp;= I_\mathrm{s} R_\mathrm{i} , &amp;
+I_\mathrm{sc} &amp;= \frac{V_\mathrm{s}}{R_\mathrm{i}} , &amp;
+R_\mathrm{th} &amp;= R_\mathrm{i} .
+\end{aligned}$$</div>
+<p>If two boxes produce the same line, no measurement at the terminals can
+distinguish them. So they are the same source, written two ways:</p>
+<ul>
+<li><strong>Thévenin form</strong>: a voltage source <span class="math math--inline" data-tex="V_\mathrm{th} = V_\mathrm{oc}">$V_\mathrm{th} = V_\mathrm{oc}$</span> in series
+  with <span class="math math--inline" data-tex="R_\mathrm{th}">$R_\mathrm{th}$</span>.</li>
+<li><strong>Norton form</strong>: a current source <span class="math math--inline" data-tex="I_\mathrm{n} = I_\mathrm{sc}">$I_\mathrm{n} = I_\mathrm{sc}$</span> in parallel
+  with the same <span class="math math--inline" data-tex="R_\mathrm{th}">$R_\mathrm{th}$</span>.</li>
+</ul>
+<p>and the conversion is one relation, <span class="math math--inline" data-tex="V_\mathrm{th} = I_\mathrm{n}R_\mathrm{th}">$V_\mathrm{th} = I_\mathrm{n}R_\mathrm{th}$</span>.
+The bench prints both forms for whatever you have set up; switching the source
+type while holding <span class="math math--inline" data-tex="R_\mathrm{i}">$R_\mathrm{i}$</span> moves you between them.</p>
+<p>The theorem behind this is more general than the two-component case: <em>any</em>
+two-terminal network of linear sources and resistances, however large, is
+equivalent at its terminals to one source and one resistance. That is what
+makes circuit analysis tractable, and chapter 2 uses it immediately.</p>
+<p>A caution that matters later: the equivalence is <strong>at the terminals only</strong>. The
+Thévenin and Norton versions of a box dissipate different amounts of power
+inside themselves, so you cannot use the equivalent circuit to reason about the
+heat in the original. With no load connected, the Thévenin form burns nothing
+and the Norton form burns <span class="math math--inline" data-tex="I_\mathrm{n}^2 R_\mathrm{th}">$I_\mathrm{n}^2 R_\mathrm{th}$</span>.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>A battery measures 9.00 V with nothing connected and 8.40 V across a 100 Ω
+   load. Find <span class="math math--inline" data-tex="R_\mathrm{i}">$R_\mathrm{i}$</span> and the short-circuit current. <em>(Answer: the load
+   draws 84 mA, so <span class="math math--inline" data-tex="R_\mathrm{i} = 0.60\ \mathrm{V} / 84\ \mathrm{mA} \approx
+   7.1\ \Omega">$R_\mathrm{i} = 0.60\ \mathrm{V} / 84\ \mathrm{mA} \approx
+   7.1\ \Omega$</span> and <span class="math math--inline" data-tex="I_\mathrm{sc} \approx 1.3\ \mathrm{A}">$I_\mathrm{sc} \approx 1.3\ \mathrm{A}$</span>.)</em></li>
+<li>A current source is specified as 2 mA with a compliance of 10 V. What is
+   the largest load it can drive while still delivering 2 mA? What happens
+   above that? Check your answer on the bench by giving a real current source
+   an <span class="math math--inline" data-tex="R_\mathrm{i}">$R_\mathrm{i}$</span> of 5 kΩ and sweeping the load.</li>
+<li>Show that the power delivered by a real current source into a load is
+   maximized at <span class="math math--inline" data-tex="R_\mathrm{L} = R_\mathrm{i}">$R_\mathrm{L} = R_\mathrm{i}$</span>, the same condition as for a real
+   voltage source. Why does the dual of a maximum stay a maximum here, when
+   everything else in this chapter swapped?</li>
+<li>Two sources are wired in series: an ideal 5 V source and an ideal 1 mA
+   source. What current flows into a 2 kΩ load, and what is the voltage across
+   the whole arrangement? Answer without computing anything.</li>
+</ol>
+<p class="page-foot"><em>Next:</em> <a href="/projects/analog-circuits/resistive-networks/">Resistive networks and loading</a>, where the single source of this chapter meets a divider and stops behaving.</p></div>
+
+  <footer class="post__footer">
+    <nav class="pager" aria-label="Chapters">
+      <a class="pager__link pager__link--next" href="/projects/analog-circuits/resistive-networks/">
+        <span class="pager__label">Next chapter</span>
+        <span class="pager__title">Resistive networks and loading</span>
+      </a>
+    </nav>
+    <p class="page-foot"><a href="/projects/analog-circuits/">All chapters</a></p>
+  </footer>
+</article>
+<script defer src="/media/analog-circuits/applets.js"></script>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/research/">Research</a></li>
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=c467844b"></script>
+</body>
+</html>

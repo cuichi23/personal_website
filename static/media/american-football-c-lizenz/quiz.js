@@ -842,6 +842,160 @@
           "Die Formation der Offense, gegen die sie gespielt wird"],
       k: 0,
       e: "Dazu kommen zwei Zeichenaufgaben: die eigene Grundformation mit allen Positionen gegen eine abgedruckte Offense, und Cover 1, 2 und 3 mit markierten Deep-Spielern sowie Zonen- oder Man-Zuordnungen." },
+    // --- O-Line: Stance, Technik, Blocking ---------------------------------
+    { c: "O-Line",
+      q: "Wie viel des Körpergewichts liegt im 3-Point-Stance etwa auf der vorderen Hand?",
+      a: ["Etwa 20 %", "Etwa 5 %", "Etwa 40 %", "Etwa 60 %"],
+      k: 0,
+      e: "Rund ein Fünftel. Deutlich mehr, und Pull oder Pass Set enden im Fallen; deutlich weniger, und der Stance ist ein 2-Point mit Zusatzaufwand." },
+    { c: "O-Line",
+      q: "Welche beiden Merkmale stehen in ALLEN drei Stance-Spalten (3-Point, 2-Point, Center)?",
+      a: ["Gerader Rücken und stabiler Rumpf",
+          "Hand unter dem Kinn und Kopf oben",
+          "Füße hüftbreit und Hände auf den Oberschenkeln",
+          "Ball vor dem Kopf und Gewicht auf der Hand"],
+      k: 0,
+      e: "Gerader Rücken und stabiler Rumpf sind die Invarianten; auf dem Lehrgangsblatt sind sie einmal geschrieben und mit Pfeilen zu den anderen Spalten gezogen. Was wechselt, ist die Hand." },
+    { c: "O-Line",
+      q: "Wo liegen die Hände im 2-Point-Stance?",
+      a: ["Hände und Unterarme auf den Oberschenkeln",
+          "Eine Hand unter dem Kinn am Boden",
+          "Vor der Brust, Ellenbogen angelegt",
+          "Frei hängend neben dem Körper"],
+      k: 0,
+      e: "Hände bzw. Unterarme auf den Oberschenkeln, Kopf in Linie mit dem Rücken, balanced. Der 2-Point ist gebaut, um ohne Vorzeichen rückwärts zu gehen." },
+    { c: "O-Line",
+      q: "Was unterscheidet den Center-Stance von den beiden anderen?",
+      a: ["Der Ball liegt vor dem Kopf",
+          "Der Rücken ist bewusst rund",
+          "Die Füße stehen enger als hüftbreit",
+          "Das Gewicht liegt vollständig auf den Fersen"],
+      k: 0,
+      e: "Füße außerhalb der Hüftgelenke, stabiler Rumpf, Kopf in Linie mit dem Rücken – und der Ball vor dem Kopf. Das Snappen ist die Zusatzaufgabe, die den Stance verändert." },
+    { c: "O-Line",
+      q: "Wohin gehören die Hände beim Blocken?",
+      a: ["Innen, zwischen die Schlüsselbeine des Gegners",
+          "Außen an den Schulterpolstern des Gegners",
+          "Am Helm des Gegners, um ihn zu führen",
+          "Am Trikot in Hüfthöhe"],
+      k: 0,
+      e: "Innenhände sind Hebel und sie sind regelkonform; Außenhände sind beides nicht. Dazu: Ellenbogen zusammen, Schultern zurück, unabhängige Hände." },
+    { c: "O-Line",
+      q: "Warum kleine, schnelle Schritte statt langer Schritte?",
+      a: ["Ein langer Schritt ist ein Moment ohne Boden unter dem Fuß – in dieser Zeit bewegt sich der Verteidiger",
+          "Lange Schritte sind nach Regelwerk unzulässig",
+          "Kleine Schritte sparen Kondition über das Spiel",
+          "Lange Schritte verhindern den ersten Kontakt mit den Händen"],
+      k: 0,
+      e: "Balance ist das Thema: Füße unter der Hüfte, Gewicht in der eigenen Basis („in frame“), und der erste Schritt explosiv. Der Block wird vor dem Kontakt gewonnen oder verloren." },
+    { c: "O-Line",
+      q: "Was meint der Cue „unabhängige Hände“?",
+      a: ["Die beiden Hände schlagen und arbeiten getrennt, damit eine geschlagen werden kann, ohne den Block zu verlieren",
+          "Die Hände arbeiten unabhängig von der Fußarbeit",
+          "Jede Hand greift einen anderen Verteidiger",
+          "Die Hände bleiben bis zum Kontakt am Körper"],
+      k: 0,
+      e: "Kommen beide Hände als eine Einheit an, nimmt ein einziger Swipe den ganzen Block mit. Getrennt arbeitende Hände lassen sich einzeln verlieren und einzeln ersetzen." },
+    { c: "O-Line",
+      q: "Drei der zehn genannten O-Line-Voraussetzungen sind nicht körperlich. Welche?",
+      a: ["social, coachable, communicative",
+          "mobility, technique, consistency",
+          "explosiveness, speed, footwork",
+          "strength, consistency, mobility"],
+      k: 0,
+      e: "Die Line muss unter Zuschauerlärm gemeinsam Calls setzen und ändern – deshalb stehen social, coachable und communicative in derselben Liste wie Kraft. Und Kraft steht an siebter Stelle, nicht an erster." },
+    { c: "O-Line",
+      q: "Zwei Linemen blocken einen Down Lineman, dann steigt einer von beiden zum Linebacker hoch. Wie heißt das?",
+      a: ["Combo", "Double Team", "Scoop", "Trap"],
+      k: 0,
+      e: "Combo: erst gemeinsam verdrängen, dann „push into the 2nd level“. Ein Double Team, bei dem beide bleiben, hat einen Verteidiger mit zwei Spielern geblockt und einen Linebacker frei gelassen." },
+    { c: "O-Line",
+      q: "Was ist ein Trap-Block?",
+      a: ["Ein Verteidiger wird bewusst ungeblockt gelassen und von einem Puller von innen heraus gekickt",
+          "Zwei Linemen blocken denselben Verteidiger und bleiben beide",
+          "Ein tiefer Block an den Beinen, um den Verteidiger aus der Verfolgung zu nehmen",
+          "Der Blocker hakt den Verteidiger mit der Playside-Schulter nach innen ein"],
+      k: 0,
+      e: "Der Verteidiger darf kommen – und läuft dabei an dem Puller vorbei, der ihn von innen erwischt. Die falschen Antworten beschreiben Double Team, Cut und Reach." },
+    { c: "O-Line",
+      q: "Was ist der Unterschied zwischen Kick Out und Log?",
+      a: ["Kick Out treibt den Edge-Verteidiger nach außen, Log dreht ihn nach innen",
+          "Kick Out wird vom Guard geblockt, Log vom Tackle",
+          "Kick Out ist ein Passblock, Log ein Laufblock",
+          "Kick Out ist gegen Linebacker, Log gegen Down Linemen"],
+      k: 0,
+      e: "Dieselbe Bewegung, umgekehrte Richtung – und damit läuft der Ball einmal innen und einmal außen an ihm vorbei. Log ist die Antwort, wenn der Kick Out nicht geht." },
+    { c: "O-Line",
+      q: "Was macht ein Reach Block?",
+      a: ["Mit der Playside-Schulter an der Playside-Schulter des Gegners vorbei und ihn nach innen einhaken",
+          "Den Gegner geradeaus vom Fleck verdrängen",
+          "Den Gegner an den Beinen zu Fall bringen",
+          "Die eigene Position verlassen und woanders blocken"],
+      k: 0,
+      e: "Reach ist der Positionsblock gegen einen Verteidiger, der bereits playside geshadet steht. Die anderen drei beschreiben Drive, Cut und Pull." },
+    { c: "O-Line",
+      q: "Welche drei Pass-Protection-Schemata wurden genannt?",
+      a: ["Full Slide, Half Slide, Man on Man",
+          "Base, Reach, Combo",
+          "Vertical, Jump, Hinge",
+          "Trap, Log, Kick Out"],
+      k: 0,
+      e: "Full Slide: die ganze Line tritt in eine Richtung. Half Slide: eine Seite slidet, die andere spielt Man. Man on Man: big on big. Die anderen Antworten sind Laufblocks bzw. Sets." },
+    { c: "O-Line",
+      q: "Welches Pass-Set attackiert den Rusher direkt an der Line, statt Tiefe zu gewinnen?",
+      a: ["Jump Set", "Vertical Set", "45-Degree Set", "Hinge Set"],
+      k: 0,
+      e: "Das Jump Set nimmt dem Rusher die Anlaufstrecke, bevor er Fahrt aufnimmt. Das Vertical Set tut das Gegenteil: gerade zurück, Tiefe und Zeit gegen Speed." },
+    { c: "O-Line",
+      q: "Beim Hinge Set (Waterfall Set) …",
+      a: ["… bleibt der innere Fuß, der äußere schwingt zurück – der Blocker dreht wie ein Tor",
+          "… springt der Blocker mit beiden Füßen zugleich zurück",
+          "… läuft der Blocker im 45-Grad-Winkel rückwärts",
+          "… greift der Blocker den Rusher am Snap sofort an"],
+      k: 0,
+      e: "Die Drehbewegung gibt dem Set seinen Namen. Die anderen Beschreibungen gehören zum 45-Degree Set und zum Jump Set." },
+    { c: "O-Line",
+      q: "Womit beginnt die Pass Protection, bevor irgendjemand blockt?",
+      a: ["Mit dem Identifizieren des Mike-Linebackers",
+          "Mit dem Snap Count",
+          "Mit der Wahl des Stance",
+          "Mit dem Audible des Quarterbacks"],
+      k: 0,
+      e: "Die Mike-Deklaration legt fest, wer wen hat. Deshalb steht sie in der Wissensbasis dieser Seite auch im Abschnitt „Protection and operation“ ganz vorn." },
+
+    // --- Mentales Training --------------------------------------------------
+    { c: "Mental",
+      q: "Wofür stehen die „4 C's“ nach Paul G. Stoltz?",
+      a: ["Control, Commitment, Challenge, Confidence",
+          "Concentration, Control, Courage, Consistency",
+          "Commitment, Communication, Coaching, Confidence",
+          "Challenge, Change, Choice, Confidence"],
+      k: 0,
+      e: "Control ist der Teil, auf den ich einwirken kann; commitment das Dranbleiben; challenge heißt, eine harte Lage als Aufgabe statt als Bedrohung zu lesen; confidence ist die erarbeitete Erwartung, damit umgehen zu können." },
+    { c: "Mental",
+      q: "Wie wurde „Mental Toughness“ im Lehrgang definiert?",
+      a: ["Die Fähigkeit, unter Druck kognitiv stabil zu bleiben",
+          "Die Fähigkeit, Schmerz länger auszuhalten als der Gegner",
+          "Die Fähigkeit, keine Emotionen zu zeigen",
+          "Die Fähigkeit, Niederlagen schnell zu vergessen"],
+      k: 0,
+      e: "Nicht nichts zu fühlen, sondern weiter zu denken, während man es fühlt. Die Rahmenfrage des Blocks lautete: what does it take to break you?" },
+    { c: "Mental",
+      q: "Was wird bei der Meditationsübung aus dem Lehrgang eigentlich trainiert?",
+      a: ["Das Zurückkehren zum Wesentlichen, nachdem die Aufmerksamkeit abgedriftet ist",
+          "Das möglichst lange Halten eines leeren Kopfes",
+          "Das Unterdrücken störender Gedanken",
+          "Das Entspannen der Muskulatur vor dem Spiel"],
+      k: 0,
+      e: "Die Skizze zeigt Gedanken aus allen Richtungen, einen davon als den wesentlichen, den Rest als Ablenkung. Geübt wird die Rückkehr, nicht das Bleiben." },
+    { c: "Mental",
+      q: "Welche Rolle schreibt der Lehrgang dem Trainer im mentalen Bereich zu?",
+      a: ["Coach = Vorbild: die Spieler lesen die Seitenlinie, bevor sie den Spielzug lesen",
+          "Coach = Therapeut: mentale Betreuung gehört in die Trainerrolle",
+          "Coach = Beobachter: mentale Themen gehören ausschließlich zu Fachleuten",
+          "Coach = Motivator: laute Ansprachen sind das zentrale Mittel"],
+      k: 0,
+      e: "Vorbildfunktion. Stress, der verstanden und genutzt wird, ist eine Ressource; Stress, der nur ausgehalten wird, ist ein Leck. Fachliche Betreuung bleibt davon unberührt." },
   ];
 
   // ====================================================== Verbatim recall drill
@@ -1260,6 +1414,39 @@
           "Hypertrophie, Maximalkraft, Schnellkraft, Sprungkraft, Rumpfkraft"],
       k: 0,
       e: "Jedes Ziel hat eine eigene Belastungskonfiguration: 50–60 % für Kraftausdauer, 60–85 % für Hypertrophie, 90–100 % für neuronale Kraft, 30–40 % für Schnellkraft, 100 % für Reaktivkraft." },
+    // --- O-Line und Mentales: Listen, die sitzen müssen ---------------------
+    { c: "Reihenfolgen",
+      q: "Die drei Pass-Protection-Schemata – vollständig und in der genannten Reihenfolge:",
+      a: ["Full Slide – Half Slide – Man on Man",
+          "Man on Man – Full Slide – Half Slide",
+          "Half Slide – Man on Man – Full Slide",
+          "Full Slide – Man on Man – Combo"],
+      k: 0,
+      e: "Von der einfachsten Regel zur anspruchsvollsten: erst alle in eine Richtung, dann halb und halb, dann jeder seinen Mann. Combo ist ein Laufblock und gehört nicht in diese Liste." },
+    { c: "Listen & Modelle",
+      q: "Die fünf im Lehrgang genannten Pass-Sets:",
+      a: ["Hinge (Waterfall), Vertical, 45-Degree, Jump, Power Step",
+          "Hinge, Vertical, Kick, Slide, Jump",
+          "Vertical, Horizontal, Diagonal, Jump, Drop",
+          "Waterfall, Reach, Scoop, Jump, Drive"],
+      k: 0,
+      e: "Reach, Scoop und Drive sind Laufblocks. Das Set beschreibt, wie der Blocker im Passspiel zu seinem Rusher kommt – Tiefe gegen Speed, Aggressivität gegen Power." },
+    { c: "Listen & Modelle",
+      q: "Die 4 C's nach Paul G. Stoltz, vollständig:",
+      a: ["Control, Commitment, Challenge, Confidence",
+          "Control, Concentration, Challenge, Confidence",
+          "Commitment, Challenge, Courage, Confidence",
+          "Control, Commitment, Change, Confidence"],
+      k: 0,
+      e: "Vier C's, kein fünftes. Typische Falle: Concentration und Courage klingen plausibel und stehen nicht in der Liste." },
+    { c: "Listen & Modelle",
+      q: "Welche Zahl gehört zum 3-Point-Stance?",
+      a: ["Etwa 20 % des Gewichts auf der vorderen Hand",
+          "Etwa 50 % des Gewichts auf der vorderen Hand",
+          "Etwa 20 cm Abstand zwischen den Füßen",
+          "Etwa 20 Grad Rumpfvorlage"],
+      k: 0,
+      e: "Die einzige Zahl, die der Stance-Block liefert, und damit die, die gefragt werden kann." },
   ];
 
   // ========================================================== Formation sketches
@@ -1445,10 +1632,120 @@
     },
   };
 
+  // ==================================================== blocking sketches
+  // A zoomed view of the five interior linemen, wider than the formation
+  // sketches above so that a pull path stays readable. The offense sits below
+  // its line of scrimmage, defenders above it, the second level higher still.
+  // Every scheme is told by its arrows: who moves, where to, and in what
+  // order. A dashed arrow is the second step of the same block.
+
+  var BLOCK_LOS_Y = 112;
+  //            LT          LG          C                RG          RT
+  var BLOCK_OL = [[62, 142], [122, 142], [182, 142, "c"], [242, 142], [302, 142]];
+
+  var BLOCK_SCHEMES = {
+    "Base": {
+      def: [[302, 84, "T"]],
+      paths: [[[302, 132], [302, 98]]],
+    },
+    "Reach": {
+      def: [[220, 86, "N"]],
+      paths: [[[182, 132], [198, 128], [212, 114], [220, 100]]],
+    },
+    "Double Team": {
+      def: [[242, 84, "T"]],
+      paths: [[[242, 132], [240, 98]], [[302, 138], [262, 104]]],
+    },
+    "Combo": {
+      def: [[242, 84, "T"], [206, 44, "B"]],
+      paths: [[[242, 132], [240, 98]], [[302, 138], [262, 104]]],
+      then: [[[228, 100], [212, 60]]],
+    },
+    "Trap": {
+      // The guard does not block the man over him: he is the trapped one.
+      // Only the puller is drawn, because that is what names the scheme.
+      def: [[122, 84, "T"]],
+      paths: [[[242, 152], [196, 168], [146, 152], [128, 104]]],
+      ball: [[[182, 198], [168, 176], [160, 148], [162, 118]]],
+    },
+    "Kick Out": {
+      def: [[338, 88, "E"]],
+      paths: [[[122, 152], [200, 168], [296, 152], [330, 124]]],
+      ball: [[[182, 198], [258, 192], [296, 162], [300, 126]]],
+    },
+    "Log": {
+      def: [[338, 88, "E"]],
+      paths: [[[122, 152], [200, 168], [312, 150], [336, 120], [316, 102]]],
+      ball: [[[182, 198], [280, 196], [338, 168], [344, 126]]],
+    },
+    "Crack": {
+      def: [[236, 50, "M"]],
+      extra: [[336, 132]],
+      paths: [[[330, 124], [280, 90], [250, 64]]],
+    },
+  };
+
+  function drawLabelledDefenders(svg, defenders) {
+    defenders.forEach(function (d) {
+      var x = d[0], y = d[1];
+      var g = svgEl("g", { "class": "clqf__def" });
+      g.appendChild(svgEl("line", { x1: x - 6, y1: y - 6, x2: x + 6, y2: y + 6 }));
+      g.appendChild(svgEl("line", { x1: x - 6, y1: y + 6, x2: x + 6, y2: y - 6 }));
+      svg.appendChild(g);
+      if (!d[2]) return;
+      var label = svgEl("text", { x: x, y: y - 12, "class": "clqf__label" });
+      label.textContent = d[2];
+      svg.appendChild(label);
+    });
+  }
+
+  function appendArrowheads(svg) {
+    var defs = svgEl("defs", {});
+    [["clqf-arrow", "clqf__arrowhead"],
+     ["clqf-arrow-ball", "clqf__arrowhead clqf__arrowhead--ball"]
+    ].forEach(function (spec) {
+      var marker = svgEl("marker", {
+        id: spec[0], viewBox: "0 0 10 10", refX: "9", refY: "5",
+        markerWidth: "5", markerHeight: "5", orient: "auto-start-reverse",
+      });
+      marker.appendChild(svgEl("path",
+        { d: "M 0 0 L 10 5 L 0 10 z", "class": spec[1] }));
+      defs.appendChild(marker);
+    });
+    svg.appendChild(defs);
+  }
+
+  function drawPaths(svg, paths, className, markerId) {
+    (paths || []).forEach(function (points) {
+      var attrs = {
+        points: points.map(function (p) { return p[0] + "," + p[1]; }).join(" "),
+        "class": className,
+      };
+      if (markerId) attrs["marker-end"] = "url(#" + markerId + ")";
+      svg.appendChild(svgEl("polyline", attrs));
+    });
+  }
+
+  /* The blocking sketches are a close-up, so they get their own viewBox:
+     the formation box would leave most of its height empty. */
+  function buildBlockingSketch(svg, scheme) {
+    svg.setAttribute("viewBox", "22 24 326 188");
+    appendArrowheads(svg);
+    svg.appendChild(svgEl("line", { x1: 30, y1: BLOCK_LOS_Y, x2: 342,
+                                    y2: BLOCK_LOS_Y, "class": "clqf__los" }));
+    drawPaths(svg, scheme.ball, "clqf__path clqf__path--ball", "clqf-arrow-ball");
+    drawPlayers(svg, BLOCK_OL.concat(scheme.extra || []), "clqf__off");
+    drawLabelledDefenders(svg, scheme.def);
+    drawPaths(svg, scheme.paths, "clqf__path", "clqf-arrow");
+    drawPaths(svg, scheme.then, "clqf__path clqf__path--then", "clqf-arrow");
+    return svg;
+  }
+
   var SKETCH_SETS = {
     Offense: OFFENSE_FORMATIONS,
     Defense: DEFENSE_FORMATIONS,
     Coverage: COVERAGE_FORMATIONS,
+    Blocking: BLOCK_SCHEMES,
   };
 
   var SKETCH_PROMPT = {
@@ -1456,6 +1753,7 @@
     Defense: "Welche Defensiv-Front zeigt die Skizze? (Offense grau angedeutet)",
     Coverage: "Welche Coverage zeigt die Skizze? (Deep-Spieler eingekreist, "
       + "Zonengrenzen gestrichelt, Man-Zuordnungen als Verbindung)",
+    Blocking: "Welches Blocking-Schema zeigt die Skizze? (Pfeil = Weg des Blockers, gestrichelter Pfeil = zweiter Schritt, grau = Weg des Balls)",
   };
 
   var FORMATION_QUESTIONS = [
@@ -1493,6 +1791,22 @@
       e: "Drei Deep-Spieler: beide Corners und der Free Safety teilen das Feld in Drittel, der Strong Safety rollt herunter. Zone mit drei Deep- und vier Unterzonen-Spielern." },
     { c: "Coverage", f: "Cover 4",
       e: "Vier Deep-Spieler (Quarters): Corners und Safeties teilen das Feld in Viertel. Stark gegen tiefe Pässe, aber nur drei Spieler gegen den Lauf in der Box." },
+    { c: "Blocking", f: "Base",
+      e: "Ein Blocker, ein Pfeil, geradeaus: der Mann, der über dir steht, wird nach vorn geblockt. Der Standardblock – alles andere auf dieser Liste ist eine Abweichung davon." },
+    { c: "Blocking", f: "Reach",
+      e: "Der Verteidiger ist zur Playside geshadet, der Blocker muss ihn erst erreichen: mit der Playside-Schulter an seiner Playside-Schulter vorbei und ihn nach innen einhaken. Der Pfeil geht deshalb seitlich und dann hoch, nicht gerade." },
+    { c: "Blocking", f: "Double Team",
+      e: "Zwei Pfeile auf einen Verteidiger, und beide bleiben dort: reine Verdrängung. Der Preis ist der freie Linebacker – deshalb bleibt ein Double Team selten eins (siehe Combo)." },
+    { c: "Blocking", f: "Combo",
+      e: "Erst Double Team auf den Down Lineman, dann steigt einer der beiden zum Backer hoch – der gestrichelte Pfeil ist dieser zweite Schritt („push into the 2nd level“). Unterschied zum Double Team: der Backer ist mitgezeichnet und wird geblockt." },
+    { c: "Blocking", f: "Trap",
+      e: "Der Verteidiger über dem Guard wird bewusst NICHT geblockt – der Guard geht nach innen weiter – und ein Puller von der anderen Seite kickt ihn von innen heraus. Erkennungsmerkmal: der lange Weg hinter der eigenen Line." },
+    { c: "Blocking", f: "Kick Out",
+      e: "Der Puller trifft den Edge-Verteidiger und treibt ihn nach AUSSEN; der Ball (grau) läuft innen an ihm vorbei. Der Pfeil endet nach außen zeigend." },
+    { c: "Blocking", f: "Log",
+      e: "Derselbe Puller, die umgekehrte Entscheidung: der Verteidiger wird nach INNEN gedreht und versiegelt, der Ball (grau) läuft außen um ihn herum. Das ist die Antwort, wenn der Kick Out nicht geht – etwa weil der Verteidiger den Blocker „wrong-armed“." },
+    { c: "Blocking", f: "Crack",
+      e: "Der Block kommt nicht von der Line: ein Receiver bzw. Slot von außen blockt nach INNEN zurück auf den Linebacker. Erkennungsmerkmal: der Pfeil startet weit außen und läuft diagonal nach innen oben." },
   ];
 
   var SVG_NS = "http://www.w3.org/2000/svg";
@@ -1550,6 +1864,9 @@
       viewBox: "0 0 360 220", "class": "clqf",
       role: "img", "aria-label": "Formationsskizze",
     });
+    if (item.c === "Blocking") {
+      return buildBlockingSketch(svg, BLOCK_SCHEMES[item.f]);
+    }
     svg.appendChild(svgEl("line",
       { x1: 8, y1: LOS_Y, x2: 352, y2: LOS_Y, "class": "clqf__los" }));
     if (item.c === "Offense") {
@@ -1623,6 +1940,12 @@
     ".clqf__zone{stroke:var(--link,#3e3170);stroke-width:1.1;stroke-dasharray:4 4;opacity:0.55}",
     ".clqf__man{stroke:var(--link,#3e3170);stroke-width:1.2;stroke-dasharray:2 3;opacity:0.7}",
     "rect.clqf__ghost,circle.clqf__ghost{fill:none}",
+    ".clqf__path{fill:none;stroke:var(--accent,#b4620e);stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}",
+    ".clqf__path--then{stroke-dasharray:5 4;opacity:0.9}",
+    ".clqf__path--ball{stroke:var(--muted,#888);stroke-width:1.6;stroke-dasharray:3 4;opacity:0.85}",
+    ".clqf__arrowhead{fill:var(--accent,#b4620e);stroke:none}",
+    ".clqf__arrowhead--ball{fill:var(--muted,#888)}",
+    ".clqf__label{font-size:11px;font-weight:700;fill:var(--link,#3e3170);text-anchor:middle}",
   ].join("\n");
 
   function shuffled(list) {
@@ -1817,8 +2140,19 @@
         + "Offense in den Defense- und Coverage-Skizzen ist nur eine räumliche "
         + "Referenz. In den Coverage-Skizzen sind Deep-Spieler eingekreist, "
         + "Zonengrenzen gestrichelt und Man-Zuordnungen als Verbindung zum "
-        + "Receiver gezeichnet. Wähle Offense, Defense, Coverage oder alles.");
+        + "Receiver gezeichnet. Die Blocking-Skizzen zeigen die fünf inneren "
+        + "Linemen von nahem: durchgezogener Pfeil = Weg des Blockers, "
+        + "gestrichelter Pfeil = zweiter Schritt desselben Blocks, grauer "
+        + "Pfeil = Weg des Balls. Wähle Offense, Defense, Coverage, Blocking "
+        + "oder alles.");
     }
+  }
+
+  // A narrow hook for tools/sketch_sheet.html, which draws every sketch on one
+  // page so the diagrams can be proof-read. It stays inert unless a page sets
+  // window.__CLZ_TEST__ before loading this file, so the live page never sees it.
+  if (typeof window !== "undefined" && window.__CLZ_TEST__) {
+    window.__CLZ_TEST__ = { buildSketch: buildSketch, sketches: FORMATION_QUESTIONS, css: CSS };
   }
 
   if (document.readyState === "loading") {

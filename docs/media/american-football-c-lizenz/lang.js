@@ -16,8 +16,9 @@
     + "Trainer-C-Lizenz im American Football: wie das deutsche Lizenzsystem "
     + "funktioniert, alle Prüfungsthemen sortiert und zusammengefasst, meine "
     + "Notizen aus den Lehrgängen, was die Prüfung tatsächlich abfragt, eine "
-    + "einführende Coaching-Wissensbasis für Offense und Defense und drei "
-    + "interaktive Quizze zum Selbsttest.";
+    + "einführende Coaching-Wissensbasis für Offense und Defense, ein "
+    + "Positionsblock zur Offensive Line und drei interaktive Quizze zum "
+    + "Selbsttest.";
 
   function currentLang() {
     return document.documentElement.dataset.lang === "de" ? "de" : "en";

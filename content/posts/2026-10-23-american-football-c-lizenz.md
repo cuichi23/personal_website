@@ -7,9 +7,11 @@ summary: >-
   football: how the German coaching-license system works, every exam topic
   sorted and summarized, my notes from the course sessions, what the written
   and practical exams actually ask, an introductory coaching knowledge base for
-  running an offense and a defense, and three interactive quizzes.
+  running an offense and a defense, a position block on the offensive line, and
+  three interactive quizzes.
 tags:
   - "American Football"
+  - "offensive line"
   - "coaching"
   - "Trainer-C"
   - "DOSB"
@@ -25,6 +27,24 @@ html[data-lang="de"] .lang-block:not([lang="de"]) { display: none; }
 .lang-toggle__mark { position: absolute; top: 2px; bottom: 2px; left: 2px; width: calc(50% - 3px); border-radius: 999px; background: var(--accent-wash); border: 1px solid var(--accent); transition: transform 160ms ease; }
 .lang-toggle[data-state="de"] .lang-toggle__mark { transform: translateX(calc(100% + 2px)); }
 .lang-toggle[data-state="en"] .lang-toggle__opt--en, .lang-toggle[data-state="de"] .lang-toggle__opt--de { color: var(--ink); }
+/* collapsible topic folds, see media/american-football-c-lizenz/folds.js */
+.clz-index { border-left: 3px solid var(--accent); padding: 0.1rem 0 0.1rem 1rem; margin: 1.5rem 0 2rem; font-size: 0.94em; }
+.clz-index ul { margin: 0.4rem 0 0; padding-left: 1.1rem; }
+.clz-index li { margin: 0.3rem 0; line-height: 1.5; }
+.clz-fold { border: 1px solid var(--rule); border-radius: 10px; margin: 1.1rem 0; padding: 0 1rem; background: var(--surface, transparent); }
+.clz-fold > summary { cursor: pointer; font-family: var(--font-display); font-weight: 600; padding: 0.75rem 1.6rem 0.75rem 0; list-style: none; position: relative; }
+.clz-fold > summary::-webkit-details-marker { display: none; }
+.clz-fold > summary::after { content: "+"; position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-weight: 400; color: var(--accent); font-size: 1.2em; line-height: 1; }
+.clz-fold[open] > summary::after { content: "\2013"; }
+.clz-fold[open] { padding-bottom: 0.4rem; }
+.clz-fold[open] > summary { border-bottom: 1px solid var(--rule); margin-bottom: 0.5rem; }
+.clz-fold > summary:hover { color: var(--accent); }
+.clz-fold .clz-fold__hint { font-family: var(--font-body); font-weight: 400; font-size: 0.82em; color: var(--muted); margin-left: 0.4rem; }
+.clz-fold > summary + * { margin-top: 0.75rem; }
+.clz-fold h3:first-of-type { margin-top: 0.6rem; }
+.clz-foldall { display: inline-block; margin: 0 0 0.6rem; border: 1px solid var(--rule-strong); background: transparent; color: var(--muted); border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.78em; letter-spacing: 0.02em; cursor: pointer; }
+.clz-foldall:hover { border-color: var(--accent); color: var(--accent); }
+@media print { .clz-fold > summary::after, .clz-foldall { display: none; } .clz-fold { border: 0; padding: 0; } }
 </style>
 
 <script>
@@ -40,21 +60,23 @@ autumn I am taking the sport-specific course for the Trainer-C license in
 American football with the American Football Verband Sachsen (AFVS). This page
 is my study companion: the license system in one place, every exam topic
 sorted, my own notes from the course sessions, what the written and practical
-exams actually ask, a compact coaching knowledge base, and three interactive
-quizzes.
+exams actually ask, a compact coaching knowledge base, a position block on the
+offensive line, and three interactive quizzes.
 
-**On this page:**
-[the license ladder](#license-ladder) ·
-[admission and exam](#admission-exam) ·
-[the 120 units](#units) ·
-[topic guide](#topics) ·
-[course notes](#course-notes) ·
-[what the exam asks](#exam-format) ·
-[coaching knowledge base](#knowledge-base) ·
-[recall drill](#recall-drill) ·
-[mock exam quiz](#mock-exam) ·
-[formation quiz](#formation-quiz-section) ·
-[sources](#sources)
+<nav class="clz-index" markdown="1">
+
+**On this page.** The course notes and the position block are folded by topic;
+a link from here opens the fold it points at.
+
+- **Licence and exam** · [the ladder](#license-ladder) · [admission and structure](#admission-exam) · [the 120 units](#units) · [what the exam actually asks](#exam-format)
+- **[Topic guide](#topics)** · the eight exam blocks, one summary each
+- **[Course notes](#course-notes)** · [the coach](#notes-coach) · [planning](#notes-planning) · [training theory](#notes-theory) · [the session](#notes-session) · [long-term development](#notes-ltad) · [prevention and diagnostics](#notes-prevention) · [the abilities](#notes-abilities) · [review and mental training](#notes-review) · [corrections](#notes-corrections)
+- **[Position coaching: the O-line](#position-coaching)** · [what the position asks for](#oline-prerequisites) · [stance](#oline-stance) · [footwork and hands](#oline-footwork) · [run blocking](#oline-schemes) · [kick-out, log, double team](#oline-rules) · [pass blocking](#oline-pass)
+- **[Knowledge base](#knowledge-base)** · running an offense, running a defense
+- **Quizzes** · [recall drill](#recall-drill) · [mock exam](#mock-exam) · [sketch quiz](#formation-quiz-section)
+- [Sources](#sources)
+
+</nav>
 
 ## The license ladder {: #license-ladder }
 
@@ -248,6 +270,9 @@ given, because the written exam asks for them in German. Where my notes and
 the official course material disagree, the last subsection says so instead of
 quietly smoothing it over.
 
+<details class="clz-fold clz-fold--group" id="notes-coach" markdown="1">
+<summary>The coach and the people in the room <span class="clz-fold__hint">3 sections</span></summary>
+
 ### The coach: role, expectations, stakeholders
 
 - What you may expect of yourself as a coach is **context-dependent** and
@@ -332,6 +357,11 @@ reasons that have nothing to do with the session. Worth knowing for retention:
 the health motive wins people for sport but binds them poorly, so a program
 should speak to several motives.
 
+</details>
+
+<details class="clz-fold clz-fold--group" id="notes-planning" markdown="1">
+<summary>Planning and organizing <span class="clz-fold__hint">3 sections</span></summary>
+
 ### The planning cycle
 
 Four phases, treated as a loop rather than a list.
@@ -401,6 +431,11 @@ One detail from the athletics session that belongs here: in the closing
 semicircle the coach stands **facing the sun**, so the group has the sun at
 its back and can actually see the coach.
 
+</details>
+
+<details class="clz-fold clz-fold--group" id="notes-theory" markdown="1">
+<summary>Training theory: load and progression <span class="clz-fold__hint">2 sections</span></summary>
+
 ### Training principles and the stimulus-threshold rule
 
 Three progressions, each adjustable on its own: from **easy to hard**
@@ -439,6 +474,11 @@ ruins everything above it on the list.
 *"Jugendtraining ist kein reduziertes Erwachsenentraining."* Youth training
 is not adult training with the volume turned down. The consequence is a
 priority rule: **Ausbildung vor Ergebnis**, development before the result.
+
+</details>
+
+<details class="clz-fold clz-fold--group" id="notes-session" markdown="1">
+<summary>The training session itself <span class="clz-fold__hint">3 sections</span></summary>
 
 ### Structure of a training session
 
@@ -529,6 +569,11 @@ time.
 - Twice circled in my notes, for both age groups: **the coach demonstrates**
   ("Trainer als Vortänzer").
 
+</details>
+
+<details class="clz-fold clz-fold--group" id="notes-ltad" markdown="1">
+<summary>Long-term development and the training year <span class="clz-fold__hint">2 sections</span></summary>
+
 ### Long-term athlete development
 
 | Stage | Name | Content |
@@ -582,6 +627,11 @@ one to one is not sensible.** The indoor season complicates the principle
 further, because a proper answer would need a double cycle. Complex
 periodization is not yet necessary at that age. Dividing the year into
 **thematic focal points** is.
+
+</details>
+
+<details class="clz-fold clz-fold--group" id="notes-prevention" markdown="1">
+<summary>Prevention and diagnostics <span class="clz-fold__hint">2 sections</span></summary>
 
 ### Injury prevention
 
@@ -669,6 +719,11 @@ its numbers less heavily.
 
 That does not make testing useless. It makes a test a tool for **tracking a
 trend** in training control, not a tool for predicting who will be good.
+
+</details>
+
+<details class="clz-fold clz-fold--group" id="notes-abilities" markdown="1">
+<summary>The abilities: coordinative and conditional <span class="clz-fold__hint">2 sections</span></summary>
 
 ### The seven coordinative abilities: DORFKRUG
 
@@ -781,6 +836,11 @@ The difference between passive and active flexibility is the
 **Bewegungsreserve**, trainable either by strengthening the agonist or by
 stretching the antagonist more.
 
+</details>
+
+<details class="clz-fold clz-fold--group" id="notes-review" markdown="1">
+<summary>Review, mental training and special topics <span class="clz-fold__hint">3 sections</span></summary>
+
 ### Evaluating a session
 
 - **Why**, **when**, **how**. The *when* splits into **unmittelbar** (right
@@ -814,6 +874,46 @@ The material handed out: the IAT's *Female Facts* booklet, Fischer et al.
 availability, the IAT podcast *Blut, Schweiß und Training*, the IAT HUB
 knowledge portal on women in elite sport, and *The Female Athlete* education
 offering.
+
+### Mental training
+
+The session of 7 November 2026 put a block on the mental side of coaching
+next to the technical one. Its frame was a question written across the page
+and arrowed from both sides: **what does it take to break you?** That is not
+rhetorical. It is what an opponent, a scoreboard and a bad week are all
+probing, and the answer is trainable.
+
+- **Attention is a loop, not a state.** The sketch on the board: thoughts
+  arrive from every direction, one of them is the essential one
+  (*wesentlich*), the rest are distraction (*Ablenkung*). Meditation is
+  practised not as emptiness but as **coming back** – notice the drift,
+  return, and again. What is being trained is the return, not the staying.
+- **Mental toughness** was defined in the room as the ability to stay
+  **cognitively stable under pressure**: not to feel nothing, but to keep
+  thinking while feeling it.
+- **The 4 C's** after Paul G. Stoltz: **control**, **commitment**,
+  **challenge**, **confidence**. Control is the part I can act on; commitment
+  is staying with the task; challenge is reading a hard situation as a problem
+  rather than a threat; confidence is the earned expectation that I can handle
+  it. This is a four-item list with an attributed author, which makes it
+  exam-shaped.
+- **The coach is the model** (*Coach = Vorbild*). The players read the
+  sideline before they read the play call. Stress that is understood and used
+  is a resource; stress that is only endured is a leak.
+- **Routines** carry performance when attention is loaded, and **mistakes,
+  criticism and setbacks** (*Umgang mit Rückschlägen*) need one as much as the
+  snap count does.
+- The agenda also listed **mindset**, **mindset models** and **what
+  visualization actually is**; my notes keep the headings without the content.
+  One line names a *Thompson* coaching perspective, and since the note does
+  not say which Thompson, I have left it unexpanded rather than guess.
+- The closing remark, and a fair one: **forming your own opinion is hard in
+  the age of YouTube.** This page included.
+
+</details>
+
+<details class="clz-fold clz-fold--group" id="notes-corrections" markdown="1">
+<summary>Corrections and open items <span class="clz-fold__hint">2 sections</span></summary>
 
 ### Where the sources differ
 
@@ -852,6 +952,8 @@ fixed.
   Both are checked, see the prevention section.
 - Still ahead: the practical athletics part and the written defense test. What
   both of them ask is in the next section.
+
+</details>
 
 ## What the exam actually asks {: #exam-format }
 
@@ -1001,6 +1103,179 @@ technique periods over group drills (inside run, 7-on-7) to full team
 periods, script the reps, and review on film. A playbook the players cannot
 execute is a wish list.
 
+## Position coaching: the offensive line {: #position-coaching }
+
+The session of 7 November 2026 was the first position block of the course,
+and it took the offensive line. The line is the right place to start,
+because it is the one unit where **every player has a job on every snap** and
+none of those jobs produce a statistic. Below: what the course listed, with
+the standard definition added where my notes carry only a name or a sketch.
+Where a reading of my own handwriting is uncertain, it says so.
+
+<details class="clz-fold" id="oline-prerequisites" markdown="1">
+<summary>What the position asks for <span class="clz-fold__hint">ten prerequisites</span></summary>
+
+Written as one list, in the order it was dictated: **mobility**,
+**technique**, **consistency**, **explosiveness**, **speed**, **footwork**,
+**strength**, **social**, **coachable**, **communicative**.
+
+Three of the ten are not physical. That is the point of the list: the line
+is the unit that has to make and change calls together under crowd noise, so
+*social*, *coachable* and *communicative* sit in the same list as strength.
+And note what is **not** first. Strength is seventh.
+
+</details>
+
+<details class="clz-fold" id="oline-stance" markdown="1">
+<summary>Stance <span class="clz-fold__hint">three of them, one spine</span></summary>
+
+| | 3-point | 2-point | Center |
+|---|---|---|---|
+| **Feet** | outside the hips | hip width | outside the hip joints |
+| **Back** | flat | flat | flat |
+| **Trunk** | stable | balanced | stable |
+| **Head** | up | in line with the back | in line with the back |
+| **Hands** | down hand under the chin, about **20 % of the body weight** on it | hands and forearms on the thighs | **ball in front of the head** |
+
+Read the table across, not down: **flat back** and a **stable trunk** appear
+in all three columns, and on the course sheet they are drawn once with arrows
+to the other two. Those are the invariants. What changes is the hand, and with
+it how much weight is in front of you: a three-point stance with a fifth of
+the weight on the down hand is built to go forward, a two-point stance with
+the hands on the thighs is built to go backwards without a tell.
+
+The 20 % is the number to remember. Much more and you cannot pull or pass set
+without falling; much less and the stance is a two-point with extra steps.
+
+</details>
+
+<details class="clz-fold" id="oline-footwork" markdown="1">
+<summary>Footwork and hands <span class="clz-fold__hint">seven cues</span></summary>
+
+**Footwork**
+
+- **First step explosive.** The block is won or lost before contact.
+- **Small, fast steps.** Not long ones: a long step is a moment with no
+  ground under you, and a defender who moves while your foot is in the air has
+  already beaten you.
+- **Balanced, stay in frame.** Feet under the hips, weight inside your own
+  base.
+
+**Hands**
+
+- **Inside, between the opponent's collarbones.** Inside hands are leverage
+  and they are legal; outside hands are neither.
+- **Elbows in.** An elbow outside the frame loses the strength of the arm and
+  invites a hands-to-the-face call.
+- **Shoulders back.** Chest up, the power comes from the hips.
+- **Independent hands.** The two hands do not arrive as one unit; they punch
+  and work separately, so one can be beaten without losing the block.
+
+Every one of those seven is a thing a coach can see from ten metres away and
+correct in one word, which is why they are the cues and not the explanation.
+
+</details>
+
+### Run blocking
+
+Fourteen names were listed in one block, and they are not fourteen different
+things. They sort into four families:
+
+- **Straight at your man:** Base, Drive.
+- **Lateral and angular:** Reach, Angle, Scoop, Cut.
+- **Two on one, then one leaves:** Double, Combo.
+- **Someone else's man, from somewhere else:** Trap, Kick Out, Log, Pull,
+  Veer, Crack.
+
+<details class="clz-fold" id="oline-schemes" markdown="1">
+<summary>The fourteen, one line each <span class="clz-fold__hint">eight of them sketched</span></summary>
+
+| Scheme | What it does |
+|---|---|
+| **Base** | Block the man aligned over you, straight ahead. The default, and the sketch shows it against a tackle and an end. |
+| **Drive** | A base block with displacement as the goal: move him off the spot, vertically. |
+| **Reach** | Playside: get your playside shoulder past his playside shoulder and hook him inside. The sketch shows it against a nose. |
+| **Scoop** | The backside version of a reach, worked by a pair: the inside man takes over so the outside man can climb. |
+| **Angle** | Block a man you are not aligned on, at an angle, usually down and inside. |
+| **Cut** | A low block at the legs to take a defender out of the pursuit. |
+| **Double** | Two linemen on one defender and both stay: pure displacement. |
+| **Combo** | A double team that does not stay a double team. The sketch has two linemen on the nose with the backer behind, and the note **push into the 2nd level**: drive the down lineman first, then one blocker climbs to the linebacker. |
+| **Trap** | Leave a defender deliberately unblocked, let him come, and kick him out from the inside with a puller. The sketch shows the puller crossing to a tackle. |
+| **Kick Out** | A puller drives the edge defender outward, so the hole opens inside of him. |
+| **Log** | The answer when the kick-out will not work: instead of driving him out, the puller turns and seals him **inside**, and the ball goes around. |
+| **Pull** | The movement itself: a lineman leaves his alignment to block somewhere else. Trap, kick out and log are all pulls. |
+| **Veer** | The sketch shows a pair releasing past the nose to the end: a release-and-climb against an inside shade. |
+| **Crack** | A receiver or slot blocks back inside on a linebacker or safety, usually paired with somebody taking his man outside. The sketch has the Mike and a Y. |
+
+</details>
+
+<details class="clz-fold" id="oline-rules" markdown="1">
+<summary>Two sketches that are rules, not blocks <span class="clz-fold__hint">reading uncertain</span></summary>
+
+Two cells on the course page are not techniques. They are the decisions that
+sit on top of the techniques.
+
+**Kick-out and log are one decision, not two.** One cell is headed with a
+word I read as „misslungener Kickout" (a kick-out that fails) and draws the
+edge defender crossing the puller's face. The next cell is headed **Log** and
+carries a note I read as «wrong arm». Together they are the standard rule:
+if the defender wrong-arms the kick-out – takes the inside arm and shoulder
+across the blocker instead of staying outside – you do not fight him for the
+kick-out, you **log** him, turn him inside, and the back goes around.
+*Both of those two readings are mine from a photograph whose left edge is cut
+off; the diagrams support them, but the words are not certain.*
+
+**A double team is on a clock.** The last cell is headed **vs. Double Team**
+and the note under it is *einer löst sich* – one of the two comes off. A
+double team that stays a double team has blocked one defender with two
+players and left a linebacker free. Hence the combo: start as two, finish as
+one plus a climb.
+
+</details>
+
+### Pass blocking
+
+<details class="clz-fold" id="oline-pass" markdown="1">
+<summary>Protections and sets <span class="clz-fold__hint">three schemes, five sets</span></summary>
+
+**Who blocks whom** – three protection schemes were named:
+
+- **Full slide.** The whole line steps in one direction and each blocker
+  takes the gap he is stepping to. Simple to teach, and nobody is left
+  one-on-one with the best rusher. The cost: the back is responsible for the
+  edge on the other side.
+- **Half slide.** One side slides, the other plays man. The usual compromise.
+- **Man on man.** Big on big, each lineman with his own rusher. It needs the
+  Mike declaration to be right, and that call is why pass protection starts
+  with identifying the Mike.
+
+**How the blocker gets there** – five sets:
+
+- **Hinge set** (also called a **waterfall set**): the inside foot stays,
+  the outside foot swings back, the blocker turning like a gate.
+- **Vertical set:** retreat straight back to gain depth before contact. Buys
+  time and space against speed.
+- **45-degree set:** back at an angle, splitting depth and width.
+- **Jump set:** the opposite idea – attack the rusher at the line, take his
+  runway away before he builds speed.
+- **Power step** *(my reading of the last word in the notes)*: a short,
+  strong step into contact.
+
+The set is chosen against the rusher, not against the play: depth against
+speed, aggression against power and against a long edge.
+
+</details>
+
+### Teaching it
+
+Nothing above is coached by explaining it. The methodical sequence from the
+training-theory block applies unchanged: **explain, demonstrate, imitate,
+correct, repeat**, and for the line it runs stance before footwork, footwork
+before hands, hands before a scheme, and a scheme on air before a scheme
+against a body. The cues exist so the correction fits in one word between two
+reps.
+
+
 </div>
 
 <div class="lang-block" lang="de" markdown="1">
@@ -1012,21 +1287,23 @@ Herbst folgt die sportartspezifische Ausbildung zur Trainer-C-Lizenz American
 Football beim American Football Verband Sachsen (AFVS). Diese Seite ist mein
 Lernbegleiter: das Lizenzsystem an einem Ort, alle Prüfungsthemen sortiert,
 meine eigenen Notizen aus den Lehrgängen, was die schriftliche und die
-praktische Prüfung tatsächlich abfragen, eine kompakte Coaching-Wissensbasis
-und drei interaktive Quizze.
+praktische Prüfung tatsächlich abfragen, eine kompakte Coaching-Wissensbasis, ein
+Positionsblock zur Offensive Line und drei interaktive Quizze.
 
-**Auf dieser Seite:**
-[die Lizenzleiter](#lizenzleiter) ·
-[Zulassung und Prüfung](#zulassung-pruefung) ·
-[die 120 Einheiten](#lerneinheiten) ·
-[Themenführer](#themen) ·
-[Kursnotizen](#kursnotizen) ·
-[was die Prüfung abfragt](#pruefungsformat) ·
-[Coaching-Wissensbasis](#wissensbasis) ·
-[Begriffsdrill](#begriffsdrill) ·
-[Probeklausur](#probeklausur) ·
-[Formationsquiz](#formationsquiz) ·
-[Quellen](#quellen)
+<nav class="clz-index" markdown="1">
+
+**Auf dieser Seite.** Kursnotizen und Positionsblock sind nach Themen
+eingeklappt; ein Link von hier öffnet das Feld, auf das er zeigt.
+
+- **Lizenz und Prüfung** · [die Leiter](#lizenzleiter) · [Zulassung und Aufbau](#zulassung-pruefung) · [die 120 Einheiten](#lerneinheiten) · [was die Prüfung abfragt](#pruefungsformat)
+- **[Themenführer](#themen)** · die acht Prüfungsblöcke, je eine Zusammenfassung
+- **[Kursnotizen](#kursnotizen)** · [der Trainer](#kursnotizen-trainer) · [Planung](#kursnotizen-planung) · [Trainingslehre](#kursnotizen-lehre) · [die Einheit](#kursnotizen-einheit) · [langfristiger Aufbau](#kursnotizen-aufbau) · [Prävention und Diagnostik](#kursnotizen-praevention) · [die Fähigkeiten](#kursnotizen-faehigkeiten) · [Auswertung und mentales Training](#kursnotizen-auswertung) · [Korrekturen](#kursnotizen-korrekturen)
+- **[Positionstraining: die O-Line](#positionstraining)** · [was die Position verlangt](#oline-voraussetzungen) · [Stance](#oline-stance-de) · [Footwork und Hände](#oline-footwork-de) · [Run Blocking](#oline-schemes-de) · [Kick Out, Log, Double Team](#oline-rules-de) · [Pass Blocking](#oline-pass-de)
+- **[Coaching-Wissensbasis](#wissensbasis)** · Offense führen, Defense führen
+- **Quizze** · [Begriffsdrill](#begriffsdrill) · [Probeklausur](#probeklausur) · [Formationsquiz](#formationsquiz)
+- [Quellen](#quellen)
+
+</nav>
 
 ## Die Lizenzleiter {: #lizenzleiter }
 
@@ -1227,6 +1504,9 @@ vorsehen, die Notizen sagen, was im Raum tatsächlich gesagt wurde. Wo Notizen
 und offizielles Kursmaterial auseinandergehen, steht das im letzten
 Unterabschnitt, statt stillschweigend geglättet zu werden.
 
+<details class="clz-fold clz-fold--group" id="kursnotizen-trainer" markdown="1">
+<summary>Der Trainer und die Menschen im Raum <span class="clz-fold__hint">3 Abschnitte</span></summary>
+
 ### Der Trainer: Rolle, Erwartungen, Anspruchsgruppen
 
 - Was man von sich selbst als Coach erwarten darf, ist
@@ -1321,6 +1601,11 @@ Gründen, die mit dem Training nichts zu tun haben. Merkenswert für die
 Bindung: das Gesundheitsmotiv gewinnt Menschen für den Sport, hält sie aber
 schlecht – ein Angebot sollte mehrere Motive ansprechen.
 
+</details>
+
+<details class="clz-fold clz-fold--group" id="kursnotizen-planung" markdown="1">
+<summary>Planen und organisieren <span class="clz-fold__hint">3 Abschnitte</span></summary>
+
 ### Der Planungszyklus
 
 Vier Phasen, als Kreislauf gedacht, nicht als Liste.
@@ -1390,6 +1675,11 @@ Ein Detail aus der Athletikeinheit, das hierher gehört: im Abschluss-Halbkreis
 steht der Coach **mit Blick in die Sonne**, damit die Gruppe die Sonne im
 Rücken hat und den Coach überhaupt sehen kann.
 
+</details>
+
+<details class="clz-fold clz-fold--group" id="kursnotizen-lehre" markdown="1">
+<summary>Trainingslehre: Belastung und Progression <span class="clz-fold__hint">2 Abschnitte</span></summary>
+
 ### Trainingsprinzipien und Reizstufenregel
 
 Drei Progressionen, jede einzeln steuerbar: von **leicht zu schwer**
@@ -1428,6 +1718,11 @@ Ermüdung alles ruiniert, was in der Liste darüber steht.
 
 *„Jugendtraining ist kein reduziertes Erwachsenentraining.“* Daraus folgt
 eine Prioritätsregel: **Ausbildung vor Ergebnis**.
+
+</details>
+
+<details class="clz-fold clz-fold--group" id="kursnotizen-einheit" markdown="1">
+<summary>Die Trainingseinheit selbst <span class="clz-fold__hint">3 Abschnitte</span></summary>
 
 ### Aufbau einer Trainingseinheit
 
@@ -1517,6 +1812,11 @@ die Entwicklung fördert, und zielorientiertes Coaching statt Zeitfüllen.
 - In den Notizen zweimal eingekreist, für beide Altersgruppen: **der Trainer
   macht vor** („Trainer als Vortänzer“).
 
+</details>
+
+<details class="clz-fold clz-fold--group" id="kursnotizen-aufbau" markdown="1">
+<summary>Langfristiger Aufbau und das Trainingsjahr <span class="clz-fold__hint">2 Abschnitte</span></summary>
+
 ### Langfristiger Leistungsaufbau
 
 | Etappe | Name | Inhalt |
@@ -1573,6 +1873,11 @@ Für die Jugend bis C-Jugend sind die Folien deutlich: **eine
 Hallensaison verkompliziert das Prinzip weiter, weil eine saubere Antwort
 einen Doppel-Zyklus bräuchte. Komplexe Periodisierung ist in diesem Alter
 noch nicht notwendig. Eine Einteilung in **Themenschwerpunkte** schon.
+
+</details>
+
+<details class="clz-fold clz-fold--group" id="kursnotizen-praevention" markdown="1">
+<summary>Prävention und Diagnostik <span class="clz-fold__hint">2 Abschnitte</span></summary>
 
 ### Prävention
 
@@ -1666,6 +1971,11 @@ raten, seine Werte weniger stark zu gewichten.
 Nutzlos wird Testen dadurch nicht. Ein Test wird damit zum Werkzeug für den
 **Verlauf** in der Trainingssteuerung, nicht zum Werkzeug für die Vorhersage,
 wer gut wird.
+
+</details>
+
+<details class="clz-fold clz-fold--group" id="kursnotizen-faehigkeiten" markdown="1">
+<summary>Die Fähigkeiten: koordinativ und konditionell <span class="clz-fold__hint">2 Abschnitte</span></summary>
 
 ### Die sieben koordinativen Fähigkeiten: DORFKRUG
 
@@ -1783,6 +2093,11 @@ zwischen passiver und aktiver Beweglichkeit ist die **Bewegungsreserve**,
 trainierbar über das Stärken des Agonisten oder vermehrtes Dehnen des
 Antagonisten.
 
+</details>
+
+<details class="clz-fold clz-fold--group" id="kursnotizen-auswertung" markdown="1">
+<summary>Auswertung, mentales Training und Spezialthemen <span class="clz-fold__hint">3 Abschnitte</span></summary>
+
 ### Training auswerten
 
 - **Wieso**, **wann**, **wie**. Das *wann* teilt sich in **unmittelbar**
@@ -1818,6 +2133,48 @@ Das ausgegebene Material: das *Female Facts Booklet* des IAT, Fischer et al.
 Energieverfügbarkeit, der IAT-Podcast *Blut, Schweiß und Training*, das
 Wissensportal IAT-HUB zu Frau im Leistungssport und das Bildungsangebot
 *The Female Athlete*.
+
+### Mentales Training
+
+Der Lehrgang vom 7. November 2026 stellte neben den technischen Block einen
+zum Mentalen. Sein Rahmen war eine Frage, quer über die Seite geschrieben und
+von beiden Seiten mit Pfeilen markiert: **what does it take to break you?**
+Das ist nicht rhetorisch. Genau das testen ein Gegner, eine Anzeigetafel und
+eine schlechte Woche – und die Antwort ist trainierbar.
+
+- **Aufmerksamkeit ist ein Kreislauf, kein Zustand.** Die Skizze an der
+  Tafel: Gedanken kommen aus allen Richtungen, einer davon ist der
+  **wesentliche**, der Rest ist **Ablenkung**. Meditation wird nicht als
+  Leere geübt, sondern als **Zurückkehren** – das Abdriften bemerken,
+  zurückkommen, und wieder. Trainiert wird die Rückkehr, nicht das Bleiben.
+- **Mental Toughness** wurde im Raum als die Fähigkeit definiert, **unter
+  Druck kognitiv stabil zu bleiben**: nicht nichts zu fühlen, sondern weiter
+  zu denken, während man es fühlt.
+- **Die 4 C's** nach Paul G. Stoltz: **control**, **commitment**,
+  **challenge**, **confidence**. Control ist der Teil, auf den ich einwirken
+  kann; commitment ist das Dranbleiben; challenge heißt, eine harte Lage als
+  Aufgabe statt als Bedrohung zu lesen; confidence ist die erarbeitete
+  Erwartung, damit umgehen zu können. Eine Vierer-Liste mit genanntem Autor –
+  das hat Klausurformat.
+- **Der Trainer ist das Vorbild** (*Coach = Vorbild*). Die Spieler lesen die
+  Seitenlinie, bevor sie den Spielzug lesen. Stress, der verstanden und
+  genutzt wird, ist eine Ressource; Stress, der nur ausgehalten wird, ist ein
+  Leck.
+- **Routinen** tragen die Leistung, wenn die Aufmerksamkeit belastet ist, und
+  **Fehler, Kritik und Rückschläge** (*Umgang mit Rückschlägen*) brauchen
+  genauso eine wie der Snap Count.
+- Auf der Agenda standen außerdem **Mindset**, **Mindset-Modelle** und **was
+  Visualisierung eigentlich ist**; meine Notizen behalten die Überschriften
+  ohne den Inhalt. Eine Zeile nennt eine *Thompson*-Trainerperspektive, und da
+  die Notiz nicht sagt, welcher Thompson, lasse ich sie lieber unaufgelöst,
+  statt zu raten.
+- Die Schlussbemerkung, und eine berechtigte: **sich eine eigene Meinung zu
+  bilden ist schwer in Zeiten von YouTube.** Diese Seite eingeschlossen.
+
+</details>
+
+<details class="clz-fold clz-fold--group" id="kursnotizen-korrekturen" markdown="1">
+<summary>Korrekturen und offene Punkte <span class="clz-fold__hint">2 Abschnitte</span></summary>
 
 ### Wo die Quellen auseinandergehen
 
@@ -1855,6 +2212,8 @@ Rhythmisierung und das zweite Reaktion. Die Tabelle oben ist korrigiert.
   Notizen. Beides ist geprüft, siehe den Präventionsabschnitt.
 - Noch offen: der praktische Athletikteil und die schriftliche
   Defense-Überprüfung. Was beide abfragen, steht im nächsten Abschnitt.
+
+</details>
 
 ## Was die Prüfung tatsächlich abfragt {: #pruefungsformat }
 
@@ -2013,6 +2372,188 @@ wiederholen), das Training von Individual-Perioden über Gruppen-Drills
 scripten und auf Film auswerten. Ein Playbook, das die Spieler nicht
 ausführen können, ist ein Wunschzettel.
 
+## Positionstraining: die O-Line {: #positionstraining }
+
+Der Lehrgang vom 7. November 2026 war der erste Positionsblock der Ausbildung
+und nahm sich die Offensive Line vor. Die Line ist der richtige Anfang, denn
+sie ist die eine Einheit, in der **jeder Spieler bei jedem Snap eine Aufgabe
+hat** – und keine dieser Aufgaben erzeugt eine Statistik. Unten steht, was
+der Lehrgang aufgelistet hat, ergänzt um die Standarddefinition dort, wo
+meine Notizen nur einen Namen oder eine Skizze tragen. Wo die Lesung meiner
+eigenen Handschrift unsicher ist, steht es dabei.
+
+<details class="clz-fold" id="oline-voraussetzungen" markdown="1">
+<summary>Was die Position verlangt <span class="clz-fold__hint">zehn Voraussetzungen</span></summary>
+
+Als eine Liste notiert, in der Reihenfolge des Diktats: **mobility**,
+**technique**, **consistency**, **explosiveness**, **speed**, **footwork**,
+**strength**, **social**, **coachable**, **communicative**.
+
+Drei von zehn sind nicht körperlich. Genau das ist der Punkt der Liste: die
+Line ist die Einheit, die unter Zuschauerlärm gemeinsam Calls setzen und
+ändern muss – also stehen *social*, *coachable* und *communicative* in
+derselben Liste wie Kraft. Und man beachte, was **nicht** vorn steht: Kraft
+ist Nummer sieben.
+
+</details>
+
+<details class="clz-fold" id="oline-stance-de" markdown="1">
+<summary>Stance <span class="clz-fold__hint">drei Varianten, ein Rückgrat</span></summary>
+
+| | 3-point | 2-point | Center |
+|---|---|---|---|
+| **Füße** | außerhalb der Hüfte | hüftbreit | außerhalb der Hüftgelenke |
+| **Rücken** | gerade | gerade | gerade |
+| **Rumpf** | stabil | balanced | stabil |
+| **Kopf** | oben | in Linie mit dem Rücken | in Linie mit dem Rücken |
+| **Hände** | Hand unter dem Kinn, etwa **20 % des Gewichts** darauf | Hände und Unterarme auf den Oberschenkeln | **Ball vor dem Kopf** |
+
+Die Tabelle wird quer gelesen, nicht senkrecht: **gerader Rücken** und
+**stabiler Rumpf** stehen in allen drei Spalten, und auf dem Lehrgangsblatt
+sind sie einmal geschrieben und mit Pfeilen zu den anderen beiden gezogen.
+Das sind die Invarianten. Was wechselt, ist die Hand – und damit, wie viel
+Gewicht vorn liegt: ein 3-Point-Stance mit einem Fünftel des Gewichts auf der
+Hand ist gebaut, um nach vorn zu gehen, ein 2-Point-Stance mit den Händen auf
+den Oberschenkeln ist gebaut, um ohne Vorzeichen rückwärts zu gehen.
+
+Die 20 % sind die Zahl zum Merken. Deutlich mehr, und Pull oder Pass Set
+enden im Fallen; deutlich weniger, und der Stance ist ein 2-Point mit
+Zusatzaufwand.
+
+</details>
+
+<details class="clz-fold" id="oline-footwork-de" markdown="1">
+<summary>Footwork und Hände <span class="clz-fold__hint">sieben Cues</span></summary>
+
+**Footwork**
+
+- **Erster Schritt explosiv.** Der Block wird vor dem Kontakt gewonnen oder
+  verloren.
+- **Kleine, schnelle Schritte.** Keine langen: ein langer Schritt ist ein
+  Moment ohne Boden unter dir, und ein Verteidiger, der sich bewegt, während
+  dein Fuß in der Luft ist, hat dich schon geschlagen.
+- **Balanced, in frame bleiben.** Füße unter der Hüfte, Gewicht innerhalb der
+  eigenen Basis.
+
+**Hände**
+
+- **Innen, zwischen die Schlüsselbeine des Gegners.** Innenhände sind Hebel,
+  und sie sind regelkonform; Außenhände sind beides nicht.
+- **Ellenbogen zusammen.** Ein Ellenbogen außerhalb des Rahmens verliert die
+  Kraft des Arms und lädt zu *hands to the face* ein.
+- **Schultern zurück.** Brust auf, die Kraft kommt aus der Hüfte.
+- **Unabhängige Hände.** Die beiden Hände kommen nicht als Einheit an; sie
+  schlagen und arbeiten getrennt, damit eine geschlagen werden kann, ohne dass
+  der Block verloren ist.
+
+Jeder dieser sieben Punkte ist etwas, das ein Trainer aus zehn Metern sieht
+und mit einem Wort korrigiert. Deshalb sind es Cues und nicht Erklärungen.
+
+</details>
+
+### Run Blocking
+
+Vierzehn Namen standen in einem Block, und es sind keine vierzehn
+verschiedenen Dinge. Sie sortieren sich in vier Familien:
+
+- **Gerade auf den eigenen Mann:** Base, Drive.
+- **Seitlich und im Winkel:** Reach, Angle, Scoop, Cut.
+- **Zwei auf einen, dann geht einer:** Double, Combo.
+- **Der Mann eines anderen, von woanders her:** Trap, Kick Out, Log, Pull,
+  Veer, Crack.
+
+<details class="clz-fold" id="oline-schemes-de" markdown="1">
+<summary>Die vierzehn, je eine Zeile <span class="clz-fold__hint">acht davon skizziert</span></summary>
+
+| Technik | Was sie tut |
+|---|---|
+| **Base** | Den Mann blocken, der über einem steht, geradeaus. Der Standard; die Skizze zeigt ihn gegen Tackle und End. |
+| **Drive** | Ein Base Block mit Verdrängung als Ziel: ihn vom Fleck bewegen, vertikal. |
+| **Reach** | Playside: mit der Playside-Schulter an seiner Playside-Schulter vorbei und ihn nach innen einhaken. Die Skizze zeigt ihn gegen einen Nose. |
+| **Scoop** | Die Backside-Variante des Reach, von einem Paar gearbeitet: der innere Mann übernimmt, damit der äußere hochsteigen kann. |
+| **Angle** | Einen Mann blocken, auf dem man nicht ausgerichtet ist – im Winkel, meist nach innen unten. |
+| **Cut** | Ein tiefer Block an den Beinen, um einen Verteidiger aus der Verfolgung zu nehmen. |
+| **Double** | Zwei Linemen auf einem Verteidiger, und beide bleiben: reine Verdrängung. |
+| **Combo** | Ein Double Team, das keins bleibt. Die Skizze zeigt zwei Linemen auf dem Nose, den Backer dahinter, dazu die Notiz **push into the 2nd level**: erst den Down Lineman verdrängen, dann steigt einer zum Linebacker hoch. |
+| **Trap** | Einen Verteidiger bewusst unblockiert lassen, ihn kommen lassen und ihn mit einem Puller von innen heraus kicken. Die Skizze zeigt den Puller quer zum Tackle. |
+| **Kick Out** | Ein Puller treibt den Edge-Verteidiger nach außen, sodass das Loch innen von ihm aufgeht. |
+| **Log** | Die Antwort, wenn der Kick Out nicht funktioniert: statt ihn hinauszutreiben, dreht der Puller und versiegelt ihn **nach innen**, der Ball geht außen herum. |
+| **Pull** | Die Bewegung selbst: ein Lineman verlässt seine Position, um woanders zu blocken. Trap, Kick Out und Log sind alles Pulls. |
+| **Veer** | Die Skizze zeigt ein Paar, das am Nose vorbei zum End durchzieht: Release und Climb gegen einen inneren Shade. |
+| **Crack** | Ein Receiver oder Slot blockt nach innen zurück auf Linebacker oder Safety, meist gepaart damit, dass jemand seinen Mann nach außen nimmt. Die Skizze zeigt Mike und ein Y. |
+
+</details>
+
+<details class="clz-fold" id="oline-rules-de" markdown="1">
+<summary>Zwei Skizzen, die Regeln sind und keine Blocks <span class="clz-fold__hint">Lesung unsicher</span></summary>
+
+Zwei Felder auf dem Lehrgangsblatt sind keine Techniken. Sie sind die
+Entscheidungen, die über den Techniken liegen.
+
+**Kick Out und Log sind eine Entscheidung, nicht zwei.** Ein Feld trägt ein
+Wort, das ich als „misslungener Kickout" lese, und zeichnet den
+Edge-Verteidiger, der dem Puller vor dem Gesicht durchquert. Das nächste Feld
+ist mit **Log** überschrieben und trägt eine Notiz, die ich als «wrong arm»
+lese. Zusammen sind sie die Standardregel: wenn der Verteidiger den Kick Out
+*wrong-armed* – also den inneren Arm und die Schulter quer durch den Blocker
+nimmt, statt außen zu bleiben –, kämpft man nicht um den Kick Out, sondern
+**loggt** ihn, dreht ihn nach innen, und der Runningback läuft außen herum.
+*Beide Lesungen sind meine eigenen, aus einem Foto, dessen linker Rand
+abgeschnitten ist; die Zeichnungen stützen sie, die Wörter sind nicht
+gesichert.*
+
+**Ein Double Team läuft auf Zeit.** Das letzte Feld ist mit **vs. Double
+Team** überschrieben, die Notiz darunter lautet *einer löst sich*. Ein Double
+Team, das eins bleibt, hat einen Verteidiger mit zwei Spielern geblockt und
+einen Linebacker frei gelassen. Daher die Combo: als zwei anfangen, als einer
+plus Climb aufhören.
+
+</details>
+
+### Pass Blocking
+
+<details class="clz-fold" id="oline-pass-de" markdown="1">
+<summary>Protections und Sets <span class="clz-fold__hint">drei Schemata, fünf Sets</span></summary>
+
+**Wer blockt wen** – drei Protection-Schemata wurden genannt:
+
+- **Full Slide.** Die ganze Line tritt in eine Richtung, jeder Blocker nimmt
+  die Gap, in die er tritt. Einfach zu lehren, und niemand steht allein gegen
+  den besten Rusher. Der Preis: der Back verantwortet den Edge auf der anderen
+  Seite.
+- **Half Slide.** Eine Seite slidet, die andere spielt Man. Der übliche
+  Kompromiss.
+- **Man on Man.** Big on big, jeder Lineman mit seinem eigenen Rusher. Dafür
+  muss die Mike-Deklaration stimmen – und dieser Call ist der Grund, warum
+  Pass Protection mit dem Identifizieren des Mike beginnt.
+
+**Wie der Blocker dorthin kommt** – fünf Sets:
+
+- **Hinge Set** (auch **Waterfall Set**): der innere Fuß bleibt, der äußere
+  schwingt zurück, der Blocker dreht wie ein Tor.
+- **Vertical Set:** gerade zurück, um vor dem Kontakt Tiefe zu gewinnen.
+  Kauft Zeit und Raum gegen Speed.
+- **45-Degree Set:** im Winkel zurück, Tiefe und Breite geteilt.
+- **Jump Set:** der umgekehrte Gedanke – den Rusher an der Line angreifen und
+  ihm die Anlaufstrecke nehmen, bevor er Fahrt aufnimmt.
+- **Power Step** *(meine Lesung des letzten Wortes in den Notizen)*: ein
+  kurzer, kräftiger Schritt in den Kontakt.
+
+Das Set wird gegen den Rusher gewählt, nicht gegen den Spielzug: Tiefe gegen
+Speed, Aggressivität gegen Power und gegen einen langen Edge.
+
+</details>
+
+### Wie man es vermittelt
+
+Nichts davon wird durch Erklären trainiert. Die methodische Reihe aus dem
+Trainingslehre-Block gilt unverändert: **erklären, vormachen, nachmachen,
+korrigieren, wiederholen** – und für die Line heißt das Stance vor Footwork,
+Footwork vor Händen, Hände vor Schema, Schema auf Luft vor Schema gegen einen
+Körper. Die Cues gibt es, damit die Korrektur zwischen zwei Reps in ein Wort
+passt.
+
+
 </div>
 
 <div class="lang-block" markdown="1">
@@ -2111,6 +2652,7 @@ Man oder Zone?**
 
 <script defer src="/media/american-football-c-lizenz/quiz.js"></script>
 <script defer src="/media/american-football-c-lizenz/lang.js"></script>
+<script defer src="/media/american-football-c-lizenz/folds.js"></script>
 
 <div class="lang-block" markdown="1">
 
