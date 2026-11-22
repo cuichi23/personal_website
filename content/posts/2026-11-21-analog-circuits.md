@@ -7,7 +7,7 @@ summary: >-
   mathematics and the physics: sources and internal resistance, resistive
   networks, RC and RLC, diodes, operational amplifiers, the motifs built from
   them, and transistors. Every chapter carries interactive benches rather than
-  worked numbers. Under construction.
+  worked numbers. Eight chapters, twelve benches, under construction.
 tags:
   - "analog circuits"
   - "electronics"
@@ -15,10 +15,12 @@ tags:
   - "circuit design"
 ---
 
-<p class="ac-construction"><strong>Under construction.</strong> Two chapters are
-written and usable. The rest are listed below with what they will cover, and go
-online as they are finished. Nothing here is behind a password; if a chapter is
-missing it is because it is not written yet.</p>
+<p class="ac-construction"><strong>Under construction.</strong> All eight
+chapters are written and every bench works. What is still missing is the part
+only a bench can supply: measured numbers next to the predicted ones. As I
+build these circuits I will add what they actually did, and correct whatever
+the hardware disagrees with. Treat the chapters as derivations that have not
+yet been checked against a soldering iron.</p>
 
 <style>
 .ac-construction { border-left: 3px solid var(--accent); background: var(--accent-wash); border-radius: 0 10px 10px 0; padding: 0.8rem 1rem; font-size: var(--step--1); }
@@ -35,15 +37,22 @@ missing it is because it is not written yet.</p>
 
 ## Why this exists {: #why }
 
-I design circuits that compute. At [anabrid](https://anabrid.com) that means
-analog computers, and in my own research it means networks of coupled
-oscillators built out of phase-locked loops. In both cases the physics is only
-half the work. The other half is the part a physicist is usually never taught
-properly: how a real circuit behaves when it is loaded, when its source is not
-ideal, when a signal has to get from one block to the next without being eaten
-on the way.
+I am a theoretical physicist, and I work on circuits that compute. At
+[anabrid](https://anabrid.com) that means analog computers. In my own research
+it means networks of coupled oscillators built out of phase-locked loops. I
+think about them at the level of their dynamics. An oscillator is a phase, a
+coupling is a function of phase differences, a delay is a number. That level
+answers the questions I ask of it, and every result I have rests on it. It also
+stops one step short of the board. In my equations a phase-locked loop is a
+symbol. On a board it is a mixer, a loop filter with a real cutoff, an
+oscillator with a real tuning slope, and a few impedances I never wrote down.
+That step is the part a physicist is usually never taught properly: how a real
+circuit behaves when it is loaded, when its source is not ideal, when a signal
+has to get from one block to the next without being eaten on the way. So far I
+have taken that layer on trust. I would rather build these things than only
+model them.
 
-That half is not hard. It is a small set of ideas applied over and over.
+That part is not hard. It is a small set of ideas applied over and over.
 This is my attempt to write it down the way I would want to have read it:
 derive the expression, then make the expression move, then say what it means
 when a component value goes to zero or to infinity, which is where every
@@ -91,33 +100,33 @@ still carries the result as a formula.
   <p class="ac-toc__body">Kirchhoff's two laws, series and parallel, and the voltage divider: the circuit that appears inside every other circuit. Why the divider you build never has the ratio you designed, what output resistance means, where the rule of ten comes from, and why matching a load for maximum power throws half the power away.</p></li>
 
 <li><span class="ac-toc__no">3</span>
-  <span class="ac-toc__title">Capacitors and the RC circuit</span>
-  <span class="ac-toc__state">planned</span>
+  <span class="ac-toc__title"><a href="/projects/analog-circuits/rc/">Capacitors and the RC circuit</a></span>
+  <span class="ac-toc__state ac-toc__state--ready">ready</span>
   <p class="ac-toc__body">Charge, the $i = C\,\mathrm{d}v/\mathrm{d}t$ relation, and the first differential equation of the course. Step response and the time constant; sinusoidal steady state and the complex impedance; the low-pass and the high-pass as the same two components read from two nodes. Bode magnitude and phase, the −3 dB point, and why a 20 dB/decade slope is a statement about a single pole.</p></li>
 
 <li><span class="ac-toc__no">4</span>
-  <span class="ac-toc__title">Inductors, RLC and resonance</span>
-  <span class="ac-toc__state">planned</span>
+  <span class="ac-toc__title"><a href="/projects/analog-circuits/rlc/">Inductors, RLC and resonance</a></span>
+  <span class="ac-toc__state ac-toc__state--ready">ready</span>
   <p class="ac-toc__body">The dual of the capacitor, the second-order equation, and the three damping regimes. Resonance, the quality factor, bandwidth, and the connection between a pole pair in the complex plane and a ringing step response. This is the chapter the oscillator work later builds on.</p></li>
 
 <li><span class="ac-toc__no">5</span>
-  <span class="ac-toc__title">Diodes and the first nonlinearity</span>
-  <span class="ac-toc__state">planned</span>
+  <span class="ac-toc__title"><a href="/projects/analog-circuits/diodes/">Diodes and the first nonlinearity</a></span>
+  <span class="ac-toc__state ac-toc__state--ready">ready</span>
   <p class="ac-toc__body">The exponential characteristic, the thermal voltage, and what a load line does when the device is not a straight line. Rectifiers, clamps, limiters, and the small-signal resistance: the move of linearizing around an operating point, which is the move the whole rest of the course depends on.</p></li>
 
 <li><span class="ac-toc__no">6</span>
-  <span class="ac-toc__title">Operational amplifiers</span>
-  <span class="ac-toc__state">planned</span>
+  <span class="ac-toc__title"><a href="/projects/analog-circuits/op-amps/">Operational amplifiers</a></span>
+  <span class="ac-toc__state ac-toc__state--ready">ready</span>
   <p class="ac-toc__body">The ideal op-amp as two rules and what they are worth. Inverting and non-inverting stages, the buffer and why a divider that could not drive anything suddenly can, summing and difference amplifiers, integrator and differentiator. Then the honest version: finite gain, finite bandwidth, the gain-bandwidth product, slew rate, input offset, and the stability question that decides whether a circuit works or sings.</p></li>
 
 <li><span class="ac-toc__no">7</span>
-  <span class="ac-toc__title">Motifs: the blocks circuits are actually made of</span>
-  <span class="ac-toc__state">planned</span>
+  <span class="ac-toc__title"><a href="/projects/analog-circuits/motifs/">Motifs: the blocks circuits are made of</a></span>
+  <span class="ac-toc__state ac-toc__state--ready">ready</span>
   <p class="ac-toc__body">Comparator and Schmitt trigger, active filters, the instrumentation amplifier, current sources made from what chapter 6 provides, precision rectifiers, and the relaxation oscillator. The emphasis is on recognizing a motif inside a schematic you have never seen before.</p></li>
 
 <li><span class="ac-toc__no">8</span>
-  <span class="ac-toc__title">Transistors</span>
-  <span class="ac-toc__state">planned</span>
+  <span class="ac-toc__title"><a href="/projects/analog-circuits/transistors/">Transistors</a></span>
+  <span class="ac-toc__state ac-toc__state--ready">ready</span>
   <p class="ac-toc__body">The bipolar transistor and the MOSFET as controlled sources, biasing and the operating point, the small-signal model, and the three single-stage amplifiers. Then the transistor as a switch, the differential pair, the current mirror, and enough of a look inside an op-amp that chapter 6 stops being a black box.</p></li>
 </ol>
 

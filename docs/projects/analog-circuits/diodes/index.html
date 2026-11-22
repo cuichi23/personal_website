@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diodes and the first nonlinearity · Analog circuits · Lucas Wetzel</title>
+<meta name="description" content="The first component that breaks superposition, and the two tools that replace it: the load line drawn against a curve, and linearization around an operating point. The exponential characteristic, the models worth using, small-signal resistance, and the circuits that exploit a nonlinearity on purpose.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects/analog-circuits/diodes/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Diodes and the first nonlinearity · Analog circuits · Lucas Wetzel">
+<meta property="og:description" content="The first component that breaks superposition, and the two tools that replace it: the load line drawn against a curve, and linearization around an operating point. The exponential characteristic, the models worth using, small-signal resistance, and the circuits that exploit a nonlinearity on purpose.">
+<meta property="og:url" content="https://lucaswetzel.de/projects/analog-circuits/diodes/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // GitHub Pages cannot send X-Frame-Options or a CSP frame-ancestors directive,
+  // so this is the only lever there is. Mark the document before the body is
+  // parsed; the stylesheet then keeps the content hidden until site.js has
+  // replaced it with a notice. Marking rather than navigating is deliberate:
+  // browsers increasingly refuse an automatic top navigation from a frame and
+  // leave a blank box behind, which tells the reader nothing.
+  if (window.self !== window.top) document.documentElement.dataset.framed = "";
+</script>
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=c467844b">
+<link rel="stylesheet" href="/assets/css/site.css?v=c467844b">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/research/">Research</a>
+      <a href="/projects/" aria-current="page">Current projects</a>
+      <a href="/projects-anabrid/">Projects@anabrid</a>
+      <a href="/oscillatory-computing/">Oscillatory computing</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="post">
+  <header class="post__header">
+    <p class="eyebrow">
+      <a href="/projects/analog-circuits/">Analog circuits</a> ·
+      Chapter 5    </p>
+    <h1 class="post__title">Diodes and the first nonlinearity</h1>
+<p class="post__standfirst">The first component that breaks superposition, and the two tools that replace it: the load line drawn against a curve, and linearization around an operating point. The exponential characteristic, the models worth using, small-signal resistance, and the circuits that exploit a nonlinearity on purpose.</p>    <p class="post__meta-hint">Chapter 5 of 8 · 22 November 2026</p>
+  </header>
+
+  <div class="prose"><h2 id="what-breaks">What breaks</h2>
+<p>Everything so far rested on linearity, usually without saying so. Superposition
+let us treat sources one at a time. Impedance worked because a sinusoid in gave
+a sinusoid out at the same frequency. Thévenin's theorem assumed a straight
+characteristic line. Doubling the input doubled the output.</p>
+<p>A diode does none of this. Its characteristic is a curve, so:</p>
+<ul>
+<li><strong>Superposition fails.</strong> The response to two inputs is not the sum of the
+  responses.</li>
+<li><strong>New frequencies appear.</strong> A sinusoid in gives harmonics out. This is a
+  defect in an amplifier and the entire point in a mixer.</li>
+<li><strong>There is no impedance.</strong> Not a single number, anyway.</li>
+</ul>
+<p>Two tools survive, and the whole rest of the course is built on them.</p>
+<ol>
+<li><strong>The load line, drawn against a curve.</strong> Chapter 1's picture still works:
+   the device imposes one relation between <span class="math math--inline" data-tex="v">$v$</span> and <span class="math math--inline" data-tex="i">$i$</span>, the rest of the circuit
+   imposes another, and the operating point is where they cross. Nothing in
+   that argument needed either relation to be straight.</li>
+<li><strong>Linearization around the operating point.</strong> Pick the operating point, then
+   treat small deviations from it with a straight-line approximation. The small
+   signal then obeys every linear result in chapters 1 to 4.</li>
+</ol>
+<p>The second move is the more important one by a long way. <strong>It is how a
+nonlinear device is made to do linear work</strong>, and it is the reason chapters 6
+and 8 are possible at all.</p>
+<h2 id="shockley">The characteristic</h2>
+<p>A <span class="math math--inline" data-tex="pn">$pn$</span> junction follows the Shockley equation,</p>
+<div class="math math--display" data-tex="\begin{aligned}
+i &amp;= I_\mathrm{S}\left(\mathrm{e}^{v/(nV_\mathrm{T})} - 1\right) ,\\[2pt]
+V_\mathrm{T} &amp;= \frac{k_\mathrm{B}T}{q} ,
+\end{aligned}">$$\begin{aligned}
+i &amp;= I_\mathrm{S}\left(\mathrm{e}^{v/(nV_\mathrm{T})} - 1\right) ,\\[2pt]
+V_\mathrm{T} &amp;= \frac{k_\mathrm{B}T}{q} ,
+\end{aligned}$$</div>
+<p>where <span class="math math--inline" data-tex="I_\mathrm{S}">$I_\mathrm{S}$</span> is the saturation current, <span class="math math--inline" data-tex="n">$n$</span> the ideality factor
+(between 1 and 2, around 1 for a good signal diode), <span class="math math--inline" data-tex="v">$v$</span> the forward voltage
+and <span class="math math--inline" data-tex="V_\mathrm{T}">$V_\mathrm{T}$</span> the thermal voltage. At <span class="math math--inline" data-tex="T = 300\ \mathrm{K}">$T = 300\ \mathrm{K}$</span>,
+<span class="math math--inline" data-tex="V_\mathrm{T} = 25.9\ \mathrm{mV}">$V_\mathrm{T} = 25.9\ \mathrm{mV}$</span>.</p>
+<p>Two readings of the same formula:</p>
+<p><strong>Forward</strong>, where <span class="math math--inline" data-tex="v \gg nV_\mathrm{T}">$v \gg nV_\mathrm{T}$</span>, the <span class="math math--inline" data-tex="-1">$-1$</span> is irrelevant and the current
+is a pure exponential. Inverting it,</p>
+<div class="math math--display" data-tex="v = nV_\mathrm{T}\ln\frac{i}{I_\mathrm{S}} .">$$v = nV_\mathrm{T}\ln\frac{i}{I_\mathrm{S}} .$$</div>
+<p>The voltage is logarithmic in the current. A decade more current costs</p>
+<div class="math math--display" data-tex="\Delta v = nV_\mathrm{T}\ln 10 \approx 60\ \mathrm{mV} ,">$$\Delta v = nV_\mathrm{T}\ln 10 \approx 60\ \mathrm{mV} ,$$</div>
+<p>for <span class="math math--inline" data-tex="n = 1">$n = 1$</span> at 300 K, which is the most useful number in the chapter.
+<strong>Sixty millivolts per decade.</strong>
+It is why "a diode drops 0.7 V" is a serviceable lie: going from 1 mA to 10 mA
+moves the drop by 60 mV, and from 1 µA to 10 mA by only 240 mV. Over the whole
+range anyone uses, the voltage barely moves, so pretending it is constant costs
+little.</p>
+<p><strong>Reverse</strong>, where <span class="math math--inline" data-tex="v \ll -nV_\mathrm{T}">$v \ll -nV_\mathrm{T}$</span>, the exponential vanishes and
+<span class="math math--inline" data-tex="i \to -I_\mathrm{S}">$i \to -I_\mathrm{S}$</span>. Typically nanoamperes, strongly temperature dependent,
+and in a real part swamped by leakage. Far enough in reverse the junction
+breaks down, which is a separate mechanism and the basis of the Zener diode.</p>
+<h2 id="load-line">A load line against a curve</h2>
+<p>Put a diode in series with a resistor across a supply <span class="math math--inline" data-tex="V">$V$</span>. The circuit imposes</p>
+<div class="math math--display" data-tex="i = \frac{V - v}{R} ,">$$i = \frac{V - v}{R} ,$$</div>
+<p>a straight line from <span class="math math--inline" data-tex="(0, V/R)">$(0, V/R)$</span> to <span class="math math--inline" data-tex="(V, 0)">$(V, 0)$</span>, and the diode imposes the
+exponential. The operating point is the intersection. There is no closed form
+for it in elementary functions; the honest solution uses the Lambert <span class="math math--inline" data-tex="W">$W$</span>
+function, and the practical one is a few iterations of bisection, which is what
+the bench does.</p>
+<div class="ac-bench" data-applet="diode-load-line">
+<p class="ac-fallback">This bench needs JavaScript. The Shockley equation and
+the load line above are the content of the panel.</p>
+</div>
+
+<p>Notice how insensitive the diode voltage is and how sensitive the current is.
+Change the supply by a factor of two and the current changes by roughly a
+factor of two while the drop moves by some tens of millivolts. <strong>The series
+resistor sets the current; the diode only decides what to charge for it.</strong></p>
+<h2 id="models">Models, in order of laziness</h2>
+<table>
+<thead>
+<tr>
+<th>model</th>
+<th>statement</th>
+<th>use it when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ideal switch</strong></td>
+<td>0 V forward, open reverse</td>
+<td>checking which way current goes; supply voltages far above 1 V</td>
+</tr>
+<tr>
+<td><strong>constant drop</strong></td>
+<td>0.7 V forward (0.3 V Schottky, 2 V LED)</td>
+<td>almost all power and logic estimates</td>
+</tr>
+<tr>
+<td><strong>drop plus resistance</strong></td>
+<td><span class="math math--inline" data-tex="0.7\ \mathrm{V} + i\,r_\mathrm{s}">$0.7\ \mathrm{V} + i\,r_\mathrm{s}$</span></td>
+<td>currents above tens of milliamps</td>
+</tr>
+<tr>
+<td><strong>full exponential</strong></td>
+<td>Shockley</td>
+<td>anything where the 60 mV/decade matters: log amps, references, temperature sensors</td>
+</tr>
+</tbody>
+</table>
+<p>Pick the laziest model the question tolerates. Using Shockley where the
+constant drop suffices is not more rigorous, it is just slower, and it hides
+which term dominates. Using the constant drop in a log amplifier is simply
+wrong, because there the exponential is the circuit.</p>
+<h2 id="small-signal">Small-signal resistance</h2>
+<p>Here is the move. Sit at an operating point <span class="math math--inline" data-tex="(V_\mathrm{D}, I_\mathrm{D})">$(V_\mathrm{D}, I_\mathrm{D})$</span> and
+ask what a small change does. Differentiate the characteristic:</p>
+<div class="math math--display" data-tex="\frac{\mathrm{d}i}{\mathrm{d}v} = \frac{I_\mathrm{S}}{nV_\mathrm{T}}\,
+\mathrm{e}^{v/(nV_\mathrm{T})} \approx \frac{i}{nV_\mathrm{T}} ,">$$\frac{\mathrm{d}i}{\mathrm{d}v} = \frac{I_\mathrm{S}}{nV_\mathrm{T}}\,
+\mathrm{e}^{v/(nV_\mathrm{T})} \approx \frac{i}{nV_\mathrm{T}} ,$$</div>
+<p>so the <strong>small-signal resistance</strong>, also called the dynamic or incremental
+resistance, is</p>
+<div class="math math--display" data-tex="r_\mathrm{d} = \frac{\mathrm{d}v}{\mathrm{d}i}\bigg|_{I_\mathrm{D}}
+= \frac{nV_\mathrm{T}}{I_\mathrm{D}} .">$$r_\mathrm{d} = \frac{\mathrm{d}v}{\mathrm{d}i}\bigg|_{I_\mathrm{D}}
+= \frac{nV_\mathrm{T}}{I_\mathrm{D}} .$$</div>
+<p>At 1 mA and <span class="math math--inline" data-tex="n = 1">$n = 1$</span> that is 25.9 Ω. At 100 µA it is 259 Ω. <strong>The slope is set
+by the current alone</strong>, not by the device, the area or the temperature except
+through <span class="math math--inline" data-tex="V_\mathrm{T}">$V_\mathrm{T}$</span>. Two diodes from different manufacturers at the same
+current have the same <span class="math math--inline" data-tex="r_\mathrm{d}">$r_\mathrm{d}$</span>, which is a strong statement and the
+reason the same formula reappears as <span class="math math--inline" data-tex="g_\mathrm{m} = I_\mathrm{C}/V_\mathrm{T}">$g_\mathrm{m} = I_\mathrm{C}/V_\mathrm{T}$</span>
+for the bipolar transistor in chapter 8.</p>
+<p>Say what this means precisely, because it is easy to wave at. Write
+<span class="math math--inline" data-tex="v = V_\mathrm{D} + \hat v">$v = V_\mathrm{D} + \hat v$</span> and <span class="math math--inline" data-tex="i = I_\mathrm{D} + \hat i">$i = I_\mathrm{D} + \hat i$</span> with
+<span class="math math--inline" data-tex="|\hat v| \ll nV_\mathrm{T}">$|\hat v| \ll nV_\mathrm{T}$</span>. Then <span class="math math--inline" data-tex="\hat i \approx \hat v / r_\mathrm{d}">$\hat i \approx \hat v / r_\mathrm{d}$</span>, and
+for the hatted quantities the diode <strong>is</strong> a resistor. Every technique from
+chapters 1 to 4 applies to the hatted circuit: dividers, impedances, Thévenin,
+Bode plots. The large-signal operating point and the small-signal behaviour are
+computed separately and by different methods, and keeping the two apart is the
+single most important habit in analog design.</p>
+<p>The approximation has a stated range, and it is narrow. The second-order term
+is down by <span class="math math--inline" data-tex="\hat v/(2nV_\mathrm{T})">$\hat v/(2nV_\mathrm{T})$</span>, so a 2.6 mV swing on a 25.9 mV scale gives
+about 5 % distortion. <strong>Linear means millivolts here</strong>, and when more swing is
+needed it has to be bought with feedback, which is chapter 6.</p>
+<h2 id="uses">What diodes are for</h2>
+<p><strong>Rectification.</strong> Pass one polarity, block the other. With a reservoir
+capacitor the output ripple for a load current <span class="math math--inline" data-tex="I">$I$</span> is</p>
+<div class="math math--display" data-tex="\Delta V \approx \frac{I}{f_\mathrm{r}C} ,">$$\Delta V \approx \frac{I}{f_\mathrm{r}C} ,$$</div>
+<p>with <span class="math math--inline" data-tex="f_\mathrm{r}">$f_\mathrm{r}$</span> the ripple frequency: the line frequency for a half-wave
+rectifier, twice it for a bridge. The derivation is one line and it is the
+capacitor relation from chapter 3 with <span class="math math--inline" data-tex="\mathrm{d}v/\mathrm{d}t">$\mathrm{d}v/\mathrm{d}t$</span> held constant
+over the gap between peaks.</p>
+<p><strong>Clamping and limiting.</strong> A diode to a rail holds a node from going past that
+rail by more than a drop. Across every relay coil and every motor, a diode
+gives the inductor's current somewhere to go when the switch opens, which is
+the problem chapter 4 raised and never solved.</p>
+<p><strong>Making a fixed voltage.</strong> A forward diode is a 0.7 V reference with a known
+temperature coefficient; a Zener in reverse breakdown is a reference from 3 V
+upwards. Both are cheap and both are mediocre, and the good references in
+chapter 8 are built by cancelling one bad temperature coefficient against
+another.</p>
+<p><strong>Computing.</strong> This is the one that matters here. Because <span class="math math--inline" data-tex="v \propto \ln i">$v \propto \ln i$</span>,
+an op-amp with a diode in the feedback path is a logarithmic amplifier, and the
+same part in the input path is an exponential one. Put a log, a sum and an
+antilog in series and you have</p>
+<div class="math math--display" data-tex="\mathrm{e}^{\ln a + \ln b} = ab ,">$$\mathrm{e}^{\ln a + \ln b} = ab ,$$</div>
+<p>an analog multiplier built out of the exponential of a junction. That is how
+multiplication was done on analog computers before four-quadrant multipliers
+existed, and the modern versions use the same identity with transistors instead
+of diodes because they match better. <strong>The nonlinearity is not an error term
+here. It is the function.</strong></p>
+<h2 id="temperature">Temperature</h2>
+<p>At fixed current the forward voltage falls by about</p>
+<div class="math math--display" data-tex="\frac{\mathrm{d}v}{\mathrm{d}T} \approx -2\ \frac{\mathrm{mV}}{\mathrm{K}} ,">$$\frac{\mathrm{d}v}{\mathrm{d}T} \approx -2\ \frac{\mathrm{mV}}{\mathrm{K}} ,$$</div>
+<p>which comes out of <span class="math math--inline" data-tex="I_\mathrm{S}(T)">$I_\mathrm{S}(T)$</span> growing faster than the explicit
+<span class="math math--inline" data-tex="V_\mathrm{T}">$V_\mathrm{T}$</span> in the exponent, not from <span class="math math--inline" data-tex="V_\mathrm{T}">$V_\mathrm{T}$</span> alone. Two consequences
+pull in opposite directions. It makes a bare diode a poor reference, 7 % over a
+10 K room-temperature drift. It also makes a junction an excellent thermometer,
+linear over hundreds of kelvin, which is how most on-chip temperature sensors
+work.</p>
+<p>For the log amplifier above, both <span class="math math--inline" data-tex="V_\mathrm{T}">$V_\mathrm{T}$</span> and <span class="math math--inline" data-tex="I_\mathrm{S}">$I_\mathrm{S}$</span> sit in the
+answer, so an uncompensated log amp is a thermometer with a signal input. The
+fix is to take the <strong>difference</strong> of two junctions at the same temperature
+carrying different currents,</p>
+<div class="math math--display" data-tex="\Delta v = nV_\mathrm{T}\ln\frac{i_1}{i_2} ,">$$\Delta v = nV_\mathrm{T}\ln\frac{i_1}{i_2} ,$$</div>
+<p>which removes <span class="math math--inline" data-tex="I_\mathrm{S}">$I_\mathrm{S}$</span> entirely and leaves a clean, predictable
+proportionality to absolute temperature. This expression is the seed of the
+bandgap reference and it reappears in chapter 8.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>A diode carries 1 mA at 0.65 V with <span class="math math--inline" data-tex="n = 1">$n = 1$</span>. What is <span class="math math--inline" data-tex="I_\mathrm{S}">$I_\mathrm{S}$</span>? What
+   voltage does it have at 10 µA, and at 100 mA? <em>(Roughly 0.53 V and 0.77 V:
+   the whole useful range fits inside a quarter of a volt.)</em></li>
+<li>A 5 V supply drives an LED, <span class="math math--inline" data-tex="V_\mathrm{f} = 2.0\ \mathrm{V}">$V_\mathrm{f} = 2.0\ \mathrm{V}$</span> at 20 mA,
+   through a resistor. Choose the resistor. Then, using 60 mV/decade, estimate
+   the current if the supply sags to 4.5 V and compare with the constant-drop
+   answer.</li>
+<li>Show that two identical junctions at the same temperature, carrying
+   currents in a 10:1 ratio, differ in voltage by 59.5 mV at 300 K, and that
+   this difference is proportional to <span class="math math--inline" data-tex="T">$T$</span> with no device parameters in it.</li>
+<li>On the diode bench, fix <span class="math math--inline" data-tex="R">$R$</span> and sweep the supply over a decade. Plot the
+   diode voltage against the log of the current from the readouts and extract
+   the slope. You should recover <span class="math math--inline" data-tex="nV_\mathrm{T}">$nV_\mathrm{T}$</span>.</li>
+</ol>
+<p class="page-foot"><em>Next:</em> <a href="/projects/analog-circuits/op-amps/">Operational amplifiers</a>, where a large gain and negative feedback make a mediocre device behave exactly.</p></div>
+
+  <footer class="post__footer">
+    <nav class="pager" aria-label="Chapters">
+      <a class="pager__link pager__link--prev" href="/projects/analog-circuits/rlc/">
+        <span class="pager__label">Previous chapter</span>
+        <span class="pager__title">Inductors, RLC and resonance</span>
+      </a>
+      <a class="pager__link pager__link--next" href="/projects/analog-circuits/op-amps/">
+        <span class="pager__label">Next chapter</span>
+        <span class="pager__title">Operational amplifiers</span>
+      </a>
+    </nav>
+    <p class="page-foot"><a href="/projects/analog-circuits/">All chapters</a></p>
+  </footer>
+</article>
+<script defer src="/media/analog-circuits/applets.js"></script>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/research/">Research</a></li>
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=c467844b"></script>
+</body>
+</html>

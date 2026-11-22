@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operational amplifiers · Analog circuits · Lucas Wetzel</title>
+<meta name="description" content="A device with a huge, badly specified gain, made exact by feedback. The two rules and where they come from, the stages built on them, the buffer that finally answers chapter 2, and then the honest version: finite loop gain, gain-bandwidth product, slew rate, offsets, and the stability question that decides whether a circuit works or sings.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects/analog-circuits/op-amps/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Operational amplifiers · Analog circuits · Lucas Wetzel">
+<meta property="og:description" content="A device with a huge, badly specified gain, made exact by feedback. The two rules and where they come from, the stages built on them, the buffer that finally answers chapter 2, and then the honest version: finite loop gain, gain-bandwidth product, slew rate, offsets, and the stability question that decides whether a circuit works or sings.">
+<meta property="og:url" content="https://lucaswetzel.de/projects/analog-circuits/op-amps/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // GitHub Pages cannot send X-Frame-Options or a CSP frame-ancestors directive,
+  // so this is the only lever there is. Mark the document before the body is
+  // parsed; the stylesheet then keeps the content hidden until site.js has
+  // replaced it with a notice. Marking rather than navigating is deliberate:
+  // browsers increasingly refuse an automatic top navigation from a frame and
+  // leave a blank box behind, which tells the reader nothing.
+  if (window.self !== window.top) document.documentElement.dataset.framed = "";
+</script>
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=c467844b">
+<link rel="stylesheet" href="/assets/css/site.css?v=c467844b">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/research/">Research</a>
+      <a href="/projects/" aria-current="page">Current projects</a>
+      <a href="/projects-anabrid/">Projects@anabrid</a>
+      <a href="/oscillatory-computing/">Oscillatory computing</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="post">
+  <header class="post__header">
+    <p class="eyebrow">
+      <a href="/projects/analog-circuits/">Analog circuits</a> ·
+      Chapter 6    </p>
+    <h1 class="post__title">Operational amplifiers</h1>
+<p class="post__standfirst">A device with a huge, badly specified gain, made exact by feedback. The two rules and where they come from, the stages built on them, the buffer that finally answers chapter 2, and then the honest version: finite loop gain, gain-bandwidth product, slew rate, offsets, and the stability question that decides whether a circuit works or sings.</p>    <p class="post__meta-hint">Chapter 6 of 8 · 22 November 2026</p>
+  </header>
+
+  <div class="prose"><h2 id="idea">A deliberately excessive amplifier</h2>
+<p>An operational amplifier is a differential amplifier with an enormous voltage
+gain:</p>
+<div class="math math--display" data-tex="v_\mathrm{out} = A\,(v_+ - v_-) ,">$$v_\mathrm{out} = A\,(v_+ - v_-) ,$$</div>
+<p>where <span class="math math--inline" data-tex="v_+">$v_+$</span> and <span class="math math--inline" data-tex="v_-">$v_-$</span> are the non-inverting and inverting input voltages and
+<span class="math math--inline" data-tex="A">$A$</span> is the open-loop gain, typically <span class="math math--inline" data-tex="10^5">$10^5$</span> to <span class="math math--inline" data-tex="10^6">$10^6$</span> at DC. It is also badly
+specified. <span class="math math--inline" data-tex="A">$A$</span> varies by a factor of three between parts from the same reel, it
+drifts with temperature, and it collapses with frequency.</p>
+<p>That sounds like a bad component, and on its own it is useless: with
+<span class="math math--inline" data-tex="A = 10^5">$A = 10^5$</span> and a 15 V supply, an input difference of 150 µV already saturates
+the output. The device cannot be used open loop for anything except comparing.</p>
+<p>The idea that rescues it is the central idea of analog electronics. <strong>Make the
+gain far larger than needed, then throw almost all of it away through feedback
+in exchange for precision.</strong> What comes back is a circuit whose behaviour is
+set by a ratio of two resistors, which can be made accurate to a part in
+<span class="math math--inline" data-tex="10^4">$10^4$</span>, instead of by a semiconductor parameter, which cannot.</p>
+<h2 id="rules">The two rules, and where they come from</h2>
+<p>With negative feedback in place, two rules make most op-amp circuits a line of
+algebra:</p>
+<ol>
+<li>The output does whatever it must so that <span class="math math--inline" data-tex="v_+ = v_-">$v_+ = v_-$</span>.</li>
+<li>No current flows into either input.</li>
+</ol>
+<p>Rule 2 is a device property: the input stage is built so that its input current
+is picomperes to nanoamperes, negligible against the circuit's currents. Rule 1
+is not a device property and it is worth deriving rather than believing.</p>
+<p>Take the non-inverting amplifier: the output feeds a divider <span class="math math--inline" data-tex="R_1">$R_1$</span>, <span class="math math--inline" data-tex="R_\mathrm{f}">$R_\mathrm{f}$</span>
+and the divider's tap returns to <span class="math math--inline" data-tex="v_-">$v_-$</span>. Writing <span class="math math--inline" data-tex="\beta = R_1/(R_1+R_\mathrm{f})">$\beta = R_1/(R_1+R_\mathrm{f})$</span>
+for the fraction fed back,</p>
+<div class="math math--display" data-tex="\begin{aligned}
+v_\mathrm{out} &amp;= A\,(v_\mathrm{in} - \beta\,v_\mathrm{out}) ,\\[4pt]
+G = \frac{v_\mathrm{out}}{v_\mathrm{in}} &amp;= \frac{A}{1 + A\beta} .
+\end{aligned}">$$\begin{aligned}
+v_\mathrm{out} &amp;= A\,(v_\mathrm{in} - \beta\,v_\mathrm{out}) ,\\[4pt]
+G = \frac{v_\mathrm{out}}{v_\mathrm{in}} &amp;= \frac{A}{1 + A\beta} .
+\end{aligned}$$</div>
+<p>This single expression is the whole theory. The product <span class="math math--inline" data-tex="A\beta">$A\beta$</span> is the <strong>loop
+gain</strong>: the gain all the way round the loop. When it is large,</p>
+<div class="math math--display" data-tex="G \to \frac{1}{\beta} = 1 + \frac{R_\mathrm{f}}{R_1} ,">$$G \to \frac{1}{\beta} = 1 + \frac{R_\mathrm{f}}{R_1} ,$$</div>
+<p>and <span class="math math--inline" data-tex="A">$A$</span> has disappeared. The input difference needed to sustain the output is
+<span class="math math--inline" data-tex="v_\mathrm{out}/A">$v_\mathrm{out}/A$</span>, which goes to zero as <span class="math math--inline" data-tex="A">$A$</span> grows, and that is rule 1. It is
+an approximation with a stated error, not an axiom, and the error is</p>
+<div class="math math--display" data-tex="\frac{G - 1/\beta}{1/\beta} = \frac{-1}{1 + A\beta} \approx \frac{-1}{A\beta} .">$$\frac{G - 1/\beta}{1/\beta} = \frac{-1}{1 + A\beta} \approx \frac{-1}{A\beta} .$$</div>
+<p><strong>Everything good about an op-amp circuit is proportional to <span class="math math--inline" data-tex="1/(1+A\beta)">$1/(1+A\beta)$</span>.</strong>
+Gain error, output resistance, distortion from the device's own nonlinearity:
+all divided by the loop gain. With <span class="math math--inline" data-tex="A = 10^5">$A = 10^5$</span> and a gain of 10, <span class="math math--inline" data-tex="A\beta = 10^4">$A\beta = 10^4$</span>
+and the gain error is 0.01 %. That is why the circuit is better than the part
+it is made of.</p>
+<h2 id="stages">The stages</h2>
+<p>Three circuits, and the algebra for each is two lines with the rules above.</p>
+<p><strong>Non-inverting amplifier.</strong> Input at <span class="math math--inline" data-tex="v_+">$v_+$</span>, divider from the output to <span class="math math--inline" data-tex="v_-">$v_-$</span>.</p>
+<div class="math math--display" data-tex="G = 1 + \frac{R_\mathrm{f}}{R_1} ,">$$G = 1 + \frac{R_\mathrm{f}}{R_1} ,$$</div>
+<p>input resistance essentially infinite, output resistance essentially zero, gain
+at least 1.</p>
+<p><strong>Buffer, or voltage follower.</strong> The same circuit with <span class="math math--inline" data-tex="R_\mathrm{f} = 0">$R_\mathrm{f} = 0$</span> and
+<span class="math math--inline" data-tex="R_1 = \infty">$R_1 = \infty$</span>, so <span class="math math--inline" data-tex="G = 1">$G = 1$</span>. A gain of one sounds pointless and is the most
+useful circuit on the page.</p>
+<p><strong>This is chapter 2's answer.</strong> A voltage divider has a source resistance
+<span class="math math--inline" data-tex="R_1\parallel R_2">$R_1\parallel R_2$</span> and sags when loaded; a filter cascade in chapter 3 did not
+multiply because the second stage loaded the first. Put a buffer in between and
+the problem disappears: it presents almost no load to what drives it and
+behaves almost like an ideal source to what follows. It converts a stiff
+voltage at a weak node into the same voltage at a strong node, and it does so
+because the feedback divides its output resistance by <span class="math math--inline" data-tex="1 + A\beta">$1 + A\beta$</span>.</p>
+<p><strong>Inverting amplifier.</strong> Input through <span class="math math--inline" data-tex="R_1">$R_1$</span> to <span class="math math--inline" data-tex="v_-">$v_-$</span>, feedback <span class="math math--inline" data-tex="R_\mathrm{f}">$R_\mathrm{f}$</span>
+from the output to the same node, <span class="math math--inline" data-tex="v_+">$v_+$</span> grounded.</p>
+<p>Rule 1 forces <span class="math math--inline" data-tex="v_- = 0">$v_- = 0$</span> even though nothing connects it to ground. This node is
+the <strong>virtual ground</strong>, and it is the most useful idea in the chapter. The
+input current is then <span class="math math--inline" data-tex="v_\mathrm{in}/R_1">$v_\mathrm{in}/R_1$</span>, rule 2 sends all of it through
+<span class="math math--inline" data-tex="R_\mathrm{f}">$R_\mathrm{f}$</span>, and</p>
+<div class="math math--display" data-tex="v_\mathrm{out} = -\frac{R_\mathrm{f}}{R_1}\,v_\mathrm{in} .">$$v_\mathrm{out} = -\frac{R_\mathrm{f}}{R_1}\,v_\mathrm{in} .$$</div>
+<p>The input resistance is <span class="math math--inline" data-tex="R_1">$R_1$</span> exactly, not infinity, because the source really
+does drive a resistor to a held node. That is the price of the inverting
+topology and the reason the two forms are both kept.</p>
+<p><strong>Summing.</strong> Because the virtual ground holds at zero, several inputs through
+their own resistors contribute independent currents that simply add:</p>
+<div class="math math--display" data-tex="v_\mathrm{out} = -R_\mathrm{f}\left(\frac{v_1}{R_1} + \frac{v_2}{R_2} + \cdots\right) .">$$v_\mathrm{out} = -R_\mathrm{f}\left(\frac{v_1}{R_1} + \frac{v_2}{R_2} + \cdots\right) .$$</div>
+<p>The inputs do not interact at all. That is what a virtual ground buys, and it
+is why the summing junction is the workhorse of analog computing: weighted
+addition for the cost of one resistor per term.</p>
+<p><strong>Difference amplifier.</strong> Two inputs, four resistors, output
+<span class="math math--inline" data-tex="\frac{R_\mathrm{f}}{R_1}(v_2 - v_1)">$\frac{R_\mathrm{f}}{R_1}(v_2 - v_1)$</span> provided the two ratios match. The common
+mode rejection is set by that match, not by the op-amp: a 1 % mismatch limits
+rejection to about 50 dB however good the device is. Chapter 7 fixes this with
+the instrumentation amplifier.</p>
+<h2 id="integrator">Integrator and differentiator</h2>
+<p>Replace <span class="math math--inline" data-tex="R_\mathrm{f}">$R_\mathrm{f}$</span> in the inverting amplifier with a capacitor. The virtual
+ground still forces the input current to be <span class="math math--inline" data-tex="v_\mathrm{in}/R">$v_\mathrm{in}/R$</span>, and that current
+now has nowhere to go but into <span class="math math--inline" data-tex="C">$C$</span>:</p>
+<div class="math math--display" data-tex="\begin{aligned}
+C\,\frac{\mathrm{d}v_\mathrm{out}}{\mathrm{d}t} &amp;= -\frac{v_\mathrm{in}}{R} ,\\[4pt]
+v_\mathrm{out}(t) &amp;= -\frac{1}{RC}\int_0^t v_\mathrm{in}(t&#x27;)\,\mathrm{d}t&#x27; + v_\mathrm{out}(0) .
+\end{aligned}">$$\begin{aligned}
+C\,\frac{\mathrm{d}v_\mathrm{out}}{\mathrm{d}t} &amp;= -\frac{v_\mathrm{in}}{R} ,\\[4pt]
+v_\mathrm{out}(t) &amp;= -\frac{1}{RC}\int_0^t v_\mathrm{in}(t&#x27;)\,\mathrm{d}t&#x27; + v_\mathrm{out}(0) .
+\end{aligned}$$</div>
+<p><strong>A true integrator, at all frequencies</strong>, not the approximate one chapter 3
+got from a passive RC far above its cutoff, and without the loss of amplitude.
+The difference is entirely the feedback: the capacitor charges against a node
+that is held at zero, so the integration does not slow down as the output
+grows.</p>
+<p>This is the central element of an analog computer. A differential equation
+becomes a diagram by solving it for the highest derivative and integrating down
+to the function, with summers and coefficients closing the loops. The initial
+condition <span class="math math--inline" data-tex="v_\mathrm{out}(0)">$v_\mathrm{out}(0)$</span> is the capacitor's starting charge, which is why
+every analog-computer integrator has a reset switch and an initial-condition
+input in hardware.</p>
+<p>Two things spoil a real integrator, and both come from the fact that it has
+infinite gain at DC:</p>
+<ul>
+<li><strong>Input offset voltage and bias current integrate too.</strong> A constant error at
+  the input ramps the output until it hits a rail. A large resistor across the
+  feedback capacitor bounds the DC gain and stops the drift, at the price of
+  the integration failing below <span class="math math--inline" data-tex="1/(2\pi R_\mathrm{DC}C)">$1/(2\pi R_\mathrm{DC}C)$</span>.</li>
+<li><strong>It has to be told when to start.</strong> Without a reset, the output is the
+  integral of everything since power-on.</li>
+</ul>
+<p>The <strong>differentiator</strong> is the same circuit with <span class="math math--inline" data-tex="R">$R$</span> and <span class="math math--inline" data-tex="C">$C$</span> swapped,
+<span class="math math--inline" data-tex="v_\mathrm{out} = -RC\,\dot v_\mathrm{in}">$v_\mathrm{out} = -RC\,\dot v_\mathrm{in}$</span>. It is rarely used as written. Its
+gain rises with frequency, so it amplifies noise without limit and its loop
+gain falls where the op-amp is least able to cope, which makes it prone to
+ringing. The usual version has a resistor in series with the input capacitor to
+stop the rise above some frequency, and the clean way to get a derivative is
+usually not to take one.</p>
+<h2 id="real">The honest version</h2>
+<p>The two rules are first-order. The things that break them are the content of
+every op-amp datasheet.</p>
+<p><strong>Finite gain, and gain that runs out.</strong> <span class="math math--inline" data-tex="A">$A$</span> is not constant with frequency. An
+internally compensated op-amp is deliberately given a single dominant pole, so
+above a few hertz</p>
+<div class="math math--display" data-tex="A(f) \approx \frac{A_0}{1 + \mathrm{i}f/f_\mathrm{p}} \approx \frac{\mathrm{GBW}}{\mathrm{i}f} ,">$$A(f) \approx \frac{A_0}{1 + \mathrm{i}f/f_\mathrm{p}} \approx \frac{\mathrm{GBW}}{\mathrm{i}f} ,$$</div>
+<p>with GBW the <strong>gain-bandwidth product</strong>, the frequency at which the open-loop
+gain passes through 1. The consequence is the most quoted rule in the subject:</p>
+<div class="math math--display" data-tex="f_{-3\,\mathrm{dB}} = \frac{\mathrm{GBW}}{G} .">$$f_{-3\,\mathrm{dB}} = \frac{\mathrm{GBW}}{G} .$$</div>
+<p>Gain and bandwidth trade one for one. A 10 MHz part at a gain of 100 is a
+100 kHz circuit. Note what this is really saying: the loop gain <span class="math math--inline" data-tex="A\beta">$A\beta$</span> falls
+at 20 dB/decade, so all the precision above also decays at 20 dB/decade. <strong>An
+op-amp circuit is only as good as its loop gain at the frequency of interest</strong>,
+and the DC specification on the front page of the datasheet is the best it will
+ever be.</p>
+<p>One subtlety that catches people. The <span class="math math--inline" data-tex="G">$G$</span> in that rule is <span class="math math--inline" data-tex="1/\beta">$1/\beta$</span>, called the
+<strong>noise gain</strong>, and it is the same for both topologies because both use the
+same feedback divider. The inverting stage's signal gain is
+<span class="math math--inline" data-tex="-R_\mathrm{f}/R_1">$-R_\mathrm{f}/R_1$</span> but its noise gain is <span class="math math--inline" data-tex="1 + R_\mathrm{f}/R_1">$1 + R_\mathrm{f}/R_1$</span>. An inverting
+amplifier at a gain of <span class="math math--inline" data-tex="-1">$-1$</span> therefore has the bandwidth, the gain error and
+the output noise of a non-inverting amplifier at <span class="math math--inline" data-tex="+2">$+2$</span>, not at <span class="math math--inline" data-tex="+1">$+1$</span>. The
+feedback does not know which input the signal came in on.</p>
+<div class="ac-bench" data-applet="opamp-loop">
+<p class="ac-fallback">This bench needs JavaScript. The relation
+<span class="math math--inline" data-tex="G = A/(1+A\beta)">$G = A/(1+A\beta)$</span> and the gain-bandwidth rule above are the content of the
+panel.</p>
+</div>
+
+<p><strong>Slew rate.</strong> A large-signal limit, and a different mechanism: the internal
+compensation capacitor can only be charged by the input stage's finite tail
+current, so</p>
+<div class="math math--display" data-tex="\left|\frac{\mathrm{d}v_\mathrm{out}}{\mathrm{d}t}\right| \le \mathrm{SR} .">$$\left|\frac{\mathrm{d}v_\mathrm{out}}{\mathrm{d}t}\right| \le \mathrm{SR} .$$</div>
+<p>A sine of amplitude <span class="math math--inline" data-tex="\hat V">$\hat V$</span> at frequency <span class="math math--inline" data-tex="f">$f$</span> needs <span class="math math--inline" data-tex="2\pi f\hat V">$2\pi f\hat V$</span>, so the
+largest undistorted sine is <span class="math math--inline" data-tex="f_\mathrm{max} = \mathrm{SR}/(2\pi\hat V)">$f_\mathrm{max} = \mathrm{SR}/(2\pi\hat V)$</span>. This
+is not the same limit as the bandwidth and it bites first on big signals: a
+1 V/µs part cannot produce a 10 V amplitude sine above 16 kHz, whatever its
+GBW says.</p>
+<p><strong>Offsets and bias.</strong> The input stage is not perfectly matched, so the output
+is zero at some input difference <span class="math math--inline" data-tex="V_\mathrm{os}">$V_\mathrm{os}$</span> of a few hundred microvolts
+(microvolts for a chopper part), with a temperature drift. The inputs also draw
+a small bias current, and if the two inputs see different resistances to ground
+that current becomes another offset. The classic countermeasure is to make the
+two source resistances equal so the bias currents cancel to first order.</p>
+<p><strong>Output limits.</strong> The output cannot reach the rails, except in parts
+advertised as rail-to-rail, and even those only approach them when lightly
+loaded. The output current is limited, usually to a few tens of milliamps, and
+the device folds back or heats up beyond that.</p>
+<h2 id="stability">Stability</h2>
+<p>Negative feedback at DC is not negative feedback at all frequencies. The loop
+gain <span class="math math--inline" data-tex="A\beta">$A\beta$</span> has phase, and when its phase reaches <span class="math math--inline" data-tex="-180^\circ">$-180^\circ$</span> the feedback
+has become positive. If <span class="math math--inline" data-tex="|A\beta| \ge 1">$|A\beta| \ge 1$</span> there, the circuit oscillates.</p>
+<p>The margin is read off the loop gain where <span class="math math--inline" data-tex="|A\beta| = 1">$|A\beta| = 1$</span>:</p>
+<div class="math math--display" data-tex="\text{phase margin} = 180^\circ + \arg A\beta \big|_{|A\beta| = 1} .">$$\text{phase margin} = 180^\circ + \arg A\beta \big|_{|A\beta| = 1} .$$</div>
+<p>Each pole in the loop contributes up to <span class="math math--inline" data-tex="-90^\circ">$-90^\circ$</span> (chapter 3). One pole can
+never reach <span class="math math--inline" data-tex="-180^\circ">$-180^\circ$</span>, which is why op-amps are built with a dominant pole:
+it makes the part unconditionally stable at unity gain by construction. A
+second pole inside the loop is what causes trouble, and 60° of phase margin is
+the usual target, corresponding to about 4 % overshoot in the step response.
+The connection to chapter 4 is direct: phase margin and damping ratio describe
+the same pole pair.</p>
+<p>Where the second pole typically comes from:</p>
+<ul>
+<li><strong>A capacitive load.</strong> The output resistance of the amplifier together with
+  the load capacitance forms a pole inside the loop. A buffer driving a long
+  cable is the textbook way to make an oscillator by accident. The fix is a
+  small series resistor at the output, outside the feedback or inside it
+  depending on the topology, which pushes the pole back out.</li>
+<li><strong>Stray capacitance at the inverting input.</strong> Together with the feedback
+  resistor this is another pole. The fix is a few picofarads across
+  <span class="math math--inline" data-tex="R_\mathrm{f}">$R_\mathrm{f}$</span>, which puts a zero in to cancel it.</li>
+</ul>
+<p>The symptom of too little margin is a ringing step response, and of none at all
+a clean sine at a frequency nobody asked for. If a newly built circuit produces
+a sine wave, the first suspicion should be the loop and not the signal.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>A non-inverting amplifier is set for a gain of 50 with a part specified
+   <span class="math math--inline" data-tex="A_0 = 2\times10^5">$A_0 = 2\times10^5$</span> and <span class="math math--inline" data-tex="\mathrm{GBW} = 4\ \mathrm{MHz}">$\mathrm{GBW} = 4\ \mathrm{MHz}$</span>. Find the DC gain
+   error, the loop gain at DC and at 10 kHz, and the closed-loop bandwidth.</li>
+<li>Show that the feedback divides the amplifier's open-loop output resistance
+   by <span class="math math--inline" data-tex="1 + A\beta">$1 + A\beta$</span>. Then explain, in one sentence, why a buffer's output
+   resistance rises with frequency.</li>
+<li>An integrator has <span class="math math--inline" data-tex="R = 100\ \mathrm{k}\Omega">$R = 100\ \mathrm{k}\Omega$</span>, <span class="math math--inline" data-tex="C = 10\ \mathrm{nF}">$C = 10\ \mathrm{nF}$</span> and an
+   input offset of 1 mV. How long until the output has drifted by 1 V with no
+   input? What value of resistor across <span class="math math--inline" data-tex="C">$C$</span> bounds that drift to 1 V, and what
+   does it cost at 10 Hz?</li>
+<li>On the op-amp bench, set a gain of 1000 and then a gain of 1 with the same
+   part. Read the bandwidth in both cases and confirm the product. Then explain
+   why the gain error at DC is worse in the first case.</li>
+</ol>
+<p class="page-foot"><em>Next:</em> <a href="/projects/analog-circuits/motifs/">Motifs</a>, where these stages combine into the handful of blocks that real schematics are assembled from.</p></div>
+
+  <footer class="post__footer">
+    <nav class="pager" aria-label="Chapters">
+      <a class="pager__link pager__link--prev" href="/projects/analog-circuits/diodes/">
+        <span class="pager__label">Previous chapter</span>
+        <span class="pager__title">Diodes and the first nonlinearity</span>
+      </a>
+      <a class="pager__link pager__link--next" href="/projects/analog-circuits/motifs/">
+        <span class="pager__label">Next chapter</span>
+        <span class="pager__title">Motifs: the blocks circuits are made of</span>
+      </a>
+    </nav>
+    <p class="page-foot"><a href="/projects/analog-circuits/">All chapters</a></p>
+  </footer>
+</article>
+<script defer src="/media/analog-circuits/applets.js"></script>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/research/">Research</a></li>
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=c467844b"></script>
+</body>
+</html>

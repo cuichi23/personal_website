@@ -155,7 +155,7 @@ MD = markdown.Markdown(
 
 IMG_PARAGRAPH = re.compile(r"<p>\s*(<img [^>]*>)\s*</p>")
 DISPLAY_PARAGRAPH = re.compile(
-    r"<p>\s*(<span class=\"math math--display\".*?</span>)\s*</p>", re.S)
+    r"<p([^>]*)>\s*(<span class=\"math math--display\".*?</span>)\s*</p>", re.S)
 IMG_ATTRS = re.compile(r'(\w[\w-]*)="([^"]*)"')
 
 
@@ -186,14 +186,24 @@ def figure_markup(img_tag: str, source: str, kept: list[tuple[str, str]]) -> str
             f"{caption_html}</figure>")
 
 
+def display_block(match: re.Match) -> str:
+    """Lift a lone display equation out of its paragraph.
+
+    Any attributes the author attached to the paragraph move onto the block, so
+    `$$ ... $$` followed by `{: #eq-1 }` yields an equation that can be linked to.
+    """
+    attrs, span = match.group(1), match.group(2)
+    body = span[len("<span"):-len("</span>")]
+    return f"<div{attrs}{body}</div>"
+
+
 def render_markdown(text: str, source: str) -> str:
     protected, kept = protect_math(text)
     MD.reset()
     out = MD.convert(protected)
     out = IMG_PARAGRAPH.sub(lambda m: figure_markup(m.group(1), source, kept), out)
     out = restore_math(out, kept)
-    out = DISPLAY_PARAGRAPH.sub(
-        lambda m: m.group(1).replace("<span", "<div", 1)[:-len("</span>")] + "</div>", out)
+    out = DISPLAY_PARAGRAPH.sub(display_block, out)
     return out
 
 

@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inductors, RLC and resonance · Analog circuits · Lucas Wetzel</title>
+<meta name="description" content="A second energy store turns the exponential into a ringing. The second-order equation, the three damping regimes and the pole pair behind them, resonance and the quality factor, and what happens to a circuit when the damping is driven towards zero. This is the chapter the oscillator work stands on.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects/analog-circuits/rlc/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Inductors, RLC and resonance · Analog circuits · Lucas Wetzel">
+<meta property="og:description" content="A second energy store turns the exponential into a ringing. The second-order equation, the three damping regimes and the pole pair behind them, resonance and the quality factor, and what happens to a circuit when the damping is driven towards zero. This is the chapter the oscillator work stands on.">
+<meta property="og:url" content="https://lucaswetzel.de/projects/analog-circuits/rlc/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // GitHub Pages cannot send X-Frame-Options or a CSP frame-ancestors directive,
+  // so this is the only lever there is. Mark the document before the body is
+  // parsed; the stylesheet then keeps the content hidden until site.js has
+  // replaced it with a notice. Marking rather than navigating is deliberate:
+  // browsers increasingly refuse an automatic top navigation from a frame and
+  // leave a blank box behind, which tells the reader nothing.
+  if (window.self !== window.top) document.documentElement.dataset.framed = "";
+</script>
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=c467844b">
+<link rel="stylesheet" href="/assets/css/site.css?v=c467844b">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/research/">Research</a>
+      <a href="/projects/" aria-current="page">Current projects</a>
+      <a href="/projects-anabrid/">Projects@anabrid</a>
+      <a href="/oscillatory-computing/">Oscillatory computing</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="post">
+  <header class="post__header">
+    <p class="eyebrow">
+      <a href="/projects/analog-circuits/">Analog circuits</a> ·
+      Chapter 4    </p>
+    <h1 class="post__title">Inductors, RLC and resonance</h1>
+<p class="post__standfirst">A second energy store turns the exponential into a ringing. The second-order equation, the three damping regimes and the pole pair behind them, resonance and the quality factor, and what happens to a circuit when the damping is driven towards zero. This is the chapter the oscillator work stands on.</p>    <p class="post__meta-hint">Chapter 4 of 8 · 22 November 2026</p>
+  </header>
+
+  <div class="prose"><h2 id="inductor">The other way to store energy</h2>
+<p>A capacitor stores energy in an electric field and resists a change of voltage.
+An inductor stores energy in a magnetic field and resists a change of current.
+Everything else follows by swapping the words.</p>
+<div class="math math--display" data-tex="\begin{aligned}
+v &amp;= L\,\frac{\mathrm{d}i}{\mathrm{d}t} ,&amp;
+W &amp;= \tfrac{1}{2}L\,i^2 ,&amp;
+Z_L &amp;= \mathrm{i}\omega L ,
+\end{aligned}">$$\begin{aligned}
+v &amp;= L\,\frac{\mathrm{d}i}{\mathrm{d}t} ,&amp;
+W &amp;= \tfrac{1}{2}L\,i^2 ,&amp;
+Z_L &amp;= \mathrm{i}\omega L ,
+\end{aligned}$$</div>
+<p>where <span class="math math--inline" data-tex="L">$L$</span> is the inductance in henries, <span class="math math--inline" data-tex="v">$v$</span> the voltage across the coil and <span class="math math--inline" data-tex="i">$i$</span>
+the current through it. The impedance follows from the same substitution as
+before: put <span class="math math--inline" data-tex="i = \underline{I}\mathrm{e}^{\mathrm{i}\omega t}">$i = \underline{I}\mathrm{e}^{\mathrm{i}\omega t}$</span> into the defining
+relation and the derivative becomes a factor <span class="math math--inline" data-tex="\mathrm{i}\omega">$\mathrm{i}\omega$</span>.</p>
+<p>The duality is exact, and writing it out once saves re-deriving anything:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>capacitor</th>
+<th>inductor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>state variable</strong></td>
+<td>voltage <span class="math math--inline" data-tex="v">$v$</span></td>
+<td>current <span class="math math--inline" data-tex="i">$i$</span></td>
+</tr>
+<tr>
+<td><strong>defining relation</strong></td>
+<td><span class="math math--inline" data-tex="i = C\,\dot v">$i = C\,\dot v$</span></td>
+<td><span class="math math--inline" data-tex="v = L\,\dot i">$v = L\,\dot i$</span></td>
+</tr>
+<tr>
+<td><strong>cannot jump</strong></td>
+<td>the voltage</td>
+<td>the current</td>
+</tr>
+<tr>
+<td><strong>energy</strong></td>
+<td><span class="math math--inline" data-tex="\tfrac12 Cv^2">$\tfrac12 Cv^2$</span></td>
+<td><span class="math math--inline" data-tex="\tfrac12 Li^2">$\tfrac12 Li^2$</span></td>
+</tr>
+<tr>
+<td><strong>impedance</strong></td>
+<td><span class="math math--inline" data-tex="1/(\mathrm{i}\omega C)">$1/(\mathrm{i}\omega C)$</span></td>
+<td><span class="math math--inline" data-tex="\mathrm{i}\omega L">$\mathrm{i}\omega L$</span></td>
+</tr>
+<tr>
+<td><strong>at DC</strong></td>
+<td>open circuit</td>
+<td>short circuit</td>
+</tr>
+<tr>
+<td><strong>at high frequency</strong></td>
+<td>short circuit</td>
+<td>open circuit</td>
+</tr>
+<tr>
+<td><strong>phase</strong></td>
+<td>current leads by <span class="math math--inline" data-tex="90^\circ">$90^\circ$</span></td>
+<td>current lags by <span class="math math--inline" data-tex="90^\circ">$90^\circ$</span></td>
+</tr>
+</tbody>
+</table>
+<p>The "cannot jump" row deserves the same warning chapter 1 gave about sources.
+Interrupting the current in an inductor is the dual of shorting a capacitor:
+the device tries to produce whatever voltage it takes to keep the current
+going, and in a mechanical switch that voltage arrives as a spark. This is why
+every relay coil in every circuit has a diode across it, and chapter 5 explains
+what that diode does.</p>
+<h2 id="second-order">Two stores, one equation</h2>
+<p>Put <span class="math math--inline" data-tex="L">$L$</span>, <span class="math math--inline" data-tex="R">$R$</span> and <span class="math math--inline" data-tex="C">$C$</span> in series across a source <span class="math math--inline" data-tex="v_\mathrm{in}">$v_\mathrm{in}$</span>. Kirchhoff's
+voltage law and the three component relations give one equation in the
+capacitor voltage,</p>
+<div class="math math--display" data-tex="LC\,\ddot v_C + RC\,\dot v_C + v_C = v_\mathrm{in} .">$$LC\,\ddot v_C + RC\,\dot v_C + v_C = v_\mathrm{in} .$$</div>
+<p>This is a damped harmonic oscillator, which is the same equation as a mass on a
+spring in a viscous fluid, and the correspondence is worth keeping: <span class="math math--inline" data-tex="L">$L$</span> is the
+mass, <span class="math math--inline" data-tex="1/C">$1/C$</span> the spring constant, <span class="math math--inline" data-tex="R">$R$</span> the drag. Put it in the standard form</p>
+<div class="math math--display" data-tex="\ddot v_C + 2\zeta\omega_0\,\dot v_C + \omega_0^2\,v_C = \omega_0^2\,v_\mathrm{in} ,">$$\ddot v_C + 2\zeta\omega_0\,\dot v_C + \omega_0^2\,v_C = \omega_0^2\,v_\mathrm{in} ,$$</div>
+<p>with the two parameters that replace the three components,</p>
+<div class="math math--display" data-tex="\begin{aligned}
+\omega_0 &amp;= \frac{1}{\sqrt{LC}} ,\\[4pt]
+\zeta &amp;= \frac{R}{2}\sqrt{\frac{C}{L}} ,\\[4pt]
+Q &amp;= \frac{1}{2\zeta} = \frac{1}{R}\sqrt{\frac{L}{C}} .
+\end{aligned}">$$\begin{aligned}
+\omega_0 &amp;= \frac{1}{\sqrt{LC}} ,\\[4pt]
+\zeta &amp;= \frac{R}{2}\sqrt{\frac{C}{L}} ,\\[4pt]
+Q &amp;= \frac{1}{2\zeta} = \frac{1}{R}\sqrt{\frac{L}{C}} .
+\end{aligned}$$</div>
+<p>Here <span class="math math--inline" data-tex="\omega_0">$\omega_0$</span> is the undamped natural frequency, <span class="math math--inline" data-tex="\zeta">$\zeta$</span> the damping ratio and
+<span class="math math--inline" data-tex="Q">$Q$</span> the quality factor. <strong>Three components collapse into two numbers</strong>, and
+only those two numbers matter for the shape of the response. <span class="math math--inline" data-tex="L">$L$</span> and <span class="math math--inline" data-tex="C">$C$</span> set
+where it happens, <span class="math math--inline" data-tex="R">$R$</span> sets how violently.</p>
+<p>The characteristic roots are</p>
+<div class="math math--display" data-tex="s_{1,2} = -\zeta\omega_0 \pm \omega_0\sqrt{\zeta^2 - 1} ,">$$s_{1,2} = -\zeta\omega_0 \pm \omega_0\sqrt{\zeta^2 - 1} ,$$</div>
+<p>and everything the circuit does in time is read off their position in the
+complex plane. The real part is the decay rate; the imaginary part, when there
+is one, is the ringing frequency.</p>
+<h2 id="regimes">Three regimes</h2>
+<table>
+<thead>
+<tr>
+<th><span class="math math--inline" data-tex="\zeta">$\zeta$</span></th>
+<th>roots</th>
+<th>step response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math math--inline" data-tex="\zeta &gt; 1">$\zeta &gt; 1$</span> <strong>overdamped</strong></td>
+<td>two real, negative</td>
+<td>two exponentials, no overshoot, slow</td>
+</tr>
+<tr>
+<td><span class="math math--inline" data-tex="\zeta = 1">$\zeta = 1$</span> <strong>critically damped</strong></td>
+<td>one double real root</td>
+<td>fastest approach without overshoot</td>
+</tr>
+<tr>
+<td><span class="math math--inline" data-tex="\zeta &lt; 1">$\zeta &lt; 1$</span> <strong>underdamped</strong></td>
+<td>complex conjugate pair</td>
+<td>ringing at <span class="math math--inline" data-tex="\omega_\mathrm{d}">$\omega_\mathrm{d}$</span>, decaying as <span class="math math--inline" data-tex="\mathrm{e}^{-\zeta\omega_0 t}">$\mathrm{e}^{-\zeta\omega_0 t}$</span></td>
+</tr>
+</tbody>
+</table>
+<p>For the underdamped case the damped frequency is</p>
+<div class="math math--display" data-tex="\omega_\mathrm{d} = \omega_0\sqrt{1 - \zeta^2} ,">$$\omega_\mathrm{d} = \omega_0\sqrt{1 - \zeta^2} ,$$</div>
+<p>and the step response of the capacitor voltage is</p>
+<div class="math math--display" data-tex="v_C(t) = V\left[1 - \mathrm{e}^{-\zeta\omega_0 t}
+\left(\cos\omega_\mathrm{d}t + \frac{\zeta}{\sqrt{1-\zeta^2}}\sin\omega_\mathrm{d}t\right)\right] .">$$v_C(t) = V\left[1 - \mathrm{e}^{-\zeta\omega_0 t}
+\left(\cos\omega_\mathrm{d}t + \frac{\zeta}{\sqrt{1-\zeta^2}}\sin\omega_\mathrm{d}t\right)\right] .$$</div>
+<p>The first overshoot is a clean function of the damping alone,</p>
+<div class="math math--display" data-tex="\frac{v_\mathrm{peak} - V}{V} = \exp\!\left(\frac{-\pi\zeta}{\sqrt{1-\zeta^2}}\right) ,">$$\frac{v_\mathrm{peak} - V}{V} = \exp\!\left(\frac{-\pi\zeta}{\sqrt{1-\zeta^2}}\right) ,$$</div>
+<p>which gives 16 % at <span class="math math--inline" data-tex="\zeta = 0.5">$\zeta = 0.5$</span>, 4.3 % at <span class="math math--inline" data-tex="\zeta = 0.707">$\zeta = 0.707$</span> and 0.0 % at
+<span class="math math--inline" data-tex="\zeta = 1">$\zeta = 1$</span>. The value <span class="math math--inline" data-tex="\zeta = 1/\sqrt{2}">$\zeta = 1/\sqrt{2}$</span> turns up constantly because it is
+the damping that makes the frequency response as flat as possible without
+peaking. It is called the Butterworth response and chapter 7 builds filters out
+of it.</p>
+<p><strong>Critical damping is the fastest settling, not the fastest rise.</strong> An
+overdamped circuit rises more slowly; an underdamped one rises faster but then
+spends time ringing. If the specification is "within 1 % and stay there",
+<span class="math math--inline" data-tex="\zeta">$\zeta$</span> slightly below 1 usually wins.</p>
+<h3 id="bench-step">The bench</h3>
+<p>Drag <span class="math math--inline" data-tex="R">$R$</span> down from large to small and watch the two real roots approach each
+other on the negative real axis, collide at <span class="math math--inline" data-tex="\zeta = 1">$\zeta = 1$</span>, and then split into a
+conjugate pair that walks towards the imaginary axis. The step response does
+the corresponding thing. The pole picture and the time picture are the same
+statement.</p>
+<div class="ac-bench" data-applet="rlc-step">
+<p class="ac-fallback">This bench needs JavaScript. The step response and the
+root expression above are the content of the panel.</p>
+</div>
+
+<h2 id="resonance">Resonance</h2>
+<p>Drive the same series circuit with a sinusoid instead of a step. The total
+impedance is</p>
+<div class="math math--display" data-tex="Z(\omega) = R + \mathrm{i}\omega L + \frac{1}{\mathrm{i}\omega C}
+= R + \mathrm{i}\left(\omega L - \frac{1}{\omega C}\right) .">$$Z(\omega) = R + \mathrm{i}\omega L + \frac{1}{\mathrm{i}\omega C}
+= R + \mathrm{i}\left(\omega L - \frac{1}{\omega C}\right) .$$</div>
+<p>The reactive part vanishes when <span class="math math--inline" data-tex="\omega L = 1/(\omega C)">$\omega L = 1/(\omega C)$</span>, that is at
+<span class="math math--inline" data-tex="\omega = \omega_0">$\omega = \omega_0$</span>. There the impedance is purely resistive and at its
+smallest, the current is at its largest, and the circuit is <strong>in resonance</strong>.
+The voltages across <span class="math math--inline" data-tex="L">$L$</span> and <span class="math math--inline" data-tex="C">$C$</span> individually are then <span class="math math--inline" data-tex="Q">$Q$</span> times the drive and
+cancel each other exactly. A series RLC with <span class="math math--inline" data-tex="Q = 50">$Q = 50$</span> driven by 1 V has 50 V
+across the inductor, which surprises people once.</p>
+<p>Reading the output across the resistor gives a band-pass,</p>
+<div class="math math--display" data-tex="H(\omega) = \frac{R}{Z(\omega)}
+= \frac{1}{1 + \mathrm{i}Q\left(\dfrac{\omega}{\omega_0} - \dfrac{\omega_0}{\omega}\right)} ,">$$H(\omega) = \frac{R}{Z(\omega)}
+= \frac{1}{1 + \mathrm{i}Q\left(\dfrac{\omega}{\omega_0} - \dfrac{\omega_0}{\omega}\right)} ,$$</div>
+<p>whose magnitude is 1 at <span class="math math--inline" data-tex="\omega_0">$\omega_0$</span> and falls on both sides. The half-power
+points are where the bracket equals <span class="math math--inline" data-tex="\pm 1/Q">$\pm 1/Q$</span>, and the width between them is</p>
+<div class="math math--display" data-tex="\Delta\omega = \frac{\omega_0}{Q} = \frac{R}{L} .">$$\Delta\omega = \frac{\omega_0}{Q} = \frac{R}{L} .$$</div>
+<p><strong><span class="math math--inline" data-tex="Q">$Q$</span> is the ratio of centre frequency to bandwidth</strong>, which is the definition
+to remember, and it is numerically the same as</p>
+<div class="math math--display" data-tex="Q = 2\pi\,\frac{\text{energy stored}}{\text{energy lost per cycle}} ,">$$Q = 2\pi\,\frac{\text{energy stored}}{\text{energy lost per cycle}} ,$$</div>
+<p>which is the definition that explains why it is called a quality factor and
+which transfers unchanged to a pendulum, an optical cavity or a nuclear
+resonance. A circuit and an atom are described by the same two numbers here.</p>
+<div class="ac-bench" data-applet="rlc-resonance">
+<p class="ac-fallback">This bench needs JavaScript. The band-pass expression
+and the bandwidth relation above are the content of the panel.</p>
+</div>
+
+<h2 id="towards-oscillation">What happens as the damping goes to zero</h2>
+<p>Follow the pole pair as <span class="math math--inline" data-tex="R">$R$</span> falls. It approaches the imaginary axis, the
+ringing lasts longer, the resonance gets taller and narrower. At <span class="math math--inline" data-tex="R = 0">$R = 0$</span> the
+poles sit exactly on the axis and the circuit rings forever at <span class="math math--inline" data-tex="\omega_0">$\omega_0$</span>,
+exchanging energy between the two stores without loss. That is an oscillator,
+and it is also an idealization no more realistic than the ideal sources of
+chapter 1.</p>
+<p>Every real coil and every real capacitor has loss, so the poles sit in the left
+half plane and any disturbance dies. To build an oscillator you have to <strong>put
+the energy back</strong>, with a circuit that behaves like a negative resistance over
+the amplitude range of interest. Then the poles cross into the right half plane,
+the amplitude grows, and some nonlinearity has to catch it and hold it. An
+oscillator is therefore never a linear circuit, however linear its small-signal
+model looks: amplitude is set by the nonlinearity and frequency by the
+resonance.</p>
+<p>This is where the course connects to what I do for a living. A phase-locked
+loop is a resonator of this kind wrapped in a feedback loop that steers
+<span class="math math--inline" data-tex="\omega_0">$\omega_0$</span>, and a network of them is what I write down as coupled phase
+equations. In the models the quantity that matters is the phase; <span class="math math--inline" data-tex="Q">$Q$</span> enters as
+the bandwidth over which a phase disturbance survives, and <span class="math math--inline" data-tex="R">$R$</span> only appears
+disguised as a damping constant. Here it is a part number.</p>
+<h2 id="real">Real inductors are the worst component</h2>
+<p>A capacitor is close to ideal over a wide range. An inductor is not, and the
+differences show up early:</p>
+<ul>
+<li><strong>Series resistance.</strong> The wire has resistance, and it is not small. A 10 mH
+  coil might carry 20 Ω, which already caps <span class="math math--inline" data-tex="Q">$Q$</span> before anything else does.</li>
+<li><strong>Self-resonance.</strong> The turns have capacitance between them. Above its
+  self-resonant frequency an inductor is a capacitor, and the datasheet gives
+  the frequency where it stops being what it says.</li>
+<li><strong>Core saturation.</strong> Any inductor with a magnetic core has a current above
+  which the permeability collapses and the inductance drops. The circuit then
+  changes behaviour as a function of signal amplitude.</li>
+<li><strong>It is physically large and it couples.</strong> An inductor broadcasts and
+  receives a magnetic field, so two of them near each other are a transformer
+  whether or not that was the intention.</li>
+</ul>
+<p>For these reasons integrated analog design avoids inductors below the hundreds
+of megahertz and synthesizes the behaviour instead. A <strong>gyrator</strong> is a circuit
+that makes a capacitor look inductive from one port, and chapter 7 builds
+resonant responses out of op-amps, resistors and capacitors with no coil
+anywhere. The second-order equation of this chapter is what those circuits
+reproduce; the component that produced it is optional.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>A series RLC has <span class="math math--inline" data-tex="L = 10\ \mathrm{mH}">$L = 10\ \mathrm{mH}$</span>, <span class="math math--inline" data-tex="C = 100\ \mathrm{nF}">$C = 100\ \mathrm{nF}$</span> and
+   <span class="math math--inline" data-tex="R = 50\ \Omega">$R = 50\ \Omega$</span>. Find <span class="math math--inline" data-tex="f_0">$f_0$</span>, <span class="math math--inline" data-tex="\zeta">$\zeta$</span>, <span class="math math--inline" data-tex="Q">$Q$</span>, the bandwidth and the first
+   overshoot of the step response. <em>(Answers: 5.03 kHz, 0.079, 6.32, 796 Hz,
+   78 %.)</em></li>
+<li>Show that the parallel RLC is the dual of the series one, with
+   <span class="math math--inline" data-tex="Q = R\sqrt{C/L}">$Q = R\sqrt{C/L}$</span>. Note that <span class="math math--inline" data-tex="R">$R$</span> now has to be <strong>large</strong> for a high <span class="math math--inline" data-tex="Q">$Q$</span>,
+   which is the same reversal as between the two sources in chapter 1.</li>
+<li>At resonance the voltage across the inductor is <span class="math math--inline" data-tex="Q">$Q$</span> times the drive. Where
+   does the extra energy come from, and why does this not violate anything?</li>
+<li>Set <span class="math math--inline" data-tex="\zeta = 1/\sqrt{2}">$\zeta = 1/\sqrt{2}$</span> on bench 7 and read the overshoot; then set the
+   same <span class="math math--inline" data-tex="\zeta">$\zeta$</span> on bench 8 and confirm the magnitude response has no peak.
+   Those two facts are the same fact.</li>
+</ol>
+<p class="page-foot"><em>Next:</em> <a href="/projects/analog-circuits/diodes/">Diodes and the first nonlinearity</a>, where superposition stops working and two new tools replace it.</p></div>
+
+  <footer class="post__footer">
+    <nav class="pager" aria-label="Chapters">
+      <a class="pager__link pager__link--prev" href="/projects/analog-circuits/rc/">
+        <span class="pager__label">Previous chapter</span>
+        <span class="pager__title">Capacitors and the RC circuit</span>
+      </a>
+      <a class="pager__link pager__link--next" href="/projects/analog-circuits/diodes/">
+        <span class="pager__label">Next chapter</span>
+        <span class="pager__title">Diodes and the first nonlinearity</span>
+      </a>
+    </nav>
+    <p class="page-foot"><a href="/projects/analog-circuits/">All chapters</a></p>
+  </footer>
+</article>
+<script defer src="/media/analog-circuits/applets.js"></script>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/research/">Research</a></li>
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=c467844b"></script>
+</body>
+</html>

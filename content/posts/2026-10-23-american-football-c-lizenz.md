@@ -7,8 +7,8 @@ summary: >-
   football: how the German coaching-license system works, every exam topic
   sorted and summarized, my notes from the course sessions, what the written
   and practical exams actually ask, an introductory coaching knowledge base for
-  running an offense and a defense, a position block on the offensive line, and
-  three interactive quizzes.
+  running an offense and a defense, position blocks on the offensive line and
+  the quarterback, and three interactive quizzes.
 tags:
   - "American Football"
   - "offensive line"
@@ -42,6 +42,8 @@ html[data-lang="de"] .lang-block:not([lang="de"]) { display: none; }
 .clz-fold .clz-fold__hint { font-family: var(--font-body); font-weight: 400; font-size: 0.82em; color: var(--muted); margin-left: 0.4rem; }
 .clz-fold > summary + * { margin-top: 0.75rem; }
 .clz-fold h3:first-of-type { margin-top: 0.6rem; }
+.clz-scroll { overflow-x: auto; }
+.clz-scroll table { min-width: 30rem; }
 .clz-foldall { display: inline-block; margin: 0 0 0.6rem; border: 1px solid var(--rule-strong); background: transparent; color: var(--muted); border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.78em; letter-spacing: 0.02em; cursor: pointer; }
 .clz-foldall:hover { border-color: var(--accent); color: var(--accent); }
 @media print { .clz-fold > summary::after, .clz-foldall { display: none; } .clz-fold { border: 0; padding: 0; } }
@@ -60,8 +62,8 @@ autumn I am taking the sport-specific course for the Trainer-C license in
 American football with the American Football Verband Sachsen (AFVS). This page
 is my study companion: the license system in one place, every exam topic
 sorted, my own notes from the course sessions, what the written and practical
-exams actually ask, a compact coaching knowledge base, a position block on the
-offensive line, and three interactive quizzes.
+exams actually ask, a compact coaching knowledge base, position blocks on the
+offensive line and the quarterback, and three interactive quizzes.
 
 <nav class="clz-index" markdown="1">
 
@@ -72,6 +74,7 @@ a link from here opens the fold it points at.
 - **[Topic guide](#topics)** · the eight exam blocks, one summary each
 - **[Course notes](#course-notes)** · [the coach](#notes-coach) · [planning](#notes-planning) · [training theory](#notes-theory) · [the session](#notes-session) · [long-term development](#notes-ltad) · [prevention and diagnostics](#notes-prevention) · [the abilities](#notes-abilities) · [review and mental training](#notes-review) · [corrections](#notes-corrections)
 - **[Position coaching: the O-line](#position-coaching)** · [what the position asks for](#oline-prerequisites) · [stance](#oline-stance) · [footwork and hands](#oline-footwork) · [run blocking](#oline-schemes) · [kick-out, log, double team](#oline-rules) · [pass blocking](#oline-pass)
+- **[Position coaching: the quarterback](#qb-coaching)** · [role and values](#qb-role) · [development](#qb-development) · [technique](#qb-technique) · [perceiving and deciding](#qb-decisions) · [the VR demo](#qb-vr) · [building a QB](#qb-build) · [six stations](#qb-stations)
 - **[Knowledge base](#knowledge-base)** · running an offense, running a defense
 - **Quizzes** · [recall drill](#recall-drill) · [mock exam](#mock-exam) · [sketch quiz](#formation-quiz-section)
 - [Sources](#sources)
@@ -1275,6 +1278,305 @@ before hands, hands before a scheme, and a scheme on air before a scheme
 against a body. The cues exist so the correction fits in one word between two
 reps.
 
+## Position coaching: the quarterback {: #qb-coaching }
+
+The session of 21 November 2026 was the second position block: a morning of
+lecture, an afternoon of six stations on the field, and a virtual-reality
+demonstration in between. Lecturer: Steffen Breidenbach (Foxeye Athletics),
+deck "Quarterbacks entwickeln". The day stated one outcome on its second
+slide, and everything below serves that sentence: **at the end you choose, for
+each of your quarterbacks, the next learning task that fits.** Two slides
+exist in my copy of the handout as a title only; where I fill one of them in,
+it says so.
+
+<details class="clz-fold" id="qb-role" markdown="1">
+<summary>The role and what it stands for <span class="clz-fold__hint">and the error culture around it</span></summary>
+
+**What a quarterback is.** One line, and it is not about talent: *he connects
+the call with a shared, timely action*. The job splits at the snap.
+
+| Before the snap | After the snap |
+|---|---|
+| understand the situation | secure the ball |
+| organize the team | read the key |
+| check the defense | act in time |
+
+The footnote on that slide is the thesis of the whole morning: **a role in the
+team, not the one person responsible for winning and losing.**
+
+**Three values, defined through behaviour.** Values become visible in
+behaviour, and most visible after mistakes.
+
+| Value | What it means | What it looks like |
+|---|---|---|
+| **Responsibility** (Verantwortung) | name your own share of it | after the bad throw, start communicating again, calmly |
+| **Respect** (Respekt) | do not expose a teammate | acknowledge what others did, offer help |
+| **Reliability** (Verlässlichkeit) | prepared and approachable | ask questions back, accept feedback |
+
+**The coach sets the error culture.** A correctable mistake needs a clear
+piece of feedback, and the slide puts the two ways of giving it side by side:
+
+| Of little help | Coaching something concrete |
+|---|---|
+| "You simply have to be more of a leader." | "Call the key out loud before the snap." |
+| grading every mistake in front of the group | "What did you see?" — then one cue |
+| many new cues after every throw | repeat the same task and compare |
+
+The column on the right is the pattern that returns in every later chapter:
+one cue, then a repetition that makes the cue checkable.
+
+</details>
+
+<details class="clz-fold" id="qb-development" markdown="1">
+<summary>Age-appropriate development <span class="clz-fold__hint">five stages, and when the task may get harder</span></summary>
+
+**Stage of development before drawers.** Age is orientation; ability and
+maturity decide the next task. Four questions, asked about this player and
+this task:
+
+- **Can he do it?** Repeatable, not once.
+- **Does he understand it?** He can explain it.
+- **Under time pressure?** Does it stay stable.
+- **How is he doing?** With exactly this task.
+
+What follows from the answers: start simple, add one difficulty, step back
+when it is too much.
+
+<div class="clz-scroll" markdown="1">
+
+| Stage | The idea | Content | Dosing |
+|---|---|---|---|
+| **approx. 6–9** · discover | many children get to throw, catch and try out responsibility | near targets (suitable balls, reachable goals) · small games (throw, catch, run) · one choice (spot the free target) | explain briefly · change roles often · one cue · enjoyment before position |
+| **approx. 10–12** · consolidate | connect ball control with one small decision | snap and alignment (take the ball, stand balanced) · short pass with matching footwork · give/keep, slowly, one key | one concept · few terms · first without pressure · practise it both ways |
+| **approx. 13–15** · perceive | the basic pattern stays recognizable even when the stimulus changes | technique inside a concept (snap – footwork – pass) · form a hypothesis before the snap, check it after · one key, two answers: reaction instead of memorization | watch growth · pressure step by step · put the feedback into words |
+| **approx. 16–18** · take responsibility | more independence follows securely mastered basics | protection and hot (clear answers to pressure) · several reads inside one installation · situation: score, clock, down and distance | keep the game plan small · video with an assignment · the player explains it himself |
+| **adults, career changers** | an adult body does not replace football experience | check first (ball feel, vocabulary, knowledge of the rules) · install small (one installation, reliably) · open up by ability (release complexity step by step) | clarify goals · watch the training volume · let them explain their own solutions |
+
+</div>
+
+**When may the task get harder?** Not the year of birth — the observed
+execution decides.
+
+| Raise | Simplify | Stop |
+|---|---|---|
+| ball controlled, movement stable | loss of control | pain |
+| key recognized and explained | less distance or fewer options | feeling unwell |
+| also the second time | | |
+
+And the sentence that makes this coachable rather than a matter of feel:
+**agree an observable success criterion beforehand — not a fixed quota.**
+
+</details>
+
+<details class="clz-fold" id="qb-technique" markdown="1">
+<summary>The technical foundation <span class="clz-fold__hint">snap, footwork, throw, mesh, pocket</span></summary>
+
+**The foundation of one play** is three steps, and the coach watches them in
+order: **stance and snap** (a reliable beginning) → **secure the ball, order
+the feet** (the base towards the target) → **decide and execute** (throw or
+hand off). The three questions printed under that slide are the whole
+checklist for one rep: *was the ball controlled in time, does the base fit the
+task, can he keep acting?*
+
+**Stance and snap.** A reliable beginning buys time for the decision.
+Shotgun/pistol and under center are drawn side by side, and the cues are the
+same for both: ready hands and eyes forward, **control the snap before the
+next step takes over**; center and quarterback rehearse the exchange
+together, because it is an exchange and not a delivery; and the distance is
+**your installation**, not a prescribed number of yards.
+
+**Footwork is timing.** The feet bring the quarterback into a usable throwing
+position *in time*. The rhythm is the criterion, not the picture.
+
+- **Quick game:** small, controlled steps, in the rhythm of the route.
+- **Longer development:** drop, set, hitch if needed, matched to protection
+  and concept.
+- **Ball ready when the window opens.** The window appears at the break, and
+  by then the throw is a decision already made.
+
+**Throwing: target and movement.** The ball should arrive *in time at a
+catchable place*. Balance and force transfer: finish coordinated and
+controlled. Dose the trajectory: not every ball at maximum. And the cue that
+replaces five others: **"hit the window in front of the receiver" — one cue
+per attempt.**
+
+**Ball security and mesh.** On give/keep it has to be unambiguous who takes
+the ball. Start slowly and agree the path and the exchange point; watch the
+key *while* the mesh runs; finish unambiguously — give or keep, completely,
+and only then speed.
+
+**Moving the pocket, keeping the assignment.** Movement earns a new throwing
+position, with a purpose. Perceive the pressure and win space with controlled
+steps; keep eyes and ball ready for the next step; and **do not flee from
+every stimulus** — the safe follow-up decision is installed together with the
+movement, or the movement is just an escape.
+
+</details>
+
+<details class="clz-fold" id="qb-decisions" markdown="1">
+<summary>Perceiving and deciding <span class="clz-fold__hint">pre-snap hypothesis, two concepts, pressure</span></summary>
+
+**Pre-snap is a hypothesis, not knowledge.** Before the snap we collect hints
+and nothing more. Three sources, in this order: the **situation** (down,
+distance, field, clock), your **own call** (formation, protection,
+assignment), and the **defense** (front, box, safeties, leverage). The
+product is a hypothesis to be checked after the snap — and the slide names the
+two traps explicitly: **one-high is not automatically Cover 3, two-high is
+not automatically Cover 2.** The shell is a starting picture, not a coverage.
+
+*(The deck's slide "Read, Progression und Ergebnis" is in my copy a title
+only. The standard definition, added here to fill the gap: the read is the
+defender being watched, the progression is the order of receivers if the read
+gives no answer, and the result is what the concept then permits.)*
+
+**Inside zone read — give or keep.** Gun spread, inside zone to the left, the
+quarterback reads the right end. The rule is one line: **contain → give,
+crash to the running back → keep.** The read defender is deliberately left
+unblocked, which is the whole point of the play: he is not beaten, he is made
+to choose and then proven wrong.
+
+**Stick — recognizing a window.** A short concept: stick route plus flat
+route. The key is the flat defender, and what you read is his leverage.
+**Flat open → the short answer into the flat. Flat closed → check the stick
+window**, roughly 5 to 6 yards, with the outside receiver clearing out. In the
+course's full variant the progression runs **stick → flat → fly**: the deep
+ball only on a confirmed win, zipped behind the corner and in front of the
+safety, and never forced.
+
+**Pressure and the agreed answer.** For extra pressure the quarterback needs a
+solution agreed *beforehand*. Three questions before the snap — who blocks
+whom, who can come free, and what the fast answer is, legal and in time — and
+one warning worth the whole slide: **stick is not a universal blitz beater.**
+Six rushers against five blockers is drawn out, and there the hot answer is
+the back into the flat.
+
+</details>
+
+<details class="clz-fold" id="qb-vr" markdown="1">
+<summary>What the VR demonstration did <span class="clz-fold__hint">and what it does not replace</span></summary>
+
+Between the lecture and the field the course ran the same two concepts in a
+head-mounted display, with the laptop mirroring what the wearer sees so the
+group could watch along.
+
+**Demo 1, inside zone read:** one call, two reactions of the read key. Run A
+goes from the bird's-eye view to the quarterback's view and stops at the mesh,
+where the wearer has to justify the choice. Run B changes the edge defender's
+reaction and restarts the same call. The question afterwards is the only one
+that matters: *what was different?*
+
+**Demo 2, stick:** recognize the flat defender, decide in rhythm, same call
+against a different defense.
+
+**And the honest column.** Virtual reality does not replace real snap and mesh
+technique, timing with real teammates, or movement, load and contact. What it
+is good for: repeating the identical scene, explaining a decision with
+pictures, and pulling the observers in. Or, in the slide's own words: *the
+perspective makes perception discussable — the grass stays the exam.*
+
+</details>
+
+<details class="clz-fold" id="qb-build" markdown="1">
+<summary>Building a quarterback as a coach <span class="clz-fold__hint">six steps, one loop, one grid</span></summary>
+
+**Six steps, and a warning.** A small, consistent installation is easier to
+learn and easier to correct: 1 explain and show → 2 try it simplified → 3 add
+one stimulus → 4 vary stimulus and timing → 5 apply it in a small game →
+6 feedback and the next goal. The warning under that staircase: **connect
+perceiving and acting early — not weeks of technique without a decision.**
+
+**The loop that makes feedback checkable.** Observe → ask → one cue →
+counter-check, worked through on the stick example from the chapter before:
+
+| Step | On the field |
+|---|---|
+| Observation | he throws before the leverage changes |
+| Question | "Which defender did you read?" |
+| Cue | "Wait for his first clear movement." |
+| Counter-check | same stimulus, then the opposite reaction, and the player explains the difference |
+
+The fourth row is the one that gets skipped. Without it the cue stays an
+opinion.
+
+**Error pictures and the next task.** Narrow down the cause first, then change
+the task.
+
+| What you see | Next task |
+|---|---|
+| ball lost at the snap | simplify the snap and the first step |
+| right choice, inaccurate pass | check target distance and base |
+| good pass into a closed window | name the key, compare two reactions |
+
+With the caveat printed underneath: **a working hypothesis, not a diagnosis —
+and sometimes the drill was the problem.**
+
+**Making progress visible.** Few criteria give more orientation than one
+overall grade. Three rows — **perception** (which hint was recognized?),
+**decision** (did the answer fit the call?), **execution** (ball controlled
+and in time?) — each marked as *uncertain*, *with help* or *independent*. What
+gets written down is a concrete example instead of a verdict on talent, plus
+one assignment for the next session.
+
+**Planning a session** so the emphasis stays recognizable all the way
+through: **preparation** (snap and short pass) → **learning task** (one flat
+defender, two reactions) → **application** (same concept, several players).
+What the coach settles beforehand: the learning goal and its success
+criterion, one easier and one harder variant, and material, roles and breaks.
+
+</details>
+
+<details class="clz-fold" id="qb-stations" markdown="1">
+<summary>The afternoon: six stations <span class="clz-fold__hint">contact-free, with role changes</span></summary>
+
+Field block, 13:00 to 16:00: briefing, six stations with role changes, the two
+concepts at 15:00, everyone's own coaching sequence at 15:30, transfer at
+15:50. **12 minutes of work and 3 minutes to change**, contact-free, small
+groups, throwing directions parallel and with distance to the next station.
+The roles rotate at every station: coach, quarterback, center/receiver, read
+key, observer. Material: balls in matching sizes, pylons, markings, station
+cards.
+
+<div class="clz-scroll" markdown="1">
+
+| # | Station | Assignment | Easier | Harder | Success when |
+|---|---|---|---|---|---|
+| 1 | **Snap and ball control** | take the snap and align in order; the coach watches the ball and the first step | quiet exchange without a follow-up action | an additional target signal | the ball is controlled before the follow-up action |
+| 2 | **Footwork and rhythm** | connect snap, footwork and pass; the observer compares timing and balance | the receiver stands in the target window | a changing starting signal | a controlled pass in the agreed rhythm |
+| 3 | **Throw and ball placement** | set the target, dose the pass, give feedback: one cue on the execution | short distance, stationary target | moving target, signal shortly before the set | the placement fits and the balance stays stable |
+| 4 | **Inside zone read** | inside zone left, passive edge right: he shows closing or staying wide | announce the reaction beforehand, slowly | the reaction only at the mesh | an unambiguous handoff or a controlled keep |
+| 5 | **Stick and flat** | the key closes one of the two short windows, the quarterback takes the free one | the window is known before the snap | the decision falls after the snap | key, answer and timing all fit |
+| 6 | **Pocket and new target** | use the free space, realign, pass only from a controlled position | direction and target are given | a signal changes the open side | balance and the eye assignment survive the movement |
+
+</div>
+
+**Application, 15:00 to 15:30.** The same two plays, 15 minutes each: inside
+zone read cooperatively first and then with a changing key, with the coach
+naming the give/keep rule out loud; stick with a changing short window, then
+comparison, feedback and a role change.
+
+**Micro-coaching, 15:30 to 15:50.** Everyone takes one learning task for about
+three minutes: choose a person, explain it plus two variants, observe, give
+one cue, let them try again. The feedback afterwards is three questions —
+*was the assignment clear, did the requirement fit, was an improvement seen,
+or at least well argued?*
+
+**The observation assignment** every group owed the coach it had just watched:
+explain the task in one sentence, show one action, give one observable cue —
+and from the observer's side, was the assignment understandable, did the
+difficulty fit, did it become easier to explain? With the line that keeps the
+afternoon honest: **learning feedback, not a licence exam. No contact training
+needed.**
+
+</details>
+
+### The result of the day
+
+The deck closes on the criterion it opened with: **one concrete next task is
+the result of the day.** For whom am I planning the next session, what is at
+its centre, and how will I recognize progress? By that standard a quarterback
+who can explain what he saw has had a good session, even when the ball landed
+badly.
+
 
 </div>
 
@@ -1287,8 +1589,8 @@ Herbst folgt die sportartspezifische Ausbildung zur Trainer-C-Lizenz American
 Football beim American Football Verband Sachsen (AFVS). Diese Seite ist mein
 Lernbegleiter: das Lizenzsystem an einem Ort, alle Prüfungsthemen sortiert,
 meine eigenen Notizen aus den Lehrgängen, was die schriftliche und die
-praktische Prüfung tatsächlich abfragen, eine kompakte Coaching-Wissensbasis, ein
-Positionsblock zur Offensive Line und drei interaktive Quizze.
+praktische Prüfung tatsächlich abfragen, eine kompakte Coaching-Wissensbasis,
+Positionsblöcke zu Offensive Line und Quarterback und drei interaktive Quizze.
 
 <nav class="clz-index" markdown="1">
 
@@ -1299,6 +1601,7 @@ eingeklappt; ein Link von hier öffnet das Feld, auf das er zeigt.
 - **[Themenführer](#themen)** · die acht Prüfungsblöcke, je eine Zusammenfassung
 - **[Kursnotizen](#kursnotizen)** · [der Trainer](#kursnotizen-trainer) · [Planung](#kursnotizen-planung) · [Trainingslehre](#kursnotizen-lehre) · [die Einheit](#kursnotizen-einheit) · [langfristiger Aufbau](#kursnotizen-aufbau) · [Prävention und Diagnostik](#kursnotizen-praevention) · [die Fähigkeiten](#kursnotizen-faehigkeiten) · [Auswertung und mentales Training](#kursnotizen-auswertung) · [Korrekturen](#kursnotizen-korrekturen)
 - **[Positionstraining: die O-Line](#positionstraining)** · [was die Position verlangt](#oline-voraussetzungen) · [Stance](#oline-stance-de) · [Footwork und Hände](#oline-footwork-de) · [Run Blocking](#oline-schemes-de) · [Kick Out, Log, Double Team](#oline-rules-de) · [Pass Blocking](#oline-pass-de)
+- **[Positionstraining: der Quarterback](#qb-positionstraining)** · [Rolle und Werte](#qb-rolle) · [Entwicklung](#qb-entwicklung) · [Technik](#qb-technik) · [Wahrnehmen und entscheiden](#qb-entscheidungen) · [die VR-Demo](#qb-vr-de) · [einen QB aufbauen](#qb-aufbau) · [sechs Stationen](#qb-stationen)
 - **[Coaching-Wissensbasis](#wissensbasis)** · Offense führen, Defense führen
 - **Quizze** · [Begriffsdrill](#begriffsdrill) · [Probeklausur](#probeklausur) · [Formationsquiz](#formationsquiz)
 - [Quellen](#quellen)
@@ -2553,6 +2856,310 @@ Footwork vor Händen, Hände vor Schema, Schema auf Luft vor Schema gegen einen
 Körper. Die Cues gibt es, damit die Korrektur zwischen zwei Reps in ein Wort
 passt.
 
+## Positionstraining: der Quarterback {: #qb-positionstraining }
+
+Der Lehrgang vom 21. November 2026 war der zweite Positionsblock: vormittags
+Vortrag, nachmittags sechs Stationen auf dem Feld, dazwischen eine
+VR-Demonstration. Dozent: Steffen Breidenbach (Foxeye Athletics), Foliensatz
+„Quarterbacks entwickeln“. Das Ziel des Tages steht auf Folie 2 und trägt
+alles Weitere: **am Ende wählst du für jeden QB die passende nächste
+Lernaufgabe.** Zwei Folien liegen in meiner Fassung des Handouts nur als
+Titel vor; wo ich eine davon fülle, steht es dabei.
+
+<details class="clz-fold" id="qb-rolle" markdown="1">
+<summary>Die Rolle und wofür sie steht <span class="clz-fold__hint">und die Fehlerkultur drumherum</span></summary>
+
+**Was ein Quarterback ist.** Eine Zeile, und sie handelt nicht von Talent:
+*Er verbindet den Call mit einer gemeinsamen, rechtzeitigen Aktion.* Die
+Aufgabe teilt sich am Snap.
+
+| Vor dem Snap | Nach dem Snap |
+|---|---|
+| Situation verstehen | Ball sichern |
+| Team organisieren | Key lesen |
+| Defense prüfen | rechtzeitig handeln |
+
+Die Fußnote dieser Folie ist die These des ganzen Vormittags: **eine Rolle im
+Team – nicht der Alleinverantwortliche für Sieg oder Niederlage.**
+
+**Drei Werte, über Verhalten definiert.** Werte werden in Verhalten sichtbar,
+am deutlichsten nach Fehlern.
+
+| Wert | Was er heißt | Woran man ihn sieht |
+|---|---|---|
+| **Verantwortung** | den eigenen Anteil benennen | nach dem Fehlwurf ruhig neu kommunizieren |
+| **Respekt** | Mitspieler nicht bloßstellen | Leistung anderer anerkennen, Hilfe anbieten |
+| **Verlässlichkeit** | vorbereitet und ansprechbar | Rückfragen stellen, Feedback annehmen |
+
+**Der Coach prägt die Fehlerkultur.** Ein korrigierbarer Fehler braucht eine
+klare Rückmeldung – und die Folie stellt die beiden Arten, sie zu geben,
+nebeneinander:
+
+| Wenig hilfreich | Konkret coachen |
+|---|---|
+| „Du musst einfach mehr Leader sein.“ | „Sag vor dem Snap den Key laut an.“ |
+| jeden Fehler vor der Gruppe bewerten | „Was hast du gesehen?“ – dann ein Hinweis |
+| viele neue Hinweise nach jedem Wurf | gleiche Aufgabe wiederholen und vergleichen |
+
+Die rechte Spalte ist das Muster, das in jedem späteren Kapitel wiederkehrt:
+ein Hinweis, danach eine Wiederholung, die den Hinweis überprüfbar macht.
+
+</details>
+
+<details class="clz-fold" id="qb-entwicklung" markdown="1">
+<summary>Altersgerecht entwickeln <span class="clz-fold__hint">fünf Stufen, und wann die Aufgabe schwerer werden darf</span></summary>
+
+**Entwicklungsstand vor Schubladen.** Alter ist Orientierung; Können und
+Reife bestimmen die nächste Aufgabe. Vier Fragen, gestellt zu diesem Spieler
+und zu dieser Aufgabe:
+
+- **Kann er es?** Wiederholbar, nicht nur einmal.
+- **Versteht er es?** Er kann es erklären.
+- **Unter Zeitdruck?** Bleibt es stabil.
+- **Wie geht es ihm?** Mit genau dieser Aufgabe.
+
+Daraus folgt: einfach beginnen, eine Schwierigkeit mehr, bei Überforderung
+zurück.
+
+<div class="clz-scroll" markdown="1">
+
+| Stufe | Die Idee | Inhalte | Dosieren |
+|---|---|---|---|
+| **ca. 6–9** · entdecken | viele Kinder dürfen werfen, fangen und Verantwortung ausprobieren | nahe Ziele (passende Bälle, erreichbare Ziele) · kleine Spiele (werfen, fangen, laufen) · eine Wahl (freies Ziel erkennen) | kurz erklären · oft Rollen wechseln · ein Hinweis · Freude vor Position |
+| **ca. 10–12** · festigen | Ballkontrolle und eine kleine Entscheidung verbinden | Snap und Ausrichtung (Ball aufnehmen, ausbalanciert stehen) · kurzer Pass mit passendem Footwork · Give/Keep, langsam, ein Key | ein Konzept · wenige Begriffe · erst ohne Druck · beidseitig üben |
+| **ca. 13–15** · wahrnehmen | das Grundmuster bleibt erkennbar, auch wenn sich der Reiz ändert | Technik im Konzept (Snap – Footwork – Pass) · vor dem Snap vermuten, danach prüfen · ein Key, zwei Antworten: Reaktion statt Auswendiglernen | Wachstum beachten · Druck schrittweise · Feedback in Worte fassen |
+| **ca. 16–18** · verantworten | mehr Selbstständigkeit folgt auf sicher beherrschte Grundlagen | Protection und Hot (klare Antworten auf Druck) · mehrere Reads innerhalb einer Installation · Situation: Spielstand, Uhr, Down und Distance | Gameplan klein halten · Video mit Auftrag · Spieler erklärt selbst |
+| **Erwachsene, Quereinsteiger** | ein erwachsener Körper ersetzt keine Football-Erfahrung | zuerst prüfen (Ballgefühl, Begriffe, Regelkenntnis) · klein installieren (eine Installation zuverlässig) · nach Können öffnen (Komplexität schrittweise freigeben) | Ziele klären · Trainingsumfang beachten · eigene Lösungen erklären lassen |
+
+</div>
+
+**Wann darf die Aufgabe schwerer werden?** Nicht das Geburtsjahr – die
+beobachtete Ausführung entscheidet.
+
+| Steigern | Vereinfachen | Stoppen |
+|---|---|---|
+| Ball kontrolliert, Bewegung stabil | Kontrollverlust | Schmerzen |
+| Key erkannt und erklärt | weniger Distanz oder Optionen | Unwohlsein |
+| auch beim zweiten Mal | | |
+
+Und der Satz, der daraus Coaching statt Gefühl macht: **vorab ein
+beobachtbares Erfolgskriterium vereinbaren – keine starre Quote.**
+
+</details>
+
+<details class="clz-fold" id="qb-technik" markdown="1">
+<summary>Das technische Fundament <span class="clz-fold__hint">Snap, Footwork, Wurf, Mesh, Pocket</span></summary>
+
+**Das Fundament eines Spielzugs** sind drei Schritte, und der Coach schaut
+sie in dieser Reihenfolge an: **Stance und Snap** (ein verlässlicher Beginn)
+→ **Ball sichern, Füße ordnen** (Basis zum Ziel) → **entscheiden und
+ausführen** (werfen oder übergeben). Die drei Fragen unter der Folie sind die
+ganze Checkliste für einen Rep: *Ball rechtzeitig kontrolliert? Basis passt
+zur Aufgabe? Kann er weiterhandeln?*
+
+**Stance und Snap.** Ein verlässlicher Beginn schafft Zeit für die
+Entscheidung. Shotgun/Pistol und Under Center stehen nebeneinander, die Cues
+gelten für beide: bereite Hände, Blick nach vorn, **den Snap kontrollieren,
+bevor der nächste Schritt dominiert**; Center und QB stimmen den Austausch
+gemeinsam ab, denn es ist ein Austausch und keine Zustellung; und der Abstand
+ist **eure Installation**, keine feste Yardzahl als Vorschrift.
+
+**Footwork ist Timing.** Die Füße bringen den QB *rechtzeitig* in eine
+brauchbare Wurfposition. Das Kriterium ist der Rhythmus, nicht das Bild.
+
+- **Quick Game:** kleine, kontrollierte Schritte, im Rhythmus der Route.
+- **Längere Entwicklung:** Drop, Set, ggf. Hitch – passend zu Protection und
+  Konzept.
+- **Ball bereit, wenn das Fenster entsteht.** Das Fenster entsteht am Break,
+  und bis dahin ist der Wurf eine bereits getroffene Entscheidung.
+
+**Werfen: Ziel und Bewegung.** Der Ball soll *rechtzeitig an einen fangbaren
+Ort*. Balance und Kraftübertragung: koordiniert und kontrolliert beenden. Die
+Flugbahn dosieren: nicht jeden Ball maximal hart. Und der Hinweis, der fünf
+andere ersetzt: **„Triff das Fenster vor dem Receiver.“ – ein Hinweis pro
+Versuch.**
+
+**Ball Security und Mesh.** Bei Give/Keep muss klar sein, wer den Ball
+übernimmt. Langsam beginnen und Laufweg und Übergabepunkt abstimmen; den Key
+beobachten, *während* die Mesh abläuft; eindeutig beenden – Give oder Keep,
+vollständig, und erst dann Tempo.
+
+**Pocket bewegen, Auftrag behalten.** Bewegung verschafft eine neue
+Wurfposition, mit Zweck. Druck wahrnehmen und Raum mit kontrollierten
+Schritten gewinnen; Blick und Ball bereit für den nächsten Schritt; und
+**nicht bei jedem Reiz fliehen** – die sichere Anschlussentscheidung wird
+mitinstalliert, sonst ist die Bewegung nur eine Flucht.
+
+</details>
+
+<details class="clz-fold" id="qb-entscheidungen" markdown="1">
+<summary>Wahrnehmen und entscheiden <span class="clz-fold__hint">Pre-Snap-Hypothese, zwei Konzepte, Druck</span></summary>
+
+**Pre-Snap ist eine Hypothese, kein Wissen.** Vor dem Snap sammeln wir
+Hinweise und nicht mehr. Drei Quellen, in dieser Reihenfolge: die
+**Situation** (Down, Distanz, Feld, Uhr), der **eigene Call** (Formation,
+Protection, Auftrag) und die **Defense** (Front, Box, Safeties, Leverage).
+Das Ergebnis ist eine Hypothese, die nach dem Snap geprüft wird – und die
+Folie benennt die beiden Fallen ausdrücklich: **One-high ist nicht
+automatisch Cover 3, Two-high ist nicht automatisch Cover 2.** Die
+Aufstellung ist ein Startbild, keine Coverage.
+
+*(Die Folie „Read, Progression und Ergebnis“ liegt in meiner Fassung nur als
+Titel vor. Die Standarddefinition, hier zum Füllen der Lücke: der Read ist
+der beobachtete Verteidiger, die Progression ist die Reihenfolge der
+Receiver, wenn der Read keine Antwort gibt, und das Ergebnis ist das, was das
+Konzept dann zulässt.)*
+
+**Inside Zone Read – Give oder Keep.** Gun Spread, Inside Zone links, der QB
+liest den rechten End. Die Regel ist eine Zeile: **Contain → Give, Crash zum
+RB → Keep.** Der Read-Verteidiger bleibt bewusst ungeblockt, und genau darin
+liegt der Spielzug: Er wird nicht besiegt, er wird zur Wahl gezwungen und
+danach widerlegt.
+
+**Stick – ein Fenster erkennen.** Ein kurzes Konzept: Stick-Route plus
+Flat-Route. Der Key ist der Flat-Verteidiger, gelesen wird seine Leverage.
+**Flat frei → die kurze Antwort in die Flat. Flat zu → das Stick-Fenster
+prüfen**, etwa 5 bis 6 Yards, mit Clear-Out außen. In der vollen Variante des
+Lehrgangs läuft die Progression **Stick → Flat → Fly**: tief nur bei
+bestätigtem Gewinn, der Zip hinter den Corner und vor den Safety, und nie
+erzwungen.
+
+**Pressure und die vereinbarte Antwort.** Für zusätzlichen Druck braucht der
+QB *vorher* eine vereinbarte Lösung. Drei Fragen vor dem Snap – wer blockt
+wen, wer kann frei werden, und wie lautet die schnelle Antwort, frei und
+regelgerecht – und eine Warnung, die die ganze Folie wert ist: **Stick ist
+kein universeller Blitzbeater.** Sechs Rusher gegen fünf Blocker sind
+aufgezeichnet, und dort ist die Hot-Antwort der RB in die Flat.
+
+</details>
+
+<details class="clz-fold" id="qb-vr-de" markdown="1">
+<summary>Was die VR-Demonstration geleistet hat <span class="clz-fold__hint">und was sie nicht ersetzt</span></summary>
+
+Zwischen Vortrag und Feld liefen dieselben zwei Konzepte im Headset, mit dem
+Laptop als Coach-Mitschau, damit die Gruppe mitsehen konnte.
+
+**Demo 1, Inside Zone Read:** ein Call, zwei Reaktionen des Read-Keys.
+Durchgang A geht von der Vogelperspektive in die QB-Sicht und hält an der
+Mesh an, wo die Wahl begründet werden muss. Durchgang B ändert die
+Edge-Reaktion und startet denselben Call neu. Die Frage danach ist die
+einzige, auf die es ankommt: *Was war anders?*
+
+**Demo 2, Stick:** den Flat-Verteidiger erkennen, im Rhythmus entscheiden,
+gleicher Call gegen eine andere Defense.
+
+**Und die ehrliche Spalte.** VR ersetzt nicht: echte Snap- und Mesh-Technik,
+Timing mit echten Mitspielern, Bewegung, Belastung, Kontakt. Wobei sie hilft:
+die gleiche Szene wiederholen, eine Entscheidung mit Bildern erklären,
+Beobachter aktiv einbinden. Oder in den Worten der Folie: *Die Perspektive
+macht Wahrnehmung besprechbar – der Rasen bleibt die Prüfung.*
+
+</details>
+
+<details class="clz-fold" id="qb-aufbau" markdown="1">
+<summary>Einen Quarterback als Coach aufbauen <span class="clz-fold__hint">sechs Schritte, eine Schleife, ein Raster</span></summary>
+
+**Sechs Schritte, und eine Warnung.** Eine kleine, konsistente Installation
+lernt und korrigiert sich leichter: 1 erklären und zeigen → 2 vereinfacht
+ausprobieren → 3 einen Reiz hinzufügen → 4 Reiz und Zeitpunkt variieren →
+5 im kleinen Spiel anwenden → 6 Rückmeldung und nächstes Ziel. Die Warnung
+unter der Treppe: **Wahrnehmen und Handeln früh verbinden – nicht wochenlang
+Technik ohne Entscheidung.**
+
+**Die Schleife, die Rückmeldung überprüfbar macht.** Beobachten → fragen →
+ein Hinweis → Gegenprobe, durchgespielt am Stick-Beispiel aus dem Kapitel
+davor:
+
+| Schritt | Auf dem Feld |
+|---|---|
+| Beobachtung | er wirft vor der Leverage-Änderung |
+| Frage | „Welchen Verteidiger hast du gelesen?“ |
+| Hinweis | „Warte auf seine erste klare Bewegung.“ |
+| Gegenprobe | gleicher Reiz, dann die Gegenreaktion, und der Spieler erklärt den Unterschied |
+
+Die vierte Zeile ist die, die übersprungen wird. Ohne sie bleibt der Hinweis
+eine Meinung.
+
+**Fehlerbilder und nächster Schritt.** Erst die Ursache eingrenzen, dann die
+Aufgabe verändern.
+
+| Beobachtung | Nächste Aufgabe |
+|---|---|
+| Ballverlust beim Snap | Snap und ersten Schritt vereinfachen |
+| richtige Wahl, ungenauer Pass | Zielabstand und Basis prüfen |
+| guter Pass ins geschlossene Fenster | Key benennen, zwei Reaktionen vergleichen |
+
+Mit dem Vorbehalt, der darunter steht: **Arbeitshypothese, keine Diagnose –
+und manchmal war die Übung das Problem.**
+
+**Fortschritt sichtbar machen.** Wenige Kriterien geben mehr Orientierung als
+eine Gesamtnote. Drei Zeilen – **Wahrnehmung** (welcher Hinweis wurde
+erkannt?), **Entscheidung** (passte die Antwort zum Call?), **Ausführung**
+(Ball kontrolliert und rechtzeitig?) – jeweils als *unsicher*, *mit Hilfe*
+oder *selbstständig* markiert. Notiert wird ein konkretes Beispiel statt
+eines Talenturteils, dazu ein Auftrag für die folgende Einheit.
+
+**Eine Trainingseinheit planen**, so dass der Schwerpunkt durch die ganze
+Einheit erkennbar bleibt: **Vorbereitung** (Snap und kurzer Pass) →
+**Lernaufgabe** (ein Flat-Verteidiger, zwei Reaktionen) → **Anwendung**
+(gleiches Konzept, mehrere Spieler). Was der Coach vorher festlegt: Lernziel
+und Erfolgskriterium, je eine leichtere und eine schwerere Variante, dazu
+Material, Rollen und Pausen.
+
+</details>
+
+<details class="clz-fold" id="qb-stationen" markdown="1">
+<summary>Der Nachmittag: sechs Stationen <span class="clz-fold__hint">kontaktfrei, mit Rollenwechsel</span></summary>
+
+Feldblock 13:00 bis 16:00 Uhr: Einweisung, sechs Stationen mit Rollenwechsel,
+um 15:00 die beiden Konzepte, um 15:30 die eigene Coachingsequenz, um 15:50
+der Transfer. **12 Minuten Arbeit und 3 Minuten Wechsel**, kontaktfrei,
+kleine Gruppen, Wurfrichtungen parallel und mit Abstand zur Nachbarstation.
+Die Rollen rotieren an jeder Station: Coach, QB, Center/Receiver, Read-Key,
+Beobachter. Material: Bälle in passenden Größen, Pylonen, Markierungen,
+Stationskarten.
+
+<div class="clz-scroll" markdown="1">
+
+| # | Station | Auftrag | Leichter | Schwerer | Erfolg, wenn |
+|---|---|---|---|---|---|
+| 1 | **Snap und Ballkontrolle** | Snap aufnehmen und geordnet ausrichten; der Coach beobachtet Ball und ersten Schritt | ruhiger Austausch ohne Anschlussaktion | zusätzliches Zielsignal | der Ball vor der Anschlussaktion kontrolliert ist |
+| 2 | **Footwork und Rhythmus** | Snap, Footwork und Pass verbinden; der Beobachter vergleicht Zeitpunkt und Balance | der Receiver steht im Zielfenster | wechselndes Startsignal | der Pass kontrolliert im vereinbarten Rhythmus kommt |
+| 3 | **Wurf und Ballplatzierung** | Ziel vorgeben, Pass dosieren, Rückmeldung geben: ein Hinweis zur Ausführung | kurze Distanz, ruhendes Ziel | bewegtes Ziel, Signal kurz vor dem Set | die Platzierung passt und die Balance stabil bleibt |
+| 4 | **Inside Zone Read** | Inside Zone links, passiver Edge rechts: er zeigt schließen oder breit bleiben | Reaktion vorher ansagen, langsam | Reaktion erst am Mesh | die Übergabe eindeutig oder der Keep kontrolliert ist |
+| 5 | **Stick und Flat** | der Key schließt eines der beiden kurzen Fenster, der QB wählt das freie | Fenster vor dem Snap bekannt | Entscheidung erst nach dem Snap | Key, Antwort und Zeitpunkt stimmen |
+| 6 | **Pocket und neues Ziel** | freien Raum nutzen, neu ausrichten, erst aus kontrollierter Position passen | Richtung und Ziel vorgeben | ein Signal ändert die offene Seite | Balance und Blickauftrag erhalten bleiben |
+
+</div>
+
+**Anwendung, 15:00 bis 15:30 Uhr.** Dieselben zwei Plays, je 15 Minuten:
+Inside Zone Read erst kooperativ, dann mit verändertem Key, wobei der Coach
+die Give/Keep-Regel laut benennt; Stick mit wechselndem kurzem Fenster, dann
+Vergleich, Rückmeldung und Rollenwechsel.
+
+**Micro-Coaching, 15:30 bis 15:50 Uhr.** Jeder übernimmt für etwa drei
+Minuten eine Lernaufgabe: Person wählen, erklären und zwei Varianten nennen,
+beobachten, einen Hinweis geben, neu versuchen lassen. Die Rückmeldung danach
+sind drei Fragen – *War der Auftrag klar? Stimmte die Anforderung? Wurde eine
+Verbesserung gesehen oder wenigstens gut begründet?*
+
+**Der Beobachtungsauftrag**, den jede Gruppe dem gerade beobachteten Coach
+schuldete: die Aufgabe in einem Satz erklären, eine Aktion zeigen, einen
+beobachtbaren Hinweis geben – und von der Beobachterseite: War der Auftrag
+verständlich? Passte die Schwierigkeit? Wurde es besser erklärbar? Mit dem
+Satz, der den Nachmittag ehrlich hält: **Lernrückmeldung – keine
+Lizenzprüfung. Kein Kontakttraining nötig.**
+
+</details>
+
+### Das Ergebnis des Tages
+
+Der Foliensatz schließt mit dem Kriterium, mit dem er begonnen hat: **eine
+konkrete nächste Aufgabe ist das Ergebnis des Tages.** Für wen plane ich die
+nächste Einheit, was steht im Mittelpunkt, und woran erkenne ich Fortschritt?
+Nach diesem Maßstab hat ein Quarterback, der erklären kann, was er gesehen
+hat, eine gute Einheit gehabt – auch wenn der Ball schlecht angekommen ist.
+
 
 </div>
 
@@ -2669,6 +3276,7 @@ fundamentals follow widely used coaching references.
 - Cited on those slides: Weineck (2010) and Weineck (2017, p. 25); Kurz (2000) on the motives; Lewin, Lippitt & White (1939) on the leadership styles; O'Boyle, Murray & Cummins (2015), *Leadership in sport*; Meinel/Schnabel (1987) for the coordinative abilities; Martin, Carl & Lehnertz (1993); Bolling et al. (2018) on the prevention sequence; Hoffmann (2013) / IAT Leipzig for long-term athlete development; Fischer et al. (2023), *Leistungssport* 53(2), 16–21 on relative energy deficiency.
 - [Kuzmits & Adams (2008), "The NFL combine: does it predict performance in the National Football League?"](https://pubmed.ncbi.nlm.nih.gov/18978621/) — no consistent relationship except sprint tests for running backs.
 - [IAT Leipzig: Plus Prevention Program](https://sport-iat.de/plus-prevention-program) and its [test manual](https://sport-iat.de/fileadmin/user_upload/IAT-HUB/Themen/NWLS/Praeventionsprogramm/Testmanual-Plus%20Prevention%20Program.pdf); [IAT knowledge portal on women in elite sport](https://sport-iat.de/wissen-kompakt).
+- Course deck of the quarterback block, Dresden, 21 November 2026, lecturer Steffen Breidenbach (Foxeye Athletics): "Quarterbacks entwickeln" (Fassung 10). Its own reading list names the [USA Football Development Model](https://fdm.usafootball.com/how-it-works) and the [USA Football youth play recommendations](https://assets.usafootball.com/documents/coaching/usa-football-youth-play-recommendations.pdf), plus USA Football blog entries on reads and on defending the zone read with fill and fold.
 - Football fundamentals: [personnel groupings](https://gorout.com/football-personnel-groupings/), [defensive line techniques and gaps](https://www.bigblueview.com/2023/5/24/23734677/defensive-line-techniques-gaps-explained-big-blue-view-glossary-of-terms), [coverage shells](https://dustyevely.substack.com/p/basic-coverage-shells-a-primer).
 
 *Disclaimer: this page is my personal study summary, not an official AFVD or
@@ -2692,6 +3300,7 @@ Football-Grundlagen folgen verbreiteten Coaching-Referenzen.
 - Auf diesen Folien zitiert: Weineck (2010) und Weineck (2017, S. 25); Kurz (2000) zu den Motiven; Lewin, Lippitt & White (1939) zu den Führungsstilen; O'Boyle, Murray & Cummins (2015), *Leadership in sport*; Meinel/Schnabel (1987) zu den koordinativen Fähigkeiten; Martin, Carl & Lehnertz (1993); Bolling et al. (2018) zur Präventionssequenz; Hoffmann (2013) / IAT Leipzig zum langfristigen Leistungsaufbau; Fischer et al. (2023), *Leistungssport* 53(2), 16–21 zum relativen Energiedefizit.
 - [Kuzmits & Adams (2008), „The NFL combine: does it predict performance in the National Football League?“](https://pubmed.ncbi.nlm.nih.gov/18978621/) — kein durchgängiger Zusammenhang außer bei Sprinttests von Running Backs.
 - [IAT Leipzig: Plus Prevention Program](https://sport-iat.de/plus-prevention-program) und das [Testmanual](https://sport-iat.de/fileadmin/user_upload/IAT-HUB/Themen/NWLS/Praeventionsprogramm/Testmanual-Plus%20Prevention%20Program.pdf); [IAT-Wissensportal zu Frau im Leistungssport](https://sport-iat.de/wissen-kompakt).
+- Foliensatz des Quarterback-Blocks, Dresden, 21. November 2026, Dozent Steffen Breidenbach (Foxeye Athletics): „Quarterbacks entwickeln“ (Fassung 10). Die dortige Quellenliste nennt das [USA Football Development Model](https://fdm.usafootball.com/how-it-works) und die [Youth Play Recommendations von USA Football](https://assets.usafootball.com/documents/coaching/usa-football-youth-play-recommendations.pdf), dazu Blogbeiträge von USA Football zu Reads und zur Verteidigung des Zone Read mit Fill and Fold.
 - Football-Grundlagen: [Personnel Groupings](https://gorout.com/football-personnel-groupings/), [Defensive-Line-Techniques und Gaps](https://www.bigblueview.com/2023/5/24/23734677/defensive-line-techniques-gaps-explained-big-blue-view-glossary-of-terms), [Coverage Shells](https://dustyevely.substack.com/p/basic-coverage-shells-a-primer).
 
 *Hinweis: Diese Seite ist meine persönliche Lernzusammenfassung, keine

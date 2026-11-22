@@ -62,6 +62,7 @@ Along the results presented in [*Oscillator-based Ising Machine*](https://arxiv.
 $$
 \begin{split} \dot{\theta}_k(t) = \omega_k &+ \frac{K_k}{n_k}\sum\limits_{l=1}^N\,d_{kl}\int\limits_0^\infty\,\text{d}u\,p(u)\,h\left(\theta_l(t-u-\tau_{lk})-\theta_k(t-u-\tau_{kl}^\textrm{f})\right) \\ &-K^\textrm{I}\int\limits_0^\infty\,\text{d}u\,p(u)\,h\left(2\,\theta_k(t-u-\tau_{kl}^\textrm{f})\right)+\sqrt{\sigma^2}\xi_k(t), \end{split}\tag{1}
 $$
+{: #eq-1 }
 
 where $\dot{\theta}_k(t)$ denotes the instantaneous frequency, and $\omega_k$ the intrinsic frequency of oscillator $k$, with $k=1,\,\dots,\,N$. $K_k$ denotes the coupling strength or sensitivity towards input signals to oscillator $k$ from $n_k$ other oscillators in the network, as given by $d_{kl}$, the components of the adjacency matrix that are either one or zero depending on whether there is a connection from oscillator $k$ to $l$ or not, respectively. The integral represents the signal processing or filtering within the feed-forward path of the oscillators, e.g., a low pass filter in a phase-locked loop oscillator with impulse response function $p(u)$. $\theta_k(t)$ denotes the phase of oscillator $k$, $\tau_{lk}$ the transmission time delay for signals propagating from oscillator $l$ to $k$, and $\tau_{kl}^\textrm{f}$ the feedback time delay within oscillator $k$. $K^\textrm{I}$ denotes the strength of the $2^\textrm{nd}$ harmonic injection locking. Finally, $\xi_k(t)$ denotes additive Gaussian white noise with variance $\sigma^2$.
 
@@ -164,7 +165,7 @@ $$
 \begin{split} \dot{\theta}_k(t) = \omega_k &+ \frac{K_k}{n_k}\sum\limits_{l=1}^N\,d_{kl}\int\limits_0^\infty\,\text{d}u\,p(u)\,h\left(\theta_l(t-u)-\theta_k(t-u)\right) \\ &-K^\textrm{I}\int\limits_0^\infty\,\text{d}u\,p(u)\,h\left(2\,\theta_k(t-u)\right)+\sqrt{\sigma^2}\xi_k(t), \end{split}\tag{5}
 $$
 
-where the same notation holds as provided following Eq. ([1](#id3141568617)). Note that in the case presented here, the SHIL signal is also filtered by the LF that filters the cross-coupling signals between the oscillators, see schematic Fig. XY1. This is an architecture design choice. We will later also discuss the case where the SHIL signal is added after the LF and is not filtered by the low pass.
+where the same notation holds as provided following Eq. ([1](#eq-1)). Note that in the case presented here, the SHIL signal is also filtered by the LF that filters the cross-coupling signals between the oscillators, see schematic Fig. XY1. This is an architecture design choice. We will later also discuss the case where the SHIL signal is added after the LF and is not filtered by the low pass.
 
 ![Fig. XY1: Schematic of a PLL with SHIL. The SHIL signal and the cross-coupling signals are filtered by the low-pass filter (LF).](/media/ising-machines/pll-architecture-shil.png)
 
@@ -176,7 +177,7 @@ $$
 \begin{split} \dot{\theta}_k(t) = \omega_k &+ \frac{K_k}{n_k}\sum\limits_{l=1}^N\,d_{kl}\int\limits_0^\infty\,\text{d}u\,p(u)\,h\left(\theta_l(t-u-\tau_{lk})-\theta_k(t-u-\tau_{kl}^\textrm{f})\right) \\ &-K^\textrm{I}\int\limits_0^\infty\,\text{d}u\,p(u)\,h\left(2\,\theta_k(t-u-\tau_{kl}^\textrm{f})\right)+\sqrt{\sigma^2}\xi_k(t), \end{split}\tag{6}
 $$
 
-where the same notation holds as provided following Eq. ([1](#id3141568617)). Note that also in the case presented here, the SHIL signal is also filtered by the LF that filters the cross-coupling signals between the oscillators, see schematic Fig. XY2. This is an architecture design choice. We will later also discuss the case where the SHIL signal is added after the LF and is not filtered by the low pass.
+where the same notation holds as provided following Eq. ([1](#eq-1)). Note that also in the case presented here, the SHIL signal is also filtered by the LF that filters the cross-coupling signals between the oscillators, see schematic Fig. XY2. This is an architecture design choice. We will later also discuss the case where the SHIL signal is added after the LF and is not filtered by the low pass.
 
 ![Fig. XY2: Schematic of a PLL with SHIL. The SHIL signal and the cross-coupling signals are filtered by the low-pass filter (LF). The external signals and the feedback signal can be time-delayed.](/media/ising-machines/pll-architecture-shil-delay.png)
 

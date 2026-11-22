@@ -1,0 +1,36 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Analog-circuit benches, all on one page</title>
+<!-- Dev tool. Copy to docs/ and open through the preview server to proof-read
+     every bench at once instead of clicking through eight chapters. -->
+<link rel="stylesheet" href="/assets/css/site.css">
+<style>
+  body { margin: 0; padding: 2rem 1.5rem 4rem; background: var(--paper); color: var(--ink); }
+  h1 { font-family: var(--font-display); font-size: var(--step-2); }
+  .sheet { max-width: 60rem; margin: 0 auto; }
+  .sheet h2 { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); margin: 2rem 0 0; }
+</style>
+<div class="sheet">
+  <h1>Bench proof sheet</h1>
+  <h2>chapter 1</h2>
+  <div class="ac-bench" data-applet="source-load"></div>
+  <div class="ac-bench" data-applet="source-combinations"></div>
+  <h2>chapter 2</h2>
+  <div class="ac-bench" data-applet="loaded-divider"></div>
+  <div class="ac-bench" data-applet="thevenin-power"></div>
+  <h2>chapter 3</h2>
+  <div class="ac-bench" data-applet="rc-step"></div>
+  <div class="ac-bench" data-applet="rc-bode"></div>
+  <h2>chapter 4</h2>
+  <div class="ac-bench" data-applet="rlc-step"></div>
+  <div class="ac-bench" data-applet="rlc-resonance"></div>
+  <h2>chapter 5</h2>
+  <div class="ac-bench" data-applet="diode-load-line"></div>
+  <h2>chapter 6</h2>
+  <div class="ac-bench" data-applet="opamp-loop"></div>
+  <h2>chapter 7</h2>
+  <div class="ac-bench" data-applet="schmitt-oscillator"></div>
+  <h2>chapter 8</h2>
+  <div class="ac-bench" data-applet="transistor-bias"></div>
+</div>
+<script src="/media/analog-circuits/applets.js"></script>

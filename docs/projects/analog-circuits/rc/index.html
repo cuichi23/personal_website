@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capacitors and the RC circuit · Analog circuits · Lucas Wetzel</title>
+<meta name="description" content="The first component with memory, and therefore the first differential equation. Step response and the time constant, the complex impedance that turns calculus back into algebra, the low-pass and the high-pass as one circuit read from two nodes, and why a chain of filters is not the product of its filters.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects/analog-circuits/rc/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Capacitors and the RC circuit · Analog circuits · Lucas Wetzel">
+<meta property="og:description" content="The first component with memory, and therefore the first differential equation. Step response and the time constant, the complex impedance that turns calculus back into algebra, the low-pass and the high-pass as one circuit read from two nodes, and why a chain of filters is not the product of its filters.">
+<meta property="og:url" content="https://lucaswetzel.de/projects/analog-circuits/rc/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // GitHub Pages cannot send X-Frame-Options or a CSP frame-ancestors directive,
+  // so this is the only lever there is. Mark the document before the body is
+  // parsed; the stylesheet then keeps the content hidden until site.js has
+  // replaced it with a notice. Marking rather than navigating is deliberate:
+  // browsers increasingly refuse an automatic top navigation from a frame and
+  // leave a blank box behind, which tells the reader nothing.
+  if (window.self !== window.top) document.documentElement.dataset.framed = "";
+</script>
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=c467844b">
+<link rel="stylesheet" href="/assets/css/site.css?v=c467844b">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/research/">Research</a>
+      <a href="/projects/" aria-current="page">Current projects</a>
+      <a href="/projects-anabrid/">Projects@anabrid</a>
+      <a href="/oscillatory-computing/">Oscillatory computing</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="post">
+  <header class="post__header">
+    <p class="eyebrow">
+      <a href="/projects/analog-circuits/">Analog circuits</a> ·
+      Chapter 3    </p>
+    <h1 class="post__title">Capacitors and the RC circuit</h1>
+<p class="post__standfirst">The first component with memory, and therefore the first differential equation. Step response and the time constant, the complex impedance that turns calculus back into algebra, the low-pass and the high-pass as one circuit read from two nodes, and why a chain of filters is not the product of its filters.</p>    <p class="post__meta-hint">Chapter 3 of 8 · 22 November 2026</p>
+  </header>
+
+  <div class="prose"><h2 id="memory">A component that remembers</h2>
+<p>Everything in the first two chapters obeyed a relation between the voltage
+across a component and the current through it <strong>at the same instant</strong>. A
+resistor has no memory. Tell it the voltage now and it tells you the current
+now, and nothing about the past enters.</p>
+<p>A capacitor stores charge, and charge is an integral of current. That one fact
+is the whole chapter.</p>
+<div class="math math--display" data-tex="\begin{aligned}
+q &amp;= C\,v ,\\[2pt]
+i &amp;= \frac{\mathrm{d}q}{\mathrm{d}t} = C\,\frac{\mathrm{d}v}{\mathrm{d}t} ,
+\end{aligned}">$$\begin{aligned}
+q &amp;= C\,v ,\\[2pt]
+i &amp;= \frac{\mathrm{d}q}{\mathrm{d}t} = C\,\frac{\mathrm{d}v}{\mathrm{d}t} ,
+\end{aligned}$$</div>
+<p>where <span class="math math--inline" data-tex="q">$q$</span> is the stored charge, <span class="math math--inline" data-tex="v">$v$</span> the voltage across the plates, <span class="math math--inline" data-tex="i">$i$</span> the
+current into the positive plate, and <span class="math math--inline" data-tex="C">$C$</span> the capacitance in farads. For a
+parallel-plate capacitor <span class="math math--inline" data-tex="C = \varepsilon_0\varepsilon_\mathrm{r}A/d">$C = \varepsilon_0\varepsilon_\mathrm{r}A/d$</span>, with <span class="math math--inline" data-tex="A">$A$</span>
+the plate area and <span class="math math--inline" data-tex="d">$d$</span> their separation, which is why a 1 F capacitor used to
+be an absurd object and is now a thumbnail.</p>
+<p>Three consequences follow immediately, and all three get used constantly.</p>
+<ul>
+<li><strong>Current flows only while the voltage changes.</strong> Hold <span class="math math--inline" data-tex="v">$v$</span> constant and <span class="math math--inline" data-tex="i">$i$</span> is
+  zero. At DC a capacitor is an open circuit.</li>
+<li><strong>The voltage cannot jump.</strong> A discontinuity in <span class="math math--inline" data-tex="v">$v$</span> would need an infinite
+  current. Over an interval short compared with everything else, a charged
+  capacitor behaves like a voltage source holding its present value.</li>
+<li><strong>It stores energy rather than dissipating it.</strong> Integrating <span class="math math--inline" data-tex="p = vi">$p = vi$</span> gives
+  <span class="math math--inline" data-tex="W = \tfrac{1}{2}Cv^2">$W = \tfrac{1}{2}Cv^2$</span>, and that energy comes back out. A resistor's energy
+  does not.</li>
+</ul>
+<p>The second point is the dual of something you already know. A resistor set by
+Ohm's law has no state; a capacitor has exactly one number of state, its
+voltage. Everything a capacitor does to a circuit is a consequence of the
+circuit having to charge or discharge that one number.</p>
+<h2 id="step">The first differential equation</h2>
+<p>Put a resistor in series with a capacitor and drive the pair from a voltage
+source <span class="math math--inline" data-tex="V">$V$</span>. Kirchhoff's voltage law gives <span class="math math--inline" data-tex="v_R + v_C = V">$v_R + v_C = V$</span>, Ohm's law gives
+<span class="math math--inline" data-tex="v_R = R\,i">$v_R = R\,i$</span>, and the capacitor gives <span class="math math--inline" data-tex="i = C\,\dot v_C">$i = C\,\dot v_C$</span>. Substituting,</p>
+<div class="math math--display" data-tex="RC\,\frac{\mathrm{d}v_C}{\mathrm{d}t} + v_C = V .">$$RC\,\frac{\mathrm{d}v_C}{\mathrm{d}t} + v_C = V .$$</div>
+<p>First order, linear, constant coefficients. With an initial voltage
+<span class="math math--inline" data-tex="v_C(0) = V_0">$v_C(0) = V_0$</span> the solution is</p>
+<div class="math math--display" data-tex="\begin{aligned}
+v_C(t) &amp;= V + (V_0 - V)\,\mathrm{e}^{-t/\tau} ,\\[2pt]
+\tau &amp;= RC .
+\end{aligned}">$$\begin{aligned}
+v_C(t) &amp;= V + (V_0 - V)\,\mathrm{e}^{-t/\tau} ,\\[2pt]
+\tau &amp;= RC .
+\end{aligned}$$</div>
+<p>The capacitor voltage leaves where it was and approaches where the source wants
+it, exponentially, with one time scale. Check that <span class="math math--inline" data-tex="\tau">$\tau$</span> really is a time:
+ohm times farad is <span class="math math--inline" data-tex="(\mathrm{V/A})\cdot(\mathrm{C/V}) = \mathrm{C/A} =
+\mathrm{s}">$(\mathrm{V/A})\cdot(\mathrm{C/V}) = \mathrm{C/A} =
+\mathrm{s}$</span>.</p>
+<p>The current is what the resistor sees across it,</p>
+<div class="math math--display" data-tex="i(t) = \frac{V - v_C(t)}{R} = \frac{V - V_0}{R}\,\mathrm{e}^{-t/\tau} .">$$i(t) = \frac{V - v_C(t)}{R} = \frac{V - V_0}{R}\,\mathrm{e}^{-t/\tau} .$$</div>
+<p><strong>The current jumps and the voltage does not.</strong> At <span class="math math--inline" data-tex="t = 0^+">$t = 0^+$</span> the capacitor still
+holds <span class="math math--inline" data-tex="V_0">$V_0$</span>, so the full difference appears across the resistor and the current
+is at its maximum. That is the standard picture and it is worth having in mind
+before looking at any RC waveform.</p>
+<p>The numbers people actually quote:</p>
+<table>
+<thead>
+<tr>
+<th>after</th>
+<th>fraction of the way there</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math math--inline" data-tex="1\tau">$1\tau$</span></td>
+<td>63.2 %</td>
+</tr>
+<tr>
+<td><span class="math math--inline" data-tex="2\tau">$2\tau$</span></td>
+<td>86.5 %</td>
+</tr>
+<tr>
+<td><span class="math math--inline" data-tex="3\tau">$3\tau$</span></td>
+<td>95.0 %</td>
+</tr>
+<tr>
+<td><span class="math math--inline" data-tex="5\tau">$5\tau$</span></td>
+<td>99.3 %</td>
+</tr>
+</tbody>
+</table>
+<p>"Five time constants" is the engineering definition of <em>settled</em>, and it is a
+choice, not a theorem. The exponential never arrives.</p>
+<h3 id="bench-step">The bench</h3>
+<p>A square wave is a step up followed by a step down, so one picture shows
+charging, discharging and the thing that matters most: what happens when the
+drive changes faster than the circuit can follow.</p>
+<p>Drive the filter slowly and the output copies the input with rounded corners.
+Speed the drive up past the cutoff and the exponentials no longer have time to
+curve. What is left is a triangle, and a triangle is the integral of a square
+wave. <strong>The RC low-pass becomes an integrator when you run it far above its
+cutoff, and it pays for that with almost all of the amplitude.</strong> Chapter 6 buys
+the integration back without the price.</p>
+<div class="ac-bench" data-applet="rc-step">
+<p class="ac-fallback">This bench needs JavaScript. Without it, the exponential
+above is the whole content of the panel.</p>
+</div>
+
+<h2 id="impedance">The move that makes everything easier</h2>
+<p>Solving a differential equation for every input would be unbearable. There is a
+standard way out, and it is the same one used for normal modes in mechanics.</p>
+<p>The circuit is linear and time invariant, so a complex exponential is an
+eigenfunction of it: put <span class="math math--inline" data-tex="\mathrm{e}^{\mathrm{i}\omega t}">$\mathrm{e}^{\mathrm{i}\omega t}$</span> in and you get
+<span class="math math--inline" data-tex="\mathrm{e}^{\mathrm{i}\omega t}">$\mathrm{e}^{\mathrm{i}\omega t}$</span> out, at the same frequency, scaled by a
+complex number. Write every quantity as</p>
+<div class="math math--display" data-tex="\begin{aligned}
+v(t) &amp;= \mathrm{Re}\left\{\underline{V}\,\mathrm{e}^{\mathrm{i}\omega t}\right\} ,\\[2pt]
+i(t) &amp;= \mathrm{Re}\left\{\underline{I}\,\mathrm{e}^{\mathrm{i}\omega t}\right\} ,
+\end{aligned}">$$\begin{aligned}
+v(t) &amp;= \mathrm{Re}\left\{\underline{V}\,\mathrm{e}^{\mathrm{i}\omega t}\right\} ,\\[2pt]
+i(t) &amp;= \mathrm{Re}\left\{\underline{I}\,\mathrm{e}^{\mathrm{i}\omega t}\right\} ,
+\end{aligned}$$</div>
+<p>where the underlined quantities are complex amplitudes, carrying magnitude and
+phase. Differentiation becomes multiplication by <span class="math math--inline" data-tex="\mathrm{i}\omega">$\mathrm{i}\omega$</span>. Putting
+this into <span class="math math--inline" data-tex="i = C\dot v">$i = C\dot v$</span> gives <span class="math math--inline" data-tex="\underline{I} = \mathrm{i}\omega C\,\underline{V}">$\underline{I} = \mathrm{i}\omega C\,\underline{V}$</span>,
+and therefore</p>
+<div class="math math--display" data-tex="Z_C = \frac{\underline{V}}{\underline{I}} = \frac{1}{\mathrm{i}\omega C}
+= \frac{-\mathrm{i}}{\omega C} .">$$Z_C = \frac{\underline{V}}{\underline{I}} = \frac{1}{\mathrm{i}\omega C}
+= \frac{-\mathrm{i}}{\omega C} .$$</div>
+<p>This is the <strong>impedance</strong> of a capacitor: an Ohm's law for sinusoids, complex
+because the response is not in phase with the drive. Its magnitude is
+<span class="math math--inline" data-tex="1/(\omega C)">$1/(\omega C)$</span> and its phase is <span class="math math--inline" data-tex="-90^\circ">$-90^\circ$</span>, which says the current leads the
+voltage by a quarter cycle. The capacitor is already pushing charge in while
+the voltage is still low.</p>
+<p>The two limits are worth saying in words:</p>
+<div class="math math--display" data-tex="\begin{aligned}
+\omega \to 0: \quad &amp; |Z_C| \to \infty \quad\text{(an open circuit at DC)},\\
+\omega \to \infty: \quad &amp; |Z_C| \to 0 \quad\text{(a short circuit at high frequency)}.
+\end{aligned}">$$\begin{aligned}
+\omega \to 0: \quad &amp; |Z_C| \to \infty \quad\text{(an open circuit at DC)},\\
+\omega \to \infty: \quad &amp; |Z_C| \to 0 \quad\text{(a short circuit at high frequency)}.
+\end{aligned}$$</div>
+<p>Those two sentences are most of what a decoupling capacitor does for a living:
+it is invisible to the supply rail and a short to anything that wiggles.</p>
+<p><strong>The payoff is that chapter 2 now applies unchanged.</strong> Series impedances add,
+parallel impedances combine by the product-over-sum rule, the voltage divider
+is still the voltage divider, Thévenin and Norton still hold. Replace <span class="math math--inline" data-tex="R">$R$</span> by
+<span class="math math--inline" data-tex="Z">$Z$</span> and every result carries over. That is the reason impedance is introduced
+at all: it turns calculus back into the algebra you already did.</p>
+<h2 id="filters">Two filters, one circuit</h2>
+<p>Take a resistor and a capacitor in series across a source, and read the output
+from one node or the other. Nothing else changes.</p>
+<div class="math math--display" data-tex="\begin{aligned}
+H_\mathrm{LP}(\omega) &amp;= \frac{Z_C}{R + Z_C} = \frac{1}{1 + \mathrm{i}\omega RC} ,\\[4pt]
+H_\mathrm{HP}(\omega) &amp;= \frac{R}{R + Z_C} = \frac{\mathrm{i}\omega RC}{1 + \mathrm{i}\omega RC} .
+\end{aligned}">$$\begin{aligned}
+H_\mathrm{LP}(\omega) &amp;= \frac{Z_C}{R + Z_C} = \frac{1}{1 + \mathrm{i}\omega RC} ,\\[4pt]
+H_\mathrm{HP}(\omega) &amp;= \frac{R}{R + Z_C} = \frac{\mathrm{i}\omega RC}{1 + \mathrm{i}\omega RC} .
+\end{aligned}$$</div>
+<p>Across the capacitor you get a <strong>low-pass</strong>; across the resistor a
+<strong>high-pass</strong>. They are the same divider read from two places, so they add to
+one at every frequency, which is a useful check and an occasionally useful
+circuit.</p>
+<p>Both have the same corner, where the resistance and the reactance are equal in
+magnitude:</p>
+<div class="math math--display" data-tex="\omega_\mathrm{c} = \frac{1}{RC} , \qquad f_\mathrm{c} = \frac{\omega_\mathrm{c}}{2\pi} .">$$\omega_\mathrm{c} = \frac{1}{RC} , \qquad f_\mathrm{c} = \frac{\omega_\mathrm{c}}{2\pi} .$$</div>
+<p>At that frequency <span class="math math--inline" data-tex="|H| = 1/\sqrt{2} = 0.707">$|H| = 1/\sqrt{2} = 0.707$</span>, the delivered power is halved,
+and the phase has moved by <span class="math math--inline" data-tex="45^\circ">$45^\circ$</span>. In decibels <span class="math math--inline" data-tex="20\log_{10}(1/\sqrt 2) =
+-3.01">$20\log_{10}(1/\sqrt 2) =
+-3.01$</span>, which is where the name <strong>−3 dB point</strong> comes from. It marks a factor
+of two in power, not a factor of two in amplitude, and conflating the two is
+the most common unit error in the subject.</p>
+<p>One number to carry around: 1 kΩ with 1 µF gives <span class="math math--inline" data-tex="\tau = 1\ \mathrm{ms}">$\tau = 1\ \mathrm{ms}$</span> and
+<span class="math math--inline" data-tex="f_\mathrm{c} = 159\ \mathrm{Hz}">$f_\mathrm{c} = 159\ \mathrm{Hz}$</span>. Everything else scales from there, since</p>
+<div class="math math--display" data-tex="f_\mathrm{c}\,[\mathrm{Hz}] = \frac{159\,155}{R\,[\Omega]\;C\,[\mu\mathrm{F}]} .">$$f_\mathrm{c}\,[\mathrm{Hz}] = \frac{159\,155}{R\,[\Omega]\;C\,[\mu\mathrm{F}]} .$$</div>
+<h2 id="bode">Reading it as a Bode plot</h2>
+<p>Plot <span class="math math--inline" data-tex="20\log_{10}|H|">$20\log_{10}|H|$</span> against <span class="math math--inline" data-tex="\log\omega">$\log\omega$</span> and the low-pass becomes two straight
+lines: flat at 0 dB below the corner, falling at <strong>20 dB per decade</strong> above it.
+The asymptotes meet exactly at <span class="math math--inline" data-tex="\omega_\mathrm{c}">$\omega_\mathrm{c}$</span>, and the true curve sits
+3 dB below that meeting point.</p>
+<p>The phase is</p>
+<div class="math math--display" data-tex="\arg H_\mathrm{LP} = -\arctan(\omega RC) ,">$$\arg H_\mathrm{LP} = -\arctan(\omega RC) ,$$</div>
+<p>which is <span class="math math--inline" data-tex="0^\circ">$0^\circ$</span> at DC, <span class="math math--inline" data-tex="-45^\circ">$-45^\circ$</span> at the corner and <span class="math math--inline" data-tex="-90^\circ">$-90^\circ$</span> far above
+it. The transition is slow: <span class="math math--inline" data-tex="-5.7^\circ">$-5.7^\circ$</span> at a tenth of the corner and
+<span class="math math--inline" data-tex="-84.3^\circ">$-84.3^\circ$</span> at ten times it. <strong>A single pole costs 20 dB per decade and
+<span class="math math--inline" data-tex="90^\circ">$90^\circ$</span>, and the phase is already moving a decade before the magnitude
+notices.</strong> That sentence is the reason chapter 6 has a stability section.</p>
+<div class="ac-bench" data-applet="rc-bode">
+<p class="ac-fallback">This bench needs JavaScript. The two transfer functions
+above, and the 20 dB/decade asymptote, are the content of the panel.</p>
+</div>
+
+<h2 id="duality">The same information, twice</h2>
+<p>The step response and the frequency response are not two properties of the
+circuit. They are one property written in two coordinate systems, and the
+dictionary between them is</p>
+<div class="math math--display" data-tex="\tau = \frac{1}{\omega_\mathrm{c}} = \frac{1}{2\pi f_\mathrm{c}} .">$$\tau = \frac{1}{\omega_\mathrm{c}} = \frac{1}{2\pi f_\mathrm{c}} .$$</div>
+<p>The most used consequence: the 10 % to 90 % rise time of a first-order step is
+<span class="math math--inline" data-tex="t_\mathrm{r} = \tau\ln 9 = 2.197\,\tau">$t_\mathrm{r} = \tau\ln 9 = 2.197\,\tau$</span>, so</p>
+<div class="math math--display" data-tex="t_\mathrm{r}\,f_\mathrm{c} = \frac{\ln 9}{2\pi} \approx 0.35 .">$$t_\mathrm{r}\,f_\mathrm{c} = \frac{\ln 9}{2\pi} \approx 0.35 .$$</div>
+<p>A scope with 100 MHz of bandwidth cannot show an edge faster than about 3.5 ns,
+and a 3.5 ns edge on its screen tells you nothing except that the scope is a
+first-order system. Anything faster than that is the instrument, not the
+signal.</p>
+<h2 id="cascade">Cascading is not multiplying</h2>
+<p>Put one RC low-pass after another and the obvious guess is that the transfer
+functions multiply. They do not, because the second stage loads the first. This
+is chapter 2's problem wearing a frequency-dependent coat.</p>
+<p>Analysed properly, two stages with <span class="math math--inline" data-tex="R_1, C_1">$R_1, C_1$</span> then <span class="math math--inline" data-tex="R_2, C_2">$R_2, C_2$</span> give</p>
+<div class="math math--display" data-tex="H(s) = \frac{1}{1 + s\,(R_1C_1 + R_2C_2 + R_1C_2) + s^2 R_1C_1R_2C_2} ,">$$H(s) = \frac{1}{1 + s\,(R_1C_1 + R_2C_2 + R_1C_2) + s^2 R_1C_1R_2C_2} ,$$</div>
+<p>with <span class="math math--inline" data-tex="s = \mathrm{i}\omega">$s = \mathrm{i}\omega$</span>, and the term <span class="math math--inline" data-tex="R_1C_2">$R_1C_2$</span> is the loading. With two identical stages the exact
+answer and the naive one are</p>
+<div class="math math--display" data-tex="\begin{aligned}
+\text{loaded:}\quad &amp; \frac{1}{1 + 3\,sRC + (sRC)^2} ,\\[4pt]
+\text{naive product:}\quad &amp; \frac{1}{1 + 2\,sRC + (sRC)^2} .
+\end{aligned}">$$\begin{aligned}
+\text{loaded:}\quad &amp; \frac{1}{1 + 3\,sRC + (sRC)^2} ,\\[4pt]
+\text{naive product:}\quad &amp; \frac{1}{1 + 2\,sRC + (sRC)^2} .
+\end{aligned}$$</div>
+<p>Same two poles' worth of structure, different damping. The real cascade is
+slower and less peaked than the product predicts, and the discrepancy does not
+go away by making the components nicer.</p>
+<p>Two fixes, both already familiar:</p>
+<ol>
+<li><strong>Scale the stages.</strong> Make <span class="math math--inline" data-tex="R_2 \gg R_1">$R_2 \gg R_1$</span> and <span class="math math--inline" data-tex="C_2 \ll C_1">$C_2 \ll C_1$</span> so that
+   <span class="math math--inline" data-tex="R_1C_2">$R_1C_2$</span> is negligible. The rule of ten from chapter 2, applied to a
+   product of two quantities instead of a ratio.</li>
+<li><strong>Put a buffer between them.</strong> A device with a high input impedance and a
+   low output impedance makes the product exact. That device is the subject of
+   chapter 6, and this is the second time it has been needed.</li>
+</ol>
+<h2 id="practice">Where this bites</h2>
+<ul>
+<li><strong>Your probe is part of the circuit.</strong> A scope probe presents roughly 10 pF.
+  At a node with 100 kΩ of source resistance that is a corner at 159 kHz. You
+  are measuring the probe as much as the signal, which is why a 10× probe
+  trades amplitude for a tenth of the capacitance.</li>
+<li><strong>Decoupling.</strong> Every supply pin gets a capacitor to ground because the
+  supply wiring has inductance and resistance, and the chip's current demand is
+  not constant. The capacitor is a local source with a very small internal
+  resistance, in exactly chapter 1's sense.</li>
+<li><strong>Noise sets a floor you cannot resistor your way out of.</strong> A resistor and a
+  capacitor alone, in thermal equilibrium, put a mean-square voltage on the
+  capacitor of</li>
+</ul>
+<div class="math math--display" data-tex="\overline{v^2} = \frac{k_\mathrm{B}T}{C} ,">$$\overline{v^2} = \frac{k_\mathrm{B}T}{C} ,$$</div>
+<p>independent of <span class="math math--inline" data-tex="R">$R$</span>. Equipartition: one degree of freedom, <span class="math math--inline" data-tex="\tfrac12 C
+  \overline{v^2} = \tfrac12 k_\mathrm{B}T">$\tfrac12 C
+  \overline{v^2} = \tfrac12 k_\mathrm{B}T$</span>. At 300 K on 1 pF that is 64 µV rms.
+  Making the resistor quieter does not help, because a larger resistor makes
+  more noise over a narrower band and the two cancel exactly. Only more
+  capacitance helps.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>Show that the high-pass has the same time constant <span class="math math--inline" data-tex="RC">$RC$</span>, and find its
+   response to a step of height <span class="math math--inline" data-tex="V">$V$</span>. <em>(It jumps to <span class="math math--inline" data-tex="V">$V$</span> and decays to zero: the
+   capacitor blocks the DC the step leaves behind.)</em></li>
+<li>A 10× scope probe is a 9 MΩ resistor in parallel with a trimmer capacitor,
+   feeding the scope's 1 MΩ and 20 pF. What must the trimmer be set to so that
+   the division ratio is the same at all frequencies? This is what the little
+   screw on a probe adjusts.</li>
+<li>Derive <span class="math math--inline" data-tex="\overline{v^2} = k_\mathrm{B}T/C">$\overline{v^2} = k_\mathrm{B}T/C$</span> the long way: integrate the
+   Johnson noise density <span class="math math--inline" data-tex="4k_\mathrm{B}TR">$4k_\mathrm{B}TR$</span> through <span class="math math--inline" data-tex="|H_\mathrm{LP}|^2">$|H_\mathrm{LP}|^2$</span> over all
+   frequencies, and watch <span class="math math--inline" data-tex="R">$R$</span> cancel.</li>
+<li>Two identical RC stages are cascaded. Using the exact expression above, by
+   what factor is the overall −3 dB frequency lower than that of one stage?
+   Compare with the answer the naive product gives, and check both on bench 6
+   by matching the single-stage curve.</li>
+</ol>
+<p class="page-foot"><em>Next:</em> <a href="/projects/analog-circuits/rlc/">Inductors, RLC and resonance</a>, where a second energy store turns the exponential into a ringing.</p></div>
+
+  <footer class="post__footer">
+    <nav class="pager" aria-label="Chapters">
+      <a class="pager__link pager__link--prev" href="/projects/analog-circuits/resistive-networks/">
+        <span class="pager__label">Previous chapter</span>
+        <span class="pager__title">Resistive networks and loading</span>
+      </a>
+      <a class="pager__link pager__link--next" href="/projects/analog-circuits/rlc/">
+        <span class="pager__label">Next chapter</span>
+        <span class="pager__title">Inductors, RLC and resonance</span>
+      </a>
+    </nav>
+    <p class="page-foot"><a href="/projects/analog-circuits/">All chapters</a></p>
+  </footer>
+</article>
+<script defer src="/media/analog-circuits/applets.js"></script>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/research/">Research</a></li>
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=c467844b"></script>
+</body>
+</html>

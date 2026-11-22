@@ -12,6 +12,8 @@ summary: >-
   throws half the power away.
 prev_url: /projects/analog-circuits/sources/
 prev_title: "Sources and internal resistance"
+next_url: /projects/analog-circuits/rc/
+next_title: "Capacitors and the RC circuit"
 ---
 
 ## Two laws and nothing else {: #kirchhoff }
@@ -253,4 +255,4 @@ page survives the substitution with $R$ rewritten as $Z$.
    1 MΩ and one with 100 MΩ. How much signal does each lose, and does the
    difference matter if the specification is 1 %?
 
-<p class="page-foot"><em>Previous:</em> <a href="/projects/analog-circuits/sources/">Sources and internal resistance</a>.</p>
+<p class="page-foot"><em>Next:</em> <a href="/projects/analog-circuits/rc/">Capacitors and the RC circuit</a>, where the first component with memory turns Ohm's law into a differential equation.</p>
