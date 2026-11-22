@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stumme Karte: a blind map of Europe · Lucas Wetzel</title>
+<meta name="description" content="An interactive blind map of Europe. The outlines, rivers, mountain ridges, capital dots and landmark squares are all there; the names are not. Five of them arrive at a time as chips you drag to where they belong, and a name that lands correctly stays on the map. 170 names in German and English, built from public-domain Natural Earth data on an equal-area projection.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects/europe-blind-map/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stumme Karte: a blind map of Europe · Lucas Wetzel">
+<meta property="og:description" content="An interactive blind map of Europe. The outlines, rivers, mountain ridges, capital dots and landmark squares are all there; the names are not. Five of them arrive at a time as chips you drag to where they belong, and a name that lands correctly stays on the map. 170 names in German and English, built from public-domain Natural Earth data on an equal-area projection.">
+<meta property="og:url" content="https://lucaswetzel.de/projects/europe-blind-map/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // GitHub Pages cannot send X-Frame-Options or a CSP frame-ancestors directive,
+  // so this is the only lever there is. Mark the document before the body is
+  // parsed; the stylesheet then keeps the content hidden until site.js has
+  // replaced it with a notice. Marking rather than navigating is deliberate:
+  // browsers increasingly refuse an automatic top navigation from a frame and
+  // leave a blank box behind, which tells the reader nothing.
+  if (window.self !== window.top) document.documentElement.dataset.framed = "";
+</script>
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=c467844b">
+<link rel="stylesheet" href="/assets/css/site.css?v=c467844b">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/research/">Research</a>
+      <a href="/projects/" aria-current="page">Current projects</a>
+      <a href="/projects-anabrid/">Projects@anabrid</a>
+      <a href="/oscillatory-computing/">Oscillatory computing</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="post">
+  <header class="post__header">
+    <p class="eyebrow"><a href="/projects/">Current projects</a></p>
+    <h1 class="post__title">Stumme Karte: a blind map of Europe</h1>
+<p class="post__standfirst">An interactive blind map of Europe. The outlines, rivers, mountain ridges, capital dots and landmark squares are all there; the names are not. Five of them arrive at a time as chips you drag to where they belong, and a name that lands correctly stays on the map. 170 names in German and English, built from public-domain Natural Earth data on an equal-area projection.</p>    <dl class="post__meta">
+      <div class="post__meta-pair">
+        <dt>Published</dt>
+        <dd>23 November 2026</dd>
+      </div>
+      <div class="post__meta-pair">
+        <dt>Topics</dt>
+        <dd class="taglist">
+<a class="topic-tag" href="/tags/geography/">geography</a><a class="topic-tag" href="/tags/teaching/">teaching</a><a class="topic-tag" href="/tags/maps/">maps</a><a class="topic-tag" href="/tags/interactive/">interactive</a>        </dd>
+      </div>
+    </dl>
+  </header>
+
+  <div class="prose"><h2 id="why">Why this exists</h2>
+<p>My children are learning the geography of Europe, and the exercise their
+school uses is the old one: a <em>stumme Karte</em>, a blind map. The map keeps
+everything that is drawn — coastlines, borders, rivers, mountain ridges, a dot
+for every capital — and loses everything that is written. You get the names on
+a separate list and put them back where they belong.</p>
+<p>It is a good exercise because it separates two things that a labelled map
+mixes up. Recognizing a shape is not the same as knowing where it is, and a
+map with the names on it lets you do neither: your eye reads the word and
+stops. Take the word away and the shape has to carry the work.</p>
+<p>The paper version has two problems. It is single-use, and it needs someone to
+check it. This one has neither. It picks five names, it knows where each of
+them belongs, it says so immediately, and it remembers which ones you have
+already placed so the next five are more likely to be new ground. Nothing
+leaves the page: the progress lives in your own browser and the map is one
+file served from this site.</p>
+<div class="ebm" data-map="/media/europe-blind-map/map.json"><noscript>The map
+needs JavaScript. / Die Karte braucht JavaScript.</noscript></div>
+
+<script defer src="/media/europe-blind-map/applet.js"></script>
+
+<h2 id="anleitung">So geht es</h2>
+<p><em>Für die Kinder, auf Deutsch.</em> Unten liegen fünf Namen. Zieh jeden Namen an
+die Stelle, an die er gehört, und lass ihn dort los. Auf einem Handy oder
+Tablet geht es auch so: erst den Namen antippen, dann die Karte. Wer lieber
+die Tastatur nimmt, wählt den Namen mit Tab und Enter, schiebt das rote Kreuz
+mit den Pfeiltasten (mit Shift geht es schneller) und legt den Namen mit Enter
+ab.</p>
+<p>Richtig abgelegte Namen bleiben auf der Karte stehen. Die Karte füllt sich
+also, während du spielst — das ist der eigentliche Zweck. Oben wählst du das
+Thema (Länder, Hauptstädte, Meere, Flüsse, Gebirge, Inseln und Halbinseln,
+Sehenswürdigkeiten) und die Stufe: <strong>Leicht</strong> fragt nur die großen und
+bekannten Dinge, <strong>Mittel</strong> nimmt einiges dazu, <strong>Alles</strong> auch Montenegro,
+Rügen und den Guadalquivir. Mit <strong>DE/EN</strong> wechselst du die Sprache der Namen,
+mit <strong>Zeig es mir</strong> gibst du bei einem Namen auf, und ganz rechts steht, wie
+viele der 170 Namen du schon einmal richtig hattest.</p>
+<p>Zwei Regeln, die die Karte streng nimmt, weil sie genau das sind, was man
+lernen soll: <strong>ein Meer liegt im Wasser</strong>, also zählt ein Treffer auf Sizilien
+nicht als Mittelmeer, und <strong>eine Insel liegt an Land</strong>, also zählt ein Treffer
+neben Kreta nicht als Kreta.</p>
+<h2 id="contents">What is on the map</h2>
+<p>Nothing on the map is labelled, so every symbol has to be readable on its own.</p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cream outline</td>
+<td>a country the quiz asks for</td>
+</tr>
+<tr>
+<td>grey outline</td>
+<td>a country outside Europe, drawn for context only</td>
+</tr>
+<tr>
+<td>orange dot</td>
+<td>a capital city</td>
+</tr>
+<tr>
+<td>dark blue square</td>
+<td>a landmark</td>
+</tr>
+<tr>
+<td>thin blue line</td>
+<td>a river</td>
+</tr>
+<tr>
+<td>brown line</td>
+<td>a mountain ridge</td>
+</tr>
+</tbody>
+</table>
+<p>The 170 names behind those symbols are 42 countries, 42 capitals, 26 rivers,
+18 seas and other waters, 16 islands and peninsulas, 16 landmarks and 10
+mountain ranges. Each one carries a level from one to three, which is a guess
+at how early a child meets it rather than a measure of anything. A country and
+its capital are linked both ways, so placing <em>Oslo</em> tells you it is the
+capital of Norway and placing <em>Norway</em> tells you its capital is Oslo.</p>
+<h2 id="build">How it is built</h2>
+<p>The geometry comes from <a href="https://www.naturalearthdata.com/">Natural Earth</a>,
+which is in the public domain, by way of the 1:50 m countries, rivers and
+lakes files. <code>tools/build_europe_map.py</code> in this site's repository projects
+them and writes the one file the applet loads.</p>
+<p><strong>The projection is Albers equal-area conic</strong>, with standard parallels at
+43° N and 62° N. Equal-area is the point: a child comparing Sweden with Spain
+should be comparing the real thing, and the Mercator projection every web map
+defaults to would make Scandinavia roughly twice the size it has any right to
+be. The price is that shapes are slightly sheared at the edges of the window,
+which is the trade every map makes in one direction or the other.</p>
+<p>A few decisions worth naming, because they are visible:</p>
+<ul>
+<li><strong>The window runs from about 26° W to 46° E.</strong> That reaches the Volga and
+  the Caucasus but stops short of the Urals, so the Urals are not among the
+  mountain ranges the quiz asks for. Putting them in would have meant
+  shrinking everything west of Berlin.</li>
+<li><strong>Rings are cut in latitude and longitude before they are projected.</strong>
+  Russia's outline runs all the way to the dateline; projected first and cut
+  afterwards, it folds back across the map as one polygon covering most of
+  Europe. Cutting first, after unwrapping the longitudes across the
+  antimeridian, leaves the European end of it.</li>
+<li><strong>Hit testing differs by what is being asked for.</strong> A country is hit by
+  landing inside its own outline, which the browser answers exactly through
+  <code>isPointInFill</code>. A river or a mountain ridge is hit by landing within a
+  tolerance of its line. A sea, an island or a landmark is a point with a
+  radius, and for seas and islands the drop also has to be on the right side
+  of the coastline. Countries smaller than a certain area get a small
+  tolerance around their label point as well, because Luxembourg is about
+  three pixels wide on a phone.</li>
+<li><strong>The mountain ridges are drawn by hand</strong>, as a handful of points each along
+  the spine of the range. Natural Earth has no usable range geometry at this
+  scale. They are right to within a map's width of line and no better, which
+  is enough to point at a range and not enough to trace one.</li>
+<li><strong>Capitals, landmarks, seas and peninsulas are hand-entered coordinates.</strong>
+  That is the part a dataset cannot supply and the part most likely to carry a
+  mistake. If something sits in the wrong place, it is mine and I would like
+  to hear about it.</li>
+</ul>
+<p>At 1:50 m several rivers a German child is expected to know simply are not in
+the data — Weser, Main, Meuse, Tiber, Shannon, Guadalquivir, Neman — so the
+map does not ask for them. The 1:10 m files would carry them at roughly ten
+times the size. That is the next thing I would change.</p>
+<h2 id="limits">What it does not do</h2>
+<p>It does not teach anything by itself. It asks and it checks, which is a
+smaller job, and it is honest about the difference. There is no account, no
+timer, no streak and no badge: the only number it keeps is how many of the 170
+names you have placed correctly at least once, and a button to throw that away
+again.</p></div>
+
+  <footer class="post__footer">
+    <nav class="pager" aria-label="More posts">
+      <a class="pager__link pager__link--prev" href="/projects/analog-circuits/">
+        <span class="pager__label">Older</span>
+        <span class="pager__title">Analog circuits in theory and application</span>
+      </a>
+    </nav>
+  </footer>
+</article>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/research/">Research</a></li>
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=c467844b"></script>
+</body>
+</html>

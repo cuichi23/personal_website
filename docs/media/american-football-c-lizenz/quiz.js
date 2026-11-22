@@ -1062,6 +1062,81 @@
           "Das Einbinden von Beobachtern"],
       k: 0,
       e: "Die Perspektive macht Wahrnehmung besprechbar und erlaubt dieselbe Szene zweimal. Der Rasen bleibt die Prüfung." },
+    // --- Offensive Systeme: Systemblock vom 22. November 2026 --------------
+    { c: "Offensive Systeme",
+      q: "Was unterscheidet Handbook und Playbook?",
+      a: ["Das Handbook ist das Lehrbuch der Offense und gilt dauerhaft; das Playbook ist das Spieltag-Dokument und wechselt jede Woche",
+          "Das Handbook enthält die Plays, das Playbook die Philosophie",
+          "Das Handbook ist für die Trainer, das Playbook für die Spieler",
+          "Beide sind dasselbe Dokument, nur in zwei Formaten"],
+      k: 0,
+      e: "Kernaussage des Blocks: Spieler müssen zuerst das Handbook verstehen – die Logik –, bevor sie wöchentliche Playbooks ausführen können. Das Handbook ist die Grundlage, das Playbook die Anwendung." },
+    { c: "Offensive Systeme",
+      q: "Tempo-Begriff dieser Teamkonvention: „no huddle – no rush“ heißt …",
+      a: ["WATER", "ICE", "FIRE", "SMOKE"],
+      k: 0,
+      e: "ICE ist Huddle und kontrolliertes Tempo, WATER ist no huddle ohne Hetze (O-Line direkt zur LOS, Playcall per Handzeichen), FIRE ist rush ohne Huddle für 2-Min-Drill und Aufholjagd." },
+    { c: "Offensive Systeme",
+      q: "Worin unterscheiden sich die Kategorien RO und RPO?",
+      a: ["RO ist eine reine Laufentscheidung des QB, RPO verbindet einen Lauf mit einer Passoption",
+          "RO ist Pre-Snap, RPO ist Post-Snap",
+          "RO gilt nur für den Quarterback, RPO nur für den Running Back",
+          "RO ist ein Blockschema, RPO ein Passkonzept"],
+      k: 0,
+      e: "RO = Run Option: der QB entscheidet anhand eines definierten Reads zwischen Laufoptionen, etwa Give oder Keep an der Backside Edge. RPO = Lauf mit Passoption, Entscheidung vor oder nach dem Snap. Beide gehören zu den sieben Play-Kategorien." },
+    { c: "Offensive Systeme",
+      q: "Warum bleibt beim Zone Read die Backside Edge bewusst ungeblockt?",
+      a: ["Weil der zusätzliche Läufer die Zuordnung der Defense verändert und der Verteidiger zur Entscheidung gezwungen wird",
+          "Weil die O-Line dort regelmäßig zu schwach besetzt ist",
+          "Weil die Regeln einen Block auf den End Man on the Line of Scrimmage verbieten",
+          "Weil der Backside Guard für den Pull gebraucht wird"],
+      k: 0,
+      e: "Schließt er zum Running Back, behält der Quarterback; bleibt er außen, gibt der Quarterback ab. Die defensive Antwort darauf heißt zum Beispiel Scrape Exchange: ein anderer Spieler übernimmt den Quarterback." },
+    { c: "Offensive Systeme",
+      q: "Personnel-Gruppe 12 – welche Besetzung steht dahinter?",
+      a: ["1 Running Back, 2 Tight Ends und damit 2 Wide Receiver",
+          "1 Running Back, 2 Wide Receiver und damit 2 Tight Ends",
+          "12 Spieler in der Formation, einer davon in Motion",
+          "1 Quarterback, 2 Running Backs"],
+      k: 0,
+      e: "Erste Ziffer = Anzahl RB, zweite Ziffer = Anzahl TE. Die Eselsbrücke macht den Rest: Es gibt immer fünf Skillpositions (X, H, F, Y, Z), also folgt die Anzahl der WR aus den beiden Ziffern." },
+    { c: "Offensive Systeme",
+      q: "Die Formationsansage DOUBLE sagt an, dass …",
+      a: ["zwei Receiver auf der Y-Seite stehen, den Y mitgezählt",
+          "zwei Tight Ends auf dem Feld sind",
+          "zwei Running Backs im Backfield stehen",
+          "die Formation doppelt gespiegelt werden darf"],
+      k: 0,
+      e: "SINGLE, DOUBLE, TRIPLE, QUAD, NICKEL = einer bis fünf auf der Y-Seite, jeweils mit Y gezählt. In dieser Konvention steht der TE auf der Line; andere Systeme nutzen auch Off-Ball-TEs." },
+    { c: "Offensive Systeme",
+      q: "Ineligible Downfield bei einem RPO: Wie weit darf ein ursprünglich Unberechtigter nach AFVD 2026 vor dem Pass downfield sein?",
+      a: ["Drei Feldmeter", "Ein Yard", "Fünf Yards", "Bis zur Höhe des Quarterbacks"],
+      k: 0,
+      e: "AFVD 2026 (7.3.10): drei Feldmeter. Die NFL (8.3.1) erlaubt nur ein Yard, und zwar für den ganzen Körper. Fast ein Faktor drei – und damit ein anderes Play. Deshalb gehören die Regeln im Handbook neben die Plays." },
+    { c: "Offensive Systeme",
+      q: "Flood und Mesh – was unterscheidet die beiden Passkonzepte?",
+      a: ["Flood ist ein vertikaler 3-Level-Stretch auf eine Feldhälfte, Mesh baut auf zwei extrem flache kreuzende Routen",
+          "Flood ist ein Screen, Mesh ein Play-Action-Konzept",
+          "Flood läuft nur aus Under Center, Mesh nur aus Shotgun",
+          "Flood ist gegen Man gebaut, Mesh gegen Zone"],
+      k: 0,
+      e: "Flood überlädt eine Feldhälfte mit drei Routen in unterschiedlichen Tiefen, Progression Deep → Mid → Flat. Mesh kontrolliert das Zentrum mit zwei Shallows auf 4–6 Yards plus Sit-Route. Im Lehrgang: Flood gegen Zone, Mesh gegen Man, Stick als Quick Game." },
+    { c: "Offensive Systeme",
+      q: "Was bestimmt laut Lehrgang die Wahl des offensiven Kernsystems?",
+      a: ["Die Teamanalyse: Personal, Kaderbreite und Trainingszeit",
+          "Die Erfahrung und Vorliebe des Head Coaches",
+          "Das System des stärksten Gegners in der Liga",
+          "Die Formation, die in der Vorsaison die meisten Punkte gebracht hat"],
+      k: 0,
+      e: "„Die Philosophie folgt dem Personal – nicht umgekehrt.“ Der häufige Fehler ist der Coach, der 1:1 ein NFL-System kopiert oder Air Raid spielen will, ohne starken Passer. Der richtige Ansatz wählt ein kleines Paket und testet es im Training." },
+    { c: "Offensive Systeme",
+      q: "Die Success Formula nach Breidenbach – die Trilogie eines erfolgreichen Drives:",
+      a: ["Positiver 1st Down → Explosive Play → Punkte",
+          "Ballsicherheit → Field Position → Punkte",
+          "Effizienz → Explosiveness → Errors",
+          "Erster Drive → Halbzeitanpassung → zweiter Drive"],
+      k: 0,
+      e: "Effizienz, Explosiveness und Errors sind die drei E nach Neal Brown (WVU), also das Mess-, nicht das Ablaufraster. Explosive Play heißt hier 20+ Yards Pass oder 12+ Yards Run; der Touchdown ist immer das Ziel, das Field Goal nur, wenn nötig." },
   ];
 
   // ====================================================== Verbatim recall drill
@@ -1513,6 +1588,49 @@
           "Etwa 20 Grad Rumpfvorlage"],
       k: 0,
       e: "Die einzige Zahl, die der Stance-Block liefert, und damit die, die gefragt werden kann." },
+    // --- Offensive Systeme: Listen, die wortwoertlich sitzen muessen -------
+    { c: "Reihenfolgen",
+      q: "Die Call-Order eines Playcalls – vollständig und in der richtigen Reihenfolge:",
+      a: ["Formation – Motion – Core-Run-Kategorie – Modifikation/Pass-Option – Cadence/Snap",
+          "Formation – Core-Run-Kategorie – Motion – Cadence/Snap – Modifikation",
+          "Motion – Formation – Pass-Option – Core Run – Snap",
+          "Personal – Formation – Motion – Snap – Read"],
+      k: 0,
+      e: "Beispiel aus dem Lehrgang: 11-DOUBLE-RT → Z-MOT → Dart-Left → Slant-Rt RPO Tag → Snap. Jeder Playcall ist chronologisch konstruiert, und Spieler hören nur auf das, was ihre Unit betrifft." },
+    { c: "Reihenfolgen",
+      q: "Die fünf Lernschritte für das Handbook, in der richtigen Reihenfolge:",
+      a: ["Call-Order lernen – Formations-Logik verstehen – Run- und Pass-Schemes verstehen – in Kategorien denken – Tags und Modifikationen",
+          "Formations-Logik – Call-Order – Tags und Modifikationen – in Kategorien denken – Run- und Pass-Schemes",
+          "Plays auswendig lernen – Formationen lernen – Reads lernen – Tags lernen – Gegner lernen",
+          "Regelkunde – Call-Order – Formations-Logik – Pass-Schemes – Situational Packages"],
+      k: 0,
+      e: "Logik vor Bild: Nicht das Bild der Formation lernen, sondern die Logik dahinter. Das Kernprinzip unter allen fünf Schritten: Play-Kategorien definieren die Aufgabe jedes Spielers." },
+    { c: "Listen & Modelle",
+      q: "Die sieben Play-Kategorien des Handbooks, vollständig:",
+      a: ["RUN, RO, RPO, PASS, PA, SCREEN, TRICK",
+          "RUN, PASS, OPTION, SCREEN, PLAY ACTION, DRAW, TRICK",
+          "RUN, RO, RPO, PASS, PA, DRAW, SNEAK",
+          "ZONE, GAP, OPTION, QUICK, DROPBACK, SCREEN, TRICK"],
+      k: 0,
+      e: "Zone und Gap sind Lauf-Familien, nicht Kategorien. Die Kategorie weist jeder Unit die Aufgabe zu: Bei RUN blockt der PS-WR, der BS-WR wendet die BRR an, die OL läuft das Scheme, der QB macht Mesh und Handoff." },
+    { c: "Listen & Modelle",
+      q: "BRR: Welcher Call gehört zu drei Wide Receivern auf der Backside?",
+      a: ["BUBBLE", "HISS", "QUICK", "POP"],
+      k: 0,
+      e: "1 WR → HISS, 2 WR → QUICK, 3 WR → BUBBLE, 4 WR → POP. Bei BUBBLE läuft die Nummer 3 den Bubble, die Nummern 1 und 2 blocken am Point of Attack. BRR gilt nur für Wide Receiver – der Y nur dann, wenn er als Receiver eingesetzt wird." },
+    { c: "Listen & Modelle",
+      q: "Die drei Tempobegriffe dieser Teamkonvention, vollständig:",
+      a: ["ICE, WATER, FIRE", "ICE, WIND, FIRE", "SLOW, FLOW, GO", "HUDDLE, CHECK, RUSH"],
+      k: 0,
+      e: "ICE = Huddle, kontrolliertes Tempo. WATER = no huddle – no rush. FIRE = rush – no huddle, maximales Tempo. Tempo folgt der Situation; es sind Teambegriffe, keine allgemeine Fachsprache." },
+    { c: "Listen & Modelle",
+      q: "Die fünf Formationsansagen nach Anzahl der Receiver auf der Y-Seite:",
+      a: ["SINGLE, DOUBLE, TRIPLE, QUAD, NICKEL",
+          "SINGLE, DOUBLE, TRIPLE, QUAD, PENTA",
+          "ONE, TWO, TRIPS, QUADS, EMPTY",
+          "SINGLE, DOUBLE, TRIPS, BUNCH, EMPTY"],
+      k: 0,
+      e: "Einer bis fünf auf der Y-Seite, den Y jeweils mitgezählt. Trips und Bunch sind Formation-Tags aus dem Handbook, nicht die Ansage dieser Zählkonvention." },
   ];
 
   // ========================================================== Formation sketches
@@ -1587,6 +1705,66 @@
       [268, 134],
       [324, 122],      // outside right on the line
       [180, 176],      // QB alone in the gun
+    ]),
+  };
+
+  // ============================================ historic formation families
+  //
+  // The systems block walks the evolution of the offense from the Single Wing
+  // to the RPO. These six are the formations it names that have no counterpart
+  // in the modern set above, drawn on the same board: seven men on the line,
+  // the backfield below it. What tells them apart is where the snap goes and
+  // who stands where to receive it, so no arrows are needed.
+
+  // Seven on the line, the centre in the middle. The pitch between linemen is
+  // the only thing that separates the Bears T from the Split T, so it is a
+  // parameter: 24 px is a normal split, 40 px is the wide one Faurot used.
+  function sevenManLine(pitch) {
+    var p = pitch || 24, out = [], i;
+    for (i = -3; i <= 3; i += 1) {
+      out.push(i === 0 ? [180, 122, "c"] : [180 + i * p, 122]);
+    }
+    return out;
+  }
+
+  // The unbalanced line of the Single Wing: the centre sits two men from the
+  // short side, so four linemen stand to the strong side and two to the weak.
+  function unbalancedLine() {
+    return [[96, 122], [120, 122], [144, 122, "c"], [168, 122],
+            [192, 122], [216, 122], [240, 122]];
+  }
+
+  var HISTORIC_FORMATIONS = {
+    "Single Wing": unbalancedLine().concat([
+      [276, 134],      // wingback outside the strong side
+      [192, 148],      // blocking back
+      [156, 176],      // fullback
+      [180, 196],      // tailback, and the direct snap goes to him
+    ]),
+    "Double Wing": sevenManLine().concat([
+      [84, 138],       // wingback left
+      [276, 138],      // wingback right
+      [180, 152],      // blocking back
+      [180, 188],      // deep back
+    ]),
+    "T-Formation": sevenManLine().concat([
+      [180, 136],      // QB under centre
+      [138, 180], [180, 180], [222, 180],   // three backs in one row: the T
+    ]),
+    "Split T": sevenManLine(40).concat([
+      [180, 136],
+      [138, 180], [180, 180], [222, 180],   // same backfield, wider splits
+    ]),
+    "Wing-T": sevenManLine().concat([
+      [282, 134],      // one back set as a wing
+      [180, 136],      // QB under centre
+      [180, 172],      // fullback
+      [138, 186],      // halfback
+    ]),
+    "Wishbone": sevenManLine().concat([
+      [180, 136],      // QB under centre
+      [180, 168],      // fullback close behind him
+      [144, 196], [216, 196],   // two halfbacks: the fork of the bone
     ]),
   };
 
@@ -1809,6 +1987,7 @@
 
   var SKETCH_SETS = {
     Offense: OFFENSE_FORMATIONS,
+    Historie: HISTORIC_FORMATIONS,
     Defense: DEFENSE_FORMATIONS,
     Coverage: COVERAGE_FORMATIONS,
     Blocking: BLOCK_SCHEMES,
@@ -1816,6 +1995,7 @@
 
   var SKETCH_PROMPT = {
     Offense: "Welche Offense-Formation zeigt die Skizze?",
+    Historie: "Welche historische Offense-Formation zeigt die Skizze?",
     Defense: "Welche Defensiv-Front zeigt die Skizze? (Offense grau angedeutet)",
     Coverage: "Welche Coverage zeigt die Skizze? (Deep-Spieler eingekreist, "
       + "Zonengrenzen gestrichelt, Man-Zuordnungen als Verbindung)",
@@ -1835,6 +2015,18 @@
       e: "Drei Receiver auf einer Seite (Trips), ein einzelner Receiver auf der anderen. Zwingt die Defense, ihre Coverage zur Trips-Seite zu verschieben." },
     { c: "Offense", f: "Empty (3x2)",
       e: "Kein Back im Backfield – der Quarterback steht allein im Shotgun, fünf Receiver sind verteilt. Maximale Breite, aber keine Hilfe in der Pass Protection." },
+    { c: "Historie", f: "Single Wing",
+      e: "Unbalanced Line – der Center steht nicht in der Mitte, eine Seite ist überladen – und ein Direct Snap an den tief stehenden Tailback, dazu Wingback, Blocking Back und Fullback. Prinzip: Direct Snap, Täuschung, Blockerwinkel (~1920)." },
+    { c: "Historie", f: "Double Wing",
+      e: "Spätere Adaption des Single Wing: ZWEI Wingbacks, einer je Seite, dazu Blocking Back und tiefer Back. Die Line bleibt kompakt, der Snap geht weiterhin direkt an einen Back." },
+    { c: "Historie", f: "T-Formation",
+      e: "Quarterback under Center und DREI Backs nebeneinander in einer Reihe – das T. Die Bears perfektionierten sie 1940 mit Man-in-Motion (Jones, Halas, Shaughnessy); das Finale endete 73:0. Normale OL-Splits." },
+    { c: "Historie", f: "Split T",
+      e: "Dieselbe Backfield-Reihe wie die T-Formation, aber mit deutlich WEITEREN Splits zwischen den Linemen. Genau das ist der Unterschied und der Zweck: größere Running Lane und die Option des Pitches auf den RB nach einem Read während des Plays (Don Faurot, 1941)." },
+    { c: "Historie", f: "Wing-T",
+      e: "Hybrid aus T-Formation und Single Wing: EIN Back steht als Wing außen, Fullback und Halfback bleiben im Backfield. Serien aus ähnlicher Anfangsbewegung, bekannt durch Dave Nelson und Tubby Raymond in Delaware (~1950)." },
+    { c: "Historie", f: "Wishbone",
+      e: "Ein Fullback dicht hinter dem Quarterback, dahinter zwei breiter aufgefächerte Halfbacks – die Gabel, die der Formation ihren Namen gibt. Texas 1968 unter Darrell Royal mit Emory Bellard; entscheidend sind klare Read- und Pitch-Aufgaben." },
     { c: "Defense", f: "4-3",
       e: "Vier Down-Linemen und drei Linebacker (Will, Mike, Sam), dahinter vier Defensive Backs. Klassische Base-Front gegen den Lauf." },
     { c: "Defense", f: "3-4",
@@ -1935,8 +2127,8 @@
     }
     svg.appendChild(svgEl("line",
       { x1: 8, y1: LOS_Y, x2: 352, y2: LOS_Y, "class": "clqf__los" }));
-    if (item.c === "Offense") {
-      drawPlayers(svg, OFFENSE_FORMATIONS[item.f], "clqf__off");
+    if (item.c === "Offense" || item.c === "Historie") {
+      drawPlayers(svg, SKETCH_SETS[item.c][item.f], "clqf__off");
       return svg;
     }
     drawPlayers(svg, REFERENCE_OFFENSE, "clqf__ghost");
@@ -2209,7 +2401,9 @@
         + "Receiver gezeichnet. Die Blocking-Skizzen zeigen die fünf inneren "
         + "Linemen von nahem: durchgezogener Pfeil = Weg des Blockers, "
         + "gestrichelter Pfeil = zweiter Schritt desselben Blocks, grauer "
-        + "Pfeil = Weg des Balls. Wähle Offense, Defense, Coverage, Blocking "
+        + "Pfeil = Weg des Balls. Die Kategorie Historie zeigt die "
+        + "Formationsfamilien des Systemblocks, vom Single Wing bis zur "
+        + "Wishbone. Wähle Offense, Historie, Defense, Coverage, Blocking "
         + "oder alles.");
     }
   }

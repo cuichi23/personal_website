@@ -7,6 +7,13 @@
   <description>Lucas Wetzel, theoretical physics. Self-organized synchronization in networks of delay-coupled oscillators, from segmentation clocks to phase-locked loops.</description>
   <language>en</language>
   <item>
+    <title>Stumme Karte: a blind map of Europe</title>
+    <link>https://lucaswetzel.de/projects/europe-blind-map/</link>
+    <guid isPermaLink="true">https://lucaswetzel.de/projects/europe-blind-map/</guid>
+    <pubDate>Mon, 23 Nov 2026 12:00:00 +0000</pubDate>
+    <description>An interactive blind map of Europe. The outlines, rivers, mountain ridges, capital dots and landmark squares are all there; the names are not. Five of them arrive at a time as chips you drag to where they belong, and a name that lands correctly stays on the map. 170 names in German and English, built from public-domain Natural Earth data on an equal-area projection.</description>
+  </item>
+  <item>
     <title>Analog circuits in theory and application</title>
     <link>https://lucaswetzel.de/projects/analog-circuits/</link>
     <guid isPermaLink="true">https://lucaswetzel.de/projects/analog-circuits/</guid>
@@ -18,7 +25,7 @@
     <link>https://lucaswetzel.de/projects/american-football-c-lizenz/</link>
     <guid isPermaLink="true">https://lucaswetzel.de/projects/american-football-c-lizenz/</guid>
     <pubDate>Fri, 23 Oct 2026 12:00:00 +0000</pubDate>
-    <description>From the sport-wide Grundlehrgang to the Trainer-C license in American football: how the German coaching-license system works, every exam topic sorted and summarized, my notes from the course sessions, what the written and practical exams actually ask, an introductory coaching knowledge base for running an offense and a defense, position blocks on the offensive line and the quarterback, and three interactive quizzes.</description>
+    <description>From the sport-wide Grundlehrgang to the Trainer-C license in American football: how the German coaching-license system works, every exam topic sorted and summarized, my notes from the course sessions, what the written and practical exams actually ask, an introductory coaching knowledge base for running an offense and a defense, position blocks on the offensive line and the quarterback, a block on offensive systems from the Single Wing to the RPO, and three interactive quizzes.</description>
   </item>
   <item>
     <title>Control theory of mutual synchronization in networks of delay-coupled phase-locked loops</title>

@@ -1,0 +1,88 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Europe blind map proof sheet</title>
+<!-- Checks every drop target in map.json against its own geometry, inside a
+     real browser, because isPointInFill exists nowhere else. It also runs one
+     end-to-end pointer drag and then solves the current round so the labels,
+     highlights and pins can be proof-read by eye.
+
+     Copy this file into docs/ and open it over the preview server:
+       cp tools/map_proof.html docs/ && xdg-open http://localhost:8778/map_proof.html
+     The absolute /media/... paths only resolve from there; build.py wipes
+     docs/, so the copy is made fresh each time.
+
+     It uses the window.__EBM_TEST__ hook at the end of applet.js, which stays
+     inert on the live page. -->
+<style>body{font:13px/1.45 monospace;margin:1rem}.ebm{max-width:900px}</style>
+<script>window.__EBM_TEST__ = true;</script>
+<script src="/media/europe-blind-map/applet.js"></script>
+<pre id="out">running…</pre><div id="host"></div>
+<script>
+(function(){
+  var xhr=new XMLHttpRequest();
+  xhr.open("GET","/media/europe-blind-map/map.json",false);
+  xhr.send();
+  var data=JSON.parse(xhr.responseText);
+  var host=document.getElementById("host");
+  host.className="ebm";
+  var style=document.createElement("style");
+  style.textContent=window.__EBM_TEST__.css;
+  document.head.appendChild(style);
+  var g=new window.__EBM_TEST__.Game(host,data);
+
+  function own(it){var t=it.t;
+    if(t.k==="poly")return{x:it.lab[0],y:it.lab[1]};
+    if(t.k==="pt")return{x:t.x,y:t.y};
+    var p=t.pts.filter(function(q){return q[0]!==null;});
+    return{x:p[Math.floor(p.length/2)][0],y:p[Math.floor(p.length/2)][1]};}
+
+  var lines=[],selfFail=0,falseHit=0,cats={};
+  data.items.forEach(function(it){
+    var v=g.judge(it,own(it));
+    cats[it.cat]=cats[it.cat]||[0,0]; cats[it.cat][1]++;
+    if(v.ok)cats[it.cat][0]++;
+    else{selfFail++;lines.push("SELF-MISS "+it.id+" "+it.en+" far="+v.far.toFixed(1)+" side="+v.side);}
+    var o=own(it),off={x:Math.min(data.view[0]-5,o.x+300),y:Math.min(data.view[1]-5,o.y+200)};
+    if(g.judge(it,off).ok){falseHit++;lines.push("FALSE-HIT "+it.id+" "+it.en);}
+  });
+  function byId(id){return data.items.filter(function(i){return i.id===id;})[0];}
+  var baltic=byId("w-baltic"),gotland=byId("i-gotland"),north=byId("w-northsea");
+  var seaOnIsland=g.judge(baltic,{x:gotland.t.x,y:gotland.t.y});
+  var islandAtSea=g.judge(gotland,{x:north.t.x,y:north.t.y});
+  var lux=byId("c-lu"), luxNear=g.judge(lux,{x:lux.lab[0]+8,y:lux.lab[1]+5});
+  var fr=byId("c-fr"), frNear=g.judge(fr,{x:fr.lab[0]+8,y:fr.lab[1]+5});
+  var frFar=g.judge(fr,{x:byId("c-pl").lab[0],y:byId("c-pl").lab[1]});
+  var danube=byId("r-danube"), danubeOff=g.judge(danube,{x:danube.lab[0],y:danube.lab[1]-40});
+
+  var item=g.round[0],chip=g.chips[item.id];
+  var ctm=g.map.getScreenCTM(),p=own(item);
+  var sx=ctm.a*p.x+ctm.c*p.y+ctm.e, sy=ctm.b*p.x+ctm.d*p.y+ctm.f;
+  function pe(t,x,y,el){el.dispatchEvent(new PointerEvent(t,{pointerId:1,bubbles:true,clientX:x,clientY:y,button:0}));}
+  var cr=chip.getBoundingClientRect();
+  pe("pointerdown",cr.left+10,cr.top+10,chip);
+  pe("pointermove",cr.left+40,cr.top+40,chip);
+  pe("pointermove",sx,sy,chip);
+  pe("pointerup",sx,sy,chip);
+  var dragOk=chip.classList.contains("ebm__chip--gone");
+  var labelOk=g.answers.querySelectorAll("text").length===1;
+
+  var h=["items "+data.items.length+", shapes "+data.shapes.length];
+  Object.keys(cats).forEach(function(c){h.push("  "+c+": "+cats[c][0]+"/"+cats[c][1]+" hit their own target");});
+  h.push("self-misses "+selfFail+", false hits 300/200 away "+falseHit);
+  h.push("Baltic dropped on Gotland rejected: "+(!seaOnIsland.ok)+" (side="+seaOnIsland.side+")");
+  h.push("Gotland dropped in the North Sea rejected: "+(!islandAtSea.ok)+" (side="+islandAtSea.side+")");
+  h.push("Luxembourg accepts a near miss (small-country slack): "+luxNear.ok);
+  h.push("France accepts a point just off its label: "+frNear.ok);
+  h.push("France rejected when dropped on Poland: "+(!frFar.ok));
+  h.push("Danube rejected 40 units off its line: "+(!danubeOff.ok));
+  h.push("drag placed '"+item.en+"': "+dragOk+", label pinned: "+labelOk);
+  var good=selfFail===0&&falseHit===0&&!seaOnIsland.ok&&!islandAtSea.ok&&luxNear.ok&&frNear.ok&&!frFar.ok&&!danubeOff.ok&&dragOk&&labelOk;
+  h.push(good?"=== ALL GOOD ===":"=== PROBLEMS ===");
+  document.getElementById("out").textContent=h.concat(lines).join("\n");
+
+  // Solve what is left of the round so the pins, the names and the two kinds
+  // of highlight (a filled country, a traced river or ridge, a ring around a
+  // point) can all be checked by eye in one picture.
+  g.round.forEach(function(it){ if(!it.__done) g.settle(it, true); });
+})();
+</script>

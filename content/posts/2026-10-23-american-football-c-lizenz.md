@@ -8,7 +8,8 @@ summary: >-
   sorted and summarized, my notes from the course sessions, what the written
   and practical exams actually ask, an introductory coaching knowledge base for
   running an offense and a defense, position blocks on the offensive line and
-  the quarterback, and three interactive quizzes.
+  the quarterback, a block on offensive systems from the Single Wing to the
+  RPO, and three interactive quizzes.
 tags:
   - "American Football"
   - "offensive line"
@@ -63,7 +64,8 @@ American football with the American Football Verband Sachsen (AFVS). This page
 is my study companion: the license system in one place, every exam topic
 sorted, my own notes from the course sessions, what the written and practical
 exams actually ask, a compact coaching knowledge base, position blocks on the
-offensive line and the quarterback, and three interactive quizzes.
+offensive line and the quarterback, a block on offensive systems from the
+Single Wing to the RPO, and three interactive quizzes.
 
 <nav class="clz-index" markdown="1">
 
@@ -75,6 +77,7 @@ a link from here opens the fold it points at.
 - **[Course notes](#course-notes)** · [the coach](#notes-coach) · [planning](#notes-planning) · [training theory](#notes-theory) · [the session](#notes-session) · [long-term development](#notes-ltad) · [prevention and diagnostics](#notes-prevention) · [the abilities](#notes-abilities) · [review and mental training](#notes-review) · [corrections](#notes-corrections)
 - **[Position coaching: the O-line](#position-coaching)** · [what the position asks for](#oline-prerequisites) · [stance](#oline-stance) · [footwork and hands](#oline-footwork) · [run blocking](#oline-schemes) · [kick-out, log, double team](#oline-rules) · [pass blocking](#oline-pass)
 - **[Position coaching: the quarterback](#qb-coaching)** · [role and values](#qb-role) · [development](#qb-development) · [technique](#qb-technique) · [perceiving and deciding](#qb-decisions) · [the VR demo](#qb-vr) · [building a QB](#qb-build) · [six stations](#qb-stations)
+- **[Offensive systems](#offensive-systems)** · [what an offense is for](#sys-goals) · [the evolution](#sys-history) · [team identity](#sys-identity) · [handbook and playbook](#sys-playbook) · [categories and call order](#sys-kit) · [install planning](#sys-install) · [practice demos](#sys-practice)
 - **[Knowledge base](#knowledge-base)** · running an offense, running a defense
 - **Quizzes** · [recall drill](#recall-drill) · [mock exam](#mock-exam) · [sketch quiz](#formation-quiz-section)
 - [Sources](#sources)
@@ -1578,6 +1581,503 @@ who can explain what he saw has had a good session, even when the ball landed
 badly.
 
 
+## Offensive systems: history, identity, install {: #offensive-systems }
+
+The session of 22 November 2026 was the systems block: a full day on what an
+offense is for, where today's systems come from, how a squad decides which one
+it may run, and how a playbook turns into four weeks of training. Lecturer:
+Steffen Breidenbach (Foxeye Athletics), deck "Offensive Systeme im American
+Football". Its central sentence is set as a box on the timeline slide and is
+worth putting first: **good systems connect fitting alignments, clear
+assignments and decisions. More complexity is not automatically better.**
+
+<details class="clz-fold" id="sys-goals" markdown="1">
+<summary>What an offense is for <span class="clz-fold__hint">six goals, three metrics, three tempos</span></summary>
+
+**Six primary goals, and the situation decides which one is on top.** The
+slide arranges them around the word OFFENSE, and the point of the arrangement
+is that they compete with each other.
+
+| Goal | What it asks for |
+|---|---|
+| **Scoring** (Punkte erzielen) | touchdown over field goal, maximize red-zone efficiency, every drive counts |
+| **Efficiency** (Effizienz) | success on 1st down creates options; measure 3rd-down conversion; set the team target separately |
+| **Ball security** (Ballsicherheit) | avoid losses of the ball, evaluate turnover margin and consequences separately |
+| **Field position** | backed up → midfield → red zone, win the field piece by piece; good field position relieves the defense |
+| **Physical dominance** | own the line of scrimmage, establish a run identity, wear the opponent down |
+| **Tempo and clock** | pace as a weapon: lengthen or shorten the game depending on the situation |
+
+**Measuring success.** Two frames, and the course uses them side by side. The
+*three Es* (Neal Brown, West Virginia): **efficiency** — a target such as 6+
+yards on 1st down, with down and distance taken into account, 3rd down and red
+zone evaluated separately, the drive opener planned deliberately;
+**explosiveness** — an explosive play as 20+ yards passing or 12+ yards
+rushing, a vertical threat kept alive, play-action tied to the run action;
+**errors** — turnovers cost points and field position, avoidable penalties get
+reduced. The *success formula* (Breidenbach) is the same idea as a chain, the
+trilogy of a successful drive: **a positive 1st down → an explosive play →
+points.** Gain on 1st down creates favourable follow-up situations and keeps
+the offense flexible; a chunk play moves the field position; the drive gets
+finished, and the touchdown is always the goal, with the field goal only when
+necessary.
+
+**Tempo is a tactical tool, and this team gives its tempos names.**
+
+<div class="clz-scroll" markdown="1">
+
+| Term | Huddle | Execution | Used for |
+|---|---|---|---|
+| **ICE** | huddle | controlled tempo; the center calls the huddle, the quarterback takes the play at the offensive coordinator, full communication | standard, ball control, backed up, wasting time |
+| **WATER** | no huddle, no rush | the offensive line goes straight to the line of scrimmage, the play is called by hand signal, the skill positions align, the quarterback gives the line a code word | holding the rhythm, tiring the defense, momentum |
+| **FIRE** | rush, no huddle | maximum tempo, hand signals for everyone, skill players inside the numbers, minimal communication, defense under pressure | two-minute drill, chasing a deficit, preventing substitutions |
+
+</div>
+
+**Complementary football.** The offense does not exist in isolation. Long
+drives let the defense recover, few turnovers mean no short fields for the
+opponent, points mean the defense plays with a lead, controlled field position
+means the opponent starts deeper in its own territory. The other way round:
+turnovers hand the offense short fields, three-and-outs give it more
+possessions, punts after stops produce good field position, and an opposing
+offense under pressure gets less time to recover.
+
+**The gameplan assigns a primary goal to each situation.** Standard drive:
+score points, apply the success formula, aim for 6+ yards on 1st down, attack
+in a balanced way. Controlling the ball: clock and possession, secure first
+downs and points, use the clock deliberately, pick run or pass by situation,
+think along with the defense and special teams. Two-minute drill: score
+quickly — and note the rule change, because under AFVD 2026 a first down stops
+the clock, it restarts on the referee's signal, and a ten-second runoff applies
+only in the explicitly regulated cases. Backed up, own 1 to 10: field position
+first, secure the ball, run or short pass, check front and matchup, limit the
+risk in front of your own end zone. Red zone, inside the opponent's 20:
+touchdown over field goal, a compressed field, goal line and tight versus open
+red zone separated, your own touchdown target defined and evaluated regularly.
+Playing for the field goal: secure the range, no unnecessary risk, hold the
+middle of the field, manage the clock, keep the field-goal unit ready.
+
+</details>
+
+<details class="clz-fold" id="sys-history" markdown="1">
+<summary>The evolution of the offense <span class="clz-fold__hint">from the Single Wing to the RPO</span></summary>
+
+Six phases, and the years on the timeline mark neither inventions nor clean
+borders. What the timeline really shows is a single long movement: **from mass
+and force towards space and decision.**
+
+| Phase | When | Keyword |
+|---|---|---|
+| Single Wing | ~1920 | misdirection and power |
+| Bears T plus motion | 1940 | Jones, Halas, Shaughnessy |
+| West Coast Offense | 1970s and 80s | Bill Walsh, San Francisco |
+| Spread and Shotgun | 1990s | using the width of the field |
+| Zone read | 2000s | the quarterback as a running threat |
+| RPO and packaged plays | from 2010 | conflict reads |
+
+**Single Wing (~1920).** An early, influential family with a direct snap to a
+back. Typical: deception, compact alignments, additional blockers at the point
+of attack. Unbalanced formations are an important variant; the Double Wing is
+a later adaptation of the same idea. The principle in one line: *direct snap,
+deception, blocking angle.* A condensed formation, one side overloaded, and
+physicality decides.
+
+**Bears T formation (1940).** The Bears perfected the T formation with the
+quarterback under center and a man in motion; Ralph Jones, George Halas and
+Clark Shaughnessy shaped that development, and the 1940 championship game
+ended 73–0. Motion was not invented there. The principle: *ball fake, motion
+and coordinated assignments.* What it adds: coordinated blocking assignments,
+blocks to the second level, the quarterback pivot and the ball fake, run and
+pass connected. Its own later adaptations are Split T, Wing-T, Wishbone and
+the I formation.
+
+**Split T (Don Faurot, 1941).** A variation of the Bears T with an option to
+pitch to the running back, based on a read made during the play. The principle:
+*wider splits along the offensive line, and decisions inside the run game.*
+Wider splits between the linemen mean a bigger running lane for the back.
+
+**Wing-T (~1950).** A hybrid of T formation and Single Wing: one back is
+aligned as a wing. Series built from a similar initial movement connect
+different ball carriers, blocking angles and deceptions. Known through Dave
+Nelson and Tubby Raymond at Delaware.
+
+**Wishbone (~1968).** Texas introduced it in 1968 under Darrell Royal with
+Emory Bellard: a fullback in front of two halfbacks, which makes several run
+options possible out of a similar start. What decides is clear read and pitch
+assignments.
+
+**I formation (USC 1962, among others).** Fullback and halfback in one line
+behind the quarterback.
+
+**West Coast Offense (1970s and 80s).** Bill Walsh developed his passing game
+in Cincinnati and later shaped San Francisco. Short, precise passes with
+coordinated footwork and timing make ball control possible; the run game stays
+part of the system. What it asks of a quarterback: footwork, rhythm, timing
+and a clear pass progression.
+
+**Spread and Shotgun (1990s).** Two different words. Spread describes the
+spatial distribution, shotgun the quarterback's alignment — and the 49ers
+played shotgun as early as 1960. Wide spacing can create matchups and running
+room; no-huddle is an additional tempo decision on top. Spread demands the
+defense in width and in depth, but pressure and rotation remain possible
+answers.
+
+**Zone read (2000s).** Zone blocking combined with a running decision by the
+quarterback. In the example the backside edge stays unblocked: if he closes to
+the back, the quarterback may keep; if he stays wide and outside, the
+quarterback gives. The additional runner changes the defense's assignment
+arithmetic. The defensive answer, for example a scrape exchange, is simply
+another player taking the quarterback.
+
+**RPO and packaged plays (from 2010).** A run combined with a pass option.
+The decision can fall before or after the snap. A post-snap RPO reads one
+defined conflict defender; timing, blocking rules and the pass have to fit
+together. The goal is to put a defined defender into an assignment conflict,
+preferably at the second or third level — and the honest line on the slide
+belongs with it: **a free option is not guaranteed, and there is no guaranteed
+success.** Which is also the second box on these slides: the history supplies
+a toolbox, you pick the fitting answers, and not every team needs additional
+reads.
+
+</details>
+
+<details class="clz-fold" id="sys-identity" markdown="1">
+<summary>From team analysis to offensive identity <span class="clz-fold__hint">the squad decides, not the coach's taste</span></summary>
+
+**What kind of team do I have?** The analysis starts as a picture, not as a
+preference: a radar diagram over the position groups with a skill rating from
+1 to 5, next to a squad overview with the number of players per position. An
+example team scores 4 at outside receiver with three players, 3 at slot
+receiver with two, 2 at tight end with one, 3 at wing back with two, 2 at
+fullback with one, 4 at halfback with three, 3 at quarterback with two, and on
+the line 3, 4, 3, 3, 2 from left tackle to right tackle, with only one right
+tackle on the roster. Skill and depth are two separate numbers, and both
+matter.
+
+**The same diagram works inside one position group.** For the wide receivers
+the axes are speed, strength, agility, technique (route running), hands
+(catch), football IQ, blocking and run after catch, drawn twice: the group
+average against the best player. Reading the example: strengths are high speed
+plus run after catch, which means yards after the catch, reliable hands as
+dependable targets, and agility for separation in the short area. Weaknesses
+are below-average blocking, a strength deficit that makes the group vulnerable
+to press coverage, and a football IQ that still needs work on complex reads.
+The consequence for the gameplan follows directly: use quick passes and run
+after catch, set clear and simple assignments, develop blocking technique
+deliberately, use motion and spacing for releases, check blocking angles and
+matchups — and no blanket recommendation to crack block.
+
+**The identification grid.** Four parameters, each a slider rather than a
+category, and together they are the identity.
+
+| Parameter | The scale | What it decides |
+|---|---|---|
+| **Positioning** | under center ←→ shotgun | field of vision, timing and snap dynamics |
+| **Focus** | run dominance ←→ pass dominance | which family is the base identity on 1st and 10 |
+| **Geometry** | condensed ←→ spread | how tight or wide the players stand |
+| **Frequency** | fast snap ←→ clock control | snap tempo and how the game clock is used by situation |
+
+The takeaway on that slide: instead of naming hundreds of plays, define your
+identity through these four parameters first. The same grid also works for
+scouting the defense — systems thinking instead of play names.
+
+**From analysis to philosophy.** The example runs the whole chain. Team
+strengths: strong outside receivers in speed, run after catch and hands; a
+solid halfback duo in run and catch; a strong interior line with left guard
+and center at skill 4 and 3. Weaknesses: a thin tight-end group with little
+depth at skill 2, right tackle thinly staffed with only one player at skill 2,
+and a quarterback who is solid rather than elite, skill 3 with two players.
+The derivation: speed receivers plus a solid quarterback mean quick passes,
+screens and RPOs with a quick game; a strong interior line plus the halfbacks
+make inside zone the run identity; weak tight ends and a weak right tackle
+mean less 12 personnel and more 3x1 spread looks; a quarterback who is a game
+manager means rhythm passes rather than deep shots as the base. The resulting
+identity: a spread-based zone-run offense with a quick game, built on inside
+zone and quick passes out of 3x1, WATER as controlled tempo without a huddle,
+communication and substitutions trained along with it, and run after catch
+plus play-action as the chances for explosive plays. The line under it is the
+one to take home: **the philosophy follows the personnel, not the other way
+round. Fit the system to the players, not the players to the system.**
+
+**And the decision itself.** The common mistake is the coach deciding the
+system by personal preference or experience, without regard for the personnel
+at hand. The example is a coach who wants to run Air Raid but has no strong
+passer — or a coach who copies an NFL system one to one that was designed for
+elite athletes. The slide says it plainly: *"I run what I like best" is not
+good coaching.* The right approach checks personnel, squad depth and available
+training time, then picks a small package and tests it in training. A strong
+offensive line suggests a fitting run scheme, fast receivers suggest spacing
+and quick game, a mobile quarterback makes a read extension possible, good
+tight ends make 12 personnel and play-action worthwhile. The core system needs
+clear assignments, reliable repetitions and fitting answers to the opponent.
+
+</details>
+
+<details class="clz-fold" id="sys-playbook" markdown="1">
+<summary>Handbook and playbook <span class="clz-fold__hint">two documents, two purposes, five learning steps</span></summary>
+
+**Three architectures, and only one of them scales.** The *quick offense*
+learns pictures, one word equals one play: extremely fast calls, and a
+gigantic number of plays to memorize. The *adaptive system* learns syntax and
+tags, with modular commands of formation plus tag: very flexible, but prone to
+error once complexity rises. The *construction kit*, the intent-based system,
+learns systematic logic and rules: scalable building blocks, few calls,
+automatic adaptation. That third one is where the modern offense sits, and it
+is the architecture the rest of the day builds on.
+
+**Two documents, two purposes.** The Breidenbach differentiation, side by side:
+
+| Handbook — the textbook of the offense | Playbook — the gameday document, weekly |
+|---|---|
+| philosophy and core values of the system | specific plays for this week's opponent |
+| the complete terminology, the team's language | the gameplan with prioritized plays |
+| all logics and rules explained | the callsheet, sorted by situation |
+| personnel groups and formation logic | the scouting report on the opposing defense |
+| motion and shift rules | adjustments based on opponent tendencies |
+| all base schemes: run, pass, RPO | the red zone and goal line package, opponent-specific |
+| the call order, in chronological build-up | check-with-me and audible instructions |
+| the backside route rules and automatic adjustments | the two-minute and end-of-half strategy |
+| protection rules: BOB, slide, max | *changes every week* |
+| the season basis: changes versioned under control | |
+| the rules of the game, and understanding the defense | |
+
+The core statement: players have to understand the handbook — the logic —
+before they can execute weekly playbooks. The handbook is the foundation, the
+playbook is the application. The last line of the handbook column was circled
+by hand in my copy of the deck, and it deserves the mark: *the rules of the
+game and understanding the defense belong in the handbook too.*
+
+**How do I learn a handbook? Five steps, logic before picture.**
+
+1. **Learn the call order** — understand the chronological sequence of a play
+   call.
+2. **Understand the formation logic** — not the picture, the logic behind the
+   formations.
+3. **Understand run and pass schemes** — the base logic of the run and pass
+   concepts.
+4. **Think in categories** — RUN, RO, RPO, PASS, PA lead straight to
+   assignments.
+5. **Tags and modifications** — understand fakes, motions and their
+   consequences for the play.
+
+The core principle behind the five: **play categories define the task of every
+player.** Example, category RUN: play-side receiver blocks, backside receiver
+applies the backside route rules, the offensive line runs the run scheme, the
+quarterback does mesh and handoff. Simplify the learning through clear
+structure and learning aids.
+
+**What the handbook has to contain.** Seven core elements: personnel and
+formations, with personnel groups 11, 12, 21, 22 and so on, formation tags
+such as wide, trips and bunch, plus motions and shifts; two to three core run
+schemes from the zone family (inside zone, outside zone) and the gap family
+(power, counter, dart); run options as read extensions of the core runs with a
+fixed key and matching blocking; RPO packages on the core runs, such as bubble
+or pop, with the decision before or after the snap; three to five core pass
+concepts, dropback concepts for every coverage type, for example flood against
+zone, mesh against man, stick as a quick game; play action and screens on the
+basis of the core runs plus screen packages, tunnel, slip and jailbreak; and
+situational packages for red zone, 3rd down, two-minute, goal line and backed
+up. The supplementary elements: audibles and check-with-me, the cadence system
+with snap rhythm and hard count, communication by hand signals, wristbands and
+boards, protection rules, and trick plays. The logical order in which it gets
+built: choose the core runs, add the run-option attachments, define the RPO
+tags, select the pass concepts, build the situational packages.
+
+**Rules belong next to the plays.** The example on the slide is the factor of
+time and space: ineligible receivers downfield, which is what dictates the
+timing of the play. The rule conflict is real, because on an RPO the offensive
+line blocks a run, moving forward, while the quarterback throws a pass. AFVD
+2026, section 7.3.10: an originally ineligible player may not have any part of
+his body more than three field metres downfield before a legal forward pass
+across the neutral zone, exceptions noted. NFL 2026, section 8.3.1: the whole
+body may not be more than one yard downfield before the legal forward pass,
+with exceptions for legally begun block contact. Three metres and one yard are
+a factor of nearly three, and that difference is a different play. The core
+statement on the slide: relevant rules should always be taught together with
+the plays, because they reinforce what the play is for.
+
+</details>
+
+<details class="clz-fold" id="sys-kit" markdown="1">
+<summary>Categories, call order and the backside <span class="clz-fold__hint">seven categories, one order, four backside answers</span></summary>
+
+**The seven play categories, and what each one means per unit.**
+
+<div class="clz-scroll" markdown="1">
+
+| Category | What it is | Offensive line | Quarterback | Receivers |
+|---|---|---|---|---|
+| **RUN** | a planned run with a fixed ball carrier, back or quarterback; the line runs the called scheme | run block | handoff or quarterback run | block (play side) / backside route rules |
+| **RO** | run option: the quarterback decides between run options on a defined read, for example give or keep at the backside edge | run block | the installed run read | block (play side) / backside rules |
+| **RPO** | a run with a pass option; pre-snap or post-snap decision by fixed rules, and not always a linebacker read at the mesh | run block, with timing | the installed RPO read | route (play side) / backside rules |
+| **PASS** | a pure pass play; the line sets pass protection, the quarterback drops back and reads the coverage progression | pass protection | dropback plus read | full routes |
+| **PA** | play action: the fake handoff shows a run first, then the pass; the line shows run action initially and switches to pass protection | run fake plus pass protection | fake plus dropback | routes per concept |
+| **SCREEN** | a planned short pass with prepared blocks; tunnel, bubble and running-back screens differ, so check line assignments and the pass port | blocks per concept | short throw | blocker plus receiver |
+| **TRICK** | flea flicker, reverse pass, double pass; built on deception and unexpected ball movement | variable | variable | variable, including a passer |
+
+</div>
+
+**The construction kit, by example.** Core runs from the zone or gap family,
+plus run-option attachments, plus RPO packages. Complexity by scaling simple
+foundations. And the glue is the **call order**, which is a checklist: every
+play call is built chronologically, and players only listen to the part that
+concerns their unit.
+
+> **11-DOUBLE-RT** → **Z-MOT** → **Dart-Left** → **Slant-Rt RPO Tag** → **Snap**
+>
+> formation → motion → core run category → modification and pass option →
+> cadence and execution
+
+Players recognize the category and then follow the rules of that category.
+That is the whole trick: the call does not describe a picture, it addresses
+the rule set each unit already knows.
+
+**The algorithm of the backside (BRR).** In this team's convention the
+backside route rules are fixed answers that reduce the learning load: the
+number of wide receivers on the backside determines the call.
+
+| Receivers on the backside | Call | What it means |
+|---|---|---|
+| 1 WR | **HISS** | hitch if the corner is deeper than 8 yards, slant if closer than 8, fly against press |
+| 2 WR | **QUICK** | the outside receiver runs harder, a step back and then forward before the line of scrimmage; the slot blocks the most dangerous man |
+| 3 WR | **BUBBLE** | the number 3 runs the bubble, numbers 1 and 2 block at the point of attack |
+| 4 WR | **POP** | the number 4 runs the pop pass, the remaining receivers block at the point of attack |
+
+Important: the backside rules apply to wide receivers only. Tight ends are
+involved in the run-blocking scheme — but if the Y is used as a receiver, he
+is included in the rules. The callout on the slide: the team no longer
+memorizes exotic cases, because the logic of the formation dictates the play
+on the backside automatically.
+
+**Personnel in two digits.** The first digit is the number of running backs,
+the second the number of tight ends. Possible combinations run 00 to 05, 10 to
+14, 20 to 23 and 30 to 32, with 00, 01, 02, 10, 11, 12, 20, 21 and 30 as the
+usual ones. The mnemonic that makes the third number unnecessary: **there are
+always five skill positions (X, H, F, Y, Z)**, so the number of receivers
+follows from the other two. One running back plus two tight ends means two
+receivers, which is five skill positions, which is 12 personnel.
+
+**And the formation by hand signal.** The call says how many receivers,
+counting the Y, stand on the strong side: SINGLE one, DOUBLE two, TRIPLE
+three, QUAD four, NICKEL five. In this system the tight end is on the line;
+other systems also use off-ball tight ends.
+
+**Pass logic: the concept route.** A concept route is tagged to the player who
+is supposed to run it, which is what makes the pass game modular. Example,
+concept route flood as a 12-yard out: play side number 1 runs the fly, play
+side number 2 the flat or swing; backside number 1 post or dig, backside
+number 2 post or dig. The banner under it is the whole architecture in three
+words: **logic instead of pictures.**
+
+</details>
+
+<details class="clz-fold" id="sys-install" markdown="1">
+<summary>From handbook to field <span class="clz-fold__hint">theory before practice, unit before team</span></summary>
+
+**The season as a timeline.** November to February is football IQ, which is
+theory. Then four weeks of phase 1 install, unit-specific. Then four weeks of
+phase 2, team-specific. Then two to three weeks of pre-season, which is
+perfection. July to October is the season, which is gameday.
+
+**Football IQ, the theory block.** Three theory sessions of 60 minutes or
+more: philosophy, logics and personnel; formations and motions; run schemes
+plus RPO basics; pass protection with BOB and slide; four or more pass
+concepts. Two units of rules. And three units of understanding the defense:
+fronts, zones and coverages 0 to 4, plus indicators and video analysis. That
+last block is the one people skip, and it is the one that makes a read
+teachable.
+
+**Phase 1, four weeks, unit-specific.** Three topic blocks: **A** inside zone
+plus RPO plus play action, **B** power plus RPO plus play action, **C**
+outside zone plus RPO plus play action. All three are trained *every* week,
+with rising complexity per week, and the example package per session is three
+runs, two RPOs, two passes, one play action, one screen.
+
+| Week | Focus | What changes |
+|---|---|---|
+| 1 | **basic** | pure mechanics, base blocking, base assignments, no variations |
+| 2 | **plus motions** | all plays from week 1 remain, now with motions: how does the motion change the assignment? |
+| 3 | **plus formations** | the same plays plus motions, but out of different formations — window dressing |
+| 4 | **plus defenses** | plays against various fronts and coverages, review and adaptation, the perfection phase |
+
+Three sessions per week over four weeks makes twelve sessions in total, four
+per topic block.
+
+**Phase 2 and the season.** Phase 2 keeps the same A/B/C structure as phase 1,
+adds team scrimmages instead of unit work only, and perfects with all units
+together. Pre-season is training camp, perfection and test games. The season
+is opponent scouting plus video analysis, a weekly gameplan plus callsheet,
+walkthroughs plus perfection plus special teams.
+
+The planning principle under all of it: **players learn the assignments of the
+next package before the field session.** On the field, matching part-tasks and
+team repetitions follow. Scope and tempo are set by available training time,
+by the personnel, and by the learning progress actually observed — not by the
+plan on paper.
+
+</details>
+
+<details class="clz-fold" id="sys-practice" markdown="1">
+<summary>Practice: the run and pass demonstrations <span class="clz-fold__hint">inside zone, Dart-O, flood, stick, mesh</span></summary>
+
+**Inside zone, and the read extension.** Blocking: combo blocks by the
+offensive line. The landmark for the running back is the outside leg of the
+play-side guard. The back's read has three answers: **bang** straight ahead,
+**bend** as a cutback, **bounce** to the outside. The read extension adds one
+rule to the line's rules: the backside edge, the defensive end or end man on
+the line of scrimmage, is deliberately left unblocked. **Crash to the running
+back means keep. Stays outside means give.** Defensive exchange reactions are
+installed separately, because they are a separate problem and not an
+afterthought.
+
+**The complete play.** Called as **10-DOUBLE-RT IZ-Rt Rd-Lt**. The receiver
+category is RO, so the play side blocks and the two backside receivers run
+quick or smoke. That is the whole point of the construction kit: the call
+names the category, and everybody already knows the rest.
+
+**Dart-O, this team's variant.** Called as **10-TRIPLE-LT Dart-Rt**. The
+philosophy is a gap scheme, similar to power. The blocking is down and drive
+blocks plus a pull lead by the backside guard. The quarterback checks the box
+and the APEX defender, then hands off with a bootleg fake. The read extension
+is installed separately here as well.
+
+**Flood: the vertical three-level stretch.** One half of the field is
+overloaded with three routes at different depths. The example progression is
+deep → mid → flat; the alternatives are a high-low read or a triangle read.
+The install fixes the order, the key and the answer against pressure. Called
+as **11-TRIPLE-LT H-Flood-Lt**, with the concept route flood: play side 1 fly,
+play side 2 flat or swing, backside 1 post or dig, backside 2 post or dig.
+
+**Stick: the horizontal triangle stretch.** Called as **11-DOUBLE-LT
+Z-Slant-Lt H-Stick-Rt** — two tagged concept routes in one call. The slant
+route is play side 1 on the inside shoulder; the stick route is play side 1
+post or fly with play side 2 flat or swing.
+
+**Mesh: controlling the chaos in the middle.** Two extremely flat crossing
+routes, shallows at four to six yards in the slot area, supported by a sit
+route or a man-beater route by the outside receiver. Called as
+**12-DOUBLE-LT H-Mesh-Rt**, concept route mesh: play side 1 sit, backside 1
+post, backside 2 shallow. Example progression: sit → shallows → shot or
+corner. The order and the answers against man, zone and pressure belong to the
+concrete install, not to the concept.
+
+The three pass concepts were shown in that order, first on the projector and
+in 3D, then on everyone's own phone, each participant switching defense and
+play at their own pace. Which is exactly the reason the sketch quiz on this
+page exists.
+
+</details>
+
+### The transfer task
+
+The day closes with homework rather than a summary, and the four questions are
+the test of everything above. **Which abilities and which gap in the squad
+determine your choice? Choose one run scheme and two matching pass concepts.
+Name the assignments, the reads and the rules that apply. Plan the first
+install with a checkable success criterion.** The last of the four is the one
+that separates a system from a wish: a package without a success criterion is
+not installed, it is merely announced.
+
+
 </div>
 
 <div class="lang-block" lang="de" markdown="1">
@@ -1590,7 +2090,8 @@ Football beim American Football Verband Sachsen (AFVS). Diese Seite ist mein
 Lernbegleiter: das Lizenzsystem an einem Ort, alle Prüfungsthemen sortiert,
 meine eigenen Notizen aus den Lehrgängen, was die schriftliche und die
 praktische Prüfung tatsächlich abfragen, eine kompakte Coaching-Wissensbasis,
-Positionsblöcke zu Offensive Line und Quarterback und drei interaktive Quizze.
+Positionsblöcke zu Offensive Line und Quarterback, ein Block zu den
+offensiven Systemen vom Single Wing bis zum RPO und drei interaktive Quizze.
 
 <nav class="clz-index" markdown="1">
 
@@ -1602,6 +2103,7 @@ eingeklappt; ein Link von hier öffnet das Feld, auf das er zeigt.
 - **[Kursnotizen](#kursnotizen)** · [der Trainer](#kursnotizen-trainer) · [Planung](#kursnotizen-planung) · [Trainingslehre](#kursnotizen-lehre) · [die Einheit](#kursnotizen-einheit) · [langfristiger Aufbau](#kursnotizen-aufbau) · [Prävention und Diagnostik](#kursnotizen-praevention) · [die Fähigkeiten](#kursnotizen-faehigkeiten) · [Auswertung und mentales Training](#kursnotizen-auswertung) · [Korrekturen](#kursnotizen-korrekturen)
 - **[Positionstraining: die O-Line](#positionstraining)** · [was die Position verlangt](#oline-voraussetzungen) · [Stance](#oline-stance-de) · [Footwork und Hände](#oline-footwork-de) · [Run Blocking](#oline-schemes-de) · [Kick Out, Log, Double Team](#oline-rules-de) · [Pass Blocking](#oline-pass-de)
 - **[Positionstraining: der Quarterback](#qb-positionstraining)** · [Rolle und Werte](#qb-rolle) · [Entwicklung](#qb-entwicklung) · [Technik](#qb-technik) · [Wahrnehmen und entscheiden](#qb-entscheidungen) · [die VR-Demo](#qb-vr-de) · [einen QB aufbauen](#qb-aufbau) · [sechs Stationen](#qb-stationen)
+- **[Offensive Systeme](#offensive-systeme)** · [wofür eine Offense da ist](#sys-ziele) · [die Evolution](#sys-historie) · [Teamidentität](#sys-identitaet) · [Handbook und Playbook](#sys-playbook-de) · [Kategorien und Call-Order](#sys-baukasten) · [Install-Planung](#sys-install-de) · [Praxis-Demos](#sys-praxis)
 - **[Coaching-Wissensbasis](#wissensbasis)** · Offense führen, Defense führen
 - **Quizze** · [Begriffsdrill](#begriffsdrill) · [Probeklausur](#probeklausur) · [Formationsquiz](#formationsquiz)
 - [Quellen](#quellen)
@@ -3161,6 +3663,505 @@ Nach diesem Maßstab hat ein Quarterback, der erklären kann, was er gesehen
 hat, eine gute Einheit gehabt – auch wenn der Ball schlecht angekommen ist.
 
 
+## Offensive Systeme: Historie, Identität, Install {: #offensive-systeme }
+
+Der Lehrgang vom 22. November 2026 war der Systemblock: ein ganzer Tag dazu,
+wofür eine Offense da ist, woher die heutigen Systeme kommen, wie ein Kader
+entscheidet, welches davon er überhaupt spielen kann, und wie aus einem
+Playbook vier Wochen Training werden. Dozent: Steffen Breidenbach (Foxeye
+Athletics), Foliensatz „Offensive Systeme im American Football“. Der zentrale
+Satz steht als Kasten auf der Zeitstrahl-Folie und gehört nach vorn: **Gute
+Systeme verbinden passende Aufstellungen, klare Aufgaben und Entscheidungen.
+Mehr Komplexität ist nicht automatisch besser.**
+
+<details class="clz-fold" id="sys-ziele" markdown="1">
+<summary>Wofür eine Offense da ist <span class="clz-fold__hint">sechs Ziele, drei Kennzahlen, drei Tempi</span></summary>
+
+**Sechs Primärziele, und die Situation entscheidet, welches oben steht.** Die
+Folie ordnet sie um das Wort OFFENSE an, und der Sinn dieser Anordnung ist,
+dass sie miteinander konkurrieren.
+
+| Ziel | Was es verlangt |
+|---|---|
+| **Punkte erzielen** | TD vor FG, Red-Zone-Effizienz maximieren, jeder Drive zählt |
+| **Effizienz** | 1st-Down-Erfolg schafft Optionen; 3rd-Down-Conversion messen; Teamziel gesondert festlegen |
+| **Ballsicherheit** | Ballverluste vermeiden, Turnover-Margin und Folgen getrennt auswerten |
+| **Field Position** | Backed Up → Midfield → Red Zone, das Feld Stück für Stück gewinnen; gute Field Position entlastet die Defense |
+| **Physische Dominanz** | die Line of Scrimmage dominieren, eine Run-Identität etablieren, den Gegner physisch zermürben |
+| **Tempo & Clock** | Spieltempo als Waffe: die Uhr je nach Lage verlängern oder verkürzen |
+
+**Erfolgsmessung.** Zwei Raster, der Lehrgang stellt sie nebeneinander. Die
+*drei E* (Neal Brown, West Virginia): **Efficiency** — Beispielziel 6+ Yards
+am 1st Down, Down und Distance berücksichtigen, 3rd Down und Red Zone
+gesondert auswerten, den Drive-Opener gezielt planen; **Explosiveness** —
+Explosive Play als 20+ Yards Pass oder 12+ Yards Run, vertikale Bedrohung
+erhalten, Play-Action mit der Run-Action verbinden; **Errors** — Ballverluste
+kosten Punkte und Feldposition, vermeidbare Strafen reduzieren. Die
+*Success Formula* (Breidenbach) ist derselbe Gedanke als Kette, die Trilogie
+eines erfolgreichen Drives: **positiver 1st Down → Explosive Play → Punkte.**
+Raumgewinn am 1st Down schafft günstige Folgesituationen und hält die Offense
+flexibel; ein Chunk Play verschiebt die Field Position; der Drive wird
+abgeschlossen, und der Touchdown ist immer das Ziel, das Field Goal nur, wenn
+nötig.
+
+**Tempo ist ein taktisches Werkzeug, und dieses Team gibt seinen Tempi Namen.**
+
+<div class="clz-scroll" markdown="1">
+
+| Begriff | Huddle | Ausführung | Einsatz |
+|---|---|---|---|
+| **ICE** | Huddle | kontrolliertes Tempo; der Center ruft den Huddle, der Quarterback holt das Play beim Offensive Coordinator, volle Kommunikation im Huddle | Standard, Ball Control, Backed Up, Waste-Time |
+| **WATER** | no huddle – no rush | die O-Line geht direkt zur LOS, Playcall per Handzeichen, die Skillpositions stellen sich auf, der Quarterback gibt der Line ein Codewort | Rhythmus halten, Defense müde machen, Momentum |
+| **FIRE** | rush – no huddle | maximales Tempo, Handzeichen für alle, Skills inside the Numbers, minimale Kommunikation, Defense unter Druck | 2-Min-Drill, Aufholjagd, Substitutions verhindern |
+
+</div>
+
+**Complementary Football.** Die Offense existiert nicht isoliert. Lange Drives
+lassen die Defense sich erholen, wenige Turnover bedeuten keine
+Short-Field-Situationen für den Gegner, Punkte bedeuten, dass die Defense mit
+Lead spielt, kontrollierte Field Position bedeutet, dass der Gegner tiefer im
+eigenen Territorium startet. Umgekehrt: Turnover bringen der Offense kurze
+Felder, 3-and-Outs mehr Possessions, Punts nach Stops gute Field Position, und
+eine Gegner-Offense unter Druck bekommt weniger Zeit zur eigenen Erholung.
+
+**Der Gameplan weist jeder Situation ein Primärziel zu.** Standard Drive:
+Punkte erzielen, Success Formula anwenden, 6+ Yards am 1st Down anstreben,
+balanciert angreifen. Ball kontrollieren: Clock und Possession, First Downs
+und Punkte sichern, die Uhr bewusst nutzen, Run oder Pass nach Situation
+wählen, Defense und Special Teams mitdenken. 2-Minute-Drill: schnell scoren —
+und hier gehört die Regeländerung dazu, denn nach AFVD 2026 stoppt ein First
+Down die Uhr, der Neustart erfolgt auf Referee-Freigabe, und der
+10-Sekunden-Abzug gilt nur in den ausdrücklich geregelten Fällen. Backed Up,
+eigene 1 bis 10: Field Position zuerst, Ball sichern, Run oder kurzer Pass,
+Front und Matchup prüfen, die Risiken für die eigene Endzone begrenzen. Red
+Zone, gegnerische 20: Touchdown vor Field Goal, komprimierter Raum, Goal Line
+sowie Tight- und Open-Red-Zone trennen, das eigene TD-Ziel festlegen und
+regelmäßig auswerten. Play for FG: die FG-Range sichern, kein unnötiges
+Risiko, Middle of the Field halten, die Clock managen, die FG-Unit
+bereithalten.
+
+</details>
+
+<details class="clz-fold" id="sys-historie" markdown="1">
+<summary>Die Evolution der Offense <span class="clz-fold__hint">vom Single Wing zum RPO</span></summary>
+
+Sechs Phasen, und die Jahresangaben auf dem Zeitstrahl markieren weder
+Erfindungsdaten noch saubere Grenzen. Was der Zeitstrahl wirklich zeigt, ist
+eine einzige lange Bewegung: **von Masse und Kraft zu Raum und Entscheidung.**
+
+| Phase | Wann | Stichwort |
+|---|---|---|
+| Single Wing | ~1920 | Misdirection und Power |
+| Bears-T plus Motion | 1940 | Jones, Halas, Shaughnessy |
+| West Coast Offense | 1970er/80er | Bill Walsh, San Francisco |
+| Spread und Shotgun | 1990er | Spielfeldbreite nutzen |
+| Zone Read | 2000er | der Quarterback als Laufgefahr |
+| RPO und Packaged Plays | ab 2010 | Konflikt-Reads |
+
+**Single Wing (~1920).** Eine frühe, einflussreiche Offense-Familie mit Direct
+Snap an einen Back. Typisch: Täuschung, kompakte Aufstellungen, zusätzliche
+Blocker am Angriffspunkt. Unbalanced Formations sind eine wichtige Variante,
+das Double Wing eine spätere Adaption derselben Idee. Das Prinzip in einer
+Zeile: *Direct Snap, Täuschung und Blockerwinkel.* Sehr kompakte (condensed)
+Formation, eine Seite überladen, und die Physis gewinnt.
+
+**Bears-T-Formation (1940).** Die Bears perfektionierten die T-Formation mit
+Quarterback under Center und Man-in-Motion; Ralph Jones, George Halas und
+Clark Shaughnessy prägten diese Entwicklung, und das Finale 1940 endete 73:0.
+Motion wurde dabei nicht erstmals erfunden. Das Prinzip: *Balltäuschung,
+Motion und abgestimmte Aufgaben.* Was dazukommt: abgestimmte Blockaufgaben,
+Blocks zum zweiten Level, QB-Pivot und Balltäuschung, Pass und Run verbunden.
+Eigene spätere Adaptionen sind Split T, Wing-T, Wishbone und die I-Formation.
+
+**Split T (Don Faurot, 1941).** Eine Variation der Bears-T mit der Option des
+Pitches auf den Running Back, basierend auf einem Read während des Plays. Das
+Prinzip: *weitere OL-Splits und Entscheidungen im Laufspiel.* Weitere Splits
+zwischen den Linemen bedeuten eine größere Running Lane für den Back.
+
+**Wing-T (~1950).** Ein Hybrid aus T-Formation und Single Wing: Ein Back wird
+als Wing aufgestellt. Serien aus ähnlicher Anfangsbewegung verbinden
+unterschiedliche Ballträger, Blockwinkel und Täuschungen. Bekannt durch Dave
+Nelson und Tubby Raymond in Delaware.
+
+**Wishbone (~1968).** Texas setzte die Wishbone 1968 unter Darrell Royal mit
+Emory Bellard ein: ein Fullback vor zwei Halfbacks, was mehrere Laufoptionen
+aus ähnlichem Beginn ermöglicht. Entscheidend sind klare Read- und
+Pitch-Aufgaben.
+
+**I-Formation (u. a. USC 1962).** Fullback und Halfback in einer Linie hinter
+dem Quarterback.
+
+**West Coast Offense (1970er/80er).** Bill Walsh entwickelte sein Passspiel
+schon in Cincinnati und prägte später San Francisco. Kurze, präzise Pässe mit
+abgestimmtem Footwork und Timing ermöglichen Ballkontrolle; das Laufspiel
+bleibt Teil des Systems. Was es vom Quarterback verlangt: Footwork, Rhythmus,
+Timing und eine klare Pass-Progression.
+
+**Spread und Shotgun (1990er).** Zwei verschiedene Wörter. Spread beschreibt
+die räumliche Verteilung, Shotgun die QB-Aufstellung — und die 49ers spielten
+Shotgun bereits 1960. Breites Spacing kann Matchups und Laufraum schaffen;
+No-Huddle ist eine zusätzliche Tempoentscheidung obendrauf. Spread fordert die
+Defense in Breite und Tiefe, aber Druck und Rotation bleiben mögliche
+Antworten.
+
+**Zone-Read (2000er).** Zone-Blocking wird mit einer Laufentscheidung des
+Quarterbacks verbunden. Im Beispiel bleibt die Backside Edge ungeblockt:
+Schließt er zum Running Back, kann der Quarterback behalten; bleibt er außen,
+gibt der Quarterback ab. Der zusätzliche Läufer verändert die Zuordnung der
+Defense. Die defensive Antwort, zum Beispiel ein Scrape Exchange, heißt
+schlicht: ein anderer Spieler übernimmt den Quarterback.
+
+**RPO und Packaged Plays (ab 2010).** Ein Lauf, verbunden mit einer
+Passoption. Die Entscheidung kann vor oder nach dem Snap fallen. Bei einem
+Post-Snap-RPO wird ein festgelegter Konfliktverteidiger gelesen; Timing,
+Blockregeln und Passspiel müssen zusammenpassen. Ziel ist es, einen
+definierten Verteidiger in einen Aufgabenkonflikt zu bringen, bevorzugt im
+zweiten oder dritten Level — und die ehrliche Zeile der Folie gehört dazu:
+**eine freie Option ist nicht garantiert, und es gibt keinen garantierten
+Erfolg.** Was zugleich der zweite Kasten dieser Folien ist: Die Historie
+liefert einen Werkzeugkasten, man wählt passende Antworten, und nicht jedes
+Team braucht zusätzliche Reads.
+
+</details>
+
+<details class="clz-fold" id="sys-identitaet" markdown="1">
+<summary>Von der Teamanalyse zur offensiven Identität <span class="clz-fold__hint">der Kader entscheidet, nicht der Geschmack des Coaches</span></summary>
+
+**Was habe ich für ein Team?** Die Analyse beginnt als Bild, nicht als
+Vorliebe: ein Netzdiagramm über die Positionsgruppen mit einer
+Skill-Bewertung von 1 bis 5, daneben eine Kaderübersicht mit der Anzahl
+Spieler je Position. Ein Beispielteam hat 4 am Outside Receiver bei drei
+Spielern, 3 am Slot Receiver bei zwei, 2 am Tight End bei einem, 3 am Wing
+Back bei zwei, 2 am Fullback bei einem, 4 am Halfback bei drei, 3 am
+Quarterback bei zwei, und auf der Line von Left Tackle bis Right Tackle 3, 4,
+3, 3, 2 — bei nur einem Right Tackle im Kader. Skill und Tiefe sind zwei
+getrennte Zahlen, und beide zählen.
+
+**Dasselbe Diagramm funktioniert innerhalb einer Positionsgruppe.** Für die
+Wide Receiver sind die Achsen Speed, Kraft, Agilität, Technik (Route Running),
+Hände (Catch), Spielverständnis (Football IQ), Blocking und RAC (After Catch),
+zweimal gezeichnet: Gruppen-Durchschnitt gegen besten Spieler. Das Beispiel
+gelesen: Stärken sind hoher Speed plus RAC, also Yards nach dem Catch, gute
+Hände als zuverlässige Targets und Agilität für Separation im Kurzbereich.
+Schwächen sind unterdurchschnittliches Blocking, ein Kraft-Defizit, das die
+Gruppe anfällig gegen Press Coverage macht, und ein Football IQ, der bei
+komplexen Reads noch ausbaufähig ist. Die Konsequenz für den Gameplan folgt
+direkt: schnelle Pässe und RAC nutzen, klare und einfache Aufgaben stellen,
+Blocking-Technik gezielt entwickeln, Motion und Spacing für Releases nutzen,
+Blockwinkel und Matchups prüfen — und keine pauschale Crack-Empfehlung.
+
+**Das Identifikationsraster.** Vier Parameter, jeder ein Schieberegler statt
+einer Kategorie, und zusammen sind sie die Identität.
+
+| Parameter | Die Skala | Was er bestimmt |
+|---|---|---|
+| **Positionierung** | Under-Center ←→ Shotgun/Gun | Sichtfeld, Timing und Snap-Dynamik |
+| **Fokus** | Run-Dominanz ←→ Pass-Dominanz | welche Familie bei 1st & 10 die Basis-Identität ist |
+| **Geometrie** | Condensed/Eng ←→ Spread/Weit | wie eng oder weit die Spieler stehen |
+| **Frequenz** | schneller Snap ←→ Kontrolle (Clock) | Snap-Tempo und Nutzung der Spieluhr nach Situation |
+
+Der Takeaway dieser Folie: Anstatt Hunderte Play-Namen zu benennen, definieren
+wir zuerst unsere Identität über diese vier Parameter. Dasselbe Raster
+funktioniert auch für das Scouting der Defense — Systemdenken statt Playnamen.
+
+**Von der Analyse zur Philosophie.** Das Beispiel geht die ganze Kette durch.
+Team-Stärken: starke Outside Receiver in Speed, RAC und Händen; ein solides
+Halfback-Duo in Run und Catch; eine starke Interior OL mit Left Guard und
+Center auf Skill 4 und 3. Schwächen: eine schwache TE-Gruppe mit wenig Tiefe
+auf Skill 2, rechts dünn besetzter Outside Tackle mit nur einem Spieler auf
+Skill 2, und ein Quarterback, der solide statt elite ist, Skill 3 bei zwei
+Spielern. Die Ableitung: Speed-WR plus solider QB bedeuten schnelle Pässe,
+Screens und RPO mit Quick Game; starke Interior OL plus Halfbacks machen
+Inside Zone zur Run-Identität; schwache TEs und ein schwacher rechter Tackle
+bedeuten weniger 12 Personnel und mehr 3x1-Spread-Looks; ein QB als Game
+Manager bedeutet Rhythmus-Pässe statt Deep Shots als Basis. Die daraus
+folgende Identität: eine Spread-basierte Zone-Run-Offense mit Quick Game,
+Basis Inside Zone und schnelle Pässe aus 3x1, WATER als kontrolliertes Tempo
+ohne Huddle, Kommunikation und Wechsel mittrainiert, RAC und Play-Action als
+Chancen auf Explosive Plays. Die Zeile darunter ist die, die man mitnimmt:
+**Die Philosophie folgt dem Personal – nicht umgekehrt. Passe das System an
+die Spieler an, nicht die Spieler an das System.**
+
+**Und die Entscheidung selbst.** Der häufige Fehler ist, dass der Coach das
+System nach seiner persönlichen Vorliebe oder Erfahrung entscheidet — ohne
+Rücksicht auf das vorhandene Personal. Das Beispiel ist ein Coach, der Air
+Raid spielen will, aber keinen starken Passer hat — oder ein Coach, der 1:1
+ein NFL-System kopiert, das für Elite-Athleten designt wurde. Die Folie sagt
+es offen: *„Ich spiele das, was ich am liebsten mag“ ≠ gutes Coaching.* Der
+richtige Ansatz prüft Personal, Kaderbreite und Trainingszeit und wählt dann
+ein kleines Paket, das im Training getestet wird. Eine starke OL legt ein
+passendes Run-Scheme nahe, schnelle WR Spacing und Quick Game, ein mobiler QB
+macht eine Read-Erweiterung möglich, gute TEs machen 12 Personnel und
+Play-Action lohnend. Das Kernsystem braucht klare Aufgaben, verlässliche
+Wiederholungen und passende Antworten auf den Gegner.
+
+</details>
+
+<details class="clz-fold" id="sys-playbook-de" markdown="1">
+<summary>Handbook und Playbook <span class="clz-fold__hint">zwei Dokumente, zwei Zwecke, fünf Lernschritte</span></summary>
+
+**Drei Architekturen, und nur eine davon skaliert.** Die *Quick Offense* lernt
+Bilder, One-Word = One-Play: extrem schnelle Calls und eine gigantische Menge
+auswendig zu lernender Spielzüge. Das *adaptive System* lernt Syntax und Tags,
+mit modularen Befehlen aus Formation plus Tag: sehr flexibel, aber
+fehleranfällig bei hoher Komplexität. Der *Baukasten*, das intent-basierte
+System, lernt systematische Logik und Regeln: skalierbare Bausteine, wenige
+Calls, automatische Anpassung. Dort sitzt die moderne Offense, und auf dieser
+Architektur baut der Rest des Tages auf.
+
+**Zwei Dokumente, zwei Zwecke.** Die Breidenbach-Differenzierung
+nebeneinander:
+
+| Handbook — das Lehrbuch der Offense | Playbook — das Spieltag-Dokument, wöchentlich |
+|---|---|
+| Philosophie und Grundwerte des Systems | spezifische Plays für den Gegner dieser Woche |
+| die komplette Terminologie, die Sprache des Teams | der Gameplan mit priorisierten Spielzügen |
+| alle Logiken und Regeln erklärt | das Callsheet, nach Situation sortiert |
+| Personal-Gruppen und Formations-Logik | der Scout-Bericht zur gegnerischen Defense |
+| Motion- und Shift-Regeln | Anpassungen basierend auf Gegner-Tendenzen |
+| alle Basis-Schemes: Run, Pass, RPO | Red Zone und Goal-Line-Package, gegnerspezifisch |
+| die Call-Order, chronologisch aufgebaut | Check-with-me- und Audible-Anweisungen |
+| BRR und automatische Anpassungen | die 2-Minute- und End-of-Half-Strategie |
+| Protection-Regeln: BOB, Slide, Max | *ändert sich JEDE Woche* |
+| Saisonbasis: Änderungen kontrolliert versioniert | |
+| Regelwerk und Defense-Verständnis | |
+
+Die Kernaussage: Spieler müssen zuerst das Handbook verstehen — die Logik —
+bevor sie wöchentliche Playbooks ausführen können. Das Handbook ist die
+Grundlage, das Playbook die Anwendung. Die letzte Zeile der Handbook-Spalte
+ist in meinem Exemplar handschriftlich eingekreist, und sie verdient die
+Markierung: *auch Regelwerk und Defense-Verständnis gehören ins Handbook.*
+
+**Wie lerne ich ein Handbook? Fünf Schritte, Logik vor Bild.**
+
+1. **Call-Order lernen** — die chronologische Reihenfolge eines Playcalls
+   verstehen.
+2. **Formations-Logik verstehen** — nicht das Bild lernen, sondern die Logik
+   hinter den Formationen.
+3. **Run- und Pass-Schemes verstehen** — die Grundlogik der Lauf- und
+   Passkonzepte begreifen.
+4. **In Kategorien denken** — RUN, RO, RPO, PASS, PA leiten direkt zu
+   Aufgaben.
+5. **Tags und Modifikationen** — Fakes, Motions und ihre Konsequenzen für das
+   Play verstehen.
+
+Das Kernprinzip hinter den fünf Schritten: **Play-Kategorien definieren die
+Aufgabe jedes Spielers.** Beispiel Kategorie RUN: PS-WR blockt, BS-WR wendet
+die BRR an, die OL läuft das Run-Scheme, der QB macht Mesh und Handoff.
+Vereinfache das Lernen durch klare Strukturierung und Lernhilfen.
+
+**Was ins Handbook gehört.** Sieben Kern-Elemente: Personal und Formationen,
+mit Personalgruppen 11, 12, 21, 22 und so weiter, Formation-Tags wie Wide,
+Trips und Bunch, dazu Motions und Shifts; zwei bis drei Kern-Läufe aus der
+Zone-Familie (Inside Zone, Outside Zone) und der Gap-Familie (Power, Counter,
+Dart); Run Options als Read-Erweiterungen der Core Runs mit festgelegtem Key
+und passendem Blocking; RPO-Packages auf den Core Runs, etwa Bubble oder Pop,
+mit der Entscheidung vor oder nach dem Snap; drei bis fünf Kern-Passkonzepte,
+Dropback-Konzepte für alle Coverage-Typen, zum Beispiel Flood gegen Zone, Mesh
+gegen Man, Stick als Quick Game; Play Action und Screens auf Basis der Core
+Runs plus Screen-Packages Tunnel, Slip und Jailbreak; und Situational
+Packages für Red Zone, 3rd Down, 2-Minute, Goal Line und Backed Up. Die
+ergänzenden Elemente: Audibles und Check-with-me, das Cadence-System mit
+Snap-Rhythmus und Hard Count, Kommunikation über Handzeichen, Wristbands und
+Schilder, Protection Rules und Trick Plays. Der logische Aufbau, in dem das
+entsteht: Core Runs wählen, RO-Attachments hinzufügen, RPO-Tags definieren,
+Pass-Konzepte auswählen, Situational Packages bauen.
+
+**Regeln gehören neben die Plays.** Das Beispiel der Folie ist der Faktor Zeit
+und Raum: Ineligible Downfield, also genau das, was das Play-Timing diktiert.
+Der Regelkonflikt ist real, denn bei einem RPO blockt die O-Line einen Lauf,
+also vorwärts, während der Quarterback einen Pass wirft. AFVD 2026 (7.3.10):
+Ursprünglich Unberechtigte dürfen kein Körperteil über drei Feldmeter downfield
+haben, bevor ein legaler Vorwärtspass über die neutrale Zone erfolgt,
+Ausnahmen beachten. NFL 2026 (8.3.1): Der ganze Körper darf vor dem legalen
+Vorwärtspass nicht mehr als ein Yard downfield sein, für legal begonnenen
+Blockkontakt gelten Ausnahmen. Drei Meter und ein Yard sind fast ein Faktor
+drei, und dieser Unterschied ist ein anderes Play. Die Kernaussage der Folie:
+Relevante Regeln sollten immer mit den Plays beigebracht werden, um den Zweck
+des Plays zu verstärken.
+
+</details>
+
+<details class="clz-fold" id="sys-baukasten" markdown="1">
+<summary>Kategorien, Call-Order und die Backside <span class="clz-fold__hint">sieben Kategorien, eine Reihenfolge, vier Backside-Antworten</span></summary>
+
+**Die sieben Play-Kategorien, und was jede je Unit bedeutet.**
+
+<div class="clz-scroll" markdown="1">
+
+| Kategorie | Was sie ist | OL-Aufgabe | QB-Aufgabe | WR-Aufgabe |
+|---|---|---|---|---|
+| **RUN** | geplanter Lauf mit festgelegtem Ballträger, RB oder QB; die OL führt das angesagte Run-Scheme aus | Run-Block | Handoff oder QB-Run | Block (PS) / BRR (BS) |
+| **RO** | Run Option: Der QB entscheidet über Laufoptionen anhand eines definierten Reads, zum Beispiel Give oder Keep an der Backside Edge | Run-Block | installierter Run-Read | Block (PS) / BRR (BS) |
+| **RPO** | Lauf mit Passoption; Pre- oder Post-Snap-Entscheidung nach festgelegten Regeln, nicht immer ein LB-Read am Mesh | Run-Block (Timing!) | installierter RPO-Read | Route (PS) / BRR (BS) |
+| **PASS** | reiner Passspielzug; die OL setzt Pass-Protection, der QB macht Dropback und liest die Coverage-Progression | Pass-Protection | Dropback + Read | volle Routen |
+| **PA** | Play Action: Der Fake-Handoff täuscht Laufspiel vor, dann Pass; die OL zeigt initial Run-Action und wechselt zu Pass-Pro | Run-Fake + Pass-Pro | Fake + Dropback | Routen laut Konzept |
+| **SCREEN** | geplanter kurzer Pass mit vorbereiteten Blocks; Tunnel-, Bubble- und RB-Screens unterscheiden sich, OL-Aufgaben und Passort prüfen | Blocks laut Konzept | kurzer Wurf | Blocker + Fänger |
+| **TRICK** | Trickspielzug: Flea Flicker, Reverse Pass, Double Pass; setzt auf Täuschung und unerwartete Ballbewegung | variabel | variabel | variabel / Passer |
+
+</div>
+
+**Der Baukasten am Beispiel.** Core Runs aus der Zone- oder Gap-Familie, plus
+RO-Attachments, plus RPO-Packages. Komplexität durch Skalierung simpler
+Grundlagen. Und der Kleber ist die **Call-Order**, eine Checkliste: Jeder
+Playcall ist chronologisch konstruiert, und Spieler hören nur auf das, was
+ihre Unit betrifft.
+
+> **11-DOUBLE-RT** → **Z-MOT** → **Dart-Left** → **Slant-Rt RPO Tag** → **Snap**
+>
+> Formation → Motion → Core-Run-Kategorie → Modifikation und Pass-Option →
+> Cadence und Ausführung
+
+Spieler erkennen die Kategorie und verfolgen dann die Regeln dieser Kategorie.
+Das ist der ganze Trick: Der Call beschreibt kein Bild, er adressiert das
+Regelwerk, das jede Unit schon kennt.
+
+**Der Algorithmus der Backside (BRR).** In der Konvention dieses Teams sind
+die Backside Route Rules feste Antworten, die die Lernlast reduzieren: Die
+Anzahl der Wide Receiver auf der Backside bestimmt den Call.
+
+| Receiver auf der Backside | Call | Was er bedeutet |
+|---|---|---|
+| 1 WR | **HISS** | Hitch bei Corner tiefer als 8 Yards, Slant bei näher als 8, Fly gegen Press |
+| 2 WR | **QUICK** | Outside-WR härter, Step zurück und dann vorwärts vor der LOS; der Slot blockt den gefährlichsten Mann |
+| 3 WR | **BUBBLE** | die Nummer 3 läuft Bubble, die Nummern 1 und 2 blocken am Point of Attack |
+| 4 WR | **POP** | die Nummer 4 läuft den Pop-Pass, die restlichen WR blocken am Point of Attack |
+
+Wichtig: BRR gilt nur für Wide Receiver. Tight Ends sind im
+Run-Blocking-Scheme involviert — ist der Y ein Receiver, wird er in die BRR
+einbezogen. Der Callout auf der Folie: Das Team lernt keine Exoten mehr
+auswendig, weil die Logik der Formation das Play auf der Backside automatisch
+diktiert.
+
+**Personal in zwei Ziffern.** Die erste Ziffer ist die Anzahl Running Backs,
+die zweite die Anzahl Tight Ends. Mögliche Kombinationen sind 00 bis 05, 10
+bis 14, 20 bis 23 und 30 bis 32, davon 00, 01, 02, 10, 11, 12, 20, 21 und 30
+die üblichen. Die Eselsbrücke, die die dritte Zahl überflüssig macht: **Es
+gibt immer fünf Skillpositions (X, H, F, Y, Z)**, also folgt die Anzahl der WR
+aus den beiden anderen. 1 RB plus 2 TE heißt 2 WR, macht fünf Skillpositions,
+also 12 Personnel.
+
+**Und die Formation per Handzeichen.** Der Call sagt an, wie viele Receiver —
+den Y mitgezählt — auf der Strongside stehen: SINGLE einer, DOUBLE zwei,
+TRIPLE drei, QUAD vier, NICKEL fünf. Hier steht der TE auf der Line; andere
+Systeme nutzen auch Off-Ball-TEs.
+
+**Pass-Logik: die Konzept-Route.** Eine Konzept-Route wird an den Spieler
+getaggt, der sie bekommen soll, und genau das macht das Passspiel modular.
+Beispiel KZPT-Route Flood als 12y Out: PS1 läuft Fly, PS2 Flat oder Swing;
+BS1 Post oder Dig, BS2 Post oder Dig. Das Banner darunter ist die ganze
+Architektur in drei Worten: **Logik statt Bilder.**
+
+</details>
+
+<details class="clz-fold" id="sys-install-de" markdown="1">
+<summary>Vom Handbook aufs Feld <span class="clz-fold__hint">Theorie vor Praxis, Unit vor Team</span></summary>
+
+**Die Saison als Zeitstrahl.** November bis Februar ist Football IQ, also
+Theorie. Dann vier Wochen Phase-1-Install, unit-spezifisch. Dann vier Wochen
+Phase 2, team-spezifisch. Dann zwei bis drei Wochen Pre-Season, also
+Perfection. Juli bis Oktober ist Saison, also Gameday.
+
+**Football IQ, der Theorieblock.** Drei Theorie-Einheiten à 60 Minuten oder
+mehr: Philosophie, Logiken und Personal; Formationen und Motions; Run-Schemes
+plus RPO-Basis; Pass-Protection mit BOB und Slide; vier oder mehr
+Pass-Konzepte. Zwei Einheiten Regelkunde. Und drei Einheiten
+Defense-Verständnis: Fronts, Zonen und Coverages 0 bis 4, dazu Indikatoren und
+Video-Analyse. Dieser letzte Block ist der, den man gern streicht, und es ist
+der, der einen Read überhaupt vermittelbar macht.
+
+**Phase 1, vier Wochen, unit-spezifisch.** Drei Themenblöcke: **A** Inside
+Zone plus RPO plus PA, **B** Power plus RPO plus PA, **C** Outside Zone plus
+RPO plus PA. Alle drei werden *jede* Woche trainiert, mit steigender
+Komplexität pro Woche, und das Beispielpaket je Einheit ist 3 Runs, 2 RPO, 2
+Pass, 1 PA, 1 Screen.
+
+| Woche | Fokus | Was sich ändert |
+|---|---|---|
+| 1 | **Basic** | reine Mechanik, Basis-Blocking, Grund-Assignments, keine Variationen |
+| 2 | **+ Motions** | alle Plays aus Woche 1 bleiben, jetzt mit Motions: Wie verändert die Motion die Aufgabe? |
+| 3 | **+ Formationen** | gleiche Plays plus Motions, aber aus unterschiedlichen Formationen — Window Dressing |
+| 4 | **+ Defenses** | Plays gegen verschiedene Fronts und Coverages, Review und Anpassung, Perfection-Phase |
+
+Drei Einheiten pro Woche über vier Wochen ergeben zwölf Einheiten, je vier pro
+Themenblock.
+
+**Phase 2 und Saison.** Phase 2 behält die A/B/C-Struktur aus Phase 1, ergänzt
+Team-Scrimmages statt nur Unit-Arbeit und perfektioniert mit allen Units
+zusammen. Pre-Season bedeutet Trainingslager, Perfection und Testspiele. Die
+Saison bedeutet Gegner-Scouts plus Video-Analyse, wöchentlicher Gameplan plus
+Callsheet, Walkthroughs plus Perfection plus Special Teams.
+
+Das Planungsprinzip unter allem: **Die Spieler lernen die Aufgaben des
+nächsten Pakets vor dem Feldtraining.** Auf dem Feld folgen passende
+Teilaufgaben und Team-Reps. Umfang und Tempo richten sich nach Trainingszeit,
+Personal und beobachtetem Lernfortschritt — nicht nach dem Plan auf dem
+Papier.
+
+</details>
+
+<details class="clz-fold" id="sys-praxis" markdown="1">
+<summary>Praxis: die Lauf- und Pass-Demos <span class="clz-fold__hint">Inside Zone, Dart-O, Flood, Stick, Mesh</span></summary>
+
+**Inside Zone und die Read-Erweiterung.** Blocking: Combo-Blocks der O-Line.
+Die Landmark für den Running Back ist das Outside-Leg des Play-Side Guards.
+Der Read des Backs hat drei Antworten: **Bang** direkt, **Bend** als Cutback,
+**Bounce** nach außen. Die Read-Erweiterung ergänzt die OL-Regeln um eine
+Regel: Die Backside Edge, also der Defensive End beziehungsweise der End Man
+on the Line of Scrimmage, bleibt bewusst ungeblockt. **Crash zum Running Back
+heißt Keep. Bleibt er außen, heißt es Give.** Defensive Austauschreaktionen
+werden gesondert installiert, weil sie ein eigenes Problem sind und kein
+Nachgedanke.
+
+**Das komplette Play.** Angesagt als **10-DOUBLE-RT IZ-Rt Rd-Lt**. Die
+WR-Kategorie ist RO, also blockt die Play Side, und die beiden
+Backside-Receiver laufen Quick oder Smoke. Genau das ist der Sinn des
+Baukastens: Der Call nennt die Kategorie, und alle anderen wissen den Rest
+bereits.
+
+**Dart-O, die Variante dieses Teams.** Angesagt als **10-TRIPLE-LT Dart-Rt**.
+Die Philosophie ist ein Gap-Scheme, ähnlich wie Power. Das Blocking sind
+Down- und Drive-Blocks plus Pull Lead des Backside Guards. Der Quarterback
+prüft Box und APEX, dann Handoff und Bootleg-Fake. Die Read-Erweiterung wird
+auch hier separat installiert.
+
+**Flood: der vertikale 3-Level-Stretch.** Eine Feldhälfte wird mit drei Routen
+in unterschiedlichen Tiefen überladen. Die Beispiel-Progression ist Deep →
+Mid → Flat; die Alternativen sind ein High-Low- oder ein Triangle-Read. Der
+Install legt Reihenfolge, Key und Antwort auf Druck fest. Angesagt als
+**11-TRIPLE-LT H-Flood-Lt**, mit der KZPT-Route Flood: PS1 Fly, PS2 Flat oder
+Swing, BS1 Post oder Dig, BS2 Post oder Dig.
+
+**Stick: der horizontale Triangle-Stretch.** Angesagt als **11-DOUBLE-LT
+Z-Slant-Lt H-Stick-Rt** — zwei getaggte Konzept-Routen in einem Call. Die
+Slant-Route ist PS1 auf die Innenschulter; die Stick-Route ist PS1 Post oder
+Fly mit PS2 Flat oder Swing.
+
+**Mesh: das Chaos im Zentrum kontrollieren.** Zwei extrem flache, kreuzende
+Routen — Shallows auf 4 bis 6 Yards im Slot-Bereich —, unterstützt durch eine
+Sit-Route oder eine Man-Beater-Route des Outside-WR. Angesagt als
+**12-DOUBLE-LT H-Mesh-Rt**, KZPT-Route Mesh: PS1 Sit, BS1 Post, BS2 Shallow.
+Beispiel-Progression: Sit → Shallows → Shot/Corner. Reihenfolge und Antworten
+gegen Man, Zone und Druck gehören zum konkreten Install, nicht zum Konzept.
+
+Die drei Passkonzepte wurden in dieser Reihenfolge gezeigt, zuerst am Beamer
+und in 3D, dann auf dem eigenen Handy, wobei jeder Defense und Play im eigenen
+Tempo wechselte. Was genau der Grund ist, warum es das Skizzenquiz auf dieser
+Seite gibt.
+
+</details>
+
+### Die Transferaufgabe
+
+Der Tag endet mit einer Hausaufgabe statt mit einer Zusammenfassung, und die
+vier Fragen sind die Probe auf alles davor. **Welche Fähigkeiten und welche
+Kaderlücke bestimmen deine Auswahl? Wähle ein Run-Scheme und zwei passende
+Passkonzepte. Benenne Aufgaben, Reads und geltende Regeln. Plane den ersten
+Install mit einem überprüfbaren Erfolgskriterium.** Die letzte der vier
+trennt ein System von einem Wunsch: Ein Paket ohne Erfolgskriterium ist nicht
+installiert, es ist nur angekündigt.
+
+
 </div>
 
 <div class="lang-block" markdown="1">
@@ -3173,7 +4174,10 @@ athlete development as lists, by their German names. This drill asks for them
 letter by letter and stage by stage, plus the orders that have to sit:
 the Reizstufenregel, the three progressions, the periods of the training
 year, the planning cycle, the parts of a session, and the group phases. The
-pass mark here is 90 %, not 75 %.
+systems block adds its own: the call order of a play call, the five learning
+steps for the handbook, the seven play categories, the backside route rules,
+the three tempo terms and the five formation calls. The pass mark here is
+90 %, not 75 %.
 
 </div>
 
@@ -3187,7 +4191,10 @@ Leistungsaufbaus als Listen ab. Dieser Drill fragt sie Buchstabe für
 Buchstabe und Etappe für Etappe – dazu die Reihenfolgen, die sitzen müssen:
 Reizstufenregel, die drei Progressionen, die Perioden des Trainingsjahres,
 der Planungszyklus, der Aufbau der Trainingseinheit und die Gruppenphasen.
-Die Bestehensgrenze liegt hier bei 90 %, nicht bei 75 %.
+Der Systemblock steuert eigene bei: die Call-Order eines Playcalls, die fünf
+Lernschritte für das Handbook, die sieben Play-Kategorien, die BRR, die drei
+Tempobegriffe und die fünf Formationsansagen. Die Bestehensgrenze liegt hier
+bei 90 %, nicht bei 75 %.
 
 </div>
 
@@ -3234,6 +4241,13 @@ dashed verticals, and a man assignment is drawn as a dashed connector from
 the defender to his receiver. The question it drills is the one the test
 asks: **how many deep players, and man or zone?**
 
+The **Historie** category holds the formation families from the systems block:
+Single Wing and Double Wing, the T formation and the Split T, the Wing-T and
+the Wishbone. They carry seven men on the line and no arrows at all, because
+what separates them is where the snap goes and who stands where to receive it.
+In one case it comes down to the width of the splits alone, which happens to
+be the entire point of that formation.
+
 </div>
 
 <div class="lang-block" lang="de" markdown="1">
@@ -3252,6 +4266,13 @@ gestrichelte Senkrechte, und eine Man-Zuordnung ist als gestrichelte
 Verbindung vom Verteidiger zu seinem Receiver gezeichnet. Abgefragt wird
 genau das, was die Überprüfung wissen will: **wie viele Deep-Spieler, und
 Man oder Zone?**
+
+Die Kategorie **Historie** enthält die Formationsfamilien aus dem Systemblock:
+Single Wing und Double Wing, T-Formation und Split T, Wing-T und Wishbone. Sie
+zeigen sieben Mann auf der Line und gar keine Pfeile, denn was sie
+unterscheidet, ist, wohin der Snap geht und wer wo steht, um ihn zu bekommen.
+In einem Fall ist es allein die Breite der Splits, und genau das ist der Zweck
+dieser Formation.
 
 </div>
 
@@ -3277,6 +4298,8 @@ fundamentals follow widely used coaching references.
 - [Kuzmits & Adams (2008), "The NFL combine: does it predict performance in the National Football League?"](https://pubmed.ncbi.nlm.nih.gov/18978621/) — no consistent relationship except sprint tests for running backs.
 - [IAT Leipzig: Plus Prevention Program](https://sport-iat.de/plus-prevention-program) and its [test manual](https://sport-iat.de/fileadmin/user_upload/IAT-HUB/Themen/NWLS/Praeventionsprogramm/Testmanual-Plus%20Prevention%20Program.pdf); [IAT knowledge portal on women in elite sport](https://sport-iat.de/wissen-kompakt).
 - Course deck of the quarterback block, Dresden, 21 November 2026, lecturer Steffen Breidenbach (Foxeye Athletics): "Quarterbacks entwickeln" (Fassung 10). Its own reading list names the [USA Football Development Model](https://fdm.usafootball.com/how-it-works) and the [USA Football youth play recommendations](https://assets.usafootball.com/documents/coaching/usa-football-youth-play-recommendations.pdf), plus USA Football blog entries on reads and on defending the zone read with fill and fold.
+- Course deck of the offensive-systems block, 22 November 2026, lecturer Steffen Breidenbach (Foxeye Athletics): "Offensive Systeme im American Football" (Fassung 1), which draws on his original lecture of 28 March 2026 and on his Handbook 2k25 for the Dart-O fundamentals and the backside route rules. Its own reading list names the Pro Football Hall of Fame on [George Halas](https://www.profootballhof.com/players/george-halas) and [Bill Walsh](https://www.profootballhof.com/players/bill-walsh), [Don Faurot](https://mutigers.com/don-faurot) at Missouri, [Tubby Raymond](https://bluehens.com/news/2017/12/8/211689075) at Delaware, [Emory Bellard](https://texaslonghorns.com/news/2011/2/10/021011aaf_974) at Texas, [USC's national championships](https://usctrojans.com/sports/2020/6/24/football-national-championships), [the 49ers on the shotgun formation](https://www.49ers.com/news/75-for-75-the-shotgun-formation), and two USA Football blog entries by Seth Galina, one on RPO principles and one on Andy Reid's four-strong passing concept (both links in the handout are malformed, so they are cited by title only).
+- The two rulebooks the systems block quotes directly: [AFVD Football-Regelbuch 2026](https://afsvd.de/content/files/2025/12/Football_Regelbuch_2026-1.pdf), sections 3.3.2, 3.3.5, 3.4.4 and 7.3.10, and the [NFL Official Playing Rules 2026](https://static.www.nfl.com/image/upload/fl_attachment/league/tqivdkzt9mu6wdgsh1ku.pdf), rule 8, section 3, article 1.
 - Football fundamentals: [personnel groupings](https://gorout.com/football-personnel-groupings/), [defensive line techniques and gaps](https://www.bigblueview.com/2023/5/24/23734677/defensive-line-techniques-gaps-explained-big-blue-view-glossary-of-terms), [coverage shells](https://dustyevely.substack.com/p/basic-coverage-shells-a-primer).
 
 *Disclaimer: this page is my personal study summary, not an official AFVD or
@@ -3301,6 +4324,8 @@ Football-Grundlagen folgen verbreiteten Coaching-Referenzen.
 - [Kuzmits & Adams (2008), „The NFL combine: does it predict performance in the National Football League?“](https://pubmed.ncbi.nlm.nih.gov/18978621/) — kein durchgängiger Zusammenhang außer bei Sprinttests von Running Backs.
 - [IAT Leipzig: Plus Prevention Program](https://sport-iat.de/plus-prevention-program) und das [Testmanual](https://sport-iat.de/fileadmin/user_upload/IAT-HUB/Themen/NWLS/Praeventionsprogramm/Testmanual-Plus%20Prevention%20Program.pdf); [IAT-Wissensportal zu Frau im Leistungssport](https://sport-iat.de/wissen-kompakt).
 - Foliensatz des Quarterback-Blocks, Dresden, 21. November 2026, Dozent Steffen Breidenbach (Foxeye Athletics): „Quarterbacks entwickeln“ (Fassung 10). Die dortige Quellenliste nennt das [USA Football Development Model](https://fdm.usafootball.com/how-it-works) und die [Youth Play Recommendations von USA Football](https://assets.usafootball.com/documents/coaching/usa-football-youth-play-recommendations.pdf), dazu Blogbeiträge von USA Football zu Reads und zur Verteidigung des Zone Read mit Fill and Fold.
+- Foliensatz des Systemblocks, 22. November 2026, Dozent Steffen Breidenbach (Foxeye Athletics): „Offensive Systeme im American Football“ (Fassung 1), der auf seinen Originalvortrag vom 28.03.2026 und auf sein Handbook 2k25 für die Dart-O-Fundamentals und die BRR zurückgreift. Die dortige Quellenliste nennt die Pro Football Hall of Fame zu [George Halas](https://www.profootballhof.com/players/george-halas) und [Bill Walsh](https://www.profootballhof.com/players/bill-walsh), [Don Faurot](https://mutigers.com/don-faurot) in Missouri, [Tubby Raymond](https://bluehens.com/news/2017/12/8/211689075) in Delaware, [Emory Bellard](https://texaslonghorns.com/news/2011/2/10/021011aaf_974) in Texas, die [National Championships der USC](https://usctrojans.com/sports/2020/6/24/football-national-championships), [die 49ers zur Shotgun-Formation](https://www.49ers.com/news/75-for-75-the-shotgun-formation) und zwei Blogbeiträge von Seth Galina bei USA Football, einen zu RPO-Prinzipien und einen zu Andy Reids 4-Strong-Passkonzept (beide Links im Handout sind fehlerhaft und werden deshalb nur mit Titel zitiert).
+- Die beiden Regelbücher, die der Systemblock direkt zitiert: [AFVD Football-Regelbuch 2026](https://afsvd.de/content/files/2025/12/Football_Regelbuch_2026-1.pdf), Abschnitte 3.3.2, 3.3.5, 3.4.4 und 7.3.10, sowie die [NFL Official Playing Rules 2026](https://static.www.nfl.com/image/upload/fl_attachment/league/tqivdkzt9mu6wdgsh1ku.pdf), Rule 8, Section 3, Article 1.
 - Football-Grundlagen: [Personnel Groupings](https://gorout.com/football-personnel-groupings/), [Defensive-Line-Techniques und Gaps](https://www.bigblueview.com/2023/5/24/23734677/defensive-line-techniques-gaps-explained-big-blue-view-glossary-of-terms), [Coverage Shells](https://dustyevely.substack.com/p/basic-coverage-shells-a-primer).
 
 *Hinweis: Diese Seite ist meine persönliche Lernzusammenfassung, keine
