@@ -18,6 +18,7 @@
   var ROUND_SIZE = 5;
   var STORE_KEY = "ebm.learned.v2";
   var LANG_KEY = "lang";
+  var LANGS = ["de", "en", "es", "fr"];
   var DRAG_SLOP = 6;          // px of movement before a tap becomes a drag
   var ZOOM_MIN = 1;
   var ZOOM_MAX = 8;
@@ -59,6 +60,7 @@
       zoomHint: "Zoomen: am Rechner Strg und Mausrad, am Handy mit zwei Fingern; "
         + "die Knöpfe oben rechts tun dasselbe. Wenn die Karte vergrößert ist, "
         + "schiebst du sie mit einem Finger.",
+      mapLabel: "Stumme Karte von Europa",
       cats: {
         all: "Alles", country: "Länder", capital: "Hauptstädte",
         water: "Meere & Ozeane", river: "Flüsse", mountain: "Gebirge",
@@ -97,10 +99,92 @@
       zoomHint: "Zoom with Ctrl and the mouse wheel on a computer, with two "
         + "fingers on a phone; the buttons in the corner do the same. While the "
         + "map is zoomed in, one finger drags it around.",
+      mapLabel: "Blind map of Europe",
       cats: {
         all: "Everything", country: "Countries", capital: "Capitals",
         water: "Seas & oceans", river: "Rivers", mountain: "Mountain ranges",
         landform: "Islands & peninsulas", site: "Landmarks"
+      }
+    },
+
+    es: {
+      lead: "Arrastra los cinco nombres al lugar correcto.",
+      leadTap: "Toca un nombre y luego toca el mapa.",
+      category: "Tema",
+      level: "Nivel",
+      levels: ["Fácil", "Medio", "Todo"],
+      next: "Otros cinco",
+      show: "Enséñamelo",
+      reset: "Borrar el progreso",
+      resetAsk: "¿Borrar todo el progreso?",
+      learned: "aprendidos",
+      correct: "¡Correcto!",
+      close: "Muy cerca. Inténtalo otra vez.",
+      wrong: "Ahí no. Inténtalo otra vez.",
+      wrongWater: "Eso es tierra. Un mar es agua.",
+      wrongLand: "Eso es agua. Busca la tierra.",
+      shown: "Aquí está.",
+      doneAll: "Los %d correctos. ¡Muy bien!",
+      done: "%d de %d correctos.",
+      empty: "No queda nada para este tema y este nivel. Elige otro.",
+      legend: "punto = capital · cuadrado = monumento · línea azul = río · línea marrón = cordillera",
+      keyHint: "Con el teclado: elige un nombre con Tab y Enter, mueve la cruz con las flechas y suéltalo con Enter.",
+      loading: "Cargando el mapa …",
+      failed: "No se ha podido cargar el mapa.",
+      zoomIn: "Acercar",
+      zoomOut: "Alejar",
+      zoomReset: "Mapa entero",
+      full: "Pantalla completa",
+      exitFull: "Salir de pantalla completa",
+      zoomHint: "Para acercar: Ctrl y la rueda del ratón en un ordenador, dos "
+        + "dedos en un móvil; los botones de la esquina hacen lo mismo. Con el "
+        + "mapa acercado, un dedo lo arrastra.",
+      mapLabel: "Mapa mudo de Europa",
+      cats: {
+        all: "Todo", country: "Países", capital: "Capitales",
+        water: "Mares y océanos", river: "Ríos", mountain: "Cordilleras",
+        landform: "Islas y penínsulas", site: "Monumentos"
+      }
+    },
+
+    fr: {
+      lead: "Fais glisser les cinq noms au bon endroit.",
+      leadTap: "Touche un nom, puis touche la carte.",
+      category: "Thème",
+      level: "Niveau",
+      levels: ["Facile", "Moyen", "Tout"],
+      next: "Cinq autres",
+      show: "Montre-le-moi",
+      reset: "Effacer les progrès",
+      resetAsk: "Effacer tous les progrès ?",
+      learned: "appris",
+      correct: "Juste !",
+      close: "Tout près. Essaie encore.",
+      wrong: "Pas là. Essaie encore.",
+      wrongWater: "C'est la terre. Une mer, c'est de l'eau.",
+      wrongLand: "C'est l'eau. Cherche la terre.",
+      shown: "Le voici.",
+      doneAll: "Les %d justes. Bravo !",
+      done: "%d sur %d justes.",
+      empty: "Il ne reste rien pour ce thème et ce niveau. Choisis autre chose.",
+      legend: "point = capitale · carré = monument · ligne bleue = fleuve · ligne brune = chaîne de montagnes",
+      keyHint: "Au clavier : choisis un nom avec Tab et Entrée, déplace la croix avec les flèches, pose-le avec Entrée.",
+      loading: "Chargement de la carte …",
+      failed: "La carte n'a pas pu être chargée.",
+      zoomIn: "Agrandir",
+      zoomOut: "Réduire",
+      zoomReset: "Carte entière",
+      full: "Plein écran",
+      exitFull: "Quitter le plein écran",
+      zoomHint: "Pour zoomer : Ctrl et la molette sur un ordinateur, deux "
+        + "doigts sur un téléphone ; les boutons du coin font la même chose. "
+        + "Quand la carte est agrandie, un doigt la déplace.",
+      mapLabel: "Carte muette de l'Europe",
+      cats: {
+        all: "Tout", country: "Pays", capital: "Capitales",
+        water: "Mers et océans", river: "Fleuves",
+        mountain: "Chaînes de montagnes", landform: "Îles et péninsules",
+        site: "Monuments"
       }
     }
   };
@@ -236,10 +320,10 @@
   function initialLang() {
     try {
       var stored = localStorage.getItem(LANG_KEY);
-      if (stored === "de" || stored === "en") return stored;
+      if (LANGS.indexOf(stored) >= 0) return stored;
     } catch (e) { /* ignore */ }
     var tag = (navigator.language || "de").slice(0, 2);
-    return tag === "en" ? "en" : "de";
+    return LANGS.indexOf(tag) >= 0 ? tag : "de";
   }
 
   // --------------------------------------------------------------- geometry
@@ -299,12 +383,15 @@
     return TEXT[this.lang];
   };
 
+  /* A data file that predates a language falls back to English rather than
+     showing "undefined": the Android app ships a world.json with two of them,
+     and both applets run from this one file. */
   Game.prototype.name = function (item) {
-    return item[this.lang];
+    return item[this.lang] || item.en || item.de;
   };
 
   Game.prototype.note = function (item) {
-    return item[this.lang === "de" ? "nde" : "nen"] || "";
+    return item["n" + this.lang] || item.nen || item.nde || "";
   };
 
   // ----------------------------------------------------------- chrome
@@ -347,7 +434,7 @@
 
     var langGroup = el("div", "ebm__group", bar);
     this.langButtons = {};
-    ["de", "en"].forEach(function (code) {
+    LANGS.forEach(function (code) {
       var button = el("button", "ebm__opt", langGroup, code.toUpperCase());
       button.type = "button";
       button.addEventListener("click", function () {
@@ -407,8 +494,7 @@
       entry[0].setAttribute("aria-label", entry[1]);
     });
     this.syncFull();
-    this.map.setAttribute("aria-label",
-      this.lang === "de" ? "Stumme Karte von Europa" : "Blind map of Europe");
+    this.map.setAttribute("aria-label", t.mapLabel);
   };
 
   // -------------------------------------------------------------- the map
@@ -797,7 +883,7 @@
     this.levelButtons.forEach(function (button, index) {
       button.setAttribute("aria-pressed", index + 1 === self.level);
     });
-    ["de", "en"].forEach(function (code) {
+    LANGS.forEach(function (code) {
       self.langButtons[code].setAttribute("aria-pressed", code === self.lang);
     });
     var total = this.data.items.length;
@@ -1131,7 +1217,8 @@
   // isPointInFill -- the one part of the hit test that only exists in a
   // browser.
   if (window.__EBM_TEST__) {
-    window.__EBM_TEST__ = { Game: Game, game: null, css: CSS };
+    window.__EBM_TEST__ = { Game: Game, game: null, css: CSS,
+                            text: TEXT, langs: LANGS };
   }
 
   if (document.readyState === "loading") {

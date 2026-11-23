@@ -11,7 +11,14 @@
     <link>https://lucaswetzel.de/projects/europe-blind-map/</link>
     <guid isPermaLink="true">https://lucaswetzel.de/projects/europe-blind-map/</guid>
     <pubDate>Mon, 23 Nov 2026 12:00:00 +0000</pubDate>
-    <description>An interactive blind map of Europe. The outlines, rivers, mountain ridges, capital dots and landmark squares are all there; the names are not. Five of them arrive at a time as chips you drag to where they belong, and a name that lands correctly stays on the map. 170 names in German and English, built from public-domain Natural Earth data on an equal-area projection.</description>
+    <description>An interactive blind map of Europe. The outlines, rivers, mountain ridges, capital dots and landmark squares are all there; the names are not. Five of them arrive at a time as chips you drag to where they belong, and a name that lands correctly stays on the map. 170 names in German, English, Spanish and French, built from public-domain Natural Earth data on an equal-area projection.</description>
+  </item>
+  <item>
+    <title>Strahlenoptik: a small optics lab</title>
+    <link>https://lucaswetzel.de/projects/optics-lab/</link>
+    <guid isPermaLink="true">https://lucaswetzel.de/projects/optics-lab/</guid>
+    <pubDate>Mon, 23 Nov 2026 12:00:00 +0000</pubDate>
+    <description>Five stations of ray optics to take hold of: light and shadow, the law of reflection, refraction and total reflection, the focal point of a lens, and an optical bench with a light source, an object, a lens on a rail and a projection screen. Every station carries a short explanation and tasks that check themselves. German, English, Spanish and French.</description>
   </item>
   <item>
     <title>Analog circuits in theory and application</title>

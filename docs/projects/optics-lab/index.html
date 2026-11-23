@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strahlenoptik: a small optics lab · Lucas Wetzel</title>
+<meta name="description" content="Five stations of ray optics to take hold of: light and shadow, the law of reflection, refraction and total reflection, the focal point of a lens, and an optical bench with a light source, an object, a lens on a rail and a projection screen. Every station carries a short explanation and tasks that check themselves. German, English, Spanish and French.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects/optics-lab/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Strahlenoptik: a small optics lab · Lucas Wetzel">
+<meta property="og:description" content="Five stations of ray optics to take hold of: light and shadow, the law of reflection, refraction and total reflection, the focal point of a lens, and an optical bench with a light source, an object, a lens on a rail and a projection screen. Every station carries a short explanation and tasks that check themselves. German, English, Spanish and French.">
+<meta property="og:url" content="https://lucaswetzel.de/projects/optics-lab/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // GitHub Pages cannot send X-Frame-Options or a CSP frame-ancestors directive,
+  // so this is the only lever there is. Mark the document before the body is
+  // parsed; the stylesheet then keeps the content hidden until site.js has
+  // replaced it with a notice. Marking rather than navigating is deliberate:
+  // browsers increasingly refuse an automatic top navigation from a frame and
+  // leave a blank box behind, which tells the reader nothing.
+  if (window.self !== window.top) document.documentElement.dataset.framed = "";
+</script>
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=07eda313">
+<link rel="stylesheet" href="/assets/css/site.css?v=07eda313">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/research/">Research</a>
+      <a href="/projects/" aria-current="page">Current projects</a>
+      <a href="/projects-anabrid/">Projects@anabrid</a>
+      <a href="/oscillatory-computing/">Oscillatory computing</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="post">
+  <header class="post__header">
+    <p class="eyebrow"><a href="/projects/">Current projects</a></p>
+    <h1 class="post__title">Strahlenoptik: a small optics lab</h1>
+<p class="post__standfirst">Five stations of ray optics to take hold of: light and shadow, the law of reflection, refraction and total reflection, the focal point of a lens, and an optical bench with a light source, an object, a lens on a rail and a projection screen. Every station carries a short explanation and tasks that check themselves. German, English, Spanish and French.</p>    <dl class="post__meta">
+      <div class="post__meta-pair">
+        <dt>Published</dt>
+        <dd>23 November 2026</dd>
+      </div>
+      <div class="post__meta-pair">
+        <dt>Topics</dt>
+        <dd class="taglist">
+<a class="topic-tag" href="/tags/optics/">optics</a><a class="topic-tag" href="/tags/physics/">physics</a><a class="topic-tag" href="/tags/teaching/">teaching</a><a class="topic-tag" href="/tags/interactive/">interactive</a>        </dd>
+      </div>
+    </dl>
+  </header>
+
+  <div class="prose"><h2 id="why">Why this exists</h2>
+<p>Optics is the first piece of physics a child can check by hand. A shadow is
+either there or it is not. A ray either hits the target or misses it. The
+image on the screen is either sharp or it is blurred, and nobody has to be
+told which. That makes it the rare topic where a simulation is not a
+substitute for the experiment but a rehearsal for it: everything in here can
+be rebuilt on a kitchen table with a torch, a mirror, a glass of water and a
+magnifying glass, and it should be.</p>
+<p>What a screen adds is the part the kitchen table hides. On a real optical
+bench you see the image and not the rays. Here the three rays that construct
+the image are drawn while you move the lens, so the rule and its consequence
+move together. That is the whole argument for doing it this way, and it is
+also the limit: a drawn ray is a claim about geometry, not a photograph.</p>
+<div class="olab"><noscript>The lab needs JavaScript. / Das Labor braucht
+JavaScript.</noscript></div>
+
+<script defer src="/media/optics-lab/applet.js?v=145b91bb"></script>
+
+<h2 id="anleitung">So geht es</h2>
+<p><em>Für die Kinder, auf Deutsch.</em> Oben wählst du die Station, rechts oben die
+Sprache: <strong>DE · EN · ES · FR</strong>. Jede Station erklärt sich in drei, vier
+Sätzen, dann darfst du ziehen. Die dicken orangenen Punkte im Bild fasst du
+mit der Maus oder mit dem Finger an; die Regler darunter tun genau dasselbe
+und gehen auch mit der Tastatur. Unter dem Bild stehen die Aufgaben. Die
+prüfen sich selbst: sobald es stimmt, hakt sich die Aufgabe ab und bleibt
+abgehakt, auch wenn du die Seite später wieder aufmachst.</p>
+<p>Die fünf Stationen bauen aufeinander auf. <strong>Licht &amp; Schatten</strong> zeigt, dass
+Licht geradeaus läuft, und mit der zweiten Lampe, woher Kernschatten und
+Halbschatten kommen. <strong>Spiegel</strong> ist die eine Regel, die man wirklich braucht:
+Einfallswinkel gleich Ausfallswinkel, gemessen zum Lot. <strong>Brechung</strong> zeigt,
+warum ein Stab im Wasser geknickt aussieht, und den Grenzwinkel, ab dem gar
+kein Licht mehr herauskommt. <strong>Brennpunkt</strong> sammelt paralleles Licht in einem
+Punkt. Und im <strong>optischen Labor</strong> steht dann alles zusammen auf der
+Linsenschiene: Lampe, Gegenstand, Linse, Projektionswand.</p>
+<p><em>Para los niños:</em> elige el idioma arriba a la derecha — <strong>ES</strong>. · <em>Pour les
+enfants :</em> choisis la langue en haut à droite — <strong>FR</strong>.</p>
+<h2 id="stations">What is in it</h2>
+<table>
+<thead>
+<tr>
+<th>Station</th>
+<th>What you move</th>
+<th>What it is for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Licht &amp; Schatten</td>
+<td>lamp, object, wall, a second lamp</td>
+<td>light travels straight; umbra and penumbra</td>
+</tr>
+<tr>
+<td>Spiegel</td>
+<td>where the ray hits, how the mirror is turned</td>
+<td>the law of reflection, and the image behind the glass</td>
+</tr>
+<tr>
+<td>Brechung</td>
+<td>the angle, water or glass, which side the ray comes from</td>
+<td>Snell's law, and total reflection</td>
+</tr>
+<tr>
+<td>Brennpunkt</td>
+<td>focal length, tilt of the bundle, lens type</td>
+<td>the focal point and the focal plane</td>
+</tr>
+<tr>
+<td>Optisches Labor</td>
+<td>object, lens, screen, focal length, object size</td>
+<td>the thin-lens equation and the image it predicts</td>
+</tr>
+</tbody>
+</table>
+<p>Eighteen tasks across the five, and the ticks live in the browser. There is no
+account, no timer and no score beyond how many of the eighteen have been
+solved once.</p>
+<h2 id="build">How it is built</h2>
+<p>The lab is one file of JavaScript with no dependencies and no network traffic.
+Each station holds its model in centimetres and degrees, and the drawing maps
+centimetres to pixels at the last moment. That split is worth naming because
+it is what makes the thing checkable: the physics never learns that a screen
+exists, so it can be run without one.</p>
+<p>That is exactly what <code>tools/optics_proof.js</code> does. It loads the applet against
+a stub window, pulls the stations out through a test hook and sweeps the whole
+control space of every station. It answers two questions that looking at the
+screen cannot:</p>
+<ul>
+<li><strong>Is every task reachable?</strong> A task whose window the sliders cannot enter is
+  not a hard task, it is a broken one. Three of the eighteen sit in under a
+  tenth of a percent of the swept space, which is the point of them, and none
+  sits at zero.</li>
+<li><strong>Is any task satisfied nearly everywhere?</strong> Then it teaches nothing. One
+  was: <em>push the object inside the focal length</em> is a single shove of a
+  slider. It now asks for a magnification of two as well, which forces the
+  object close to the focal point — which is where a magnifier is actually
+  held. The check caught a weak task, not a wrong one, and that is the more
+  common failure.</li>
+</ul>
+<p>The same script checks the physics against values worked out by hand: air into
+water at 40° refracts to 28.9°, the critical angle out of water is 48.75° and
+out of glass 41.8°, an object at twice the focal length gives an image at
+twice the focal length the same size as itself, and a mirror returns a ray at
+the angle it arrived at for every tilt of the mirror. It also checks that
+every station, control, readout and task carries text in all four languages,
+because a missing string is the kind of fault that only shows up in the one
+language nobody tested.</p>
+<p>A few decisions that are visible in the pictures:</p>
+<ul>
+<li><strong>The shadow station draws rays, not a shaded cone.</strong> The shadow is defined
+  as the part of the wall no ray reaches, so drawing the rays and letting the
+  gap appear is the definition rather than an illustration of it.</li>
+<li><strong>The half-shadow here is made by two lamps, not by one large lamp.</strong> A real
+  penumbra is the smooth result of an extended source, and a lamp with a size
+  would be the honest model. Two point lamps give two shadows with a region
+  where only one of them falls, which is the same idea in two steps instead of
+  a continuum. It is easier to see and it is not the same thing.</li>
+<li><strong>The lens obeys the thin-lens equation and nothing else.</strong> <span class="math math--inline" data-tex="1/f = 1/g +
+  1/b">$1/f = 1/g +
+  1/b$</span>, with the three principal rays drawn as the construction. That is the
+  paraxial approximation: no thickness, no spherical aberration, no colour. A
+  real lens of this aperture would not bring the edge rays to the same point.</li>
+<li><strong>The spot on the screen is blurred in proportion to the defocus.</strong> The
+  blur radius is the aperture the bundle uses times the defocus divided by the
+  image distance, which is the geometry of a cone cut off the wrong side of
+  its tip. It is there so that <em>sharp</em> is something you hunt for rather than
+  something the applet announces.</li>
+<li><strong>The zoom-free viewBox is set to the element's pixel size.</strong> Strokes and
+  labels are therefore in pixels and keep their size on a phone, while the
+  model stays in centimetres. The blind map solved the same problem the other
+  way round, with a CSS variable, because that one has to zoom.</li>
+</ul>
+<h2 id="limits">What it does not do</h2>
+<p>It is ray optics and only ray optics. Light is a straight line that bends at
+boundaries and nothing else, which is a model that stops being true as soon as
+anything gets small: there is no diffraction here, no interference, no
+polarization, no wavelength and therefore no colour. A prism in this lab would
+bend white light and not split it.</p>
+<p>The mirror is flat. A concave mirror has a focal point too, and it is the
+other half of the schoolbook chapter, so its absence is the most obvious gap.
+The eye and the camera are named in one task each and are not modelled. There
+is no lens combination, which is what a microscope and a telescope are.</p>
+<p>And it checks arithmetic, not understanding. A child can solve every task by
+sliding until the tick appears. Whether the picture went in is a question only
+a person can ask, which is the same honest limit the blind map has.</p></div>
+
+  <footer class="post__footer">
+    <nav class="pager" aria-label="More posts">
+      <a class="pager__link pager__link--prev" href="/projects/analog-circuits/">
+        <span class="pager__label">Older</span>
+        <span class="pager__title">Analog circuits in theory and application</span>
+      </a>
+      <a class="pager__link pager__link--next" href="/projects/europe-blind-map/">
+        <span class="pager__label">Newer</span>
+        <span class="pager__title">Stumme Karte: a blind map of Europe</span>
+      </a>
+    </nav>
+  </footer>
+</article>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/research/">Research</a></li>
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=07eda313"></script>
+</body>
+</html>

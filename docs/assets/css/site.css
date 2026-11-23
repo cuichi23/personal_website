@@ -716,6 +716,25 @@ a:hover { color: var(--link-hover); }
   max-width: 46ch;
 }
 
+/* One pointer above a reverse-chronological list. The applets are the part of
+   this site that is used rather than read, and a date-ordered list buries
+   them the week after they are written. */
+.page-lead {
+  max-width: var(--page);
+  margin: 0 auto var(--space-5);
+  padding-inline: var(--gutter);
+}
+
+.page-lead p {
+  margin: 0;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-wash);
+  border-radius: 0 10px 10px 0;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+}
+
 .post-list {
   list-style: none;
   max-width: var(--page);

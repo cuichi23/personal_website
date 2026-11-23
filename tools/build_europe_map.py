@@ -15,6 +15,11 @@ Usage:
 
     python3 -I tools/build_europe_map.py <input-dir> [output.json]
 
+To correct only the names, without the input files and without touching one
+coordinate:
+
+    python3 -I tools/build_europe_map.py --relabel [map.json]
+
 The curated layers (capitals, seas, mountain ridges, islands, sites) are not in
 the Natural Earth files at a useful granularity, so they live in this file as
 plain latitude/longitude tables. They are the part a human has to get right.
@@ -520,6 +525,339 @@ SITES = [
 ]
 
 
+# --------------------------------------------------------------- languages
+
+# Spanish and French names, keyed by the item id the builder makes. They sit
+# apart from the tables above rather than inside those tuples on purpose: the
+# tuples carry geometry and a name is not geometry, and widening 170 positional
+# tuples by two columns is the kind of edit that silently shifts a latitude.
+# A missing entry is reported and falls back to the English name, so adding a
+# sea cannot quietly ship it in two languages.
+NAMES_ES_FR = {
+    # countries
+    "c-pt": ("Portugal", "Portugal"),
+    "c-es": ("España", "Espagne"),
+    "c-fr": ("Francia", "France"),
+    "c-ie": ("Irlanda", "Irlande"),
+    "c-gb": ("Reino Unido", "Royaume-Uni"),
+    "c-nl": ("Países Bajos", "Pays-Bas"),
+    "c-be": ("Bélgica", "Belgique"),
+    "c-lu": ("Luxemburgo", "Luxembourg"),
+    "c-de": ("Alemania", "Allemagne"),
+    "c-dk": ("Dinamarca", "Danemark"),
+    "c-no": ("Noruega", "Norvège"),
+    "c-se": ("Suecia", "Suède"),
+    "c-fi": ("Finlandia", "Finlande"),
+    "c-ee": ("Estonia", "Estonie"),
+    "c-lv": ("Letonia", "Lettonie"),
+    "c-lt": ("Lituania", "Lituanie"),
+    "c-pl": ("Polonia", "Pologne"),
+    "c-cz": ("Chequia", "Tchéquie"),
+    "c-sk": ("Eslovaquia", "Slovaquie"),
+    "c-at": ("Austria", "Autriche"),
+    "c-ch": ("Suiza", "Suisse"),
+    "c-it": ("Italia", "Italie"),
+    "c-si": ("Eslovenia", "Slovénie"),
+    "c-hr": ("Croacia", "Croatie"),
+    "c-ba": ("Bosnia y Herzegovina", "Bosnie-Herzégovine"),
+    "c-rs": ("Serbia", "Serbie"),
+    "c-me": ("Montenegro", "Monténégro"),
+    "c-xk": ("Kosovo", "Kosovo"),
+    "c-al": ("Albania", "Albanie"),
+    "c-mk": ("Macedonia del Norte", "Macédoine du Nord"),
+    "c-gr": ("Grecia", "Grèce"),
+    "c-bg": ("Bulgaria", "Bulgarie"),
+    "c-ro": ("Rumanía", "Roumanie"),
+    "c-hu": ("Hungría", "Hongrie"),
+    "c-md": ("Moldavia", "Moldavie"),
+    "c-ua": ("Ucrania", "Ukraine"),
+    "c-by": ("Bielorrusia", "Biélorussie"),
+    "c-is": ("Islandia", "Islande"),
+    "c-tr": ("Turquía", "Turquie"),
+    "c-ru": ("Rusia", "Russie"),
+    "c-cy": ("Chipre", "Chypre"),
+    "c-mt": ("Malta", "Malte"),
+    # capitals
+    "p-lisbon": ("Lisboa", "Lisbonne"),
+    "p-madrid": ("Madrid", "Madrid"),
+    "p-paris": ("París", "Paris"),
+    "p-dublin": ("Dublín", "Dublin"),
+    "p-london": ("Londres", "Londres"),
+    "p-amsterdam": ("Ámsterdam", "Amsterdam"),
+    "p-brussels": ("Bruselas", "Bruxelles"),
+    "p-luxembourg": ("Luxemburgo", "Luxembourg"),
+    "p-berlin": ("Berlín", "Berlin"),
+    "p-copenhagen": ("Copenhague", "Copenhague"),
+    "p-oslo": ("Oslo", "Oslo"),
+    "p-stockholm": ("Estocolmo", "Stockholm"),
+    "p-helsinki": ("Helsinki", "Helsinki"),
+    "p-tallinn": ("Tallin", "Tallinn"),
+    "p-riga": ("Riga", "Riga"),
+    "p-vilnius": ("Vilna", "Vilnius"),
+    "p-warsaw": ("Varsovia", "Varsovie"),
+    "p-prague": ("Praga", "Prague"),
+    "p-bratislava": ("Bratislava", "Bratislava"),
+    "p-vienna": ("Viena", "Vienne"),
+    "p-bern": ("Berna", "Berne"),
+    "p-rome": ("Roma", "Rome"),
+    "p-ljubljana": ("Liubliana", "Ljubljana"),
+    "p-zagreb": ("Zagreb", "Zagreb"),
+    "p-sarajevo": ("Sarajevo", "Sarajevo"),
+    "p-belgrade": ("Belgrado", "Belgrade"),
+    "p-podgorica": ("Podgorica", "Podgorica"),
+    "p-pristina": ("Pristina", "Pristina"),
+    "p-tirana": ("Tirana", "Tirana"),
+    "p-skopje": ("Skopie", "Skopje"),
+    "p-athens": ("Atenas", "Athènes"),
+    "p-sofia": ("Sofía", "Sofia"),
+    "p-bucharest": ("Bucarest", "Bucarest"),
+    "p-budapest": ("Budapest", "Budapest"),
+    "p-chisinau": ("Chisináu", "Chisinau"),
+    "p-kyiv": ("Kiev", "Kyiv"),
+    "p-minsk": ("Minsk", "Minsk"),
+    "p-reykjavik": ("Reikiavik", "Reykjavik"),
+    "p-ankara": ("Ankara", "Ankara"),
+    "p-moscow": ("Moscú", "Moscou"),
+    "p-nicosia": ("Nicosia", "Nicosie"),
+    "p-valletta": ("La Valeta", "La Valette"),
+    # seas and other waters
+    "w-atlantic": ("Océano Atlántico", "Océan Atlantique"),
+    "w-northsea": ("Mar del Norte", "Mer du Nord"),
+    "w-baltic": ("Mar Báltico", "Mer Baltique"),
+    "w-mediterranean": ("Mar Mediterráneo", "Mer Méditerranée"),
+    "w-blacksea": ("Mar Negro", "Mer Noire"),
+    "w-norwegiansea": ("Mar de Noruega", "Mer de Norvège"),
+    "w-barents": ("Mar de Barents", "Mer de Barents"),
+    "w-biscay": ("Golfo de Vizcaya", "Golfe de Gascogne"),
+    "w-bothnia": ("Golfo de Botnia", "Golfe de Botnie"),
+    "w-adriatic": ("Mar Adriático", "Mer Adriatique"),
+    "w-aegean": ("Mar Egeo", "Mer Égée"),
+    "w-tyrrhenian": ("Mar Tirreno", "Mer Tyrrhénienne"),
+    "w-ionian": ("Mar Jónico", "Mer Ionienne"),
+    "w-irishsea": ("Mar de Irlanda", "Mer d'Irlande"),
+    "w-channel": ("Canal de la Mancha", "Manche"),
+    "w-skagerrak": ("Skagerrak", "Skagerrak"),
+    "w-gibraltar": ("Estrecho de Gibraltar", "Détroit de Gibraltar"),
+    "w-azov": ("Mar de Azov", "Mer d'Azov"),
+    # rivers
+    "r-danube": ("Danubio", "Danube"),
+    "r-rhine": ("Rin", "Rhin"),
+    "r-elbe": ("Elba", "Elbe"),
+    "r-oder": ("Óder", "Oder"),
+    "r-vistula": ("Vístula", "Vistule"),
+    "r-loire": ("Loira", "Loire"),
+    "r-seine": ("Sena", "Seine"),
+    "r-rhone": ("Ródano", "Rhône"),
+    "r-garonne": ("Garona", "Garonne"),
+    "r-po": ("Po", "Pô"),
+    "r-ebro": ("Ebro", "Èbre"),
+    "r-tagus": ("Tajo", "Tage"),
+    "r-douro": ("Duero", "Douro"),
+    "r-thames": ("Támesis", "Tamise"),
+    "r-dnieper": ("Dniéper", "Dniepr"),
+    "r-don": ("Don", "Don"),
+    "r-volga": ("Volga", "Volga"),
+    "r-dniester": ("Dniéster", "Dniestr"),
+    "r-daugava": ("Daugava", "Daugava"),
+    "r-neva": ("Nevá", "Neva"),
+    "r-tisza": ("Tisza", "Tisza"),
+    "r-drava": ("Drava", "Drave"),
+    "r-glomma": ("Glomma", "Glomma"),
+    "r-gota": ("Göta älv", "Göta älv"),
+    "r-kemijoki": ("Kemijoki", "Kemijoki"),
+    "r-sevdvina": ("Dviná Septentrional", "Dvina septentrionale"),
+    # mountain ranges
+    "m-alps": ("Alpes", "Alpes"),
+    "m-pyrenees": ("Pirineos", "Pyrénées"),
+    "m-carpathians": ("Cárpatos", "Carpates"),
+    "m-scandes": ("Alpes Escandinavos", "Alpes scandinaves"),
+    "m-apennines": ("Apeninos", "Apennins"),
+    "m-dinarides": ("Alpes Dináricos", "Alpes dinariques"),
+    "m-balkan": ("Montes Balcanes", "Balkan"),
+    "m-caucasus": ("Cáucaso", "Caucase"),
+    "m-sierranevada": ("Sierra Nevada", "Sierra Nevada"),
+    "m-massifcentral": ("Macizo Central", "Massif central"),
+    # islands and peninsulas
+    "i-sicily": ("Sicilia", "Sicile"),
+    "i-sardinia": ("Cerdeña", "Sardaigne"),
+    "i-corsica": ("Córcega", "Corse"),
+    "i-crete": ("Creta", "Crète"),
+    "i-mallorca": ("Mallorca", "Majorque"),
+    "i-gotland": ("Gotland", "Gotland"),
+    "i-ruegen": ("Rügen", "Rügen"),
+    "i-iberia": ("Península Ibérica", "Péninsule Ibérique"),
+    "i-apennine": ("Península Itálica", "Péninsule italienne"),
+    "i-balkan": ("Península Balcánica", "Péninsule balkanique"),
+    "i-scandinavia": ("Península Escandinava", "Péninsule Scandinave"),
+    "i-jutland": ("Jutlandia", "Jutland"),
+    "i-crimea": ("Crimea", "Crimée"),
+    "i-peloponnese": ("Peloponeso", "Péloponnèse"),
+    "i-brittany": ("Bretaña", "Bretagne"),
+    "i-kola": ("Península de Kola", "Péninsule de Kola"),
+    # landmarks
+    "s-eiffel": ("Torre Eiffel", "Tour Eiffel"),
+    "s-colosseum": ("Coliseo", "Colisée"),
+    "s-acropolis": ("Acrópolis", "Acropole"),
+    "s-brandenburg": ("Puerta de Brandeburgo", "Porte de Brandebourg"),
+    "s-stonehenge": ("Stonehenge", "Stonehenge"),
+    "s-sagrada": ("Sagrada Família", "Sagrada Família"),
+    "s-pisa": ("Torre inclinada de Pisa", "Tour de Pise"),
+    "s-vesuvius": ("Vesubio", "Vésuve"),
+    "s-etna": ("Etna", "Etna"),
+    "s-montblanc": ("Mont Blanc", "Mont Blanc"),
+    "s-matterhorn": ("Cervino", "Cervin"),
+    "s-nordkapp": ("Cabo Norte", "Cap Nord"),
+    "s-gibraltarrock": ("Peñón de Gibraltar", "Rocher de Gibraltar"),
+    "s-neuschwanstein": ("Castillo de Neuschwanstein", "Château de Neuschwanstein"),
+    "s-kremlin": ("Kremlin", "Kremlin"),
+    "s-geysir": ("Geysir", "Geysir"),
+}
+
+# Landmarks and mountain ranges carry a note as well as a name. Countries and
+# capitals carry one too, but theirs names the other half of the pair and is
+# built from the names above rather than written out here.
+NOTES_ES_FR = {
+    "m-alps": ("la cordillera más alta de Europa central",
+               "la plus haute chaîne d'Europe centrale"),
+    "m-pyrenees": ("la frontera entre España y Francia",
+                   "la frontière entre l'Espagne et la France"),
+    "m-carpathians": ("un arco por Eslovaquia, Ucrania y Rumanía",
+                      "un arc à travers la Slovaquie, l'Ukraine et la Roumanie"),
+    "m-scandes": ("la espina dorsal de Noruega y Suecia",
+                  "l'épine dorsale de la Norvège et de la Suède"),
+    "m-apennines": ("la espina dorsal de Italia", "l'épine dorsale de l'Italie"),
+    "m-dinarides": ("a lo largo de la costa adriática",
+                    "le long de la côte adriatique"),
+    "m-balkan": ("de lado a lado de Bulgaria",
+                 "d'un bout à l'autre de la Bulgarie"),
+    "m-caucasus": ("con el Elbrús, 5642 m", "avec l'Elbrouz, 5642 m"),
+    "m-sierranevada": ("el sur de España", "le sud de l'Espagne"),
+    "m-massifcentral": ("tierras altas en el centro de Francia",
+                        "hautes terres au centre de la France"),
+    "s-eiffel": ("París, Francia", "Paris, France"),
+    "s-colosseum": ("Roma, Italia", "Rome, Italie"),
+    "s-acropolis": ("Atenas, Grecia", "Athènes, Grèce"),
+    "s-brandenburg": ("Berlín, Alemania", "Berlin, Allemagne"),
+    "s-stonehenge": ("el sur de Inglaterra", "le sud de l'Angleterre"),
+    "s-sagrada": ("Barcelona, España", "Barcelone, Espagne"),
+    "s-pisa": ("Pisa, Italia", "Pise, Italie"),
+    "s-vesuvius": ("un volcán cerca de Nápoles", "un volcan près de Naples"),
+    "s-etna": ("el volcán activo más alto de Europa, Sicilia",
+               "le plus haut volcan actif d'Europe, en Sicile"),
+    "s-montblanc": ("4808 m, el pico más alto de los Alpes",
+                    "4808 m, le plus haut sommet des Alpes"),
+    "s-matterhorn": ("4478 m, Suiza e Italia", "4478 m, Suisse et Italie"),
+    "s-nordkapp": ("el norte de Noruega, 71° N", "le nord de la Norvège, 71° N"),
+    "s-gibraltarrock": ("en la puerta del Mediterráneo",
+                        "à la porte de la Méditerranée"),
+    "s-neuschwanstein": ("Baviera, Alemania", "Bavière, Allemagne"),
+    "s-kremlin": ("Moscú, Rusia", "Moscou, Russie"),
+    "s-geysir": ("Islandia, el géiser que da nombre a todos",
+                 "l'Islande, le geyser qui a donné son nom à tous les autres"),
+}
+
+
+# "Capital of X" needs the definite article in Spanish and in French, and which
+# article depends on the country: capital *del* Reino Unido but capital *de*
+# España, capitale *du* Danemark but capitale *de la* Suède. German gets by
+# with "von" and English with "of", so only these two forms are written out.
+COUNTRY_OF_ES_FR = {
+    "c-pt": ("de Portugal", "du Portugal"),
+    "c-es": ("de España", "de l'Espagne"),
+    "c-fr": ("de Francia", "de la France"),
+    "c-ie": ("de Irlanda", "de l'Irlande"),
+    "c-gb": ("del Reino Unido", "du Royaume-Uni"),
+    "c-nl": ("de los Países Bajos", "des Pays-Bas"),
+    "c-be": ("de Bélgica", "de la Belgique"),
+    "c-lu": ("de Luxemburgo", "du Luxembourg"),
+    "c-de": ("de Alemania", "de l'Allemagne"),
+    "c-dk": ("de Dinamarca", "du Danemark"),
+    "c-no": ("de Noruega", "de la Norvège"),
+    "c-se": ("de Suecia", "de la Suède"),
+    "c-fi": ("de Finlandia", "de la Finlande"),
+    "c-ee": ("de Estonia", "de l'Estonie"),
+    "c-lv": ("de Letonia", "de la Lettonie"),
+    "c-lt": ("de Lituania", "de la Lituanie"),
+    "c-pl": ("de Polonia", "de la Pologne"),
+    "c-cz": ("de Chequia", "de la Tchéquie"),
+    "c-sk": ("de Eslovaquia", "de la Slovaquie"),
+    "c-at": ("de Austria", "de l'Autriche"),
+    "c-ch": ("de Suiza", "de la Suisse"),
+    "c-it": ("de Italia", "de l'Italie"),
+    "c-si": ("de Eslovenia", "de la Slovénie"),
+    "c-hr": ("de Croacia", "de la Croatie"),
+    "c-ba": ("de Bosnia y Herzegovina", "de la Bosnie-Herzégovine"),
+    "c-rs": ("de Serbia", "de la Serbie"),
+    "c-me": ("de Montenegro", "du Monténégro"),
+    "c-xk": ("de Kosovo", "du Kosovo"),
+    "c-al": ("de Albania", "de l'Albanie"),
+    "c-mk": ("de Macedonia del Norte", "de la Macédoine du Nord"),
+    "c-gr": ("de Grecia", "de la Grèce"),
+    "c-bg": ("de Bulgaria", "de la Bulgarie"),
+    "c-ro": ("de Rumanía", "de la Roumanie"),
+    "c-hu": ("de Hungría", "de la Hongrie"),
+    "c-md": ("de Moldavia", "de la Moldavie"),
+    "c-ua": ("de Ucrania", "de l'Ukraine"),
+    "c-by": ("de Bielorrusia", "de la Biélorussie"),
+    "c-is": ("de Islandia", "de l'Islande"),
+    "c-tr": ("de Turquía", "de la Turquie"),
+    "c-ru": ("de Rusia", "de la Russie"),
+    "c-cy": ("de Chipre", "de Chypre"),
+    "c-mt": ("de Malta", "de Malte"),
+}
+
+CAPITAL_OF = {"de": "Hauptstadt von %s", "en": "capital of %s",
+              "es": "capital %s", "fr": "capitale %s"}
+CAPITAL_IS = {"de": "Hauptstadt: %s", "en": "capital: %s",
+              "es": "capital: %s", "fr": "capitale : %s"}
+
+
+def relabel(items):
+    """Write the Spanish and French name and note onto every item.
+
+    Called by build(), and again by `--relabel`, which applies the tables above
+    to an existing map.json. That second path exists because the geometry needs
+    three public-domain input files that are not in the repository, and a
+    spelling correction should not require downloading 50 MB of coastlines.
+
+    Returns the ids that have no translation, so main() can report them.
+    """
+    missing = []
+    for item in items:
+        pair = NAMES_ES_FR.get(item["id"])
+        if pair is None:
+            missing.append(item["id"])
+            item["es"], item["fr"] = item["en"], item["en"]
+        else:
+            item["es"], item["fr"] = pair
+        note = NOTES_ES_FR.get(item["id"])
+        if note:
+            item["nes"], item["nfr"] = note
+
+    # A country and its capital each name the other, in whichever language the
+    # player has chosen, so the pair is taught rather than the single name.
+    capital_by_country = {i["of"]: i for i in items
+                          if i["cat"] == "capital" and "of" in i}
+    for item in items:
+        if item["cat"] == "country":
+            capital = capital_by_country.get(item["t"]["ref"])
+            if capital:
+                for lang in ("es", "fr"):
+                    item["n" + lang] = CAPITAL_IS[lang] % capital[lang]
+        elif item["cat"] == "capital":
+            for country in items:
+                if (country["cat"] == "country"
+                        and country["t"]["ref"] == item.get("of")):
+                    forms = COUNTRY_OF_ES_FR.get(country["id"])
+                    if forms is None:
+                        missing.append(country["id"] + " (of-form)")
+                        forms = ("de " + country["es"], "de " + country["fr"])
+                    for lang, form in zip(("es", "fr"), forms):
+                        item["n" + lang] = CAPITAL_OF[lang] % form
+    return missing
+
+
+
 # ------------------------------------------------------------------ builder
 
 def build(indir):
@@ -715,6 +1053,9 @@ def build(indir):
                       "t": {"k": "line", "r": 20,
                             "pts": [[round(x, 1), round(y, 1)] for x, y in pts]}})
 
+    for item_id in relabel(items):
+        sys.stderr.write("  note: no Spanish or French name for %s\n" % item_id)
+
     return {
         "view": [round(OUT_W, 1), OUT_H],
         "shapes": shapes,
@@ -725,13 +1066,41 @@ def build(indir):
     }
 
 
+DEFAULT_OUT = os.path.join("static", "media", "europe-blind-map", "map.json")
+
+
+def main_relabel(path):
+    """Apply the name tables to a map.json that already has its geometry.
+
+    The geometry needs three public-domain input files that are not in the
+    repository, so re-running the full build to correct one spelling means
+    downloading 50 MB of coastlines first. This path does not touch geometry:
+    it rewrites the names and the notes and leaves every coordinate alone.
+    """
+    with open(path, encoding="utf-8") as fh:
+        data = json.load(fh)
+    before = json.dumps(data["shapes"], sort_keys=True)
+    missing = relabel(data["items"])
+    if json.dumps(data["shapes"], sort_keys=True) != before:
+        sys.stderr.write("  refusing to write: the geometry changed\n")
+        return 1
+    with open(path, "w", encoding="utf-8") as fh:
+        json.dump(data, fh, ensure_ascii=False, separators=(",", ":"))
+    for item_id in missing:
+        sys.stderr.write("  note: no Spanish or French name for %s\n" % item_id)
+    sys.stderr.write("relabelled %d items in four languages -> %s\n"
+                     % (len(data["items"]), path))
+    return 0
+
+
 def main():
     if len(sys.argv) < 2:
         sys.stderr.write(__doc__)
         return 2
+    if sys.argv[1] == "--relabel":
+        return main_relabel(sys.argv[2] if len(sys.argv) > 2 else DEFAULT_OUT)
     indir = sys.argv[1]
-    out = (sys.argv[2] if len(sys.argv) > 2
-           else os.path.join("static", "media", "europe-blind-map", "map.json"))
+    out = sys.argv[2] if len(sys.argv) > 2 else DEFAULT_OUT
     data = build(indir)
     os.makedirs(os.path.dirname(out), exist_ok=True)
     with open(out, "w", encoding="utf-8") as fh:

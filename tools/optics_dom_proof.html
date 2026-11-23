@@ -1,0 +1,112 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>optics lab — browser proof</title>
+<!-- Copy into docs/ and open it over the preview server: the absolute
+     /media/... path only resolves from there, and build.py wipes docs/.
+
+     tools/optics_proof.js checks the physics and the tasks without a browser.
+     This file checks the half that needs one: that every station draws, that
+     its controls and tasks appear, that a synthetic pointer drag moves the
+     model, and that the language switch reaches every string. -->
+<style>
+  body { font: 14px/1.5 ui-monospace, monospace; margin: 1rem; }
+  pre { white-space: pre-wrap; }
+  .olab { max-width: 900px; }
+</style>
+<div class="olab"></div>
+<pre id="report">running…</pre>
+<script>window.__OLAB_TEST__ = {};</script>
+<script src="/media/optics-lab/applet.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  setTimeout(function () {
+    var lines = [];
+    var good = true;
+    function check(label, ok, note) {
+      if (!ok) good = false;
+      lines.push((ok ? "  ok   " : "  FAIL ") + label + (note ? "  " + note : ""));
+    }
+
+    var hook = window.__OLAB_TEST__;
+    var lab = hook.labs && hook.labs[0];
+    if (!lab) {
+      document.getElementById("report").textContent = "FAIL: no lab was mounted";
+      return;
+    }
+
+    // screen coordinates of a point given in centimetres
+    function client(x, y) {
+      var m = lab.stage.getScreenCTM();
+      var sx = lab.X(x);
+      var sy = lab.Y(y);
+      return { x: m.a * sx + m.c * sy + m.e, y: m.b * sx + m.d * sy + m.f };
+    }
+
+    function fire(type, pt) {
+      lab.stage.dispatchEvent(new PointerEvent(type, {
+        clientX: pt.x, clientY: pt.y, pointerId: 1, bubbles: true,
+        cancelable: true, isPrimary: true
+      }));
+    }
+
+    hook.stations.forEach(function (station) {
+      lab.show(station.id);
+      lines.push(station.id + ":");
+      var state = lab.state[station.id];
+
+      check("the stage drew something", lab.stage.childNodes.length > 5,
+            lab.stage.childNodes.length + " nodes");
+      check("every control appeared",
+            lab.ctlRow.childNodes.length === station.ctls(state).length);
+      check("every task appeared",
+            lab.taskList.childNodes.length === station.tasks.length);
+      check("the readout is not empty", lab.outRow.childNodes.length > 0);
+      check("the station text is on the page",
+            lab.head.textContent.length > 5 && lab.lead.textContent.length > 40);
+
+      // one synthetic drag on the first handle, 40 px to the left
+      var handles = station.handles(state, lab.d);
+      var before = JSON.stringify(state);
+      var from = client(handles[0].x, handles[0].y);
+      fire("pointerdown", from);
+      fire("pointermove", { x: from.x - 40, y: from.y + 12 });
+      fire("pointerup", { x: from.x - 40, y: from.y + 12 });
+      check("dragging the first handle moved the model",
+            JSON.stringify(lab.state[station.id]) !== before);
+
+      // and the picture followed
+      check("the picture was redrawn after the drag",
+            lab.stage.childNodes.length > 5);
+    });
+
+    // the language switch has to reach the station names, the lead and a task
+    lines.push("languages:");
+    lab.show("bench");
+    var seen = {};
+    hook.langs.forEach(function (code) {
+      lab.lang = code;
+      lab.show("bench");
+      var text = lab.lead.textContent + "|" + lab.taskList.textContent
+        + "|" + lab.stationButtons.shadow.textContent
+        + "|" + lab.score.textContent + "|" + lab.resetButton.textContent;
+      check(code + ": every panel carries text", text.length > 200);
+      check(code + ": that text is not a repeat of another language",
+            !seen[text], code);
+      seen[text] = true;
+    });
+
+    // the controls of one station must not leak into another
+    lab.lang = "de";
+    lab.show("refract");
+    var refractKeys = Object.keys(lab.inputs).sort().join(",");
+    lab.show("lens");
+    var lensKeys = Object.keys(lab.inputs).sort().join(",");
+    check("each station brings its own sliders", refractKeys !== lensKeys,
+          refractKeys + " vs " + lensKeys);
+
+    lines.unshift(good ? "=== BROWSER OK ===" : "=== BROWSER PROBLEMS ===");
+    document.getElementById("report").textContent = lines.join("\n");
+    document.title = good ? "BROWSER OK" : "BROWSER PROBLEMS";
+  }, 0);
+});
+</script>

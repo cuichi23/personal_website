@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Playground · Lucas Wetzel</title>
+<meta name="description" content="The things on this site that are meant to be played with rather than read. A blind map of Europe and a small optics lab, both built for my own children, both in German, English, Spanish and French.">
+<meta name="author" content="Lucas Wetzel">
+<link rel="canonical" href="https://lucaswetzel.de/projects/playground/">
+<meta property="og:site_name" content="Lucas Wetzel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Playground · Lucas Wetzel">
+<meta property="og:description" content="The things on this site that are meant to be played with rather than read. A blind map of Europe and a small optics lab, both built for my own children, both in German, English, Spanish and French.">
+<meta property="og:url" content="https://lucaswetzel.de/projects/playground/">
+<link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<script>
+  // GitHub Pages cannot send X-Frame-Options or a CSP frame-ancestors directive,
+  // so this is the only lever there is. Mark the document before the body is
+  // parsed; the stylesheet then keeps the content hidden until site.js has
+  // replaced it with a notice. Marking rather than navigating is deliberate:
+  // browsers increasingly refuse an automatic top navigation from a frame and
+  // leave a blank box behind, which tells the reader nothing.
+  if (window.self !== window.top) document.documentElement.dataset.framed = "";
+</script>
+<script>
+  // Stamp the stored theme before first paint. No stamp means "follow the system".
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="/assets/css/fonts.css?v=07eda313">
+<link rel="stylesheet" href="/assets/css/site.css?v=07eda313">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="/">
+      <span class="wordmark__name">Lucas Wetzel</span>
+      <span class="wordmark__role">Self-organized synchronization</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/research/">Research</a>
+      <a href="/projects/" aria-current="page">Current projects</a>
+      <a href="/projects-anabrid/">Projects@anabrid</a>
+      <a href="/oscillatory-computing/">Oscillatory computing</a>
+      <a href="/contact/">Contact</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span class="theme-toggle__mark" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="post">
+  <header class="post__header">
+    <p class="eyebrow"><a href="/projects/">Current projects</a></p>
+    <h1 class="post__title">Playground</h1>
+<p class="post__standfirst">The things on this site that are meant to be played with rather than read. A blind map of Europe and a small optics lab, both built for my own children, both in German, English, Spanish and French.</p>  </header>
+
+  <div class="prose"><p>Everything else here is written to be read. This page is not. Below are two
+applets I built for my own children, each one a thing to take hold of rather
+than a thing to work through: a blind map of Europe where the names have to go
+back where they belong, and an optics lab where light travels in straight
+lines until something gets in the way.</p>
+<p>Both are free of accounts, timers, scores and badges. Both keep their progress
+in your own browser and send nothing anywhere. Both carry a language switch in
+their top right corner — <strong>DE · EN · ES · FR</strong> — and nothing on the page needs
+a grown-up standing by, which was the point.</p>
+<p><strong>Auf Deutsch:</strong> such dir oben rechts in jedem Kasten deine Sprache aus und
+fang einfach an. Was du richtig hast, bleibt richtig, auch wenn du die Seite
+morgen wieder aufmachst. · <strong>En español:</strong> elige tu idioma arriba a la derecha
+de cada recuadro. · <strong>En français :</strong> choisis ta langue en haut à droite de
+chaque encadré.</p>
+<h2 id="stumme-karte">Stumme Karte — the blind map of Europe</h2>
+<p>170 names, five at a time, dragged onto a map that carries every coastline,
+river, mountain ridge and capital dot and not one label. A name that lands
+correctly stays on the map, so the map fills up while you play. Countries,
+capitals, seas, rivers, mountain ranges, islands and landmarks, at three
+levels of difficulty, with zoom and full screen for the small countries.</p>
+<div class="ebm" data-map="/media/europe-blind-map/map.json?v=cda2be94"><noscript>The map
+needs JavaScript. / Die Karte braucht JavaScript.</noscript></div>
+
+<script defer src="/media/europe-blind-map/applet.js?v=5eba6d07"></script>
+
+<p>How it was built, what the projection is and where the map can be wrong:
+<a href="/projects/europe-blind-map/">Stumme Karte: a blind map of Europe</a>.</p>
+<h2 id="strahlenoptik">Strahlenoptik — the optics lab</h2>
+<p>Five stations of ray optics: light and shadow, the law of reflection,
+refraction and total reflection, the focal point of a lens, and an optical
+bench with a lamp, an object, a lens on a rail and a projection screen.
+Eighteen tasks that check themselves, so nobody has to mark them.</p>
+<div class="olab"><noscript>The lab needs JavaScript. / Das Labor braucht
+JavaScript.</noscript></div>
+
+<script defer src="/media/optics-lab/applet.js?v=145b91bb"></script>
+
+<p>What it models, what it leaves out and how it is checked:
+<a href="/projects/optics-lab/">Strahlenoptik: a small optics lab</a>.</p>
+<h2 id="elsewhere">Elsewhere on this site</h2>
+<p>Not built for children, but also made to be used rather than read: the
+<a href="/projects/analog-circuits/">analog circuits course</a> carries twelve
+interactive benches, one per chapter, and the
+<a href="/projects/american-football-c-lizenz/">American football C-Lizenz notes</a>
+carry three quizzes.</p></div>
+
+  <footer class="post__footer">
+    <p class="page-foot"><a href="/projects/">Back to current projects</a></p>
+  </footer>
+</article>
+</main>
+
+<footer class="colophon">
+  <div class="colophon__inner">
+    <div class="colophon__block">
+      <p class="colophon__name">Lucas Wetzel</p>
+      <p class="colophon__line">Dr. rer. nat. · Chief Scientific Officer, anabrid GmbH</p>
+      <p class="colophon__line"><a href="mailto:wetzel@anabrid.com">wetzel@anabrid.com</a></p>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">Elsewhere</p>
+      <ul class="colophon__list">
+        <li><a href="https://www.chronoloom.com">chronoloom.com</a></li>
+        <li><a href="https://www.pks.mpg.de/soses">pks.mpg.de/soses</a></li>
+        <li><a href="https://github.com/cuichi23/sim_pll_networks">github.com/cuichi23</a></li>
+      </ul>
+    </div>
+    <div class="colophon__block">
+      <p class="colophon__heading">This site</p>
+      <ul class="colophon__list">
+        <li><a href="/research/">Research</a></li>
+        <li><a href="/projects/">Current projects</a></li>
+        <li><a href="/tags/">Topics</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="colophon__fineprint">
+    No cookies, no analytics, no third-party requests. Fonts and maths typesetting
+    are served from this domain.
+  </p>
+</footer>
+
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script defer src="/assets/js/site.js?v=07eda313"></script>
+</body>
+</html>

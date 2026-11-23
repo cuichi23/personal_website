@@ -76,7 +76,48 @@
   h.push("France rejected when dropped on Poland: "+(!frFar.ok));
   h.push("Danube rejected 40 units off its line: "+(!danubeOff.ok));
   h.push("drag placed '"+item.en+"': "+dragOk+", label pinned: "+labelOk);
-  var good=selfFail===0&&falseHit===0&&!seaOnIsland.ok&&!islandAtSea.ok&&luxNear.ok&&frNear.ok&&!frFar.ok&&!danubeOff.ok&&dragOk&&labelOk;
+
+  // ------------------------------------------------------- four languages
+  // A missing name shows up as "undefined" on a chip, and only in the one
+  // language nobody opened. So check the data and the interface together.
+  var LANGS=window.__EBM_TEST__.langs,TEXT=window.__EBM_TEST__.text;
+  var noName=[],noNote=[];
+  data.items.forEach(function(it){
+    LANGS.forEach(function(l){
+      if(!it[l])noName.push(it.id+"."+l);
+      // notes come in all four or in none: a pair is taught in whatever
+      // language the player chose, or it is not taught at all
+      if(it.nde&&!it["n"+l])noNote.push(it.id+".n"+l);});});
+  var keyMiss=[];
+  var deKeys=Object.keys(TEXT.de);
+  LANGS.forEach(function(l){
+    deKeys.forEach(function(k){
+      if(TEXT[l][k]===undefined)keyMiss.push(l+"."+k);});
+    Object.keys(TEXT[l].cats).forEach(function(k){
+      if(!TEXT[l].cats[k])keyMiss.push(l+".cats."+k);});
+    if(TEXT[l].levels.length!==3)keyMiss.push(l+".levels");});
+  // The switch has to reach the names on the chips and the words on the
+  // buttons. Checked through name() and retext() rather than by starting a
+  // new round: a new round clears the pinned label the zoom tests below need.
+  var langLive=LANGS.every(function(l){
+    g.lang=l;
+    var names=data.items.map(function(it){return g.name(it);}).join("|");
+    g.retext();
+    return names.indexOf("undefined")<0
+      &&g.catButtons.all.textContent===TEXT[l].cats.all
+      &&g.nextButton.textContent===TEXT[l].next
+      &&g.map.getAttribute("aria-label")===TEXT[l].mapLabel;});
+  g.lang="de";g.retext();
+  var langGood=!noName.length&&!noNote.length&&!keyMiss.length&&langLive;
+  h.push("names in "+LANGS.join("/")+" on all "+data.items.length
+         +" items: "+(!noName.length)+(noName.length?" missing "+noName.slice(0,6):""));
+  h.push("notes complete wherever there is one: "+(!noNote.length)
+         +(noNote.length?" missing "+noNote.slice(0,6):""));
+  h.push("interface text complete in every language: "+(!keyMiss.length)
+         +(keyMiss.length?" missing "+keyMiss.slice(0,6):""));
+  h.push("switching the language reaches the names and the buttons: "+langLive);
+
+  var good=selfFail===0&&falseHit===0&&!seaOnIsland.ok&&!islandAtSea.ok&&luxNear.ok&&frNear.ok&&!frFar.ok&&!danubeOff.ok&&dragOk&&labelOk&&langGood;
   h.push(good?"=== ALL GOOD ===":"=== PROBLEMS ===");
   document.getElementById("out").textContent=h.concat(lines).join("\n");
 

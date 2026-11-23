@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Stumme Karte: a blind map of Europe · Lucas Wetzel</title>
-<meta name="description" content="An interactive blind map of Europe. The outlines, rivers, mountain ridges, capital dots and landmark squares are all there; the names are not. Five of them arrive at a time as chips you drag to where they belong, and a name that lands correctly stays on the map. 170 names in German and English, built from public-domain Natural Earth data on an equal-area projection.">
+<meta name="description" content="An interactive blind map of Europe. The outlines, rivers, mountain ridges, capital dots and landmark squares are all there; the names are not. Five of them arrive at a time as chips you drag to where they belong, and a name that lands correctly stays on the map. 170 names in German, English, Spanish and French, built from public-domain Natural Earth data on an equal-area projection.">
 <meta name="author" content="Lucas Wetzel">
 <link rel="canonical" href="https://lucaswetzel.de/projects/europe-blind-map/">
 <meta property="og:site_name" content="Lucas Wetzel">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Stumme Karte: a blind map of Europe · Lucas Wetzel">
-<meta property="og:description" content="An interactive blind map of Europe. The outlines, rivers, mountain ridges, capital dots and landmark squares are all there; the names are not. Five of them arrive at a time as chips you drag to where they belong, and a name that lands correctly stays on the map. 170 names in German and English, built from public-domain Natural Earth data on an equal-area projection.">
+<meta property="og:description" content="An interactive blind map of Europe. The outlines, rivers, mountain ridges, capital dots and landmark squares are all there; the names are not. Five of them arrive at a time as chips you drag to where they belong, and a name that lands correctly stays on the map. 170 names in German, English, Spanish and French, built from public-domain Natural Earth data on an equal-area projection.">
 <meta property="og:url" content="https://lucaswetzel.de/projects/europe-blind-map/">
 <link rel="alternate" type="application/rss+xml" title="Lucas Wetzel" href="/feed.xml">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
@@ -31,8 +31,8 @@
     if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
   } catch (e) {}
 </script>
-<link rel="stylesheet" href="/assets/css/fonts.css?v=c467844b">
-<link rel="stylesheet" href="/assets/css/site.css?v=c467844b">
+<link rel="stylesheet" href="/assets/css/fonts.css?v=07eda313">
+<link rel="stylesheet" href="/assets/css/site.css?v=07eda313">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -62,7 +62,7 @@
   <header class="post__header">
     <p class="eyebrow"><a href="/projects/">Current projects</a></p>
     <h1 class="post__title">Stumme Karte: a blind map of Europe</h1>
-<p class="post__standfirst">An interactive blind map of Europe. The outlines, rivers, mountain ridges, capital dots and landmark squares are all there; the names are not. Five of them arrive at a time as chips you drag to where they belong, and a name that lands correctly stays on the map. 170 names in German and English, built from public-domain Natural Earth data on an equal-area projection.</p>    <dl class="post__meta">
+<p class="post__standfirst">An interactive blind map of Europe. The outlines, rivers, mountain ridges, capital dots and landmark squares are all there; the names are not. Five of them arrive at a time as chips you drag to where they belong, and a name that lands correctly stays on the map. 170 names in German, English, Spanish and French, built from public-domain Natural Earth data on an equal-area projection.</p>    <dl class="post__meta">
       <div class="post__meta-pair">
         <dt>Published</dt>
         <dd>23 November 2026</dd>
@@ -91,10 +91,10 @@ them belongs, it says so immediately, and it remembers which ones you have
 already placed so the next five are more likely to be new ground. Nothing
 leaves the page: the progress lives in your own browser and the map is one
 file served from this site.</p>
-<div class="ebm" data-map="/media/europe-blind-map/map.json?v=76e6963f"><noscript>The map
+<div class="ebm" data-map="/media/europe-blind-map/map.json?v=cda2be94"><noscript>The map
 needs JavaScript. / Die Karte braucht JavaScript.</noscript></div>
 
-<script defer src="/media/europe-blind-map/applet.js?v=126f5f9b"></script>
+<script defer src="/media/europe-blind-map/applet.js?v=5eba6d07"></script>
 
 <h2 id="anleitung">So geht es</h2>
 <p><em>Für die Kinder, auf Deutsch.</em> Unten liegen fünf Namen. Zieh jeden Namen an
@@ -108,9 +108,10 @@ also, während du spielst — das ist der eigentliche Zweck. Oben wählst du das
 Thema (Länder, Hauptstädte, Meere, Flüsse, Gebirge, Inseln und Halbinseln,
 Sehenswürdigkeiten) und die Stufe: <strong>Leicht</strong> fragt nur die großen und
 bekannten Dinge, <strong>Mittel</strong> nimmt einiges dazu, <strong>Alles</strong> auch Montenegro,
-Rügen und den Guadalquivir. Mit <strong>DE/EN</strong> wechselst du die Sprache der Namen,
-mit <strong>Zeig es mir</strong> gibst du bei einem Namen auf, und ganz rechts steht, wie
-viele der 170 Namen du schon einmal richtig hattest.</p>
+Rügen und den Guadalquivir. Mit <strong>DE · EN · ES · FR</strong> wechselst du die
+Sprache — der Karte und der Namen —, mit <strong>Zeig es mir</strong> gibst du bei einem
+Namen auf, und ganz rechts steht, wie viele der 170 Namen du schon einmal
+richtig hattest.</p>
 <p><strong>Zoomen und Vollbild.</strong> Oben rechts in der Karte sitzen vier Knöpfe:
 Vollbild, größer, kleiner, und — sobald die Karte vergrößert ist — zurück zur
 ganzen Karte. Am Rechner zoomst du auch mit <strong>Strg und dem Mausrad</strong>, auf dem
@@ -165,6 +166,21 @@ mountain ranges. Each one carries a level from one to three, which is a guess
 at how early a child meets it rather than a measure of anything. A country and
 its capital are linked both ways, so placing <em>Oslo</em> tells you it is the
 capital of Norway and placing <em>Norway</em> tells you its capital is Oslo.</p>
+<p><strong>Every name exists four times</strong>: German, English, Spanish and French. The two
+added later are not a machine translation of the first two. They are a table
+in the generator, keyed by the item's id and kept out of the geometry tuples,
+because widening 170 positional tuples by two columns is the kind of edit that
+silently shifts a latitude. The country-and-capital note is assembled rather
+than listed, which turned out to need a little grammar: <em>capital of the United
+Kingdom</em> is <strong>capital del Reino Unido</strong> and <strong>capitale du Royaume-Uni</strong>, while
+Spain takes a bare <em>de</em> in both. So the generator carries a second, small table
+of the genitive form of each country name in those two languages, and the note
+is built from it.</p>
+<p>The names can be refreshed without the map. <code>tools/build_europe_map.py
+--relabel</code> applies the name tables to an existing <code>map.json</code> and refuses to
+write if a single coordinate changed. That matters because the geometry needs
+three public-domain input files that are not in this repository, and correcting
+one spelling should not mean downloading 50 MB of coastlines first.</p>
 <h2 id="build">How it is built</h2>
 <p>The geometry comes from <a href="https://www.naturalearthdata.com/">Natural Earth</a>,
 which is in the public domain, by way of the 1:50 m countries, rivers and
@@ -239,9 +255,9 @@ chrome.</p></div>
 
   <footer class="post__footer">
     <nav class="pager" aria-label="More posts">
-      <a class="pager__link pager__link--prev" href="/projects/analog-circuits/">
+      <a class="pager__link pager__link--prev" href="/projects/optics-lab/">
         <span class="pager__label">Older</span>
-        <span class="pager__title">Analog circuits in theory and application</span>
+        <span class="pager__title">Strahlenoptik: a small optics lab</span>
       </a>
     </nav>
   </footer>
@@ -283,6 +299,6 @@ chrome.</p></div>
 <link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
 <script defer src="/assets/vendor/katex/katex.min.js"></script>
 <script defer src="/assets/vendor/katex/contrib/auto-render.min.js"></script>
-<script defer src="/assets/js/site.js?v=c467844b"></script>
+<script defer src="/assets/js/site.js?v=07eda313"></script>
 </body>
 </html>

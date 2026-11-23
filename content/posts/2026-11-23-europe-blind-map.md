@@ -6,8 +6,9 @@ summary: >-
   An interactive blind map of Europe. The outlines, rivers, mountain ridges,
   capital dots and landmark squares are all there; the names are not. Five of
   them arrive at a time as chips you drag to where they belong, and a name
-  that lands correctly stays on the map. 170 names in German and English, built
-  from public-domain Natural Earth data on an equal-area projection.
+  that lands correctly stays on the map. 170 names in German, English, Spanish
+  and French, built from public-domain Natural Earth data on an equal-area
+  projection.
 tags:
   - "geography"
   - "teaching"
@@ -54,9 +55,10 @@ also, während du spielst — das ist der eigentliche Zweck. Oben wählst du das
 Thema (Länder, Hauptstädte, Meere, Flüsse, Gebirge, Inseln und Halbinseln,
 Sehenswürdigkeiten) und die Stufe: **Leicht** fragt nur die großen und
 bekannten Dinge, **Mittel** nimmt einiges dazu, **Alles** auch Montenegro,
-Rügen und den Guadalquivir. Mit **DE/EN** wechselst du die Sprache der Namen,
-mit **Zeig es mir** gibst du bei einem Namen auf, und ganz rechts steht, wie
-viele der 170 Namen du schon einmal richtig hattest.
+Rügen und den Guadalquivir. Mit **DE · EN · ES · FR** wechselst du die
+Sprache — der Karte und der Namen —, mit **Zeig es mir** gibst du bei einem
+Namen auf, und ganz rechts steht, wie viele der 170 Namen du schon einmal
+richtig hattest.
 
 **Zoomen und Vollbild.** Oben rechts in der Karte sitzen vier Knöpfe:
 Vollbild, größer, kleiner, und — sobald die Karte vergrößert ist — zurück zur
@@ -91,6 +93,23 @@ mountain ranges. Each one carries a level from one to three, which is a guess
 at how early a child meets it rather than a measure of anything. A country and
 its capital are linked both ways, so placing *Oslo* tells you it is the
 capital of Norway and placing *Norway* tells you its capital is Oslo.
+
+**Every name exists four times**: German, English, Spanish and French. The two
+added later are not a machine translation of the first two. They are a table
+in the generator, keyed by the item's id and kept out of the geometry tuples,
+because widening 170 positional tuples by two columns is the kind of edit that
+silently shifts a latitude. The country-and-capital note is assembled rather
+than listed, which turned out to need a little grammar: *capital of the United
+Kingdom* is **capital del Reino Unido** and **capitale du Royaume-Uni**, while
+Spain takes a bare *de* in both. So the generator carries a second, small table
+of the genitive form of each country name in those two languages, and the note
+is built from it.
+
+The names can be refreshed without the map. `tools/build_europe_map.py
+--relabel` applies the name tables to an existing `map.json` and refuses to
+write if a single coordinate changed. That matters because the geometry needs
+three public-domain input files that are not in this repository, and correcting
+one spelling should not mean downloading 50 MB of coastlines first.
 
 ## How it is built {: #build }
 
