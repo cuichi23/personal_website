@@ -170,7 +170,7 @@
     ".ebm__go:hover{background:var(--accent-lift,#8f4c09)}",
     ".ebm__legend{margin:0.7rem 0 0;font-size:0.8em;color:var(--muted,#666)}",
     ".ebm__tools{position:absolute;top:0.4rem;right:0.4rem;display:flex;flex-direction:column;gap:0.25rem;z-index:2}",
-    ".ebm__tool{width:2rem;height:2rem;display:flex;align-items:center;justify-content:center;border:1px solid rgba(27,39,51,0.25);border-radius:7px;background:rgba(255,255,255,0.88);color:#1b2733;font:inherit;font-size:1rem;line-height:1;cursor:pointer;padding:0}",
+    ".ebm__tool{width:2.1rem;height:2.1rem;display:flex;align-items:center;justify-content:center;border:1px solid rgba(27,39,51,0.45);border-radius:7px;background:#fff;box-shadow:0 1px 3px rgba(27,39,51,0.22);color:#1b2733;font:inherit;font-size:1.05rem;line-height:1;cursor:pointer;padding:0}",
     ".ebm__tool:hover{background:#fff;border-color:var(--accent,#b4620e);color:var(--accent,#b4620e)}",
     ".ebm__tool[hidden]{display:none}",
     // Full screen comes in two flavours. Where the Fullscreen API works the
@@ -179,6 +179,8 @@
     // which is what the layout actually keys on, so there is one set of rules.
     ".ebm--fsfix{position:fixed;inset:0;z-index:99999}",
     ".ebm--fsmode{display:flex;flex-direction:column;margin:0;border:0;border-radius:0;background:var(--surface,#fff);padding:0.7rem 0.9rem 0.9rem;overflow:auto}",
+    ".ebm--fsmode .ebm__bar,.ebm--fsmode .ebm__lead,.ebm--fsmode .ebm__tray,"
+      + ".ebm--fsmode .ebm__say,.ebm--fsmode .ebm__foot{flex:0 0 auto}",
     ".ebm--fsmode .ebm__mapwrap{flex:1 1 auto;min-height:12rem}",
     ".ebm--fsmode .ebm__map{width:100%;height:100%}",
     ".ebm--fsmode .ebm__legend{display:none}",
@@ -860,7 +862,12 @@
                            self.drag.x0, self.drag.y0);
       if (!self.drag.ghost && moved < DRAG_SLOP) return;
       if (!self.drag.ghost) {
-        self.drag.ghost = el("div", "ebm__ghost", document.body,
+        // Inside the mount, never on document.body: in real full screen the
+        // browser paints nothing outside the full-screen element, and under
+        // the pinned fallback the mount's own z-index would cover it. The
+        // ghost stays position:fixed either way, because .ebm sets no
+        // transform or filter and so is no containing block for it.
+        self.drag.ghost = el("div", "ebm__ghost", self.mount,
                              self.name(self.drag.item));
       }
       self.drag.ghost.style.left = moveEvent.clientX + "px";

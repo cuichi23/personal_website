@@ -155,6 +155,37 @@
   g.pinFull(true);
   var fsOn=g.mount.classList.contains("ebm--fsmode")
           &&g.mount.classList.contains("ebm--fsfix")&&g.full===true;
+  // While full screen is on, a dragged name must still be visible. The ghost
+  // used to be appended to document.body, where a real full screen paints
+  // nothing and the pinned fallback's own z-index covers it.
+  var fsItem=null,fsChip=null;
+  for(var fi=0;fi<g.round.length;fi++){
+    if(g.chips[g.round[fi].id]&&!g.chips[g.round[fi].id].classList.contains("ebm__chip--gone")){
+      fsItem=g.round[fi];fsChip=g.chips[fsItem.id];break;
+    }
+  }
+  var ghostInMount=false,ghostFixed=false,ghostFollows=false,fsDropOk=false;
+  if(fsChip){
+    var fcr=fsChip.getBoundingClientRect();
+    pe("pointerdown",fcr.left+10,fcr.top+10,fsChip);
+    pe("pointermove",fcr.left+40,fcr.top+40,fsChip);
+    var gh=g.mount.querySelector(".ebm__ghost");
+    if(gh){
+      ghostInMount=g.mount.contains(gh);
+      var gs=getComputedStyle(gh);
+      ghostFixed=gs.position==="fixed"&&gs.display!=="none"&&gs.visibility!=="hidden";
+      pe("pointermove",fcr.left+90,fcr.top+70,fsChip);
+      var gr=gh.getBoundingClientRect();
+      ghostFollows=Math.abs(gr.left+gr.width/2-(fcr.left+90))<2;
+    }
+    var fctm=g.map.getScreenCTM(),fp=own(fsItem);
+    var fsx=fctm.a*fp.x+fctm.c*fp.y+fctm.e,fsy=fctm.b*fp.x+fctm.d*fp.y+fctm.f;
+    pe("pointermove",fsx,fsy,fsChip);
+    pe("pointerup",fsx,fsy,fsChip);
+    fsDropOk=fsChip.classList.contains("ebm__chip--gone");
+  }
+  var ghostGone=!g.mount.querySelector(".ebm__ghost");
+
   g.pinFull(false);
   var fsOff=!g.mount.classList.contains("ebm--fsmode")
            &&!g.mount.classList.contains("ebm--fsfix")&&g.full===false
@@ -172,8 +203,13 @@
   zl.push("stale swallow cleared on the next touch: "+swallowCleared);
   zl.push("reset returned the whole map: "+backToFull);
   zl.push("full screen on: "+fsOn+", off: "+fsOff+", scale sane: "+scaleSane);
+  zl.push("full-screen drag: ghost inside the mount: "+ghostInMount
+          +", visible and fixed: "+ghostFixed+", follows the pointer: "+ghostFollows);
+  zl.push("full-screen drop placed '"+(fsItem?fsItem.en:"?")+"': "+fsDropOk
+          +", ghost removed after: "+ghostGone);
   var zoomGood=zoomIs4&&anchorDrift<1.5&&pxHeld&&zoomedHit&&zoomedMiss&&lowClamp
-    &&highClamp&&capped&&pinchZoomed&&panned&&swallowed&&backToFull&&swallowCleared&&fsOn&&fsOff&&scaleSane;
+    &&highClamp&&capped&&pinchZoomed&&panned&&swallowed&&backToFull&&swallowCleared&&fsOn&&fsOff&&scaleSane
+    &&ghostInMount&&ghostFixed&&ghostFollows&&fsDropOk&&ghostGone;
   zl.push(zoomGood?"=== ZOOM GOOD ===":"=== ZOOM PROBLEMS ===");
   document.getElementById("out").textContent+="\n"+zl.join("\n");
 

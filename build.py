@@ -311,6 +311,43 @@ def asset_version(*relative: str) -> str:
     return digest.hexdigest()[:8]
 
 
+MEDIA_URL = re.compile(r'((?:src|href|data-map)=")(/media/[^"?#]+)(")')
+
+_MEDIA_STAMP: dict[str, str] = {}
+
+
+def media_version(url: str) -> str:
+    """Short digest of one file under /media/, appended to its URL.
+
+    asset_version() does this for the theme; a post that loads its own script
+    or data file needs the same protection. Without it a browser keeps running
+    yesterday's applet after a deploy, and the page looks unchanged while the
+    code behind it is new.
+    """
+    if url not in _MEDIA_STAMP:
+        stamp = ""
+        for base in (STATIC, STATIC_DRAFTS):
+            path = os.path.join(base, url.lstrip("/"))
+            if os.path.exists(path):
+                stamp = hashlib.sha256(open(path, "rb").read()).hexdigest()[:8]
+                break
+        _MEDIA_STAMP[url] = stamp
+    return _MEDIA_STAMP[url]
+
+
+def stamp_media(html_text: str) -> str:
+    """Append ?v=<digest> to every /media/ asset a page loads itself.
+
+    Applied to the finished page rather than to the markdown body, so a script
+    tag in a template is covered as well as one written into a post.
+    """
+    def one(match: re.Match) -> str:
+        head, url, tail = match.groups()
+        version = media_version(url)
+        return f"{head}{url}?v={version}{tail}" if version else match.group(0)
+    return MEDIA_URL.sub(one, html_text)
+
+
 def make_env() -> Environment:
     env = Environment(loader=FileSystemLoader(os.path.join(THEME, "templates")),
                       undefined=StrictUndefined, trim_blocks=True, lstrip_blocks=True)
@@ -327,7 +364,8 @@ def write(path: str, text: str) -> None:
 
 
 def emit(env: Environment, template: str, out_path: str, **context) -> None:
-    write(os.path.join(OUTPUT, out_path), env.get_template(template).render(**context))
+    page = env.get_template(template).render(**context)
+    write(os.path.join(OUTPUT, out_path), stamp_media(page))
 
 
 def copy_tree(src: str, dst: str) -> None:
