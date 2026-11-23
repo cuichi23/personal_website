@@ -19,6 +19,10 @@
   var STORE_KEY = "ebm.learned.v2";
   var LANG_KEY = "lang";
   var DRAG_SLOP = 6;          // px of movement before a tap becomes a drag
+  var ZOOM_MIN = 1;
+  var ZOOM_MAX = 8;
+  var ZOOM_STEP = 1.6;        // one press of the + button
+  var BASE_UNITS_PER_PX = 1.4;  // the --s fallback before the map is measured
 
   // ------------------------------------------------------------------ text
 
@@ -47,6 +51,14 @@
       keyHint: "Mit der Tastatur: Namen mit Tab und Enter wählen, dann mit den Pfeiltasten das Kreuz bewegen und mit Enter ablegen.",
       loading: "Karte wird geladen …",
       failed: "Die Karte konnte nicht geladen werden.",
+      zoomIn: "Größer",
+      zoomOut: "Kleiner",
+      zoomReset: "Ganze Karte",
+      full: "Vollbild",
+      exitFull: "Vollbild verlassen",
+      zoomHint: "Zoomen: am Rechner Strg und Mausrad, am Handy mit zwei Fingern; "
+        + "die Knöpfe oben rechts tun dasselbe. Wenn die Karte vergrößert ist, "
+        + "schiebst du sie mit einem Finger.",
       cats: {
         all: "Alles", country: "Länder", capital: "Hauptstädte",
         water: "Meere & Ozeane", river: "Flüsse", mountain: "Gebirge",
@@ -77,6 +89,14 @@
       keyHint: "By keyboard: choose a name with Tab and Enter, move the cross with the arrow keys, drop it with Enter.",
       loading: "Loading the map …",
       failed: "The map could not be loaded.",
+      zoomIn: "Zoom in",
+      zoomOut: "Zoom out",
+      zoomReset: "Whole map",
+      full: "Full screen",
+      exitFull: "Leave full screen",
+      zoomHint: "Zoom with Ctrl and the mouse wheel on a computer, with two "
+        + "fingers on a phone; the buttons in the corner do the same. While the "
+        + "map is zoomed in, one finger drags it around.",
       cats: {
         all: "Everything", country: "Countries", capital: "Capitals",
         water: "Seas & oceans", river: "Rivers", mountain: "Mountain ranges",
@@ -102,23 +122,35 @@
     ".ebm__score{font-size:0.84em;color:var(--muted,#666);white-space:nowrap}",
     ".ebm__lead{margin:0 0 0.7rem;font-weight:600}",
     ".ebm__mapwrap{position:relative;border-radius:10px;overflow:hidden;background:#cfe2f3}",
-    ".ebm__map{display:block;width:100%;height:auto;touch-action:manipulation}",
+    // Marks and labels are sized in CSS pixels and multiplied by --s, the
+    // number of map units one CSS pixel covers. That keeps a capital dot the
+    // same size on screen whatever the zoom and whatever the screen width,
+    // while the geography underneath stays in map units. --s is written by
+    // updateScale() from the live screen transform.
+    ".ebm__map{display:block;width:100%;height:auto;touch-action:pan-y;--s:1.4}",
+    ".ebm__map--grab{touch-action:none;cursor:grab}",
+    ".ebm__map--grabbing{cursor:grabbing}",
     ".ebm__map:focus-visible{outline:3px solid var(--accent,#b4620e);outline-offset:-3px}",
     ".ebm__sea{fill:#cfe2f3}",
-    ".ebm__land{fill:#fbf4e6;stroke:#97a5b2;stroke-width:0.7;stroke-linejoin:round}",
-    ".ebm__land--ctx{fill:#e2e6e9;stroke:#c3cad1;stroke-width:0.5}",
-    ".ebm__land--hit{fill:#f6d9b4}",
-    ".ebm__lake{fill:#cfe2f3;stroke:#9cc3e0;stroke-width:0.4}",
-    ".ebm__river{fill:none;stroke:#79aed6;stroke-width:0.9;stroke-linejoin:round;stroke-linecap:round}",
-    ".ebm__ridge{fill:none;stroke:#8d7b5b;stroke-width:3.4;stroke-linecap:round;opacity:0.6}",
-    ".ebm__cap{fill:#b4620e}",
-    ".ebm__site{fill:#3e3170}",
-    ".ebm__hl{fill:none;stroke:#c0392b;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}",
-    ".ebm__ring{fill:none;stroke:#c0392b;stroke-width:2}",
-    ".ebm__pin{fill:#1e8e3e}",
+    // A shape is a country (land), something drawn only for context (ctx), or
+    // a mountain range (range), which is a translucent band laid over the land
+    // rather than a piece of it.
+    ".ebm__shape--land{fill:#fbf4e6;stroke:#97a5b2;stroke-width:calc(0.5px * var(--s));stroke-linejoin:round}",
+    ".ebm__shape--ctx{fill:#e2e6e9;stroke:#c3cad1;stroke-width:calc(0.36px * var(--s))}",
+    ".ebm__shape--range{fill:#8d7b5b;fill-opacity:0.38;stroke:none}",
+    ".ebm__shape--land.ebm__shape--hit{fill:#f6d9b4}",
+    ".ebm__shape--range.ebm__shape--hit{fill:#b4620e;fill-opacity:0.6}",
+    ".ebm__lake{fill:#cfe2f3;stroke:#9cc3e0;stroke-width:calc(0.3px * var(--s))}",
+    ".ebm__river{fill:none;stroke:#79aed6;stroke-width:calc(0.7px * var(--s));stroke-linejoin:round;stroke-linecap:round}",
+    ".ebm__ridge{fill:none;stroke:#8d7b5b;stroke-width:calc(2.4px * var(--s));stroke-linecap:round;opacity:0.6}",
+    ".ebm__cap{fill:#b4620e;r:calc(2.2px * var(--s))}",
+    ".ebm__site{fill:#3e3170;transform-box:fill-box;transform-origin:center;transform:scale(var(--s))}",
+    ".ebm__hl{fill:none;stroke:#c0392b;stroke-width:calc(2.2px * var(--s));stroke-linecap:round;stroke-linejoin:round}",
+    ".ebm__ring{fill:none;stroke:#c0392b;stroke-width:calc(1.45px * var(--s))}",
+    ".ebm__pin{fill:#1e8e3e;r:calc(2px * var(--s))}",
     ".ebm__pin--shown{fill:#c0392b}",
-    ".ebm__name{font:600 11px/1 var(--font-body,system-ui),sans-serif;fill:#1b2733;paint-order:stroke;stroke:#fff;stroke-width:3.2;stroke-linejoin:round}",
-    ".ebm__cross{stroke:#c0392b;stroke-width:1.6}",
+    ".ebm__name{font-family:var(--font-body,system-ui),sans-serif;font-weight:600;font-size:calc(9.5px * var(--s));fill:#1b2733;paint-order:stroke;stroke:#fff;stroke-width:calc(2.4px * var(--s));stroke-linejoin:round}",
+    ".ebm__cross{stroke:#c0392b;stroke-width:calc(1.2px * var(--s))}",
     ".ebm__pulse{animation:ebmPulse 1.6s ease-out 2}",
     "@keyframes ebmPulse{0%,100%{opacity:1}50%{opacity:0.25}}",
     ".ebm__tray{display:flex;flex-wrap:wrap;gap:0.45rem;margin:0.9rem 0 0;min-height:2.2rem}",
@@ -137,17 +169,19 @@
     ".ebm__go{border:none;border-radius:8px;background:var(--accent,#b4620e);color:#fff;padding:0.5rem 1.1rem;font:inherit;font-weight:600;cursor:pointer}",
     ".ebm__go:hover{background:var(--accent-lift,#8f4c09)}",
     ".ebm__legend{margin:0.7rem 0 0;font-size:0.8em;color:var(--muted,#666)}",
-    // Everything drawn inside the SVG is in map units, so it shrinks with
-    // the map. On a narrow screen the map is about a third of its design
-    // width, which would leave the names at four pixels tall, so the
-    // marks and the labels are scaled back up there.
-    "@media (max-width:46rem){"
-      + ".ebm__name{font-size:30px;stroke-width:7}"
-      + ".ebm__cap{r:6}.ebm__pin{r:6}"
-      + ".ebm__site{transform-box:fill-box;transform-origin:center;transform:scale(2)}"
-      + ".ebm__ring{stroke-width:4}.ebm__hl{stroke-width:6}"
-      + ".ebm__ridge{stroke-width:5}.ebm__cross{stroke-width:3.5}"
-    + "}",
+    ".ebm__tools{position:absolute;top:0.4rem;right:0.4rem;display:flex;flex-direction:column;gap:0.25rem;z-index:2}",
+    ".ebm__tool{width:2rem;height:2rem;display:flex;align-items:center;justify-content:center;border:1px solid rgba(27,39,51,0.25);border-radius:7px;background:rgba(255,255,255,0.88);color:#1b2733;font:inherit;font-size:1rem;line-height:1;cursor:pointer;padding:0}",
+    ".ebm__tool:hover{background:#fff;border-color:var(--accent,#b4620e);color:var(--accent,#b4620e)}",
+    ".ebm__tool[hidden]{display:none}",
+    // Full screen comes in two flavours. Where the Fullscreen API works the
+    // browser supplies the backdrop; where it does not (an iPhone, mostly)
+    // ebm--fsfix pins the applet over the page instead. Both add ebm--fsmode,
+    // which is what the layout actually keys on, so there is one set of rules.
+    ".ebm--fsfix{position:fixed;inset:0;z-index:99999}",
+    ".ebm--fsmode{display:flex;flex-direction:column;margin:0;border:0;border-radius:0;background:var(--surface,#fff);padding:0.7rem 0.9rem 0.9rem;overflow:auto}",
+    ".ebm--fsmode .ebm__mapwrap{flex:1 1 auto;min-height:12rem}",
+    ".ebm--fsmode .ebm__map{width:100%;height:100%}",
+    ".ebm--fsmode .ebm__legend{display:none}",
     "@media (max-width:30rem){.ebm{padding:0.8rem}.ebm__chip{font-size:0.9em;padding:0.35rem 0.7rem}}"
   ].join("");
 
@@ -249,6 +283,12 @@
     this.cursor = null;
     this.shapeById = {};
     this.landPaths = [];
+    this.zoom = 1;
+    this.vx = 0;                  // viewBox origin, in map units
+    this.vy = 0;
+    this.unitsPerPx = BASE_UNITS_PER_PX;
+    this.full = false;
+    this.swallowClick = false;    // set when a pan ends, so it places nothing
     this.build();
     this.newRound();
   }
@@ -358,7 +398,13 @@
     this.showButton.textContent = t.show;
     this.nextButton.textContent = t.next;
     this.resetButton.textContent = t.reset;
-    this.legend.textContent = t.legend + " — " + t.keyHint;
+    this.legend.textContent = t.legend + " — " + t.zoomHint + " " + t.keyHint;
+    [[this.zoomInButton, t.zoomIn], [this.zoomOutButton, t.zoomOut],
+     [this.zoomResetButton, t.zoomReset]].forEach(function (entry) {
+      entry[0].title = entry[1];
+      entry[0].setAttribute("aria-label", entry[1]);
+    });
+    this.syncFull();
     this.map.setAttribute("aria-label",
       this.lang === "de" ? "Stumme Karte von Europa" : "Blind map of Europe");
   };
@@ -380,11 +426,13 @@
     svgEl("rect", { width: w, height: h, "class": "ebm__sea" }, svg);
 
     data.shapes.forEach(function (shape) {
+      var kind = shape.k || (shape.q ? "land" : "ctx");
       var path = svgEl("path", {
-        d: shape.d,
-        "class": "ebm__land" + (shape.q ? "" : " ebm__land--ctx")
+        d: shape.d, "class": "ebm__shape--" + kind
       }, svg);
-      self.landPaths.push(path);
+      // A mountain range lies on top of the land, so counting it as land
+      // would answer the land-or-water question twice.
+      if (kind !== "range") self.landPaths.push(path);
       if (shape.q) self.shapeById[shape.id] = path;
     });
 
@@ -406,7 +454,7 @@
     });
     data.marks.site.forEach(function (p) {
       svgEl("rect", {
-        x: p[0] - 2.4, y: p[1] - 2.4, width: 4.8, height: 4.8,
+        x: p[0] - 1.7, y: p[1] - 1.7, width: 3.4, height: 3.4,
         "class": "ebm__site"
       }, svg);
     });
@@ -414,7 +462,21 @@
     this.answers = svgEl("g", {}, svg);   // cleared between rounds
     this.crossLayer = svgEl("g", {}, svg);
 
+    var tools = el("div", "ebm__tools", this.wrap);
+    function tool(glyph, handler) {
+      var button = el("button", "ebm__tool", tools, glyph);
+      button.type = "button";
+      button.addEventListener("click", handler);
+      return button;
+    }
+    this.fullButton = tool("\u2922", function () { self.setFull(!self.full); });
+    this.zoomInButton = tool("+", function () { self.zoomBy(ZOOM_STEP); });
+    this.zoomOutButton = tool("\u2212", function () { self.zoomBy(1 / ZOOM_STEP); });
+    this.zoomResetButton = tool("\u25A1", function () { self.resetZoom(); });
+    this.zoomResetButton.hidden = true;
+
     svg.addEventListener("click", function (event) {
+      if (self.swallowClick) { self.swallowClick = false; return; }
       if (!self.selected) return;
       var point = self.toMap(event.clientX, event.clientY);
       if (point) self.tryDrop(self.selected, point);
@@ -422,6 +484,247 @@
     svg.addEventListener("keydown", function (event) {
       self.onMapKey(event);
     });
+    this.bindGestures();
+    this.applyView();
+  };
+
+  // ------------------------------------------------------- zoom and pan
+  //
+  // The viewBox is the only thing that moves. toMap() reads the live screen
+  // transform, so the hit test, the crosshair and the drop point follow the
+  // zoom without any of them knowing that a zoom exists.
+
+  Game.prototype.applyView = function () {
+    this.zoom = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, this.zoom));
+    var w = this.data.view[0] / this.zoom;
+    var h = this.data.view[1] / this.zoom;
+    this.vx = Math.max(0, Math.min(this.data.view[0] - w, this.vx));
+    this.vy = Math.max(0, Math.min(this.data.view[1] - h, this.vy));
+    this.map.setAttribute("viewBox",
+      this.vx + " " + this.vy + " " + w + " " + h);
+    var zoomed = this.zoom > 1.001;
+    this.map.classList.toggle("ebm__map--grab", zoomed);
+    this.zoomResetButton.hidden = !zoomed;
+    this.updateScale();
+  };
+
+  /* One CSS pixel covers this many map units. It is read from the live screen
+     transform rather than from the element width, because in full screen the
+     map is letterboxed and the two no longer agree. */
+  Game.prototype.updateScale = function () {
+    var ctm = this.map.getScreenCTM();
+    if (!ctm || !ctm.a) return;
+    this.unitsPerPx = 1 / ctm.a;
+    this.map.style.setProperty("--s", String(this.unitsPerPx));
+    if (this.selected && this.cursor) this.showCross(this.cursor);
+  };
+
+  /* Zoom by a factor about a point on the screen. The shift needed to hold
+     that point still is measured by projecting it before and after the
+     viewBox changes, which assumes nothing about the page layout. */
+  Game.prototype.zoomAt = function (factor, clientX, clientY) {
+    var next = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, this.zoom * factor));
+    if (Math.abs(next - this.zoom) < 1e-6) return;
+    var anchor = clientX === undefined ? null : this.toMap(clientX, clientY);
+    this.zoom = next;
+    this.applyView();
+    if (!anchor) return;
+    var after = this.toMap(clientX, clientY);
+    if (!after) return;
+    this.vx += anchor.x - after.x;
+    this.vy += anchor.y - after.y;
+    this.applyView();
+  };
+
+  Game.prototype.zoomBy = function (factor) {
+    var rect = this.map.getBoundingClientRect();
+    this.zoomAt(factor, rect.left + rect.width / 2, rect.top + rect.height / 2);
+  };
+
+  Game.prototype.resetZoom = function () {
+    this.zoom = ZOOM_MIN;
+    this.vx = 0;
+    this.vy = 0;
+    this.applyView();
+  };
+
+  /* Middle of what is currently on screen, which is where a crosshair with no
+     position yet belongs. */
+  Game.prototype.viewCentre = function () {
+    return {
+      x: this.vx + this.data.view[0] / this.zoom / 2,
+      y: this.vy + this.data.view[1] / this.zoom / 2
+    };
+  };
+
+  /* Keeps a point inside the visible window, so arrow-key placing still works
+     when the map is zoomed in further than the crosshair has travelled. */
+  Game.prototype.ensureVisible = function (point) {
+    var w = this.data.view[0] / this.zoom;
+    var h = this.data.view[1] / this.zoom;
+    var edge = Math.min(w, h) * 0.12;
+    var x = Math.max(0, Math.min(this.data.view[0] - w,
+      Math.min(point.x - edge, Math.max(this.vx, point.x + edge - w))));
+    var y = Math.max(0, Math.min(this.data.view[1] - h,
+      Math.min(point.y - edge, Math.max(this.vy, point.y + edge - h))));
+    if (x === this.vx && y === this.vy) return;
+    this.vx = x;
+    this.vy = y;
+    this.applyView();
+  };
+
+  Game.prototype.panBy = function (dxPx, dyPx) {
+    this.vx += dxPx * this.unitsPerPx;
+    this.vy += dyPx * this.unitsPerPx;
+    this.applyView();
+  };
+
+  /* Ctrl and the wheel on a computer, two fingers on a touch screen, and one
+     finger to push the map around once it is zoomed in. A plain wheel is left
+     alone so that the page still scrolls over the map. */
+  Game.prototype.bindGestures = function () {
+    var self = this;
+    var svg = this.map;
+    var live = {};              // pointerId -> last client position
+    var pinch = null;           // spread and midpoint of the two fingers
+    var panned = 0;             // pixels travelled, to tell a pan from a tap
+
+    function count() {
+      return Object.keys(live).length;
+    }
+
+    function pair() {
+      var ids = Object.keys(live);
+      var a = live[ids[0]];
+      var b = live[ids[1]];
+      return {
+        d: Math.hypot(a.x - b.x, a.y - b.y),
+        x: (a.x + b.x) / 2,
+        y: (a.y + b.y) / 2
+      };
+    }
+
+    svg.addEventListener("wheel", function (event) {
+      if (!event.ctrlKey && !event.metaKey) return;
+      event.preventDefault();
+      var unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? 400 : 1;
+      self.zoomAt(Math.exp(-event.deltaY * unit * 0.0025),
+                  event.clientX, event.clientY);
+    }, { passive: false });
+
+    svg.addEventListener("pointerdown", function (event) {
+      if (event.pointerType === "mouse" && event.button !== 0) return;
+      // A swallow that was never collected -- a pan the browser ended with a
+      // cancel, say -- must not eat the next tap.
+      self.swallowClick = false;
+      live[event.pointerId] = { x: event.clientX, y: event.clientY };
+      panned = 0;
+      if (count() === 2) {
+        pinch = pair();
+        try { svg.setPointerCapture(event.pointerId); } catch (e) { /* ignore */ }
+      }
+    });
+
+    svg.addEventListener("pointermove", function (event) {
+      var last = live[event.pointerId];
+      if (!last) return;
+      var dx = event.clientX - last.x;
+      var dy = event.clientY - last.y;
+      last.x = event.clientX;
+      last.y = event.clientY;
+      panned += Math.hypot(dx, dy);
+
+      if (count() >= 2) {
+        var now = pair();
+        if (pinch) {
+          self.panBy(pinch.x - now.x, pinch.y - now.y);
+          if (pinch.d > 0 && now.d > 0) self.zoomAt(now.d / pinch.d, now.x, now.y);
+        }
+        pinch = now;
+        event.preventDefault();
+        return;
+      }
+
+      if (self.zoom <= 1.001 || panned < DRAG_SLOP) return;
+      if (!svg.hasPointerCapture(event.pointerId)) {
+        try { svg.setPointerCapture(event.pointerId); } catch (e) { /* ignore */ }
+      }
+      svg.classList.add("ebm__map--grabbing");
+      self.panBy(-dx, -dy);
+      event.preventDefault();
+    });
+
+    function release(event) {
+      if (!live[event.pointerId]) return;
+      delete live[event.pointerId];
+      if (count() < 2) pinch = null;
+      if (count()) return;
+      svg.classList.remove("ebm__map--grabbing");
+      if (panned >= DRAG_SLOP) self.swallowClick = true;
+      panned = 0;
+    }
+
+    svg.addEventListener("pointerup", release);
+    svg.addEventListener("pointercancel", release);
+
+    if (window.ResizeObserver) {
+      new window.ResizeObserver(function () {
+        self.updateScale();
+      }).observe(this.wrap);
+    } else {
+      window.addEventListener("resize", function () { self.updateScale(); });
+    }
+    document.addEventListener("fullscreenchange", function () {
+      self.syncFull();
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape"
+          && self.mount.classList.contains("ebm--fsfix")) {
+        self.pinFull(false);
+      }
+    });
+  };
+
+  // ------------------------------------------------------- full screen
+  //
+  // Two routes to the same layout. Where the Fullscreen API works the browser
+  // supplies the backdrop; where it does not, or where it refuses, the applet
+  // pins itself over the page instead. Both end up wearing ebm--fsmode.
+
+  Game.prototype.setFull = function (want) {
+    var self = this;
+    if (want) {
+      if (this.mount.requestFullscreen) {
+        var opened = this.mount.requestFullscreen();
+        if (opened && opened.catch) {
+          opened.catch(function () { self.pinFull(true); });
+        }
+      } else {
+        this.pinFull(true);
+      }
+    } else if (document.fullscreenElement === this.mount) {
+      if (document.exitFullscreen) document.exitFullscreen();
+    } else {
+      this.pinFull(false);
+    }
+    window.setTimeout(function () { self.syncFull(); }, 0);
+  };
+
+  Game.prototype.pinFull = function (want) {
+    this.mount.classList.toggle("ebm--fsfix", want);
+    document.documentElement.style.overflow = want ? "hidden" : "";
+    this.syncFull();
+  };
+
+  Game.prototype.syncFull = function () {
+    var self = this;
+    this.full = document.fullscreenElement === this.mount
+      || this.mount.classList.contains("ebm--fsfix");
+    this.mount.classList.toggle("ebm--fsmode", this.full);
+    this.fullButton.textContent = this.full ? "\u2715" : "\u2922";
+    this.fullButton.title = this.full ? this.t().exitFull : this.t().full;
+    this.fullButton.setAttribute("aria-label", this.fullButton.title);
+    window.requestAnimationFrame(function () { self.updateScale(); });
   };
 
   /* Screen coordinates to map units. getScreenCTM accounts for the viewBox,
@@ -534,8 +837,7 @@
         !!self.selected && self.selected.id === id));
     });
     if (this.selected) {
-      this.showCross(this.cursor || { x: this.data.view[0] / 2,
-                                      y: this.data.view[1] / 2 });
+      this.showCross(this.cursor || this.viewCentre());
     } else {
       this.crossLayer.innerHTML = "";
     }
@@ -594,7 +896,7 @@
   Game.prototype.showCross = function (point) {
     this.cursor = point;
     this.crossLayer.innerHTML = "";
-    var size = 11;
+    var size = 8 * this.unitsPerPx;
     svgEl("line", { x1: point.x - size, y1: point.y, x2: point.x + size,
                     y2: point.y, "class": "ebm__cross" }, this.crossLayer);
     svgEl("line", { x1: point.x, y1: point.y - size, x2: point.x,
@@ -602,10 +904,39 @@
   };
 
   Game.prototype.onMapKey = function (event) {
-    if (!this.selected) return;
-    var step = event.shiftKey ? 24 : 6;
-    var point = this.cursor || { x: this.data.view[0] / 2,
-                                 y: this.data.view[1] / 2 };
+    if (event.key === "+" || event.key === "=") {
+      event.preventDefault();
+      this.zoomBy(ZOOM_STEP);
+      return;
+    }
+    if (event.key === "-" || event.key === "_") {
+      event.preventDefault();
+      this.zoomBy(1 / ZOOM_STEP);
+      return;
+    }
+    if (event.key === "0") {
+      event.preventDefault();
+      this.resetZoom();
+      return;
+    }
+    if (event.key === "f" || event.key === "F") {
+      event.preventDefault();
+      this.setFull(!this.full);
+      return;
+    }
+    var pan = { ArrowLeft: [-1, 0], ArrowRight: [1, 0],
+                ArrowUp: [0, -1], ArrowDown: [0, 1] }[event.key];
+    if (!this.selected) {
+      // Nothing picked up: the arrows push the map around instead.
+      if (!pan || this.zoom <= 1.001) return;
+      event.preventDefault();
+      var reach = (event.shiftKey ? 160 : 45);
+      this.panBy(pan[0] * reach, pan[1] * reach);
+      return;
+    }
+    // A step the size it looks, so placing stays as fine as the zoom allows.
+    var step = (event.shiftKey ? 17 : 4.3) * this.unitsPerPx;
+    var point = this.cursor || this.viewCentre();
     var moved = { x: point.x, y: point.y };
     if (event.key === "ArrowLeft") moved.x -= step;
     else if (event.key === "ArrowRight") moved.x += step;
@@ -621,6 +952,7 @@
     event.preventDefault();
     moved.x = Math.max(0, Math.min(this.data.view[0], moved.x));
     moved.y = Math.max(0, Math.min(this.data.view[1], moved.y));
+    this.ensureVisible(moved);
     this.showCross(moved);
   };
 
@@ -701,7 +1033,7 @@
 
     if (item.t.k === "poly") {
       var shape = this.shapeById[item.t.ref];
-      if (shape) shape.classList.add("ebm__land--hit");
+      if (shape) shape.classList.add("ebm__shape--hit");
     } else if (item.hl) {
       svgEl("path", { d: item.hl, "class": "ebm__hl" }, this.answers);
     } else {
@@ -734,7 +1066,7 @@
   Game.prototype.clearHighlights = function () {
     var self = this;
     Object.keys(this.shapeById).forEach(function (id) {
-      self.shapeById[id].classList.remove("ebm__land--hit");
+      self.shapeById[id].classList.remove("ebm__shape--hit");
     });
     (this.round || []).forEach(function (item) { delete item.__done; });
   };

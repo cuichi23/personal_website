@@ -80,6 +80,103 @@
   h.push(good?"=== ALL GOOD ===":"=== PROBLEMS ===");
   document.getElementById("out").textContent=h.concat(lines).join("\n");
 
+  // ------------------------------------------------------------ zoom tests
+  // The viewBox is the whole of the zoom, so the question these answer is
+  // whether every screen-to-map conversion still goes through it.
+  var zl=[];
+  function screenOf(mp){var m=g.map.getScreenCTM();
+    return{x:m.a*mp.x+m.c*mp.y+m.e,y:m.b*mp.x+m.d*mp.y+m.f};}
+  function label(){return g.answers.querySelector("text")||g.map.querySelector("text");}
+  function labelPx(){var t=label();if(!t)return null;
+    return parseFloat(getComputedStyle(t).fontSize)*g.map.getScreenCTM().a;}
+
+  g.resetZoom();
+  var fullBox=g.map.getAttribute("viewBox");
+  var pxAt1=labelPx();
+
+  // Zooming about a screen point must leave the map point under it in place.
+  var anchorScreen=screenOf({x:data.view[0]*0.62,y:data.view[1]*0.42});
+  var beforeAnchor=g.toMap(anchorScreen.x,anchorScreen.y);
+  g.zoomAt(4,anchorScreen.x,anchorScreen.y);
+  var afterAnchor=g.toMap(anchorScreen.x,anchorScreen.y);
+  var anchorDrift=Math.hypot(beforeAnchor.x-afterAnchor.x,beforeAnchor.y-afterAnchor.y);
+  var zoomIs4=Math.abs(g.zoom-4)<0.01;
+  var pxAt4=labelPx();
+  var pxHeld=pxAt1&&pxAt4&&Math.abs(pxAt1-pxAt4)<0.6;
+
+  // A drop placed at the screen position of a country's label must still be
+  // judged against that country while the map is zoomed in.
+  var fr2=byId("c-fr");
+  g.resetZoom();
+  var frScreen=screenOf({x:fr2.lab[0],y:fr2.lab[1]});
+  g.zoomAt(5,frScreen.x,frScreen.y);
+  var frScreen2=screenOf({x:fr2.lab[0],y:fr2.lab[1]});
+  var zoomedHit=g.judge(fr2,g.toMap(frScreen2.x,frScreen2.y)).ok;
+  var zoomedMiss=!g.judge(byId("c-pl"),g.toMap(frScreen2.x,frScreen2.y)).ok;
+
+  // The view may never show anything outside the map.
+  g.zoom=40;g.vx=-9e4;g.vy=-9e4;g.applyView();
+  var lowClamp=g.vx===0&&g.vy===0;
+  g.vx=9e4;g.vy=9e4;g.applyView();
+  var vb=g.map.getAttribute("viewBox").split(" ").map(Number);
+  var highClamp=Math.abs(vb[0]+vb[2]-data.view[0])<0.01
+               &&Math.abs(vb[1]+vb[3]-data.view[1])<0.01;
+  var capped=g.zoom<=8.001;
+
+  // Two synthetic fingers spreading apart have to zoom in.
+  g.resetZoom();
+  function tp(t,id,x,y){g.map.dispatchEvent(new PointerEvent(t,
+    {pointerId:id,pointerType:"touch",bubbles:true,clientX:x,clientY:y,button:0}));}
+  var mr=g.map.getBoundingClientRect(),mcx=mr.left+mr.width/2,mcy=mr.top+mr.height/2;
+  tp("pointerdown",11,mcx-40,mcy);tp("pointerdown",12,mcx+40,mcy);
+  tp("pointermove",11,mcx-120,mcy);tp("pointermove",12,mcx+120,mcy);
+  var pinchZoomed=g.zoom>1.4;
+  tp("pointerup",11,mcx-120,mcy);tp("pointerup",12,mcx+120,mcy);
+
+  // One finger pushes the map around once it is zoomed, and the pan must not
+  // then be read as a tap that places a name.
+  var vxBefore=g.vx;
+  tp("pointerdown",13,mcx,mcy);tp("pointermove",13,mcx-60,mcy);
+  var panned=g.vx>vxBefore+1;
+  tp("pointerup",13,mcx-60,mcy);
+  var swallowed=g.swallowClick===true;
+
+  // A stale swallow must clear itself on the next touch, or the tap after a
+  // cancelled pan would silently place nothing.
+  tp("pointerdown",14,mcx,mcy);
+  var swallowCleared=g.swallowClick===false;
+  tp("pointerup",14,mcx,mcy);
+
+  g.resetZoom();
+  var backToFull=g.map.getAttribute("viewBox")===fullBox;
+
+  // Full screen, pinned flavour: the layout class goes on and comes off, and
+  // the scale is still a sane number afterwards.
+  g.pinFull(true);
+  var fsOn=g.mount.classList.contains("ebm--fsmode")
+          &&g.mount.classList.contains("ebm--fsfix")&&g.full===true;
+  g.pinFull(false);
+  var fsOff=!g.mount.classList.contains("ebm--fsmode")
+           &&!g.mount.classList.contains("ebm--fsfix")&&g.full===false
+           &&document.documentElement.style.overflow==="";
+  g.updateScale();
+  var scaleSane=g.unitsPerPx>0.1&&g.unitsPerPx<40;
+
+  zl.push("zoom 4x reached: "+zoomIs4+", anchor drift "+anchorDrift.toFixed(2)+" units");
+  zl.push("label stays "+(pxAt1?pxAt1.toFixed(1):"?")+" -> "
+          +(pxAt4?pxAt4.toFixed(1):"?")+" screen px: "+pxHeld);
+  zl.push("France still hit when zoomed 5x: "+zoomedHit+", Poland still not: "+zoomedMiss);
+  zl.push("view clamped at both edges: "+(lowClamp&&highClamp)+", zoom capped at 8: "+capped);
+  zl.push("two-finger spread zoomed in: "+pinchZoomed);
+  zl.push("one-finger pan moved the view: "+panned+", pan swallowed the click: "+swallowed);
+  zl.push("stale swallow cleared on the next touch: "+swallowCleared);
+  zl.push("reset returned the whole map: "+backToFull);
+  zl.push("full screen on: "+fsOn+", off: "+fsOff+", scale sane: "+scaleSane);
+  var zoomGood=zoomIs4&&anchorDrift<1.5&&pxHeld&&zoomedHit&&zoomedMiss&&lowClamp
+    &&highClamp&&capped&&pinchZoomed&&panned&&swallowed&&backToFull&&swallowCleared&&fsOn&&fsOff&&scaleSane;
+  zl.push(zoomGood?"=== ZOOM GOOD ===":"=== ZOOM PROBLEMS ===");
+  document.getElementById("out").textContent+="\n"+zl.join("\n");
+
   // Solve what is left of the round so the pins, the names and the two kinds
   // of highlight (a filled country, a traced river or ridge, a ring around a
   // point) can all be checked by eye in one picture.

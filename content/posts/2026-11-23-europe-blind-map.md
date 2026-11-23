@@ -58,6 +58,15 @@ Rügen und den Guadalquivir. Mit **DE/EN** wechselst du die Sprache der Namen,
 mit **Zeig es mir** gibst du bei einem Namen auf, und ganz rechts steht, wie
 viele der 170 Namen du schon einmal richtig hattest.
 
+**Zoomen und Vollbild.** Oben rechts in der Karte sitzen vier Knöpfe:
+Vollbild, größer, kleiner, und — sobald die Karte vergrößert ist — zurück zur
+ganzen Karte. Am Rechner zoomst du auch mit **Strg und dem Mausrad**, auf dem
+Handy **mit zwei Fingern**. Ist die Karte vergrößert, schiebst du sie mit einem
+Finger (oder mit gedrückter Maustaste) herum; mit der Tastatur geht es mit
+`+`, `-`, `0` und, solange kein Name gewählt ist, mit den Pfeiltasten. Das
+Vollbild lohnt sich auf einem kleinen Bildschirm, und für Luxemburg oder
+Montenegro lohnt sich das Zoomen immer.
+
 Zwei Regeln, die die Karte streng nimmt, weil sie genau das sind, was man
 lernen soll: **ein Meer liegt im Wasser**, also zählt ein Treffer auf Sizilien
 nicht als Mittelmeer, und **eine Insel liegt an Land**, also zählt ein Treffer
@@ -116,6 +125,22 @@ A few decisions worth naming, because they are visible:
   of the coastline. Countries smaller than a certain area get a small
   tolerance around their label point as well, because Luxembourg is about
   three pixels wide on a phone.
+- **The zoom is the `viewBox` and nothing else.** Dragging, tapping and the
+  arrow-key crosshair all turn a screen position into a map position through
+  `getScreenCTM()`, which already carries the `viewBox`, the element's CSS
+  size and any page scaling. Moving the `viewBox` therefore moves the hit
+  test with it, and no part of the game had to learn that a zoom exists. To
+  hold a point still while zooming about it, the applet projects the same
+  screen point before and after the change and shifts the view by the
+  difference, which needs no assumption about how the map is laid out — and
+  so keeps working in full screen, where the map is letterboxed.
+- **Marks are measured in screen pixels, geography in map units.** A capital
+  dot drawn at three map units would be two pixels across on a laptop, four
+  on a phone and sixteen once you zoom in. So the applet writes the current
+  map-units-per-pixel into a CSS variable and every dot, label and line
+  thickness is a multiple of it. They come out the same size on screen at any
+  width and any zoom, while the coastlines underneath stay geography. This
+  replaced a width-based media query that had guessed at the same thing.
 - **The mountain ridges are drawn by hand**, as a handful of points each along
   the spine of the range. Natural Earth has no usable range geometry at this
   scale. They are right to within a map's width of line and no better, which
@@ -137,3 +162,10 @@ smaller job, and it is honest about the difference. There is no account, no
 timer, no streak and no badge: the only number it keeps is how many of the 170
 names you have placed correctly at least once, and a button to throw that away
 again.
+
+Full screen comes in two flavours because one of them is not always available.
+Where the Fullscreen API works, the browser supplies the backdrop; where it
+refuses — an iPhone, mostly, which grants full screen to video and to little
+else — the applet pins itself over the page instead. The two end up looking
+the same, which is the point, but only the first one hides the browser's own
+chrome.
